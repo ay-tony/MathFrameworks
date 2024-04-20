@@ -1,4 +1,4 @@
-#import "@local/modern-technique-report:0.1.0": *
+#import "@preview/modern-technique-report:0.1.0": *
 #import "@preview/ctheorems:1.1.2": *
 #show: thmrules
 #import "@preview/physica:0.9.3": *
