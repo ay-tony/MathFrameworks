@@ -263,7 +263,7 @@
 ]
 
 #tho("the Cauchy Convergence Criterion for Real Sequences")[
-  A sequence of real nummbers converges if and only if it is Cauchy.
+  A sequence of real numbers converges if and only if it is Cauchy.
 ]
 
 #tho("Linearity and Monotonicity of Convergence of Real Sequences")[
