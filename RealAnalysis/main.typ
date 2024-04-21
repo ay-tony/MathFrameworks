@@ -164,7 +164,7 @@
 #cor[
   The following sets are countably infinite:
 
-  + For each natural numbers $n$, the Cartesian product $overbrace(NN times dots.c times NN, n "times")$.
+  + #v(-0.75em)For each natural number $n$, the Cartesian product $overbrace(NN times dots.c times NN, n "times")$.
   + The set of rational numbers $QQ$.
 ]
 
@@ -249,11 +249,11 @@
   $ "if" a_n <= c "for all" n, "then" a <= c. $
 ]
 
-#tho("the Monotone Convergence Critirion for Real Sequences")[
+#tho("the Monotone Convergence Criterion for Real Sequences")[
   A monotone sequence of real numbers converges if and only if it is bounded.
 ]
 
-#tho("the Volzano-Weierstrass Theorem")[
+#tho("the Bolzano-Weierstrass Theorem")[
   Every bounded sequence of real numbers has a convergent subsequence.
 ]
 
