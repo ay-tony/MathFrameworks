@@ -40,7 +40,7 @@
 
 #let eg = thm(
   "example",
-  "Example",  
+  "Example",
 ).with(numbering: none)
 
 #let rem = thm(
@@ -108,15 +108,12 @@
   Let $X$ be a partially ordered set for which every totally ordered subset has an upper bound. Then $X$ has a maximal member.
 ]
 
-#set heading(
-  numbering: 
-    (..nums) => [
-      #nums.pos().map(str).join(".")
-      #h(0.5em)
-      #box(width: 1.2pt, height: 1.1em, fill: gray.darken(20%), baseline: 20%)
-      #h(0.2em)
-    ]
-)
+#set heading(numbering: (..nums) => [
+  #nums.pos().map(str).join(".")
+  #h(0.5em)
+  #box(width: 1.2pt, height: 1.1em, fill: gray.darken(20%), baseline: 20%)
+  #h(0.2em)
+])
 = The Real Numbers: Sets, Sequences, and Functions
 
 == The Field, Positivity, and Completeness Axioms
@@ -163,7 +160,7 @@
 
 #cor[
   The following sets are countably infinite:
-
+  
   + #v(-0.75em)For each natural number $n$, the Cartesian product $overbrace(NN times dots.c times NN, n "times")$.
   + The set of rational numbers $QQ$.
 ]
@@ -215,13 +212,13 @@
 ]
 
 #note("The Nested Set Theorem")[
-  Let ${F_n}_(n=1)^oo$ be a descending countable collection of nonempty closed sets of real numbers for which $F_1$ bounded. Then 
+  Let ${F_n}_(n=1)^oo$ be a descending countable collection of nonempty closed sets of real numbers for which $F_1$ bounded. Then
   $ sect.big_(n=1)^oo F_n != emptyset. $
 ]
 
 #de[
   Given a set $X$, a collection $cA$ of subsets of $X$ is called a $sigma$-algebra (of subsets of $X$) provided:
-
+  
   + The empty-set, $emptyset$, belongs to $cA$;
   + The complement in $X$ of a set in $cA$ also belongs to $cA$;
   + The union of a countable collection of sets in $cA$ also belongs to $cA$.
@@ -238,7 +235,7 @@
 == Sequences of Real Numbers
 
 #de[
-  A sequence ${a_n}$ is said to *converge* to the number $a$ provided for every $epsilon > 0$, there is an index $N$ for which 
+  A sequence ${a_n}$ is said to *converge* to the number $a$ provided for every $epsilon > 0$, there is an index $N$ for which
   $ "if" n >= N, "then" |a - a_n| < epsilon. $
   We call $a$ the *limit* of the sequence and denote the convergence of ${a_n}$ by writing
   $ {a_n} -> a "or" lim_(n -> oo) a_n = a. $
@@ -268,7 +265,11 @@
 
 #tho("Linearity and Monotonicity of Convergence of Real Sequences")[
   Let ${a_n}$ and ${b_n}$ be convergent sequences of real numbers. Then for each pair of real numbers $alpha$ and $beta$, the sequence ${alpha dot a_n + beta dot b_n}$ is convergent and
-  $ lim_(n -> oo)[alpha dot a_n + beta dot b_n] = alpha dot lim_(n -> oo) a_n + beta dot lim_(n ->oo)b_n. $
+  $
+  lim_(n -> oo)[
+    alpha dot a_n + beta dot b_n
+  ] = alpha dot lim_(n -> oo) a_n + beta dot lim_(n ->oo)b_n.
+  $
   Moreover,
   $ "if" a_n <= b_n "for all" n, "then" lim_(n -> oo) a_n <= lim_(n -> oo)b_n. $
 ]
@@ -282,7 +283,7 @@
 
 #prop[
   Let ${a_n}$ and ${b_n}$ be sequyences of real numbers.
-
+  
   + $lim sup{a_n} = cal(l) in RR$ if and only if for each $epsilon > 0$, there are infinitely many indices $n$ for which $a_n > cal(l) - epsilon$ and only finitely many indeices $n$ for which $a_n > cal(l) + epsilon$.
   + $lim sup {a_n} = oo$ if and only if ${a_n}$ is not bounded above.
   + $ lim sup {a_n} = - lim inf {-a_n}. $
@@ -294,9 +295,11 @@
 
 #prop[
   Let ${a_n}$ be a sequence of real numbers.
-
+  
   + The series $sum_(k=1)^oo a_k$ is summable if and only if for each $epsilon > 0$, there is an index $N$ for which
-    $ abs(sum_(k=n)^(n+m)a_k) < epsilon "for" n >= N "and any natural number" m. $
+    $
+    abs(sum_(k=n)^(n+m)a_k) < epsilon "for" n >= N "and any natural number" m.
+    $
   + If the series $sum_(k=1)^oo|a_k|$ is summable, then $sum_(k=1)^oo a_k$ also is summable.
   + If each term $a_k$ is nonnegative, then the series $sum_(k=1)^oo a_k$ is summable if and only if the sequence of partial sums is bounded.
 ]
@@ -308,7 +311,7 @@
 ]
 
 #prop[
-  Let $f$ be a real-valued function defined on a set $E$ of real numbers. Then $f$ is continuous on $E$ if and only if for each open set $cO$, 
+  Let $f$ be a real-valued function defined on a set $E$ of real numbers. Then $f$ is continuous on $E$ if and only if for each open set $cO$,
   $ f^(-1)(cO) = E sect cU "where" cU "is an open set". $
 ]
 
@@ -342,9 +345,13 @@
 == Lebesgue Outer Measure
 
 #eg[
-  A countable set has outer measure zero. Indeed, let $C$ be a countable set enumerated as $C = {c_k}_(k=1)^oo$. Let $epsilon > 0$. For each natural number $k$, define $I_k = (c_k - epsilon \/ 2^(k+1), c_k + epsilon \/ 2^(k+1))$. The countable collection of open intervals ${I_k}_(k=1)^oo$ covers $C$. Therefore 
+  A countable set has outer measure zero. Indeed, let $C$ be a countable set enumerated as $C = {c_k}_(k=1)^oo$. Let $epsilon > 0$. For each natural number $k$, define $I_k = (c_k - epsilon \/ 2^(k+1), c_k + epsilon \/ 2^(k+1))$. The countable collection of open intervals ${I_k}_(k=1)^oo$ covers $C$. Therefore
   
-  $ 0 <= m^*(C) <= sum_(k=1)^oo cal(l)(I_k) = sum_(k=1)^oo epsilon \/ 2^k = epsilon. $
+  $
+  0 <= m^*(C) <= sum_(k=1)^oo cal(l)(
+    I_k
+  ) = sum_(k=1)^oo epsilon \/ 2^k = epsilon.
+  $
   This inequality holds for each $epsilon > 0$. Hence $m^*(E) = 0$.
 ]
 
@@ -354,7 +361,7 @@
 
 #prop[
   Outer measure is translation invariant, that is, for any set $A$ and number $y$,
-
+  
   $ m^*(A + y) = m^*(A). $
 ]
 
@@ -367,7 +374,7 @@
 
 #de[
   A set E is said to be *measurable* provided for any set $A$,
-  $ m^*(A) = m^*(A sect E)  + m^*(A sect E^C). $
+  $ m^*(A) = m^*(A sect E) + m^*(A sect E^C). $
 ]
 
 #prop[
@@ -405,14 +412,14 @@
 
 #tho[
   Let $E$ be any set of real numbers. Then each of the following four assertions is equivalent to eh measurability of $E$.
-
+  
   (Outer Approximation by Open Sets and $G_delta$ Sets)
-
+  
   + For each $epsilon > 0$, there is an open set $cO$ containing $E$ for which $m^*(cal(O) tilde E) < epsilon$.
   + There is a $G_delta$ set $G$ containing $E$ for which $m^*(G tilde E) = 0$.
-
+  
   (Inner Approximation by Cloased Sets and $F_delta$ Sets)
-
+  
   + For each $epsilon > 0$, there is a closed set $F$ contained in $E$ for which $m^*(E tilde F) < epsilon$.
   + There is an $F_delta$ set $F$ contained in $E$ for which $m^*(E tilde F) = 0$.
 ]
@@ -436,7 +443,7 @@
 ]
 
 #prop[
-  _Lebesgue measure is countably additive_, that is, if ${E_k}_(k=1)^oo$ is a countable disjoint collection of measurable sets, then its union $union_(k=1)^oo E_k$ also is measurable and 
+  _Lebesgue measure is countably additive_, that is, if ${E_k}_(k=1)^oo$ is a countable disjoint collection of measurable sets, then its union $union_(k=1)^oo E_k$ also is measurable and
   $ m(union.big_(k=1)^oo E_k) = sum_(k=1)^oo m(E_k). $
 ]
 
@@ -446,10 +453,10 @@
 
 #tho("the Countinuity of Measure")[
   Lebesgue measure possesses the following continuity properties:
-
+  
   + If ${A_k}_(k=1)^oo$ is an ascending collection of measurable sets, then
   $ m(union.big_(k=1)^oo A_k) = lim_(k -> oo) m(A_k). $
-
+  
   + If ${B_k}_(k=1)^oo$ is a descending collection of measurable sets and $m(B_1) < oo$, then
   $ m(sect.big_(k=1)^oo B_k) = lim_(k -> oo) m(B_k). $
 ]
@@ -484,7 +491,7 @@
 ]
 
 #prop[
-  The Cantor-Lebesgue function $phi$ is an increasing countinuous function that maps $[0, 1]$ onto $[0, 1]$. Its derivative exists on the open set $cO$, the complement in $[0, 1]$ of the Cantor set, 
+  The Cantor-Lebesgue function $phi$ is an increasing countinuous function that maps $[0, 1]$ onto $[0, 1]$. Its derivative exists on the open set $cO$, the complement in $[0, 1]$ of the Cantor set,
   $ phi' = 0 "on" cO "while" m(cO) = 1. $
 ]
 
@@ -508,7 +515,7 @@
   + For each real number $c$, the set ${x in E | f(x) >= c}$ is measurable.
   + For each real number $c$, the set ${x in E | f(x) < c}$ is measurable.
   + For each real number $c$, the set ${x in E | f(x) <= c}$ is measurable.
-
+  
   Each of these properties implies that for each extended real number $c$,
   $ "the set" {x in E | f(x) = c} "is measurable". $
 ]<prop1>
@@ -531,17 +538,17 @@
 
 #prop[
   Let $f$ be an extended real-valued function on $E$.
-
+  
   + If $f$ is measurable on $E$ and $f = g$ a.e. on $E$, then $g$ is measurable on $E$.
   + For a measurable subset $D$ of $E$, $f$ is measurable on $E$ if and only if the restrictions of $f$ to $D$ and $E tilde D$ are measurable.
 ]
 
 #tho[
   Let $f$ and $g$ be measurable functions on $E$ that are finite a.e. on $E$.
-
+  
   (Linearity) For any $alpha$ and $beta$,
   $ alpha f + beta g "is measurable on" E. $
-
+  
   (Products)
   $ f g "is measurable on" E. $
 ]
@@ -562,7 +569,7 @@
 
 #de[
   For a sequence ${f_n}$ of functions with common domain $E$, a function $f$ on $E$ and a subset $A$ of $E$, we say that
-
+  
   + The sequence ${f_n}$ converges to $f$ pointwise on $A$ provided $
     lim_(n -> oo) f_n (x) = f(x) "for all" x in A.
   $
@@ -583,14 +590,14 @@
 #note("The Simple Approximation Lemma")[
   Let $f$ be a measurable real-valued function on $E$. Assume $f$ is bounded on $E$, that is, there is an $M >= 0$ for which $|f| <= M$ on $E$. Then for each $epsilon > 0$, there are simple functions $phi_epsilon$ and $psi_epsilon$ defined on $E$ which have the following approximation properties:
   $
-    phi_epsilon <= f <= psi_epsilon "and" 0 <= psi_epsilon - phi_epsilon < epsilon "on" E.
+  phi_epsilon <= f <= psi_epsilon "and" 0 <= psi_epsilon - phi_epsilon < epsilon "on" E.
   $
 ]
 
 #note("The Simple Approximation Theorem")[
   Ax extended real-valued function $f$ on a measurable set $E$ is measurable if and only if there is a sequence ${phi_n}$ of simple functions on $E$ which converges pointwise on $E$ fo $f$ and has the property that
   $
-    |phi_n| <= |f| "on" E "for all" n.
+  |phi_n| <= |f| "on" E "for all" n.
   $
   If $f$ is nonnegative, we may choose ${phi_n}$ to be increasing.
 ]
@@ -789,7 +796,7 @@
 ]
 
 #prop[
-  Let the nonnegative function $f$ be integrable over $E$. Then $f$ is finite a.e. on E. 
+  Let the nonnegative function $f$ be integrable over $E$. Then $f$ is finite a.e. on E.
 ]
 
 #note("Beppo Levi's Lemma")[
@@ -869,12 +876,12 @@
 ]
 
 #tho("The Continuity of Integration")[
-  Let $f$ be integrable over $E$. 
-
+  Let $f$ be integrable over $E$.
+  
   + If ${E_n}_(n=1)^oo$ is an ascending countable collection of measurable subsets of $E$, then $
     integral_(union.big_(n=1)^oo E_n) f = lim_(n -> oo) integral_E_n f.
   $
-
+  
   + If ${E_n}_(n=1)^oo$ is a descending countable collection of measurable subsets of $E$, then $
     integral_(sect.big_(n=1)^oo E_n) f = lim_(n -> oo) integral_E_n f.
   $
@@ -916,4 +923,45 @@
   Let $E$ be of finite measure. Suppose ${h_n}$ is a sequcence of nonnegative integrable functions that converges pointwise a.e. on $E$ to $h equiv 0$. Then $
     lim_(x -> oo) integral_E h_n = 0 "if and only if" {h_n} "is uniformly integrable over" E. 
   $
+]
+
+= Lebesgue Integration: Further Topics
+
+== Uniform Integrability and Tightness: A General Vitali Convergence Theorem
+
+#prop[
+  Let $f$ be integrable over $E$. Then for each $epsilon > 0$, there is a set of finite measure $E_0$ for which $
+  integral_(E tilde E_0)|f| < epsilon.
+  $
+]
+
+#de[
+  A family $cF$ of measurable functions on $E$ is said to be
+  *tight* over $E$ provided for each $epsilon > 0$, there is a subset $E_0$ of $E$ of finite measure for which $
+  integral_(E tilde E_0) |f| < epsilon "for all" f in cF.
+  $
+]
+
+#note("The Vitali Convergence Theorem")[
+  Let ${f_n}$ be a sequence of functions on $E$ that is uniformly integrable and tight over $E$. Suppose ${f_n} -> f$ pointwise a.e. on $E$. Then $f$ is integrable over $E$ and $
+    lim_(n -> oo) integral_E f_n = integral_E f.
+  $
+]
+
+#cor[
+  Let ${h_n}$ be a sequence of nonnegative integrable functions on $E$. Suppose ${h_n} -> 0$ for almost all $x$ in $E$. Then $
+  lim_(n -> oo) integral_E h_n = 0 "if and only if" {h_n} "is uniformly integrable and tight over" E.
+  $
+]
+
+== Convergence in Measure
+
+#de[
+  Let ${f_n}$ be a sequence of measurable functions on $E$ and $f$ a measurable function on $E$ for which $f$ and each $f_n$ is finite a.e. on $E$. The sequence ${f_n}$ is said to *converge in measure* on $E$ to $f$ provided for each $eta > 0$. $
+    lim_(n->oo) m {x in E | |f_n (x) - f(x)| > eta} = 0.
+  $
+]
+
+#prop[
+  Assume $E$ has finite measure. Let ${f_n}$ be a sequence of measurable functions on $E$ that converges pointwise a.e. on $E$ to $f$ and $f$ is finite a.e. on $E$. Then ${f_n} -> f$ in measure on $E$.
 ]
