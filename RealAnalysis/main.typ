@@ -19,11 +19,16 @@
 
 #set page(numbering: "1")
 
-#set page(header: {
-  align(right, image("buaachar.png", width: 20%))
-  v(-8pt)
-  line(length: 100%)
-})
+#set page(header: [
+  #grid(
+    columns: 3,
+    [*Real Analysis*],
+    h(1fr),
+    image("buaachar.png", width: 90pt)
+  )
+  #v(-8pt)
+  #line(length: 100%)
+])
 
 #let bar(x) = $overline(#x)$
 
