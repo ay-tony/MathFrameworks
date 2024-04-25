@@ -83,6 +83,12 @@
   namefmt: name => strong([#name]),
 ).with(numbering: none)
 
+#let task = thm(
+  "task",
+  "Task",
+  base_level: 2
+)
+
 #set heading(numbering: none)
 = Preliminaries on Sets, Mappings, and Relations
 
@@ -951,6 +957,30 @@
 #cor[
   Let ${h_n}$ be a sequence of nonnegative integrable functions on $E$. Suppose ${h_n} -> 0$ for almost all $x$ in $E$. Then $
   lim_(n -> oo) integral_E h_n = 0 "if and only if" {h_n} "is uniformly integrable and tight over" E.
+  $
+]
+
+#task[
+  Prove Corollary 2.
+]
+
+#task[
+  Let ${f_k}_(k=1)^n$ be a finite family of functions, each of which is integrable over $E$. Show that ${f_(k)}_(k=1)^n$ is uniformly integrable and tight over $E$.
+]
+
+#task[
+  Let the sequences of functions ${h_n}$ and ${g_n}$ be uniformly integrable and tight over $E$. Show that for any $alpha$ and $beta$, ${alpha f_n + beta g_n}$ also is uniformly integrable and tight over $E$.
+]
+
+#task[
+  Let ${f_n}$ be a sequence of meaureable functions on $E$. Show that ${f_n}$ is uniformly integrable and tight over $E$ if and only if for each $epsilon > 0$, there is a measurable subset $E_0$ of $E$ that has finite measure and a $delta > 0$ such that for each measurable subset $A$ of $E$ and index $n$, $
+  "if" m(A sect E_0) < delta, "then" integral_A |f_n| < epsilon.
+  $
+]
+
+#task[
+  Let ${f_n}$ be a sequence of integrable functions on $RR$. Show that ${f_n}$ is uniformly integrable and tight over $RR$ if and only if for each $epsilon > 0$, there are positive numbers $r$ and $delta$ such that for each open subset $cO$ of $RR$ and index $n$, $
+  "if" m(cO sect (-r, r)) < delta, "then" integral_cO |f_n| < epsilon.
   $
 ]
 
