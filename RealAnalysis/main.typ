@@ -907,7 +907,7 @@
 == Uniform Integrability: The Vitali Convergence Theorem
 
 #lem[
-  Let $E$ ne a set of finity measure and $delta > 0$. Then $E$ is the disjoint union of a finite collection of sets, each of which has measure less then $delta$.
+  Let $E$ be a set of finity measure and $delta > 0$. Then $E$ is the disjoint union of a finite collection of sets, each of which has measure less then $delta$.
 ]
 
 #prop[
@@ -923,7 +923,7 @@
 ]
 
 #prop[
-  Let ${f_k}_(k=1)^n$ be a finite collection of functions, each of which is integrable over $E$. Then ${f_k}_(k=1)^oo$ is uniformly integrable.
+  Let ${f_k}_(k=1)^n$ be a finite collection of functions, each of which is integrable over $E$. Then ${f_k}_(k=1)^n$ is uniformly integrable.
 ]
 
 #prop[
