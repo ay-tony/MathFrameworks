@@ -19,6 +19,12 @@
 
 #set page(numbering: "1")
 
+#set page(header: {
+  align(right, image("buaachar.png", width: 20%))
+  v(-8pt)
+  line(length: 100%)
+})
+
 #let bar(x) = $overline(#x)$
 
 #let dint(a, b) = $integral_(#h(-0.7em)\_\_#h(0.2em)#a)^#b$
@@ -376,7 +382,7 @@
   $ m^*(union.big_(k=1)^oo E_k) <= sum_(k=1)^oo m^*(E_k). $
 ]
 
-== The $sigma$-Algebra of Lebesgue Measurable Sets
+== The $bold(sigma)$-Algebra of Lebesgue Measurable Sets
 
 #de[
   A set E is said to be *measurable* provided for any set $A$,
