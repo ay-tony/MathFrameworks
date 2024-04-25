@@ -447,7 +447,7 @@
 ] <tho12>
 
 #rem[
-  A comment regarding assertion in @tho12 is in oder. By the definition of outer measure, for any bounded set $E$, regardless of whether or not it is measurable, and any $epsilon > 0$, there is an open set $cO$ such that $E subset.eq cO$ and $m^*(cO) < m^*(E) + epsilon$ and therefore $m^*(cO) - m^*(E) < epsilon$. This does not imply that $m^*(cO tilde E) < epsilon$, because the excision property
+  A comment regarding assertion in @tho12 is in order. By the definition of outer measure, for any bounded set $E$, regardless of whether or not it is measurable, and any $epsilon > 0$, there is an open set $cO$ such that $E subset.eq cO$ and $m^*(cO) < m^*(E) + epsilon$ and therefore $m^*(cO) - m^*(E) < epsilon$. This does not imply that $m^*(cO tilde E) < epsilon$, because the excision property
   $ m^*(cO tilde E) = m^*(cO) - m^*(E) $
   is false unless $E$ is measurable.
 ]
