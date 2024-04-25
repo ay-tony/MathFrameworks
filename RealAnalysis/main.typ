@@ -1001,3 +1001,26 @@
 #prop[
   Assume $E$ has finite measure. Let ${f_n}$ be a sequence of measurable functions on $E$ that converges pointwise a.e. on $E$ to $f$ and $f$ is finite a.e. on $E$. Then ${f_n} -> f$ in measure on $E$.
 ]
+
+#eg[
+  Consider the sequence of subintervals of $[0,1]$, ${I_n}_(n=1)^oo$, which has initial terms listed as $
+  [0,1], [0,1/2], [1/2, 1], [0,1/3], [1/3, 2/3], [2/3, 1],\
+  [0,1/4], [1/4, 1/2], [1/2, 3/4], [3/4, 1], ...
+  $ For eahc index $n$, define $f_n$ to be the restriction to $[0,1]$ of the characteristic function of $I_n$. Let $f$ be the function that is identically zero on $[0,1]$. We claim that ${d_n} -> f$ in measure. Indeed, observe that $lim_(n->oo)cal(l)(I_n) = 0$ since for each natural number $m$, $
+  "if" n > 1 + ... + m = (m(m+1))/2, "then" cal(l)(I_n) < 1/m.
+  $ Thus, for $0 < eta < 1$, since ${x in E | | f_n (x) - f(x)| > eta} subset.eq I_n$, $
+  0 <= lim_(n -> oo)m{x in E| abs(f_n (x) = f(x)) > eta} <= lim_(n -> oo) cal(l)(I_n) = 0.
+  $ However, it is clear that there is no point $x$ in $[0,1]$ at which ${f_n (x)}$ converges to $f(x)$ since for each point $x$ in $[0,1]$, $f_n (x) = 1$ for infinitely many indices $n$, while $f(x) = 0$.
+]
+
+#tho("Riesz")[
+  If ${f_n} -> f$ in measure on $E$, then there is a subsequence${f_n_k}$ that converges pointwise a.e. on $E$ to $f$.
+]
+
+#cor[
+  Let ${f_n}$ be a sequence of nonnegative integrable functions on $E$. Then $
+  lim_(n -> oo) integral_E f_n = 0 \ 
+  "if and only if" \
+  {f_n} -> 0 "in measure on" E "and" {f_n} "is uniformly integrable and tight over" E.
+  $
+]
