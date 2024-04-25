@@ -1029,3 +1029,36 @@
   {f_n} -> 0 "in measure on" E "and" {f_n} "is uniformly integrable and tight over" E.
   $
 ]
+
+== Chracterizations of Riemann and Lebesgue Integrability
+
+#lem[
+  Let ${phi_n}$ and ${psi_n}$ be sequences of functions, each of which is integrable over $E$, such that ${phi_n}$ is increasing while ${psi_n}$ is decreasing on $E$. Let the function $f$ on $E$ have the property that $
+  phi_n <= f <= psi_n "on" E "for all" n.
+  $ If $
+  lim_(n -> oo) integral_E [psi_n - phi_n] = 0,
+  $ then $
+  {phi_n} -> f "pointwise a.e. on" E, {phi_n} -> f "pointwise a.e. on" E, f "is integrable over" E,\
+  lim_(n -> oo) integral_E phi_n = integral_E f "and" lim_(n -> oo) integral_E psi_n = integral_E f.
+  $
+]
+
+#tho[
+  Let $f$ be a bounded function on a set of finite measure $E$. Then $f$ is Lebesgue integrable over $E$ if and only if it is measurable. 
+]
+
+#tho("Lebesgue")[
+  Let $f$ be a bounded function on the closed, bounded interval $[a,b]$. Then $f$ is Riemann integrable over $[a,b]$ if and only if the set of points in $[a,b]$ at which $f$ fails to be continuous has measure zero.
+]
+
+#task[
+  Let $f$ and $g$ be bounded functions that are Riemann integrable over $[a,b]$. Show that the product $f g$ also is Riemann integrable over $[a,b]$.
+]
+
+#task[
+  Let $f$ be a bounded function on $[a,b]$ whose set of discontinuities has measure zero. Show that $f$ is measurable. Then show that the same holds without the assumption of boundedness.
+]
+
+#task[
+  Let $f$ be a function on $[0,1]$ that is continuous on $(0,1]$. Show that it is possible for the sequence ${integral_([1\/n,1])f}$ to converge and yet $f$ is not Lebesgue integrable over $[0,1]$. Can this happen if $f$ is nonnegative? 
+]
