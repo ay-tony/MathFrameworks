@@ -387,12 +387,69 @@
   Prove Corollary 2.
 ]
 
+#prf[
+  $<==$ 由 Vitali 收敛定理显然.
+
+  $==>$ 先证紧性. 任取 $epsilon > 0$. 由 $integral_E h_n -> 0$ 可以取一个足够大的自然数 $N$ 使得对 $forall n > n_0$ 有 $integral_E h_n < epsilon$. 那么对于 $n > N$，可以直接取 $E_n = emptyset$ 满足 $
+  integral_(E tilde E_n) |h_n| = integral_E h_n - integral_E_n h_n < epsilon.
+  $ 对于 $1 <= n <= N$ 的每个 $h_n$，一定可以找到一个测度有限的集合 $E_n subset.eq E$ 使得 $
+  integral_(E tilde E_n) h_n < epsilon.
+  $ 令 $E_0 = union_(n=1)^N E_n$ 仍是测度有限的集合，那么 $E_0$ 就满足 $
+  integral_(E tilde E_0) h_n < integral_(E tilde E_n) h_n < epsilon quad "对 " forall n in NN^* "成立."
+  $ 从而 ${h_n}$ 是紧的. 对于上述 $E_0$，考虑 ${h_n}$ 在 $E_0$ 上的限制，应用定理 4.26 直接得出 ${h_n}$ 在 $E_0$ 上面一致可积. 考虑拓展到 $E$ 上的情况.
+  
+  对任意 $epsilon > 0$，存在上述 $E_0$ 使得 $integral_(E tilde E_0) h_n < epsilon \/ 2$ 对任意 $n in NN^*$ 成立. 由 ${h_n}$ 在 $E
+  _0$ 上一致可积知道存在 $delta > 0$ 使得对任意 $E_0$ 的测度小于 $delta$ 的子集 $A$ 有 $integral_A |h_n| < epsilon / 2$. 那么考虑任意 $E$ 上测度小于 $delta$ 的子集 $B$，一定有 $
+  integral_B h_n = integral_(B sect E_0) h_n + integral_(B tilde E_0) h_n <= epsilon / 2 + integral_(E tilde E_0) h_n < epsilon.
+  $ 从而 ${h_n}$ 在 $E$ 上一致可积.
+]
+
 #task[
   Let ${f_k}_(k=1)^n$ be a finite family of functions, each of which is integrable over $E$. Show that ${f_(k)}_(k=1)^n$ is uniformly integrable and tight over $E$.
 ]
 
+#prf[
+  先证 ${f_k}_(k=1)^n$ 是紧的. 对于 $1 <= k <= n$ 的每个 $f_k$，一定可以找到一个测度有限的集合 $E_k subset.eq E$ 使得 $
+  integral_(E tilde E_k) |f_k| < epsilon.
+  $ 令 $E_0 = union_(k=1)^n E_k$ 仍是测度有限的集合，那么 $E_0$ 就满足 $
+  integral_(E tilde E_0) |f_k| < integral_(E tilde E_k) |f_k| < epsilon quad "对 " forall k = 1,2,...,n "成立."
+  $ 从而 ${f_k}_(k=1)^n$ 是紧的.
+
+  再证 ${f_k}(k=1)^n$ 是一致可积的. 任取 $epsilon > 0$，由于 ${f_k}$ 是紧的，存在 $E$ 的有限测度子集 $E_0$ 满足 $
+  integral_(E tilde E_0) |f_k| < epsilon / 2.
+  $对于每一个 $1 <= k <= n$，存在 $delta_k$ 满足对于 $E_0$ 的任意子集 $A$ 且 $m(A) < delta_k$，一定有 $
+  integral_A |f_k| < epsilon / 2.
+  $ 令 $delta = min{delta_1, delta_2, ..., delta_n}$，则对于任意 $E$ 的子集 $A$ 且 $m(A) < delta$，一定有 $
+  integral_A |f_k| = integral_(A sect E_0) |f_k| + integral_(A tilde E_0) |f_k| < epsilon / 2 + integral_(E tilde E_0) |f_k| < epsilon.
+  $ 从而 ${f_k}$ 是一致可积的.
+]
+
 #task[
   Let the sequences of functions ${h_n}$ and ${g_n}$ be uniformly integrable and tight over $E$. Show that for any $alpha$ and $beta$, ${alpha f_n + beta g_n}$ also is uniformly integrable and tight over $E$.
+]
+
+#prf[
+  不妨设 $alpha, beta != 0$.
+
+  先证 ${alpha f_n + beta g_n}$ 是紧的. 对于 $forall epsilon > 0$，一定可以找到测度有限的集合 $E_1, E_2 subset.eq E$ 使得 $
+  integral_(E tilde E_1) |f| < epsilon / (2 |alpha|) quad "对 " forall f in {f_n} "成立"\
+  "且" \
+  integral_(E tilde E_2) |g| < epsilon / (2 |beta|) quad "对 " forall g in {g_n} "成立".
+  $ 令 $E_0 = E_1 union E_2$ 仍是测度有限的集合，那么 $E_0$ 同时满足上式中 $E_1, E_2$ 的性质，此时有 $
+  integral_(E tilde E_0) |alpha f + beta g| &<= |alpha| integral_(E tilde E_0) |f| + |beta| integral_(E tilde E_0) |g|\ 
+  &< |alpha| dot epsilon / (2 |alpha|) + |beta| dot epsilon / (2 |beta|)\
+  &= epsilon quad "对 " forall f in {f_n}, g in {g_n} "成立."
+  $ 从而 ${alpha f_n + beta g_n}$ 是紧的.
+
+  再证 ${alpha f_n + beta g_n}$ 是一致可积的. 任取 $epsilon > 0$，由于 ${alpha f_n + beta g_n}$ 是紧的，存在 $E$ 的有限测度子集 $E_0$ 满足 $
+  integral_(E tilde E_0) (alpha f_n + beta g_n) < epsilon / 2.
+  $对于任意的 $alpha f + beta g in {alpha f_n + beta g_n}$，存在 $delta_1, delta_2$ 满足对于 $E_0$ 的任意子集 $A_1, A_2$ 且 $m(A_1) < delta_1, m(A_2) < delta_2$，一定有 $
+  integral_A_1 |f| < epsilon / (4 |alpha|) quad "且" quad integral_A_2 |g| < epsilon / (4 |beta|)
+  $ 令 $delta = min{delta_1, delta_2$ 仍满足上式中 $delta_1, delta_2$ 性质. 则对于任意 $E$ 的子集 $A$ 且 $m(A) < delta$，一定有 $
+  integral_A |alpha f_n + beta g_n| &<= |alpha| integral_(A sect E_0) |f| + |beta| integral_(A sect E_0) |g| + integral_(A tilde E_0) |alpha f_n + beta g_n|\
+  &< |alpha| dot epsilon / (4 |alpha|) + |beta| dot epsilon / (4 |beta|) + epsilon / 2\
+  &= epsilon quad "对 " forall f in {f_n}, g in {g_n} "成立."
+  $ 从而 ${alpha f_n + beta g_n}$ 是一致可积的.
 ]
 
 #task[
@@ -401,10 +458,18 @@
   $
 ]
 
+#prf[
+  #todo("证明")
+]
+
 #task[
   Let ${f_n}$ be a sequence of integrable functions on $RR$. Show that ${f_n}$ is uniformly integrable and tight over $RR$ if and only if for each $epsilon > 0$, there are positive numbers $r$ and $delta$ such that for each open subset $cO$ of $RR$ and index $n$, $
   "if" m(cO sect (-r, r)) < delta, "then" integral_cO |f_n| < epsilon.
   $
+]
+
+#prf[
+  #todo("证明")
 ]
 
 == Convergence in Measure
