@@ -363,7 +363,7 @@
 
 #task[
   + Let $cF$ be the family of functions $f$ on $[0,1]$, each of which is integrable over $[0,1]$ and has $integral_0^1 |f| <= 1$. Is $cF$ uniformly integrable over $[0,1]$?
-  + Let $cF$ be the family of functions $f$ on $[0,1]$, each of which is continuous over $[0,1]$ and has $integral_0^1 |f| <= 1$. Is $cF$ uniformly integrable over $[0,1]$?
+  + Let $cF$ be the family of functions $f$ on $[0,1]$, each of which is continuous over $[0,1]$ and has $|f| <= 1$. Is $cF$ uniformly integrable over $[0,1]$?
   + Let $cF$ be the family of functions $f$ on $[0,1]$, each of which is integrable over $[0,1]$ and has $integral_a^b |f| <= b-a$ for all $[a,b] subset.eq [0,1]$. Is $cF$ uniformly integrable over $[0,1]$?
 ]
 
@@ -371,9 +371,9 @@
   + 错误. 考虑 #h(1fr)$
   f_n = cases(n\, 0 <= x <= 1 / n, 0\, "其他情况")
   $ 不是一致可积的.
-  + 错误. 考虑 #h(1fr)$
-  f_n = cases(n sin(n pi x)\, 0 <= x <= 1 / n, 0\, "其他情况")
-  $ 不是一致可积的.
+  + 正确. 令 $delta = epsilon$，则对任意 $[0,1]$ 的可测子集 $A$，且 $m(A) < delta$，有 $
+  integral_A |f|  <= integral_A 1 = m(A) < epsilon.
+  $ 是一致可积的.
   + 正确. 容易看出 $F(x) = integral_0^x f(t) dd(t)$ 是一致连续的.
 ]
 
