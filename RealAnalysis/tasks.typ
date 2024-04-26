@@ -356,9 +356,11 @@
 #prf[
   $==>$ 显然.
 
-  $<==$ 对任意 $E$ 的正测度子集 $A$，只要构造开集 $cU$ 使得 $E sect cU subset.eq A$ 即可.
-
-  #todo("证明这里")
+  $<==$ 考虑对任意的 $epsilon > 0$ 和条件中对应的 $delta > 0$，令 $E$ 的可测子集 $A$ 满足 $m(A) < delta$. 那么存在开集 $cU$ 包含 $A$ 且 $m(cU tilde A) < delta - m(A)$. 那么有 $
+  m(E sect cU) = m(A) + m((E sect cU) tilde A) <= m(A) + m(cU sect A) < delta.
+  $ 从而有 $
+  integral_A |f| <= integral_(E sect cU) |f| < epsilon.
+  $
 ]
 
 #task[
