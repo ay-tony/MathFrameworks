@@ -461,7 +461,19 @@
 ]
 
 #prf[
-  #todo("证明")
+  $==>$ 任取 $epsilon > 0$，则由紧性知道存在有限测度集合 $E_0 subset.eq E$ 使得 $
+    integral_(E tilde E_0) |f| < epsilon / 2 quad "对 " forall f in {f_n} "成立."
+  $ 又由于 $E_0$ 是有限测度的，从而应用一致可积性知道在 $E_0$ 上存在 $delta > 0$ 使得对任意 $A_0 subset.eq E_0$ 且 $m(A_0) < delta$，有 $
+    integral_A_0 |f_n| < epsilon / 2.
+  $ 从而对任意的 $E$ 上的子集 $A$，若满足 $m(A sect E_0) < delta$，则有 $
+    integral_A |f_n| = integral_(A sect E_0) |f_n| + integral_(A tilde E_0) |f_n| < epsilon / 2 +  epsilon / 2 = epsilon.
+  $
+
+  $<==$ 由题意条件，令 $A = E tilde E_0$ 得到 $
+  integral_(E tilde E_0)|f| < epsilon.
+  $ 再令 $A$ 为任意 $E_0$ 的子集，且满足 $m(A) < delta$ 得到 $
+  integral_A |f| < epsilon.
+  $ 从而直接得出紧性和一致可积性.
 ]
 
 #task[
@@ -471,7 +483,17 @@
 ]
 
 #prf[
-  #todo("证明")
+  $==>$ 类似上一题可以证明.
+
+  $<==$ 任取 $epsilon > 0$. 令 $E_0 = (-r, r)$ 且 $cO = RR tilde (-r, r)$. 则有 $m(cO sect (-r, r)) = m(emptyset) < delta$ 一定成立. 此时成立 $
+  integral_(E tilde E_0) |f| < epsilon quad "对 " forall f in {f_n} "成立".
+  $ 从而 ${f_n}$ 是紧的.
+
+  任取 $epsilon > 0$，则存在题目条件中的 $delta > 0$ 和 $E_0 = (-r, r)$ 使对应条件成立. 考虑任意 $(-r, r)$ 中的子集 $A$，满足 $m(A) < delta$. 则一定存在开集 $cO$ 使得 $A subset.eq cO$ 且 $m(cO tilde A) < delta - m(A)$. 那么这时有 $
+  m(cO sect (-r, r)) < m(cO) = m(cO sect A) + m(cO tilde A) < m(A) + delta - m(A) = delta.
+  $ 从而应用题目条件得到 $
+  integral_A |f| <= integral_cO |f| < epsilon quad "对 " forall f in {f_n} "成立",
+  $ 从而 ${f_n}$ 是一致可积的.
 ]
 
 == Convergence in Measure
