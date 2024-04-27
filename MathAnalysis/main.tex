@@ -1,0 +1,1670 @@
+\documentclass[zihao=-4,linespread=1.8,UTF8,nothm]{aytony_base}
+
+\usepackage[title,titletoc]{appendix}
+
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+\pagestyle{plain}
+
+% 中文定理环境
+% \indent 为了段前空两格
+\theoremstyle{definition}
+\newtheorem*{theorem*}{\indent\heiti\textbf{定理}}
+\newtheorem{theorem}{\indent\heiti\textbf{定理}}[subsection]
+\newtheorem{theoremsec}{\indent\heiti\textbf{定理}}[section]
+\newtheorem{lemma}{\indent\heiti\textbf{引理}}[subsection]
+\newtheorem*{lemma*}{\indent\heiti\textbf{引理}}
+\newtheorem{proposition}{\indent\heiti\textbf{命题}}[subsection]
+\newtheorem*{proposition*}{\indent\heiti\textbf{命题}}
+\newtheorem*{corollary}{\indent\heiti\textbf{推论}}
+\newtheorem{definition}{\indent\heiti\textbf{定义}}[subsection]
+\newtheorem*{definition*}{\indent\heiti\textbf{定义}}
+\newtheorem{example}{\indent\heiti\textbf{例}}[subsection]
+\newtheorem*{example*}{\indent\heiti\textbf{例}}
+\newtheorem{remark}{\indent\heiti\textbf{注}}[subsection]
+\newtheorem*{remark*}{\indent\heiti\textbf{注}}
+\newtheorem{exercise}{\indent\heiti\textbf{习题}}[subsection]
+\newtheorem*{exercise*}{\indent\heiti\textbf{习题}}
+
+\newenvironment{solution}{\begin{proof}[\indent\heiti\textbf{解}]}{\end{proof}}
+\renewcommand{\proofname}{\indent\heiti\textbf{证}}
+
+\title{数学分析定理手册}
+\author{aytony}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{集合与映射}
+
+\subsection{集合}
+
+\begin{theorem}
+    可列个可列集之并也是可列集.
+\end{theorem}
+
+\begin{theorem}
+    有理数集 $\mathbb{Q}$ 是可列集.
+\end{theorem}
+
+\setcounter{example}{1}
+\begin{example}
+    整数集 $\mathbb{Z}$ 是可列集.
+\end{example}
+
+\subsection{映射与函数}
+
+\begin{theorem}[三角不等式]
+    对于任意实数 $a$ 和 $b$ ，都有 $$
+        ||a| - |b|| \leqslant |a+b| \leqslant |a| + |b|\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[平均值不等式]
+    对任意 $n$ 个正数 $a_1, a_2, \cdots, a_n$，有 $$
+        \dfrac{a_1 + a_2 + \cdots + a_n}{n} \geqslant \sqrt[n]{a_1a_2\cdots a_n} \geqslant \dfrac{n}{\dfrac{1}{a_1} + \dfrac{1}{a_2} + \cdots + \dfrac{1}{a_n}}\ ,
+    $$ 等号当且仅当 $a_1, a_2, \cdots, a_n$ 全部相等时成立.
+\end{theorem}
+
+\section{数列极限}
+
+\subsection{实数系的连续性}
+
+\begin{theorem}[确界存在定理，实数系的连续性]
+    非空有上界的数集必有上确界，非空有下界的数集必有下确界.
+\end{theorem}
+
+\begin{theorem}[确界唯一性定理]
+    非空有界数集的上（下）界是唯一的.
+\end{theorem}
+
+\begin{theorem*}[Dedekind 分割定理]
+    设 $\tilde{A} / \tilde{B}$ 是实数集 $\mathbb{R}$ 的一个切割，则或者 $\tilde{A}$ 有最大数，或者 $\tilde{B}$ 有最小数.
+\end{theorem*}
+
+\subsection{数列极限}
+
+\begin{theorem}[极限的唯一性]
+    收敛数列的极限必唯一.
+\end{theorem}
+
+\begin{theorem}[极限的有界性]
+    收敛数列必有界.
+\end{theorem}
+
+\begin{theorem}[极限的保序性]
+    设数列 $\{x_n\}, \{y_n\}$ 均收敛，若 $\lim\limits_{n \to \infty} x_n = a, \lim\limits_{n \to \infty} y_n = b$，且 $a < b$，则存在正整数 $N$，当 $n > N$ 时，成立 $$
+        x_n<y_n\ .
+    $$
+\end{theorem}
+
+\begin{corollary}[极限的保号性]
+    \begin{enumerate}
+        \item 若 $\lim\limits_{n \to \infty} y_n = b > 0$，则存在正整数 $N$，当 $n > N$ 时，$$
+                  y_n > \dfrac{b}{2} > 0\ ;
+              $$
+        \item 若 $\lim\limits_{n \to \infty} y_n = b < 0$，则存在正整数 $N$，当 $n > N$ 时，$$
+                  y_n < \dfrac{b}{2} < 0\ ;
+              $$
+    \end{enumerate}
+\end{corollary}
+
+\begin{theorem}[极限的夹逼性]
+    若三个数列 $\{x_n\}, \{y_n\}, \{z_n\}$ 从某项开始成立 $$
+        x_n \leqslant y_n \leqslant z_n\ ,\quad n > N_0\ ,
+    $$ 且 $\lim\limits_{n \to \infty} x_n = \lim\limits_{n \to \infty} z_n = a$，则 $\lim\limits_{n \to \infty} y_n = a$.
+\end{theorem}
+
+\begin{theorem}[极限的四则运算]
+    设 $\lim\limits_{n \to \infty} x_n = a, \lim\limits_{n \to \infty} y_n = b$，则
+
+    \begin{enumerate}
+        \item $\lim\limits_{n \to \infty} (\alpha x_n + \beta y_n) = \alpha a + \beta b$（$\alpha$，$\beta$ 是常数）；
+        \item $\lim\limits_{n \to \infty} (x_ny_n) = ab$；
+        \item $\lim\limits_{n \to \infty} (\dfrac{x_n}{y_n}) = \dfrac{a}{b}\ (b \neq 0)$.
+    \end{enumerate}
+\end{theorem}
+
+\setcounter{example}{1}
+\begin{example}
+    $\{q^n\}\ (0 < |q| < 1)$ 是无穷小量.
+\end{example}
+
+\setcounter{example}{3}
+\begin{example}
+    $\lim\limits_{n \to \infty} \sqrt[n]{n} = 1$.
+\end{example}
+
+\setcounter{example}{5}
+\begin{example}
+    若 $\lim\limits_{n \to \infty} a_n = a$，则 $$
+        \lim\limits_{n \to \infty} \dfrac{a_1 + a_2 + \cdots + a_n}{n} = a\ .
+    $$
+\end{example}
+
+\begin{example}
+    $\lim\limits_{n \to \infty} (\,\sqrt[]{n+1} - \sqrt[]{n}) = 0$.
+\end{example}
+
+\begin{example}
+    $$\lim\limits_{n \to \infty} (a_1^n + a_2^n + \cdots + a_p^n)^{\frac{1}{n}} = \max\limits_{1 \leqslant i \leqslant p} \{a_i\}\ ,$$ 其中 $a_i \geqslant 0\ (i = 1, 2, 3, \cdots, p)$.
+\end{example}
+
+\setcounter{example}{9}
+\begin{example}
+    当 $a > 0$ 时，$\lim\limits_{n \to \infty} \sqrt[n]{a} = 1$.
+\end{example}
+
+\setcounter{example}{11}
+\begin{example}
+    设 $a_n > 0$，且 $\lim\limits_{n \to \infty} a_n = a$，则有 $$
+        \lim\limits_{n \to \infty} \sqrt[n]{a_1a_2\cdots a_n} = a\ .
+    $$
+\end{example}
+
+\setcounter{exercise}{4}
+\begin{exercise}
+    若 $\lim\limits_{n \to \infty} x_{2n} = \lim\limits_{n \to \infty} x_{2n+1} = a$，则 $\lim\limits_{n \to \infty} x_n = a$.
+\end{exercise}
+
+\begin{exercise}
+    设 $\sqrt[]{x_n} \geqslant 0$，且 $\lim\limits_{n \to \infty} x_n = a \geqslant 0$，则有 $\lim\limits_{n \to \infty} \sqrt[]{x_n} = \sqrt[]{a}$.
+\end{exercise}
+
+\begin{exercise}
+    $\{x_n\}$ 是无穷小量，$\{y_n\}$ 是有界数列，则 $\{x_ny_n\}$ 是无穷小量.
+\end{exercise}
+
+\subsection{无穷大量}
+
+\begin{theorem}[]
+    设 $x_n \neq 0$，则 $\{x_n\}$ 是无穷大量的充分必要条件是 $\{\dfrac{1}{x_n}\}$ 是无穷小量.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $\{x_n\}$ 是无穷大量，若当 $n> N_0$ 时，$\{y_n\}\geqslant \delta > 0$ 成立，则 $\{x_ny_n\}$ 是无穷大量.
+\end{theorem}
+
+\begin{corollary}
+    设 $\{x_n\}$ 是无穷大量，$\lim\limits_{n \to \infty} y_n = b \neq 0$，则 $\{x_ny_n\}$ 与 $\{\dfrac{x_n}{y_n}\}$ 都是无穷大量.
+\end{corollary}
+
+\begin{theorem}[Stolz 定理]
+    设 $\{y_n\}$ 是严格单调增加的正无穷大量，且 $$
+        \lim\limits_{n \to \infty} \dfrac{x_n - x_{n-1}}{y_n - y_{n-1}} = a\quad \text{（$a$ 可以为有限量，$+\infty$ 与 $-\infty$），}
+    $$ 则 $$
+        \lim\limits_{n \to \infty} \dfrac{x_n}{y_n} = a\ .
+    $$
+\end{theorem}
+
+\begin{example}
+    设 $|q| > 1$，则 $\{q^n\}$ 是无穷大量.
+\end{example}
+
+\setcounter{example}{2}
+\begin{example}
+    $$
+        \lim\limits_{n \to \infty} \dfrac{a_0n^k + a_1n^{k-1} + \cdots + a_{k-1}n + a_k}{b_0n^l + b_1n^{l-1} + \cdots + b_{l-1}n + b_l} = \left\{
+        \begin{aligned}
+             & 0, \quad                & k & < l,   \\
+             & \dfrac{a_0}{b_0}, \quad & k & =l,    \\
+             & \infty, \quad           & k & > l\ .
+        \end{aligned}
+        \right.
+    $$
+\end{example}
+
+\begin{example}
+    $$
+        \lim\limits_{n \to \infty} \dfrac{1^k+2^k+\cdots + n^k}{n^{k+1}} = \dfrac{1}{k+1}\ .
+    $$
+\end{example}
+
+\begin{example}
+    设 $\lim\limits_{n \to \infty} a_n = a$，则 $$
+        \lim\limits_{n \to \infty} \dfrac{a_1 + 2a_2 + \cdots + na_n}{n^2} = \dfrac{a}{2}\ .
+    $$
+\end{example}
+
+\subsection{收敛准则}
+
+\begin{theorem}[单调有界定理]
+    单调有界数列必定收敛.
+\end{theorem}
+
+\begin{theorem}[闭区间套定理]
+    如果 $\{[a_n, b_n]\}$ 形成一个闭区间套，则存在唯一的实数 $\xi$ 属于所有的闭区间 $[a_n, b_n]$，且 $\xi = \lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} b_n$.
+\end{theorem}
+
+\begin{theorem}[]
+    实数集 $\mathbb{R}$ 是不可列集.
+\end{theorem}
+
+\begin{theorem}[]
+    若数列 $\{x_n\}$ 收敛于 $a$，则它的任何子列 $\{x_{n_k}\}$ 也收敛于 $a$，即 $$
+        \lim\limits_{n \to \infty} x_n = a \quad \Rightarrow \quad \lim\limits_{n \to \infty} n_{n_k} = a\ .$$
+\end{theorem}
+
+\begin{theorem}[Bolzano--Weierstrass 定理]
+    有界数列必有收敛子列.
+\end{theorem}
+
+\begin{theorem}[]
+    若 $\{x_n\}$ 是一个无界数列，则存在子列 $\{x_{n_k}\}$，使得 $$
+        \lim\limits_{n \to \infty} x_{n_k} = \infty\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[Cauchy 收敛原理，实数系的完备性]
+    数列 $\{x_n\}$ 收敛的充分必要条件是：$\{x_n\}$ 是基本数列.
+\end{theorem}
+
+\begin{theorem}[]
+    实数系的完备性等价于实数系的连续性.
+\end{theorem}
+
+\begin{example}
+    设 $x_1 > 0$，$x_{n+1} = 1 + \dfrac{x_n}{1+x_n}$，$n = 1, 2, 3, \cdots$. 则有数列 $\{x_n\}$ 收敛，且 $\lim\limits_{n \to \infty} x_n = \dfrac{1+\sqrt[]{5}}{2}$.
+\end{example}
+
+\begin{example}
+    设 $0 < x_1 < 1, x_{n+1} = x_n(1-x_n),n = 1, 2, 3, \cdots$. 则 $\{x_n\}$ 收敛，且 $\lim\limits_{n \to \infty} x_n = 0$.
+\end{example}
+
+\begin{corollary}
+    $\lim\limits_{n \to \infty}(nx_n) = 1$，故 $x_n$ 与 $\dfrac{1}{n}$ 为等价无穷小.
+\end{corollary}
+
+\setcounter{example}{3}
+
+\begin{example}[Fibonacci 数列]
+    设 $\{a_n\}$ 为 Fibonacci 数列，则有 $\lim\limits_{n \to \infty} \dfrac{a_{n+1}}{a_n} = \dfrac{\sqrt[]{5}-1}{2}$.
+\end{example}
+
+\begin{example}
+    数列 $\{n\sin \dfrac{180^\circ}{n}\}$ 收敛.
+\end{example}
+
+\begin{remark*}
+    定义 $\pi$ 后，利用弧度制可以将以上极限式写成 $$
+        \lim\limits_{n \to \infty} \dfrac{\sin(\pi/n)}{\pi/n} = 1\ .$$
+\end{remark*}
+
+\begin{example}
+    数列 $\left\{\left(1+\dfrac{1}{n}\right)^n\right\}$ 单调增加，数列 $\left\{\left(1+\dfrac{1}{n}\right)^{n+1}\right\}$ 单调减少，两者收敛于同一极限.
+\end{example}
+
+\begin{corollary}
+    $$\dfrac{1}{n+1} < \ln (1 + \dfrac{1}{n}) < \dfrac{1}{n}\ .$$
+\end{corollary}
+
+\begin{example}
+    讨论数列 $\{a_n\}$，其中 $$
+        a_n = 1 + \dfrac{1}{2^p} + \dfrac{1}{3^p} + \cdots + \dfrac{1}{n^p}\quad (p > 0)\ .
+    $$ 当 $p>1$ 时，数列 $\{a_n\}$ 收敛；当 $0 < p \leqslant 1$ 时，数列 $\{a_n\}$ 是正无穷大量.
+\end{example}
+
+\begin{example}
+    记 $b_n = 1 + \dfrac{1}{2} + \dfrac{1}{3} + \cdots + \dfrac{1}{n} - \ln n $，则数列 $\{b_n\}$ 收敛.
+\end{example}
+
+\setcounter{example}{13}
+\begin{example}
+    设数列 $\left\{x_n\right\}$ 满足压缩性条件：$$
+        |x_{n+1} - x_n| \leqslant k|x_n - x_{n-1}|,\quad 0 < k < 1, n = 2, 3, \cdots\ ,
+    $$ 则 $\left\{x_n\right\}$ 收敛.
+\end{example}
+
+\section{函数极限与连续函数}
+
+\subsection{函数极限}
+
+\begin{theorem}[极限的惟一性]
+    设 $A$ 与 $B$ 都是函数 $f(x)$ 在点 $x_0$ 处的极限，则 $A = B$.
+\end{theorem}
+
+\begin{theorem}[局部保序性]
+    若 $\lim\limits_{x \to x_0} f(x) = A,\ \lim\limits_{x \to x_0} g(x) = B$，（此处 $A$，$B$ 可以是非 $\infty$ 的广义极限）且 $A > B$，则存在 $\delta > 0$，当 $0 < |x - x_0| < \delta$ 时，成立 $$
+        f(x) > g(x)\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    若 $\lim\limits_{x \to x_0} f(x) = A \neq 0$ （此处 $A$ 可以是非 $\infty$ 的广义极限），则存在 $\delta > 0$，当 $0 < |x - x_0| < \delta$ 时，成立 $$
+        \left|f(x)\right| > \dfrac{|A|}{2}\ .
+    $$
+\end{corollary}
+
+\begin{corollary}
+    若 $\lim\limits_{x \to x_0}f(x) = A,\lim\limits_{x \to x_0} g(x) = B $，（此处 $A$，$B$ 可以是非 $\infty$ 的广义极限）且存在 $r > 0$，使得当 $0 < |x-x_0| < r$ 时，成立 $g(x) \leqslant f(x)$，则 $$
+        B \leqslant A\ .
+    $$
+\end{corollary}
+
+\begin{corollary}[局部有界性]
+    若 $\lim\limits_{x \to x_0} x = A$，则存在 $\delta> 0$，使得 $f(x)$ 在 $\overset{\circ}{U}(x_0, \delta)$ 中有界.
+\end{corollary}
+
+\begin{theorem}[极限的夹逼性]
+    若存在 $r > 0$，使得当 $0 < |x-x_0| < r$ 时，成立 $$
+        g(x) \leqslant f(x) \leqslant h(x)\ ,
+    $$ 且 $\lim\limits_{x \to x_0}g(x) = \lim\limits_{x \to x_0} h(x) = A $，则 $\lim\limits_{x \to x_0} f(x) = A$（此处 $A$ 可以是非 $\infty$ 的广义极限）.
+\end{theorem}
+
+\begin{theorem}[函数极限的四则运算]
+    设 $\lim\limits_{x \to x_0} f(x) = A, \lim\limits_{x \to x_0} g(x) = B$，则
+    \begin{enumerate}
+        \item $\lim\limits_{x \to x_0} (\alpha f(x) + \beta g(x)) = \alpha A + \beta B$ （$\alpha, \beta$ 是常数）；
+        \item $\lim\limits_{x \to x_0}(f(x)g(x)) = AB $；
+        \item $\lim\limits_{x \to x_0} \dfrac{f(x)}{g(x)} = \dfrac{A}{B}\quad(B \neq 0)$.
+    \end{enumerate}
+    要求以上各式可以是广义极限，但不为待定型.
+\end{theorem}
+
+\begin{theorem}[Heine 定理]
+    $\lim\limits_{x \to x_0} f(x) = A$ 的充分必要条件是：对于任意满足 $\lim\limits_{n \to \infty} x_n = x_0$，且 $x_n \neq x_0\ (n = 1, 2, 3, \cdots)$ 的数列 $\{x_n\}$，相应的函数值数列 $\{f(x_n)\}$ 成立 $$
+        \lim\limits_{n \to \infty} f(x) = A\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    $\lim\limits_{x \to x_0} f(x)$ 存在的充分必要条件是：对于任意满足条件 $\lim\limits_{n \to \infty} x_n = x_0$ 且 $x_n \neq x_0$ $(n = 1, 2, 3, \cdots)$ 的数列 $\{x_n\}$，相应的函数值数列 $\{f(x_n)\}$ 收敛.
+\end{corollary}
+
+\begin{theorem*}[]
+    函数 $f(x)$ 在 $x_0$ 极限存在的充分必要条件是 $f(x)$ 在 $x_0$ 的左极限与右极限存在并且相等.
+\end{theorem*}
+
+\begin{theorem}[]
+    函数极限 $\lim\limits_{n \to \infty} f(x)$ 存在而且有限的充分必要条件是：对于任意给定的 $\varepsilon > 0$，存在 $X>0$，使得对于一切 $x', x'' > X$，成立 $$
+        \left|f(x') - f(x'')\right| < \varepsilon\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    可以对应给出函数极限 $\lim\limits_{x \to x_0} f(x),\lim\limits_{x \to x_{0^+}}f(x), \lim\limits_{x \to x_{0^-}}f(x),\lim\limits_{x \to -\infty}f(x)$ 存在而且有限的 Cauchy 收敛原理.
+\end{corollary}
+
+\setcounter{example}{3}
+\begin{example}
+    $\lim\limits_{x \to 0} \dfrac{\sin x}{x} = 1$.
+\end{example}
+
+\begin{corollary}
+    在 $0 < x < \dfrac{\pi}{2}$ 时，有 $\sin x < x < \tan x$.
+\end{corollary}
+
+\begin{example}
+    对于任意实数 $\alpha \neq 0$，有 $$
+        \lim\limits_{x \to 0} \dfrac{\sin \alpha x}{x} = \alpha\ ;
+    $$ 对于任意实数 $\alpha, \beta \neq 0$，则有 $$
+        \lim\limits_{x \to 0} \dfrac{\sin \alpha x}{\sin \beta x} = \dfrac{\alpha}{\beta}\ .
+    $$
+\end{example}
+
+\begin{example}
+    $\sin \dfrac{1}{x}$ 在 $x = 0$ 没有极限.
+\end{example}
+
+\setcounter{example}{11}
+\begin{example}
+    $$
+        \begin{aligned}
+            L = \lim\limits_{x \to \infty} \dfrac{a_nx^n + a_{n-1}x^{n-1} + \cdots + a_kx^k}{b_mx^m + b_{m-1}x^{m-1} + \cdots + b_jx^j} & = \left\{
+            \begin{aligned}
+                 & \dfrac{a_n}{b_n}, & n = m ,  \\
+                 & 0,                & n < m\ , \\
+                 & \infty,           & n > m\ .
+            \end{aligned}
+            \right.                                                                                                                                 \\
+            l = \lim\limits_{x \to 0} \dfrac{a_nx^n + a_{n-1}x^{n-1} + \cdots + a_kx^k}{b_mx^m + b_{m-1}x^{m-1} + \cdots + b_jx^j}      & = \left\{
+            \begin{aligned}
+                 & \dfrac{a_k}{b_k}, & k= j ,  \\
+                 & 0,                & k> j\ , \\
+                 & \infty,           & k< j\ .
+            \end{aligned}
+            \right.                                                                                                                                 \\
+        \end{aligned}
+    $$
+\end{example}
+
+\begin{example}
+    $\lim\limits_{x \to \infty} \left(1+\dfrac{1}{x}\right)^x = e$.
+\end{example}
+
+\begin{corollary}
+    $\lim\limits_{x \to \infty} \left(1-\dfrac{1}{x}\right)^x = \dfrac{1}{e}$.
+\end{corollary}
+
+\subsection{连续函数}
+
+\begin{theorem*}[连续函数的四则运算]
+    设 $\lim\limits_{x \to x_0} f(x) = f(x_0), \lim\limits_{x \to x_0} g(x)= g(x_0)$，则
+    \begin{enumerate}
+        \item $\lim\limits_{x \to x_0} (\alpha f(x) + \beta g(x)) = \alpha f(x_0) + \beta g(x_0)$（$\alpha, \beta$ 是常数）；
+        \item $\lim\limits_{x \to x_0} (f(x)g(x)) = f(x_0)g(x_0)$；
+        \item $\lim\limits_{x \to x_0} \dfrac{f(x)}{g(x)} = \dfrac{f(x_0)}{g(x_0)}\ (g(x_0) \neq 0)$.
+    \end{enumerate}
+\end{theorem*}
+
+\begin{theorem}[反函数存在性定理]
+    若函数 $y = f(x)$，$x \in D_f$ 是严格单调增加（减少）的，则存在它的反函数 $x = f^{-1}(y), y \in R_f$，并且 $f^{-1}(y)$ 也是严格单调增加（减少）的.
+\end{theorem}
+
+\begin{theorem}[反函数连续性定理]
+    设函数 $y=f(x)$ 在闭区间 $[a, b]$ 上连续且严格单调增加，$f(a) = \alpha, f(b) = \beta$，则它的反函数 $x = f^{-1}(y)$ 在 $[\alpha, \beta]$ 连续且严格单调增加.
+\end{theorem}
+
+\begin{theorem}[复合函数的连续性]
+    若 $y = g(x)$ 在点 $x_0$ 连续，$g(x_0) = u_0$，又 $y = f(u)$ 在点 $u_0$ 连续，则复合函数 $f \circ g(x)$ 在点 $x_0$ 连续.
+\end{theorem}
+
+\begin{corollary}
+    若 $f(x)$ 在 $x_0$ 连续，则有 $\lim\limits_{x \to x_0} f(x) = f\left(\lim\limits_{x \to x_0}x \right)$.
+\end{corollary}
+
+\begin{theorem}[]
+    一切初等函数在其定义区间上连续.
+\end{theorem}
+
+\setcounter{example}{6}
+\begin{example}
+    设 Riemann 函数 $R(x)$ 定义如下：$$
+        R(x) = \left\{
+        \begin{aligned}
+            \dfrac{1}{p}, & \quad x = \dfrac{q}{p}\ (\text{$p \in \mathbb{N}^+,q\in \mathbb{Z} \backslash \{0\}$，$p, q$ 互素})\ , \\
+            1,            & \quad  x = 0\ ,                                                                                        \\
+            0,            & \quad  x \text{是无理数}\ ,
+        \end{aligned}
+        \right.
+    $$ 其中定义 $R(0) = 1$ 是因为 $x = 0$ 可写成 $x = \dfrac{0}{1}$，同时也保证了 $R(x)$ 的周期性.
+
+    有 $R(x)$ 在任意点 $x_0$ 的极限都存在，且极限值为 $0$. 换言之，一切无理点是 $R(x)$ 的连续点，而一切有理点是 $R(x)$ 的第三类不连续点.
+\end{example}
+
+\begin{example}
+    区间 $(a, b)$ 上单调函数的不连续点必为第一类不连续点.
+\end{example}
+
+\subsection{无穷大量}
+
+\begin{theorem*}
+    $f(x) \to A \Leftrightarrow f(x) = A + o(1)$.
+\end{theorem*}
+
+\begin{corollary}
+    $\alpha \sim \beta \Leftrightarrow \beta = \alpha + o(\alpha)$.
+\end{corollary}
+
+\begin{theorem}[等价量替换定理]
+    设 $u(x), v(x)$ 和 $w(x)$ 在 $x_0$ 的某个去心邻域 $\overset{\circ}{U}$ 上有定义，且 $\lim\limits_{x \to x_0} \dfrac{v(x)}{w(x)} = 1$（即 $v(x) \sim w(x)(x \to x_0)$），那么
+    \begin{enumerate}
+        \item 当 $\lim\limits_{x \to x_0} u(x)w(x) = A$ 时，$\lim\limits_{x \to x_0} u(x)v(x) = A$.
+        \item 当 $\lim\limits_{x \to x_0} \dfrac{u(x)}{w(x)} = A$ 时，$\lim\limits_{x \to x_0} \dfrac{u(x)}{v(x)} = A$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{example*}
+    $\sin \sim x(x \to 0)$, $1 - \cos x \sim \dfrac{1}{2}x^2(x \to 0)$.
+\end{example*}
+
+\begin{corollary}
+    $\arcsin x \sim x(x \to 0)$, $\tan x \sim x(x \to 0)$, $\arctan x \sim x(x \to 0)$.
+\end{corollary}
+
+\begin{example}
+    $x = o\left(\left(\dfrac{-1}{\ln x}\right)^k\right)(x \to 0^+, k \in \mathbb{N}^+)$.
+\end{example}
+
+\begin{example}
+    $e^{-\frac{1}{x}} = o(x^k)(x \to 0^+, k \in \mathbb{N}^+)$.
+\end{example}
+
+\begin{example}
+    $\ln (1+x) \sim x(x \to 0)$.
+\end{example}
+
+\begin{example}
+    $e^x - 1 \sim x(x \to 0)$.
+\end{example}
+
+\begin{example}
+    $(1+x)^\alpha - 1 \sim \alpha x(x \to 0)$.
+\end{example}
+
+\setcounter{example}{7}
+\begin{example}
+    $$
+        \begin{aligned}
+            \lim\limits_{x \to \infty} \dfrac{a_nx^n + a_{n+1}x^{n+1} + \cdots + a_mx^m}{b_nx^n + b_{n+1}x^{n+1} + \cdots + b_mx^m} & = \lim\limits_{x \to \infty} \dfrac{a_mx^m}{b_mx_m}  = \dfrac{a_m}{b_m}\  & (a_m, b_m \neq 0)\ , \\
+            \lim\limits_{x \to 0} \dfrac{a_nx^n + a_{n+1}x^{n+1} + \cdots + a_mx^m}{b_nx^n + b_{n+1}x^{n+1} + \cdots + b_mx^m}      & = \lim\limits_{x \to 0} \dfrac{a_nx^n}{b_nx_n} = \dfrac{a_n}{b_n}\        & (a_n, b_n \neq 0)\ .
+        \end{aligned}
+    $$
+\end{example}
+
+\subsection{闭区间上的连续函数}
+
+\begin{theorem}[有界性定理]
+    若函数 $f(x)$ 在闭区间 $[a, b]$ 上连续，则它在 $[a, b]$ 上有界.
+\end{theorem}
+
+\begin{theorem}[最值定理]
+    若函数 $f(x)$ 在闭区间 $a, b$ 上连续，则它在闭区间 $a, b$ 上必能取到最大值与最小值，记存在 $\xi$ 和 $\eta\in [a, b]$，对于一切 $x \in [a, b]$，成立 $$
+        f(\xi) \leqslant f(x) \leqslant f(\eta)\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[零点存在定理]
+    若函数 $f(x)$ 在闭区间 $[a, b]$ 上连续，且 $f(a) \cdot f(b) < 0$，则一定存在 $\xi \in (a, b)$，使得 $f(\xi) = 0$.
+\end{theorem}
+
+\begin{theorem}[介值定理]
+    若函数 $f(x)$ 在闭区间 $[a, b]$ 上连续，则它一定能取到最大值 $M = \max\{f(x)\,|\,x \in [a, b]\}$ 和最小值 $m = \min\{f(x)\,|\,x \in [a, b]\}$ 之间的任何一个值.
+\end{theorem}
+
+\begin{theorem}[]
+    设函数 $f(x)$ 在区间 $X$ 上定义，则 $f(x)$ 在 $X$ 上一致连续的充分必要条件是：对任何点列 $\{x_n'\}(x_n' \in X)$ 和 $\{x_n''\}(x_n'' \in X)$，只要满足 $\lim\limits_{n \to \infty} (x_n' - x_n'') = 0$，就成立 $\lim\limits_{n \to \infty} (f(x_n') - f(x_n'')) = 0$.
+\end{theorem}
+
+\begin{theorem}[Cantor 定理]
+    若函数 $f(x)$ 在闭区间 $[a, b]$ 上连续，则它在 $[a, b]$ 上一致连续.
+\end{theorem}
+
+\begin{theorem}[]
+    若函数 $f(x)$ 在有限开区间 $(a, b)$ 上连续，则 $f(x)$ 在 $(a, b)$ 上一致连续的充分必要条件是：$f(a^+)$ 与 $f(b^-)$ 存在.
+\end{theorem}
+
+\section{微分}
+
+\subsection{微分和导数}
+
+\begin{theorem}[]
+    函数 $f(x)$ 在 $x$ 处可微的充分必要条件是 $f(x)$ 在 $x$ 处可导.
+\end{theorem}
+
+\subsection{导数的意义和性质}
+
+\subsection{导数四则运算和反函数求导法则}
+
+\begin{theorem}[加法求导法则]
+    设 $f(x)$ 和 $g(x)$ 在某一区间上是可导的，则对任意常数 $c_1$ 和 $c_2$，它们的线性组合 $c_1f(x) + c_2g(x)$ 也在该区间上可导，且满足如下线性关系 $$
+        [c_1f(x) + c_2g(x)]' = c_1f'(x) + c_2g'(x)\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[乘法求导法则]
+    设 $f(x)$ 和 $g(x)$ 在某一区间上是可导的，则它们的积函数也在该区间上可导，且满足 $$
+        [f(x) \cdot g(x)]' = f'(x)g(x) + f(x)g'(x)\ ;
+    $$ 相应的微分表达式为 $$
+        \mathrm{d}[f(x) \cdot g(x)]' = \mathrm{d}[f(x)]g(x) + f(x)\mathrm{d}[g(x)]\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[倒数求导法则]
+    设 $f(x)$ 和 $g(x)$ 在某一区间上是可导的，且 $g(x) \neq 0$，则它们的商函数也在该区间上可导，且满足 $$
+        [f(x) \cdot g(x)]' = f'(x)g(x) + f(x)g'(x)\ ;
+    $$ 相应的微分表达式为 $$
+        \mathrm{d}[f(x) \cdot g(x)]' = \mathrm{d}[f(x)]g(x) + f(x)\mathrm{d}[g(x)]\ .
+    $$
+\end{theorem}
+
+\begin{corollary}[除法求导法则]
+    设 $g(x)$ 在某一区间上可导，且 $g(x) \neq 0$，则它的倒数也在该区间上可导，且满足 $$
+        \left[\dfrac{f(x)}{g(x)}\right]' = \dfrac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}\ ;
+    $$ 相应的微分表达式为 $$
+        \mathrm{d}\left[\dfrac{f(x)}{g(x)}\right] = \dfrac{g(x)\mathrm{d}[f(x)] - f(x)\mathrm{d}[g(x)]}{[g(x)]^2}\ .
+    $$
+\end{corollary}
+
+\begin{theorem}[反函数求导定理]
+    若函数 $y = f(x)$ 在 $(a, b)$ 上连续、严格单调、可导并且 $f'(x) \neq 0$，记 $\alpha = \min\{f(a^+), g(b^-)\}, \beta = \max\{f(a^+), f(b^-)\}$, 则它的反函数 $x = f^{-1}(y)$ 在 $\alpha, \beta$ 上可导，且有 $$
+        [f^{-1}(y)]' = \dfrac{1}{f'(x)}\ .
+    $$
+\end{theorem}
+
+\subsection{复合函数求导法则及其应用}
+
+\begin{theorem}[复合函数求导法则]
+    设函数 $u = g(x)$ 在 $x = x_0$ 可导，而函数 $y = f(u)$ 在 $u = u_0 = g(x_0)$ 处可导，则复合函数 $y = f(g(x))$ 在 $x = x_0$ 可导，且有 $$
+        [f(g(x))]' = f'(u_0)g'(x_0) = f'(g(x_0))g'(x_0)\ .
+    $$
+\end{theorem}
+
+\subsection{高阶导数和微分}
+
+\begin{theorem}[高阶导数加法求导法则]
+    设 $f(x)$ 和 $g(x)$ 都是 $n$ 阶可导的，则对任意常数 $c_1$ 和 $c_2$，它们的线性组合 $c_1f(x) + c_2g(x)$ 也是 $n$ 阶可导的，且满足如下的线性运算关系 $$
+        [c_1f(x) + c_2g(x)]^{(n)} = c_1f^{(n)}(x) + c_2g^{(n)}(x)\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[Leibniz 公式]
+    设 $f(x) $ 和 $g(x)$ 都是 $n$ 阶可导函数，则它们的积函数也 $n$ 阶可导，且成立公式 $$
+        [f(x) \cdot g(x)]^{(n)} = \sum_{k = 0}^{n}\mathrm{C}_n^kf^{(n-k)}(x)g^{(k)}(x)\ .
+    $$
+\end{theorem}
+
+\section{微分中值定理及其应用}
+
+\subsection{微分中值定理}
+
+\begin{theorem}[Fermat 引理]
+    设 $x_0$ 是 $f(x)$ 的一个极值点，且 $f(x)$ 在 $x_0$ 处导数存在，则 $$
+        f'(x_0) = 0\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[Rolle 定理]
+    设函数 $f(x)$ 在闭区间 $[a, b]$ 上连续，在开区间 $(a, b)$ 上可导，且 $f(a) = f(b)$，则至少存在一点 $\xi \in (a, b)$，使得 $$
+        f'(\xi) = 0\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[Lagrange 中值定理]
+    设函数 $f(x)$ 在闭区间 $[a, b]$ 连续，在开区间 $(a, b)$ 可导，则至少存在一点 $\xi \in (a, b)$，使得 $$
+        f'(\xi) = \dfrac{f(b) - b(a)}{b - a}\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    Lagrange 公式也可以写成 $$
+        f(b) - f(a) = f'(a+  \theta(b-a))(b-a),\quad (\theta \in (0, 1))
+    $$，或将 $a$ 记为 $x$，$b-a$ 记为 $\Delta x$，则有 $$
+        f(x + \Delta x) - f(x) = f'(x + \theta \Delta x)\Delta x,\quad \theta \in (0, 1)
+    $$
+\end{corollary}
+
+\begin{theorem}[]
+    若 $f(x)$ 在 $(a, b)$ 上可导且有 $f'(x)\equiv 0$，则 $f(x)$ 在 $(a, b)$ 上恒为常数.
+\end{theorem}
+
+\begin{theorem}[一阶导数与单调性的关系]
+    设函数 $f(x)$ 在区间 $I$ 上可导，则 $f(x)$ 在区间 $I$ 上单调增加的充分必要条件是：对于任一 $x \in I$ 有 $f'(x) \geqslant 0$；
+
+    特别地，若对于任一 $x \in I$ 有 $f'(x) > 0$，则 $f(x)$ 在 $I$ 上严格单调增加.
+\end{theorem}
+
+\begin{theorem}[二阶导数与凸性的关系]
+    设函数 $f(x)$ 在区间 $I$ 上二阶可导，则 $f(x)$ 在区间 $I$ 上是下凸函数的充分必要条件是：对于任意 $x \in I$ 有 $f''(x) > 0$.
+
+    特别地，若对于任意 $x \in I$ 有 $f''(x) > 0$，则 $f(x)$ 在 $I$ 上是严格下凸函数.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $f(x)$ 在区间 $I$ 上连续，$(x_0 - \delta, x_0 + \delta) \subset I$.
+    \begin{enumerate}
+        \item 设 $f(x)$ 在 $(x_0 - \delta, x_0)$ 与 $(x_0, x_0 + \delta)$ 上二阶可导. 若 $f''(x)$ 在 $(x_0 - \delta, x_0)$ 与 $(x_0, x_0 + \delta)$ 上的符号相反，则点 $(x_0, f(x_0))$ 是曲线 $y = f(x)$ 的拐点；若 $f''(x)$ 在 $(x_0 - \delta, x_0)$ 与 $(x_0, x_0 + \delta)$ 上的符号相同，则点 $(x_0, f(x_0))$ 不是曲线 $y = f(x)$ 的拐点.
+        \item 设 $f(x)$ 在 $(x_0 - \delta, x_0 + \delta) $ 上二阶可导，若点 $(x_0, f(x_0))$ 是曲线 $y = f(x)$ 的拐点，则 $f''(x) = 0$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Jensen 不等式]
+    若 $f(x)$ 为区间 $I$ 上的下凸（上凸）函数，则对于任意 $x_i \in I$ 和满足 $\sum\limits_{i = 1}^n\lambda_i = 1$ 的 $\lambda_i > 0(i = 1, 2, \cdots, n)$，成立 $$
+        f \left(\sum\limits_{i = 1}^n \lambda_ix_i\right) \leqslant \sum\limits_{i = 1}^{n}\lambda_if(x_i)\quad \left(f(\sum\limits_{i = 1}^{n})\lambda_ix_i\geqslant \sum\limits_{i = 1}^{n}\lambda_if(x_i)\right) \ .
+    $$
+
+    特别地，取 $\lambda_i = \dfrac{1}{n}(i = 1, 2, \cdots, n)$，就有 $$
+        f \left(\dfrac{1}{n}\sum\limits_{i = 1}^{n}x_i\right) \leqslant \dfrac{1}{n}\sum\limits_{i=1}^{n}f(x_i)\quad \left(f \left(\dfrac{1}{n}\sum\limits_{i = 1}^{n}f(x_i)\right) \geqslant \dfrac{1}{n}\sum\limits_{i=1}^{n}f(x_i)\right)\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[Cauchy 中值定理]
+    设 $f(x)$ 和 $g(x)$ 都在闭区间 $[a, b]$ 上连续，在开区间 $(a, b)$ 上可导，且对于任意 $x\in (a, b),g'(x) \neq 0$. 则至少存在一点 $\xi \in (a, b)$，使得 $$
+        \dfrac{f'(\xi)}{g'(\xi)} = \dfrac{f(b) - f(a)}{g(b) - g(a)}\ .
+    $$
+\end{theorem}
+
+\begin{example}[Legendre 多项式]
+    如下定义的函数 $$
+        p_n(x) = \dfrac{1}{2^nn!}\dfrac{\mathrm{d}^n}{\mathrm{d}x^n}(x^2 - 1)^n\quad (n= 0, 1, 2, \cdots)
+    $$ 被称为 Legendre 多项式，且 $p_n(x)$ 在 $(-1, 1)$ 上恰有 $n$ 个不同的根.
+\end{example}
+
+\setcounter{example}{2}
+\begin{example}
+    $$
+        |\arctan a - \arctan b| \leqslant |a - b|\ .
+    $$
+\end{example}
+
+\subsection{L'Hospital 法则}
+\begin{theorem}[L'Hospital 法则]
+    设函数 $f(x)$ 和 $g(x)$ 在 $(a, a+d]$ 上可导（$d$ 是某个正常数），且 $g'(x) \neq 0$. 若此时有 $$
+        \lim\limits_{x \to a^+} f(x)= \lim\limits_{x \to a^+} g(x) = 0
+    $$ 或 $$
+        \lim\limits_{x \to a^+} g(x) = \infty\ ,
+    $$ 且 $\lim\limits_{x \to a^+} \dfrac{f(x)}{g(x)}$ 存在（可以为有限或 $\infty$），则成立 $$
+        \lim\limits_{x \to a^+} \dfrac{f(x)}{g(x)} = \lim\limits_{x \to a^+} \dfrac{f'(x)}{g'(x)}\ .
+    $$
+\end{theorem}
+
+\subsection{Taylor 多项式和插值多项式}
+
+\begin{theorem}[带 Peano 余项的 Taylor 多项式]
+    设 $f(x)$ 在 $x_0$ 处有 $n$ 阶导数，则存在 $x_0$ 的一个邻域，对于该邻域中的任一点 $x$，成立 $$
+        f(x) = f(x_0) + f'(x - x_0) + \dfrac{f''(x_0)}{2!}(x-x_0)^2 + \cdots + \dfrac{f ^{(n)}}{n!}(x-x_0)^n + r_n(x)\ ,
+    $$ 其中余项 $r_n(x)$ 满足 $$
+        r_n(x) = o((x - x_n)^n)\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[带 Lagrange 余项的 Taylor 多项式]
+    设 $f(x)$ 在 $[a, b]$ 上具有 $n$ 阶连续导数，且在 $(a, b)$ 上有 $n+1$ 阶导数. 设 $x_0 \in [a, b]$ 为一定点，则对于任意 $x \in [a, b]$，成立 $$
+        f(x) = f(x_0) + f'(x - x_0) + \dfrac{f''(x_0)}{2!}(x-x_0)^2 + \cdots + \dfrac{f ^{(n)}}{n!}(x-x_0)^n + r_n(x)\ ,
+    $$ 其中余项 $r_n(x)$ 满足 $$
+        r_n(x) = \dfrac{f ^{(n)}(\xi)}{(n+1)!}(x - x_0)^{n+1}\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[插值多项式的余项定理]
+    设 $f(x)$ 在 $[a, b]$ 上具有 $n$ 阶连续导数，在 $(a, b)$ 上具有 $n+1$ 阶导数，且 $f(x)$ 在 $[a, b] $ 上的 $m+1$ 个互异点 $x_0, x_1, \cdots, x_m$ 上的函数值和若干阶导数值 $f ^{(j)}(x_i)(i = 0, 1, \cdots, m, j = 0, 1, \cdots, n_i-1, \sum\limits_{i=0}^{m}n_i = n+1)$ 是已知的，则对于任意 $x \in [a, b]$，上述插值问题有余项估计 $$
+        r_n(x) = f(x) - p_n(x) = \dfrac{f ^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^m(x - x_i)^{n_i}\ ,
+    $$ 这里 $\xi$ 是介于 $x_{\mathrm{min}} = \min\{x_0, x_1, \cdots, x_m, x\}$ 和 $x_{\mathrm{max}}\{x_0, x_1, \cdots, x_m, x\}$ 之间的一个数（一般依赖于 $x$）.
+\end{theorem}
+
+\subsection{函数的 Taylor 公式及其应用}
+
+\begin{theorem}[]
+    设 $f(x)$ 在 $x_0$ 的某个邻域有 $n+2$ 阶导数存在，则它的 $n+1$ 次 Taylor 多项式的导数恰为 $f'(x)$ 的 $n$ 次 Taylor 多项式.
+\end{theorem}
+
+\subsection{应用举例}
+
+\begin{theorem}[极值点判定定理]
+    设函数 $f(x)$ 在 $x_0$ 点的某一邻域中有定义，且 $f(x)$ 在 $x_0$ 点连续.
+    \begin{enumerate}
+        \item 设存在 $\delta > 0$，使得 $f(x)$ 在 $(x_0 - \delta, x_0)$ 与 $(x_0, x_0 + \delta)$ 上可导.
+              \begin{enumerate}
+                  \item 若在 $(x_0 - \delta, x_0)$ 上有 $f'(x) \geqslant 0$，在 $(x_0, x_0 + \delta)$ 上有 $f'(x) \leqslant 0$，则 $x_0$ 是 $f(x)$ 的极大值点.
+                  \item 若在 $(x_0 - \delta, x_0)$ 上有 $f'(x) \leqslant  0$，在 $(x_0, x_0 + \delta)$ 上有 $f'(x) \geqslant 0$，则 $x_0$ 是 $f(x)$ 的极小值点.
+                  \item 若 $f'(x)$ 在 $(x_0 - \delta, x_0)$ 与 $(x_0, x_0 + \delta)$ 上同号，则 $x_0$ 不是 $f(x)$ 的极值点.
+              \end{enumerate}
+        \item 设 $f'(x_0) = 0$，且 $f(x)$ 在 $x_0$ 点二阶可导.
+              \begin{enumerate}
+                  \item 若 $f''(x_0) < 0$，则 $x_0$ 是 $f(x)$ 的极大值点.
+                  \item 若 $f''(x_0) > 0$，则 $x_0$ 是 $f(x)$ 的极小值点.
+                  \item 若 $f''(x_0) = 0$，则 $x_0$ 可能是 $f(x)$ 的极值点，也可能不是 $x_0$ 的极值点.
+              \end{enumerate}
+    \end{enumerate}
+\end{theorem}
+
+\setcounter{section}{8}
+\section{数项级数}
+
+\setcounter{subsection}{1}
+\subsection{上极限与下级限}
+
+\begin{theorem}[]
+    $E$ 的上确界 $H$ 和下确界 $h$ 均属于 $E$，即 $$
+        H = \max E,\quad h = \min E\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    $\lim\limits_{n \to \infty} x_n$ 存在（有限数、$+\infty$ 或 $-\infty$）的充分必要条件是 $$
+        \underset{n \to \infty}{\overline{\lim}} x_n = \underset{n \to \infty}{\underline{\lim}} x_n\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    设 $\{x_n\}$ 是有界数列. 则
+    \begin{enumerate}
+        \item $\underset{n \to \infty}{\overline{\lim}}  = H$ 的充分必要条件是：对任意给定的 $\varepsilon > 0$，
+              \begin{enumerate}
+                  \item 存在正整数 $N$，使得 $$
+                            x_n < H + \varepsilon
+                        $$ 对一切 $n > N$ 成立；
+                  \item $\{x_n\}$ 中有无穷多项，满足 $$
+                            x_n > H - \varepsilon\ .
+                        $$
+              \end{enumerate}
+        \item $\underset{n \to \infty}{\underline{\lim}}  = h$ 的充分必要条件是：对任意给定的 $\varepsilon > 0$，
+              \begin{enumerate}
+                  \item 存在正整数 $N$，使得 $$
+                            x_n > h - \varepsilon
+                        $$ 对一切 $n > N$ 成立；
+                  \item $\{x_n\}$ 中有无穷多项，满足 $$
+                            x_n < h+ \varepsilon\ .
+                        $$
+              \end{enumerate}
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[上下级限的加法运算]
+    设 $\{x_n\},\{y_n\}$ 是两数列，则
+    \begin{enumerate}
+        \item $\underset{n \to \infty}{\overline{\lim}} (x_n + y_n) \leqslant \underset{n \to \infty}{\overline{\lim}} x_n + \underset{n \to \infty}{\overline{\lim}} y_n$，
+
+              $\underset{n \to \infty}{\underline{\lim}} (x_n + y_n) \geqslant \underset{n \to \infty}{\underline{\lim}} x_n + \underset{n \to \infty}{\underline{\lim}} y_n$；
+        \item 若 $\lim\limits_{n \to \infty} x_n$ 存在，则
+
+              $\underset{n \to \infty}{\overline{\lim}} (x_n + y_n) = \underset{n \to \infty}{\overline{\lim}} x_n + \underset{n \to \infty}{\overline{\lim}} y_n$，
+
+              $\underset{n \to \infty}{\underline{\lim}} (x_n + y_n) = \underset{n \to \infty}{\underline{\lim}} x_n + \underset{n \to \infty}{\underline{\lim}} y_n$.
+    \end{enumerate}
+    （要求上述诸式的右端不是待定型，即不为 $(+\infty) + (-\infty)$ 等.）
+\end{theorem}
+
+\begin{theorem}[上下级限的乘法运算]
+    设 $\{x_n\}, \{y_n\}$ 是两数列，
+    \begin{enumerate}
+        \item 若 $x_n \geqslant 0, y_n \geqslant 0$，则 $$
+                  \begin{aligned}
+                      \underset{n \to \infty}{\overline{\lim}} (x_ny_n) \leqslant \underset{n \to \infty}{\overline{\lim}} x_n \cdot \underset{n \to \infty}{\overline{\lim}} y_n\ , \\
+                      \underset{n \to \infty}{\underline{\lim}} (x_ny_n) \geqslant \underset{n \to \infty}{\underline{\lim}} x_n \cdot \underset{n \to \infty}{\underline{\lim}} y_n\ ;
+                  \end{aligned}
+              $$
+        \item 若 $\lim\limits_{n \to \infty} x_n = x, 0 < x < +\infty$，则 $$
+                  \begin{aligned}
+                      \underset{n \to \infty}{\underline{\lim}} (x_ny_n) = \lim\limits_{n \to \infty} x_n \cdot \underset{n \to \infty}{\overline{\lim}} y_n\ , \\
+                      \underset{n \to \infty}{\overline{\lim}} (x_ny_n) = \lim\limits_{n \to \infty} x_n \cdot \underset{n \to \infty}{\underline{\lim}} y_n\ .
+                  \end{aligned}
+              $$
+    \end{enumerate}
+    （要求上述诸式的右端不是待定型，即不为 $0 \cdot (+\infty)$ 等.）
+\end{theorem}
+
+\begin{theorem}[上下级限的第二定义]
+    设 $\{x_n\}$ 是一个有界数列，记 $$
+        \begin{aligned}
+            H^* = \lim\limits_{n \to \infty} \sup_{k>n}\{x_k\}\ , \\
+            h^* = \lim\limits_{n \to \infty} \inf_{k > n}\{x_k\}\ .
+        \end{aligned}
+    $$ 则 $H^*$ 是 $\{x_n\}$ 的最大极限点，$h^*$ 是 $\{x_n\}$ 的最小极限点.
+\end{theorem}
+
+\section{函数项级数}
+\subsection{函数项级数的一致收敛性}
+
+\begin{definition*}[函数项级数]
+    设 $u_n(x)(n = 1, 2, 3, \cdots)$ 是具有公共定义域 $E$ 的一列函数，我们将这无穷个函数的“和” $$
+        u_1(x) + u_2(x) + \cdots + u_n(x) + \cdots
+    $$ 称为\textbf{函数项级数}，记为 $\sum\limits_{n = 1}^{\infty}u_n(x)$.
+\end{definition*}
+
+\begin{definition}[收敛点、收敛域、和函数、点态收敛]
+
+    设 $u_n(x)(n = 1, 2, 3, \cdots)$ 在 $E$ 上定义. 对于任一固定的 $x_0 \in E$，若数项级数 $\sum\limits_{n=1}^{\infty}u_n(x_0)$ 收敛，则称函数项级数 $\sum\limits_{n = 1}^{\infty}u_n(x)$ 在点 $x_0$ 收敛，或称 $x_0$ 是 $\sum\limits_{n = 1}^{\infty}u_n(x)$ 的\textbf{收敛点}.
+
+    函数项级数 $\sum\limits_{n = 1}^{\infty}u_n(x)$ 的收敛点全体所构成的集合称为 $\sum\limits_{n = 1}^{\infty}u_n(x)$ 的\textbf{收敛域}.
+
+    设 $\sum\limits_{n = 1}^{\infty}u_n(x)$ 的收敛域为 $D \subset E$，则 $\sum\limits_{n = 1}^{\infty}u_n(x)$ 就定义了集合 $D$ 上的一个函数 $$
+        S(x) = \sum\limits_{n = 1}^{\infty}u_n(x),\ x \in D\ .
+    $$
+
+    $S(x)$ 称为 $\sum\limits_{n = 1}^{\infty}u_n(x)$ 的\textbf{和函数}. 由于这是通过逐点定义的方式得到的，因此称 $\sum\limits_{n = 1}^{\infty}u_n(x)$ 在 $D$ 上\textbf{点态收敛}于 $S(x)$.
+
+\end{definition}
+
+\begin{definition}[一致收敛]
+    设 $\{S_n(x)\}(x \in D)$ 是一函数序列，若对给定的 $\varepsilon > 0$，存在仅与 $\varepsilon$ 有关的正整数 $N(\varepsilon)$，当 $n > N(\varepsilon)$ 时，$$
+        |S_n(x) - S(x)| < \varepsilon
+    $$ 对一切 $x \in D$ 成立，则称 $\{S_n(x)\}$ 在 $D$ 上\textbf{一致收敛}于 $S(x)$，记为 $S_n(x) \overset{D}{\Rightarrow} S(x)$.
+
+    若函数项级数 $\sum\limits_{n = 1}^{\infty}u_n(x)(x \in D)$ 的部分和函数序列 $\{S_n(x)\}$，其中 $S_n(x) = \sum\limits_{k = 1}^{n}u_k(x)$，在 $D$ 上一致收敛于 $S(x)$，则我们称 $\sum\limits_{n = 1}^{\infty}u_n(x)$ 在 $D$ 上一致收敛于 $S(x)$.
+\end{definition}
+
+\begin{definition}[内闭一致收敛]
+    若对于任意给定的闭区间 $[a, b] sset D$，函数序列 $\{S_n(x)\}$ 在 $[a, b]$ 上一致收敛于 $S(x)$，则称 $S_n(x)$ 在 $D$ 上\textbf{内闭一致收敛}于 $S(x)$.
+\end{definition}
+
+\begin{theorem}[]
+    设函数序列 $\{S_n(x)\}$ 在集合 $D$ 上点态收敛于 $S(x)$，定义 $S_n(x)$ 与 $S(x)$ 的“距离”为 $$
+        d(S_n, S) = \sup_{x \in D}|S_n(x) - S(x)|\ ,
+    $$ 则 $|S_n(x)|$ 在 $D$ 上一致收敛于 $S(x)$ 的充分必要条件是 $$
+        \lim\limits_{n \to \infty} d(S_n, S) = 0\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    若函数项级数 $\sum\limits_{n = 1}^{\infty}u_n(x)$ 在 $D$ 上一致收敛，则函数序列 $\{u_n(x)\}$ 在 $D$ 上一致收敛于 $u(x)\equiv 0$.
+\end{corollary}
+
+\section{Euclid 空间上的极限和连续}
+
+\section{多元函数的微分学}
+
+\subsection{偏导数与全微分}
+
+\begin{theorem}[]
+    设 $D \in \mathbb{R}^2$ 为开集，$(x_0, y_0) \in D$ 为一定点. 如果函数 $$
+        z = f(x, y)
+    $$ 在 $(x_0, y_0)$ 可微，那么对于任一方向 $v = (\cos \alpha, \sin \alpha)$，$f$ 在 $(x_0, y_0)$ 点沿方向 $v$ 的方向导数存在，且 $$
+        \dfrac{\partial f}{\partial v} (x_0, y_0) = \dfrac{\partial f}{\partial x}(c_0, y_0) \cos \alpha + \dfrac{\partial f}{\partial y}(x_0, y_0) \sin \alpha\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    设函数 $x = f(x, y)$ 在 $(x_0, y_0)$ 点的某个邻域上存在偏导数，并且偏导数在 $(x_0, y_0)$ 连续，那么 $f$ 在 $(x_0, y_0)$ 点可微.
+\end{theorem}
+
+\begin{theorem}[]
+    如果函数 $z = f(x, y)$ 的两个混合偏导数 $f_{xx}$ 和 $f_{yx}$ 在点 $(x_0, y_0)$ 连续，那么等式 $$
+        f_{xy}(x_0, y_0) = f_{yx}(x_0, y_0)
+    $$ 成立.
+\end{theorem}
+
+\begin{theorem}[]
+    向量值函数 $f$ 在 $x^0$ 点可微的充分必要条件是向量值函数 $f$ 的每个坐标分量函数 $f_i({x}_1, {x}_2, \cdots, {x}_{n}) (i = 1, 2, \cdots, m)$ 都在 $x^0$ 点可微. 此时成立微分公式 $$
+        \mathrm{d}y = f'(x^0)\mathrm{d}x\ .
+    $$
+\end{theorem}
+
+\subsection{多元复合函数的求导法则}
+
+\begin{theorem}[链式法则]
+    设 $g$ 在 $(u_0, v_0) \in D_g$ 点可导，即 $x = x(u, v), y = y(u, v)$ 在 $(u_0, v_0)$ 点可偏导. 记 $x_0 = x(u_0, v_0), y_0 = y(u_0, v_0)$，如果 $f$ 在 $(x_0, y_0)$ 点可微，那么 $$
+        \begin{aligned}
+            \dfrac{\partial z}{\partial u}(u_0, v_0) & = \dfrac{\partial z}{\partial x}(x_0, y_0)\dfrac{\partial x}{\partial u}(u_0, v_0) + \dfrac{\partial z}{\partial y}(x_0, y_0)\dfrac{\partial y}{\partial u}(u_0, v_0);   \\
+            \dfrac{\partial z}{\partial v}(u_0, v_0) & = \dfrac{\partial z}{\partial x}(x_0, y_0)\dfrac{\partial x}{\partial v}(u_0, v_0) + \dfrac{\partial z}{\partial y}(x_0, y_0)\dfrac{\partial y}{\partial v}(u_0, v_0)\ .
+        \end{aligned}
+    $$
+\end{theorem}
+
+\begin{theorem}[链式法则]
+    设 $g$ 在 $x^0 \in D_g$ 点可到，即 ${y}_1, {y}_2, \cdots, {y}_{m}$ 在 $x^0$ 点可偏导，且 $f$ 在 $y^0 = g(x^0)$ 点可微，则 $$
+        \dfrac{\partial z}{\partial x_i}(x^0) = \dfrac{\partial z}{\partial y_1}(y^0)\dfrac{\partial y_1}{\partial x_i}(x^0) + \dfrac{\partial z}{\partial y_2}(y^0)\dfrac{\partial y_2}{\partial x_i}(x^0) + \cdots + \dfrac{\partial z}{\partial y_m}(y^0)\dfrac{\partial y_m}{\partial x_i}(x^0),\ i = 1, 2, \cdots, n\ .
+    $$ 上式可以用矩阵表示为 $$
+        \left(
+        \begin{matrix}
+            \dfrac{\partial z}{\partial x_1}, \dfrac{\partial z}{\partial x_2}, \cdots, \dfrac{\partial z}{\partial x_{n}}\end{matrix}
+        \right)_{x = x^0} = \left(
+        \begin{matrix}\dfrac{\partial z}{\partial y_1}, \dfrac{\partial z}{\partial y_2}, \cdots, \dfrac{\partial z}{\partial y_{n}}
+        \end{matrix}
+        \right)_{y = y^0}\left(
+        \begin{matrix}
+            \dfrac{\partial y_1}{\partial x_1} & \dfrac{\partial y_1}{\partial x_2} & \cdots & \dfrac{\partial y_1}{\partial x_n} \\
+            \dfrac{\partial y_2}{\partial x_1} & \dfrac{\partial y_2}{\partial x_2} & \cdots & \dfrac{\partial y_2}{\partial x_n} \\
+            \vdots                             &
+            \vdots                             &
+            \ddots                             &
+            \vdots                                                                                                                \\
+            \dfrac{\partial y_m}{\partial x_1} & \dfrac{\partial y_m}{\partial x_2} & \cdots & \dfrac{\partial y_m}{\partial x_n}
+        \end{matrix}
+        \right)_{x = x^0}\ .
+    $$ 或用向量值函数的导数记号表示为 $$
+        (f \circ g)'(x_0) = f'(y_0)g'(x_0)\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    设 $f:D_f(\subset \mathbb{R}^k) \to \mathbb{R}^m$ 与 $g:D_g(\subset \mathbb{R}^n) \to \mathbb{R^k}$ 分别是多元向量值函数，且分别在 $D_f$ 与 $D_g$ 上具有连续导数. 如果 $g$ 的值域 $g(D_g) \subset D_f$，并记 $u = g(x)$，那么复合向量值函数 $f \circ g$ 在 $D_g$ 上也具有连续的导数，并且成立等式 $$
+        (f \circ g)'(x) = f'(u)\cdot g'(x) = f'[g(x)] \cdot g'(x)\ ,
+    $$ 其中 $f'(u), g'(x)$ 和 $(f \circ g)'(x)$ 是相应的导数，即 Jacobi 矩阵.
+\end{theorem}
+
+\subsection{中值定理和 Taylor 公式}
+
+\begin{theorem}[中值定理]
+    设二元函数 $f(x, y)$ 在凸区域 $D \subset \mathbb{R}^2$ 上可微，则对于 $D$ 内任意两点 $(x_0, y_0)$ 和 $(x_0 + \Delta x, y_0 + \Delta y)$，至少存在一个 $\theta(0 < \theta < 1)$，使得 $$
+        f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0, y_0) = f_x(x_0 + \theta\Delta x, y_0 + \theta\Delta y)\Delta x + f_y(x_0 + \theta \Delta x, y_0 + \theta \Delta y)\Delta y\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    如果函数 $f(x, y)$ 在区域 $D \subset \mathbb{R}^2$ 上的偏导数恒为零，那么它在 $D$ 上必是常值函数.
+\end{corollary}
+
+\begin{theorem}[]
+    设 $n$ 元函数 $f({x}_1, {x}_2, \cdots, {x}_{n})$ 在凸区域 $D \subset \mathbb{R}^2$ 上可微，则对于 $D$ 内任意两点 $(x_1^0, x_2^0, \cdots, x_n^0)$ 和 $(x_1^0 + \Delta x_1, x_2^0 + \Delta x_2, \cdots, x_n^0 + \Delta x_n)$，至少存在一个 $\theta(0 < \theta < 1)$，使得 $$
+        \begin{aligned}
+             & f(x_1^0 + \Delta x_1, x_2^0 + \Delta x_2, \cdots, x_n^0 + \Delta x_n) - f(x_1^0, x_2^0, \cdots, x_n^0)                              \\
+             & = \sum\limits_{i = 1}^{n}f_{x_i}(x_1^0 + \theta\Delta x_1, x_2^0 + \theta\Delta x_2, \cdots, x_n^0 + \theta\Delta x_n)\Delta x_i\ .
+        \end{aligned}$$
+\end{theorem}
+
+\begin{theorem}[Taylor 公式]
+    设函数 $f(x, y)$ 在点 $x_0, y_0$ 邻域 $U = O((x_0, y_0), r)$ 上具有 $k + 1$ 阶连续偏导数，那么对于 $U$ 内每一点 $(x_0 + \Delta x, y_0 + \Delta y)$ 都成立 $$
+        \begin{aligned}
+            f(x_0 + \Delta x, y_0 + \Delta y) & = f(x_0, y_0) + \left(\Delta x \dfrac{\partial }{\partial x} + \Delta y \dfrac{\partial }{\partial y}\right)f(x_0, y_0) +         \\
+                                              & \dfrac{1}{2!}\left(\Delta x \dfrac{\partial }{\partial x} + \Delta y \dfrac{\partial }{\partial y}\right)^2f(x_0, y_0) + \cdots + \\
+                                              & \dfrac{1}{k!}\left(\Delta x \dfrac{\partial }{\partial x} + \Delta y \dfrac{\partial }{\partial y}\right)^kf(x_0, y_0) + R_k\ .
+        \end{aligned}
+    $$ 其中 $R_k = \dfrac{1}{(k+1)!}\left(\Delta x \dfrac{\partial }{\partial x} + \Delta y \dfrac{\partial }{\partial y}\right)^{k+1}f(x_0 +\theta \Delta x, y_0 + \theta \Delta y)(0 < \theta < 1)$ 称为 Lagrange 余项.
+\end{theorem}
+
+\begin{remark*}
+    这里 $$
+        \left(\Delta x \dfrac{\partial }{\partial x} + \Delta y \dfrac{\partial }{\partial y}\right)^pf(x_0, y_0) = \sum\limits_{i = 0}^{p}\mathrm{C}_p^i \dfrac{\partial ^pf}{\partial x^{p-i}\partial y^i}(x_0, y_0)(\Delta x)^{p-i}(\Delta y)^i\quad (p \geqslant 1)\ .
+    $$
+\end{remark*}
+
+\begin{corollary}
+    设 $f(x, y)$ 在点 $(x_0, y_0)$ 的某个邻域上具有 $k + 1$ 阶连续偏导数，那么在点 $(x_0, y_0)$ 附近成立 $$
+        \begin{aligned}
+            f(x_0 + \Delta x, y_0 + \Delta y) & = f(x_0, y_0) + \left(\Delta x \dfrac{\partial }{\partial x} + \Delta y \dfrac{\partial }{\partial y}\right)f(x_0, y_0) +                               \\
+                                              & \dfrac{1}{2!}\left(\Delta x \dfrac{\partial }{\partial x} + \Delta y \dfrac{\partial }{\partial y}\right)^2f(x_0, y_0) + \cdots +                       \\
+                                              & \dfrac{1}{k!}\left(\Delta x \dfrac{\partial }{\partial x} + \Delta y \dfrac{\partial }{\partial y}\right)^kf(x_0, y_0) + o((\,\sqrt[]{x^2 + y^2})^k)\ .
+        \end{aligned}
+    $$
+\end{corollary}
+
+\begin{theorem}[]
+    设 $n$ 元函数 $f({x}_1, {x}_2, \cdots, {x}_{n})$ 在点 $x^0_1, x^0_2, \cdots, x^0_{n}$ 附近具有 $k + 1$ 阶连续偏导数，那么在这点附近成立如下的 Taylor 公式：$$
+        \begin{aligned}
+            f(x^0_1 + \Delta x_1, x^0_2 + \Delta x_2, \cdots, x^0_{n} + \Delta x_n)\! =\! f(x^0_1, x^0_2, \cdots, x^0_{n}) + \left(\sum\limits_{i = 1}^{n}\Delta x_i \dfrac{\partial }{\partial x_i}\right)f(x^0_1, x^0_2, \cdots, x^0_{n}) + \\\dfrac{1}{2!}\left(\sum\limits_{i = 1}^{n}\Delta x_i \dfrac{\partial }{\partial x_i}\right)^2f(x^0_1, x^0_2, \cdots, x^0_{n}) + \cdots + \dfrac{1}{k!}\left(\sum\limits_{i = 1}^{n}\Delta x_i \dfrac{\partial }{\partial x_i}\right)^kf(x^0_1, x^0_2, \cdots, x^0_{n}) + R_k\ ,
+        \end{aligned}$$ 其中 $$
+        R_k = \dfrac{1}{(k+1)!}\left(\sum\limits_{i = 1}^{n}\Delta x_i \dfrac{\partial }{\partial x_i}\right)^{k+1}f(x^0_1 + \Delta x_1, x^0_2 + \Delta x_2, \cdots, x^0_{n} + \Delta x_n),\quad 0 < \theta < 1
+    $$ 为 Lagrange 余项.
+\end{theorem}
+
+\subsection{隐函数}
+
+\begin{theorem}[一元隐函数存在定理]
+    若二元函数 $F(x, y)$ 满足条件：
+
+    \begin{enumerate}[nosep]
+        \item $F(x_0, y_0) = 0$；
+        \item 在闭矩形 $D = \{(x, y)||x - x_0| \leqslant a, |y = y_0| \leqslant b\}$ 上，$F(x, y)$ 连续，且具有连续偏导数；
+        \item $F_y(x, y) \neq 0$，
+    \end{enumerate}
+
+    那么
+
+    \begin{enumerate}[nosep]
+        \item 在点 $(x_0, y_0)$ 附近可以从函数方程 $$
+                  F(x, y) = 0
+              $$ 惟一确定隐函数 $$
+                  y = f(x), \quad x \in O(x, \rho)\ ,
+              $$ 它满足 $F(x, f(x)) = 0$，以及 $y_0 = f(x_0)$；
+        \item 隐函数 $y = f(x)$ 在 $x \in O(x_0, \rho)$ 上连续；
+        \item 隐函数 $y = f(x)$ 在 $x \in O(x_0, \rho)$ 上有连续的导数，且 $$
+                  \dfrac{\mathrm{d}y}{\mathrm{d}x} = -\dfrac{F_x(x, y)}{F_y(x, y)}\ .
+              $$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[多元隐函数存在定理]
+    若 $n+1$ 元函数 $F(x_1, x_2, \cdots, x_n, y)$ 满足条件：
+
+    \begin{enumerate}[nosep]
+        \item $F(x_1^0, x_2^0, \cdots, x_n^0, y^0) = 0$；
+        \item 在闭矩形 $D = \{(x, y)||x_i - x_i^0| \leqslant a, |y = y^0| \leqslant b, i = 1, 2, \cdots, n\}$ 上，$F(x, y)$ 连续，且具有连续偏导数 $F_y, F_{x_i}, i = 1, 2, \cdots, n$；
+        \item $F_y(x_1^0, x_2^0, \cdots, x_n^0, y^0) \neq 0$，
+    \end{enumerate}
+
+    那么
+
+    \begin{enumerate}[nosep]
+        \item 在点 $(x_1^0, x_2^0, \cdots, x_n^0, y^0)$ 附近可以从函数方程 $$
+                  F(x_1, x_2, \cdots, x_n, y) = 0
+              $$ 惟一确定隐函数 $$
+                  y = f(x_1, x_2, \cdots, x_n), \quad x_1, x_2, \cdots, x_n \in O((x_1^0, x_2^0, \cdots, x_n^0), \rho)\ ,
+              $$ 它满足 $F(x_1, x_2, \cdots, x_n, f(x_1, x_2, \cdots, x_n)) = 0$，以及 $y^0 = f(x_1^0, x_2^0, \cdots, x_n^0)$；
+        \item 隐函数 $y = f(x_1, x_2, \cdots, x_n)$ 在 $x \in O((x_1^0, x_2^0, \cdots, x_n^0), \rho)$ 上连续；
+        \item 隐函数 $y = f(x_1, x_2, \cdots, x_n)$ 在 $x \in O((x_1^0, x_2^0, \cdots, x_n^0), \rho)$ 上有连续的导数，且 $$
+                  \dfrac{\mathrm{d}y}{\mathrm{d}x_i} = -\dfrac{F_{x_i}(x_1, x_2, \cdots, x_n, y)}{F_{y_i}(x_1, x_2, \cdots, x_n, y)},\ i = 1, 2, \cdots, n\ .
+              $$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[多元向量值隐函数存在定理]
+    设函数 $F(x, y, u, v)$ 和 $G(x, y, u, v)$ 满足条件：
+
+    \begin{enumerate}[nosep]
+        \item $F(x_0, y_0, u_0, v_0) = 0, G(x_0, y_0, u_0, v_0) = 0$；
+        \item 在闭长方体 $$
+                  D = \{(x, y, u, v) | |x - x_0| \leqslant a, |y - y_0| \leqslant b, |u - u_0| \leqslant c, |v - v_0| \leqslant d\}
+              $$ 上，函数 $F, G$ 连续，且具有连续偏导数；
+        \item 在 $(x_0, y_0, u_0, v_0)$ 点，行列式 $$
+                  \dfrac{\partial(F, G)}{\partial(u, v)} = \left|
+                  \begin{matrix}
+                      F_u & F_v \\
+                      G_u & G_v
+                  \end{matrix}
+                  \right| \neq 0\ ,
+              $$
+    \end{enumerate}
+    那么
+    \begin{enumerate}[nosep]
+        \item 在点 $x_0, y_0, u_0, v_0$ 附近可以从函数方程组 $$
+                  \left\{
+                  \begin{aligned}
+                      F(x, y, u, v) & = 0\ ,
+                      G(x, y, u, v) & = 0
+                  \end{aligned}
+                  \right.
+              $$ 惟一确定向量值隐函数 $$
+                  \left(
+                  \begin{matrix}
+                          u \\v
+                      \end{matrix}
+                  \right) = \left(
+                  \begin{matrix}
+                          f(x, y) \\g(x, y)
+                      \end{matrix}
+                  \right),\quad (x, y) \in O((x_0, y_0), \rho)\ ,
+              $$ 它满足 $\left\{
+                  \begin{aligned}
+                      F(x, y, f(x, y), g(x, y)) & = 0\ , \\
+                      G(x, y, f(x, y), g(x, y)) & = 0\ ,
+                  \end{aligned}
+                  \right.$ 以及 $u_0 = f(x_0, y_0), v_0 = g(x_0, y_0)$；
+        \item 这个向量值隐函数在 $O((x_0, y_0), \rho)$ 上连续；
+        \item 这个向量值隐函数在 $O((x_0, y_0), \rho)$ 上具有连续的导数，且 $$
+                  \left(
+                  \begin{matrix}
+                          \dfrac{\partial u}{\partial x} & \dfrac{\partial u}{\partial y} \\
+                          \dfrac{\partial v}{\partial x} & \dfrac{\partial v}{\partial y}
+                      \end{matrix}
+                  \right) = - \left(
+                  \begin{matrix}
+                      F_u & F_v \\
+                      G_u & G_v \\
+                  \end{matrix}
+                  \right)^{-1}\left(
+                  \begin{matrix}
+                          F_x & F_y \\
+                          G_x & G_y \\
+                      \end{matrix}
+                  \right)\ .
+              $$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    设 $m$ 个 $n + m$ 元函数 $F_i(x_1, x_2, \cdots, x_n, y_1, y_2, \cdots, y_m)(i = 1, 2, \cdots, m)$ 满足以下条件：
+
+    \begin{enumerate}[nosep]
+        \item $F_i(x_1^0, x_2^0, \cdots, x_n^0, y^0_1, y^0_2, \cdots, y^0_{m}) = 0, i = 1, 2, \cdots, m$；
+        \item 在闭长方体 $$
+                  \begin{aligned}
+                      D = \{ & (x^0_1, x^0_2, \cdots, x^0_{n}, y^0_1, y^0_2, \cdots, y^0_{m}) | \\&|x_i - x^0_i| \leqslant a_i, |y_j - y^0_j| \leqslant b_j,i = 1, 2, \cdots, n; j = 1, 2, \cdots, m\}
+                  \end{aligned}              $$ 上，函数 $F_i(i = 1, 2, \cdots, m)$ 连续，且具有连续偏导数；
+        \item 在 $(x^0_1, x^0_2, \cdots, x^0_{n}, y^0_1, y^0_2, \cdots, y^0_{m})$ 点，Jacobi 行列式 $$
+                  \dfrac{\partial({F}_1, {F}_2, \cdots, {F}_{m})}{\partial ({y}_1, {y}_2, \cdots, {y}_{m})} \neq 0\ ,
+              $$
+    \end{enumerate}
+    那么
+    \begin{enumerate}[nosep]
+        \item 在点 $(x^0_1, x^0_2, \cdots, x^0_{n}, y^0_1, y^0_2, \cdots, y^0_{m})$ 的某个邻域上，可以从函数方程组 $$
+                  \left\{
+                  \begin{aligned}
+                      F_1(x_1, x_2, \cdots, x_n, y_1, y_2, \cdots, y_m) & = 0\ ,   \\F_2(x_1, x_2, \cdots, x_n, y_1, y_2, \cdots, y_m) &= 0\ ,\\
+                                                                        & \ \vdots \\
+                      F_m(x_1, x_2, \cdots, x_n, y_1, y_2, \cdots, y_m) & = 0\ ,
+                  \end{aligned}
+                  \right.
+              $$ 惟一确定向量值隐函数 $$
+                  \left(
+                  \begin{matrix}
+                          y_1 \\y_2\\\vdots\\y_m
+                      \end{matrix}
+                  \right) = \left(
+                  \begin{matrix}
+                          f_1({x}_1, {x}_2, \cdots, {x}_{n}) \\
+                          f_2({x}_1, {x}_2, \cdots, {x}_{n}) \\
+                          \vdots                             \\
+                          f_m({x}_1, {x}_2, \cdots, {x}_{n}) \\
+                      \end{matrix}
+                  \right),\quad ({x}_1, {x}_2, \cdots, {x}_{n}) \in O((x^0_1, x^0_2, \cdots, x^0_{n}), \rho)\ ,
+              $$ 它满足 $$
+                  F_i({x}_1, {x}_2, \cdots, {x}_{n}, {f}_1({x}_1, {x}_2, \cdots, {x}_{n}), {f}_2({x}_1, {x}_2, \cdots, {x}_{n}), \cdots, {f}_m({x}_1, {x}_2, \cdots, {x}_{n})) = 0\ ,
+              $$ 以及 $y_i^0 = f_i(x^0_1, x^0_2, \cdots, x^0_{n})(i = 1, 2, \cdots, m)$；
+        \item 这个向量值隐函数在 $O((x^0_1, x^0_2, \cdots, x^0_{n}), \rho)$ 上连续；
+        \item 这个向量值隐函数在 $O((x^0_1, x^0_2, \cdots, x^0_{n}), \rho)$ 上具有连续的导数，且 $$
+                  \left(
+                  \begin{matrix}
+                          \dfrac{\partial y_1}{\partial x_1} & \dfrac{\partial y_1}{\partial x_2} & \cdots & \dfrac{\partial y_1}{\partial x_n} \\
+                          \dfrac{\partial y_2}{\partial x_1} & \dfrac{\partial y_2}{\partial x_2} & \cdots & \dfrac{\partial y_2}{\partial x_n} \\
+                          \vdots                             & \vdots                             & \ddots & \vdots                             \\
+                          \dfrac{\partial y_m}{\partial x_1} & \dfrac{\partial y_m}{\partial x_2} & \cdots & \dfrac{\partial y_m}{\partial x_n}
+                      \end{matrix}
+                  \right)\! =\! -\! \left(
+                  \begin{matrix}
+                      \dfrac{\partial F_1}{\partial y_1} & \dfrac{\partial F_1}{\partial y_2} & \cdots & \dfrac{\partial F_1}{\partial y_m} \\
+                      \dfrac{\partial F_2}{\partial y_1} & \dfrac{\partial F_2}{\partial y_2} & \cdots & \dfrac{\partial F_2}{\partial y_m} \\
+                      \vdots                             & \vdots                             & \ddots & \vdots                             \\
+                      \dfrac{\partial F_m}{\partial y_1} & \dfrac{\partial F_m}{\partial y_2} & \cdots & \dfrac{\partial F_m}{\partial y_m}
+                  \end{matrix}
+                  \right)^{-1}\!\!\left(
+                  \begin{matrix}
+                          \dfrac{\partial F_1}{\partial x_1} & \dfrac{\partial F_1}{\partial x_2} & \cdots & \dfrac{\partial F_1}{\partial x_n} \\
+                          \dfrac{\partial F_2}{\partial x_1} & \dfrac{\partial F_2}{\partial x_2} & \cdots & \dfrac{\partial F_2}{\partial x_n} \\
+                          \vdots                             & \vdots                             & \ddots & \vdots                             \\
+                          \dfrac{\partial F_n}{\partial x_1} & \dfrac{\partial F_n}{\partial x_2} & \cdots & \dfrac{\partial F_n}{\partial x_n}
+                      \end{matrix}
+                  \right)\ .
+              $$
+    \end{enumerate}
+
+    在具体计算向量值隐函数的导数时，通常用以下方法：分别对 $$
+        F_i({x}_1, {x}_2, \cdots, {x}_{n}, {y}_1, {y}_2, \cdots, {y}_{m}) = 0,\quad i = 1, 2, \cdots, m
+    $$ 关于 $x_j$ 求偏导，得到 $$
+        \dfrac{\partial F_i}{\partial x_j} + \sum\limits_{k = 1}^{m}\dfrac{\partial F_i}{\partial y_k}\dfrac{\partial y_k}{\partial x_j} = 0,\quad i = 1, 2, \cdots, m\ .
+    $$ 解这个联立方程组，应用 Cramer 法则得到 $$
+        \dfrac{\partial y_k}{\partial x_j} = -\dfrac{\dfrac{\partial(F_1, F_2, \cdots, F_{k-1}, F_k, F_{k+1}, \cdots, F_m)}{\partial(y_1, y_2, \cdots, y_{k-1}, x_j, y_{k+1}, \cdots, y_m)}}{\dfrac{\partial(F_1, F_2, \cdots, F_m)}{\partial ({y}_1, {y}_2, \cdots, {y}_{m})}},\quad k = 1, 2, \cdots, m;\ j = 1, 2, \cdots, n\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[逆映射定理]
+    设 $P_0 = (u_0, v_0) \in D, x_0 = x(u_0, v_0), y_0 = y(u_0, v_0), P_0' = (x_0, y_0)$，且 $f$ 在 $D$ 上具有连续导数. 如果在 $P_0$ 点处的 Jacobi 行列式 $$
+        \dfrac{\partial(x, y)}{\partial(u, v)} \neq 0\ ,
+    $$ 那么存在 $P_0'$ 的一个邻域 $O(P_0', \rho)$，在这个邻域上存在 $f$ 的具有连续导数的逆映射 $g$：
+    $$
+        \begin{aligned}
+            u & = u(x, y)\ ,
+            v & = v(x, y)\ ,
+        \end{aligned}\quad (x, y) \in O(P_0', \rho)\ ,
+    $$ 满足
+
+    \begin{enumerate}[nosep]
+        \item $u_0 = u(x_0, y_0), v_0 = v(x_0, y_0)$；
+        \item $\begin{aligned}
+                       & \left.\dfrac{\partial u}{\partial x}  = \dfrac{\partial y}{\partial v} \right/ \dfrac{\partial(x, y)}{\partial(u, v)},\
+                       & \left.\dfrac{\partial u}{\partial y}  = -\dfrac{\partial x}{\partial v} \right/ \dfrac{\partial(x, y)}{\partial(u, v)},  \\
+                       & \left.\dfrac{\partial v}{\partial x}  = -\dfrac{\partial y}{\partial u} \right/ \dfrac{\partial(x, y)}{\partial(u, v)},\
+                       & \left.\dfrac{\partial u}{\partial y}  = \dfrac{\partial x}{\partial u} \right/ \dfrac{\partial(x, y)}{\partial(u, v)}\ .
+                  \end{aligned}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    设 $D$ 为 $\mathbb{R}^2$ 中的开集，且映射 $f:D \to \mathbb{R}^2$ 在 $D$ 上具有连续导数. 如果 $f$ 的 Jacobi 行列式在 $D$ 上恒不为零，那么 $D$ 的像集 $f(D)$ 是开集.
+\end{theorem}
+
+\subsection{偏导数在几何中的应用}
+
+\begin{theorem}[]
+    曲线 $\left\{
+        \begin{aligned}
+            F(x, y, z) = 0, \\G(x, y, z) = 0
+        \end{aligned}
+        \right.$ 在 $P_0$ 点的法平面就是由向量 $\mathrm{grad}\,F(P_0)$ 和 $\mathrm{grad}\,G(P_0)$ 张成的过 $P_0$ 的平面.
+\end{theorem}
+
+\subsection{无条件极值}
+
+\begin{theorem}[必要条件]
+    设 $x_0$ 为函数 $f$ 的极值点，且 $f$ 在 $x_0$ 点可偏导，则 $f$ 在 $x_0$ 点的各个一阶偏导数都为 $0$，即 $$
+        f_{x_1}(x_0) = f_{x_2}(x_0) = \cdots = f_{x_n}(x_0) = 0\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    设 $(x_0, y_0)$ 为 $f$ 的驻点，$f$ 在 $(x_0, y_0)$ 附近具有二阶连续偏导数. 记 $$
+        A = f_{xx}(x_0, y_0),\ B = f_{xy}(x_0, y_0),\ G = f_{yy}(x_0, y_0)\ ,
+    $$ 并记 $$
+        H = \left|
+        \begin{matrix}
+            A & B \\
+            B & C
+        \end{matrix}
+        \right| = AC - B^2\ ,
+    $$ 那么
+    \begin{enumerate}[nosep]
+        \item 若 $H > 0$：$A > 0$ 时 $f(x_0, y_0)$ 为极小值；$A < 0$ 时 $f(x_0, y_0)$ 为极大值；
+        \item 若 $H < 0$：$f(x_0, y_0)$ 不是极值.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    设 $n$ 元函数 $f(x)$ 在 $x_0 = (x^0_1, x^0_2, \cdots, x^0_{n})$ 附近具有二阶连续偏导数，且 $x_0$ 为 $f(x)$ 的驻点，那么当二次型 $$
+        g(\zeta) = \sum\limits_{i, j = 1}^{n}f_{x_ix_j}(x_0)\zeta_i\zeta_j
+    $$ 正定时，$f(x_0)$ 为极小值；当 $g(\zeta)$ 负定时，$f(x_0)$ 为极大值；当 $g(\zeta)$ 不定时，$f(x_0)$ 不是极值.
+\end{theorem}
+
+\begin{corollary}
+    若 $\det A_k > 0(k = 1, 2, \cdots, n)$，则二次型 $g(\xi)$ 是正定的，此时 $f(x_0)$ 为极小值；若 $(-1)^k\det A_k > 0(k = 1, 2, \cdots, n)$，则二次型 $g(\xi)$ 是负定的，此时 $f(x_0)$ 为极大值.
+\end{corollary}
+
+\subsection{条件极值与 Lagrange 乘数法}
+
+\begin{theorem}[条件极值的必要条件]
+    若 $x_0 = (x^0_1, x^0_2, \cdots, x^0_{n})$ 为函数 $f(x)$ 满足约束条件的条件极值点，则必存在 $m$ 个常数 ${\lambda}_1, {\lambda}_2, \cdots, {\lambda}_{m}$，使得在 $x_0$ 点成立 $$
+        \mathrm{grad}\,f = {\lambda}_1 \mathrm{grad}\,g_1 + {\lambda}_2 \mathrm{grad}\,g_2 + \cdots+ {\lambda}_m \mathrm{grad}\,g_m\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    设点 $x_0 = (x^0_1, x^0_2, \cdots, x^0_{n})$ 及 $m$ 个常数 ${\lambda}_1, {\lambda}_2, \cdots, {\lambda}_{m}$ 满足方程 $$
+        \left\{
+        \begin{aligned}
+            \dfrac{\partial L}{\partial x_k} & = \dfrac{\partial f}{\partial x_k} - \sum\limits_{i = 1}^{m}\lambda_i \dfrac{\partial g_i}{\partial x_k} = 0\ , \\
+            g_t                              & = 0\ ,
+        \end{aligned}
+        \right.\quad (k = 1, 2, \cdots, n;\ l = 1 ,2, \cdots, m)\ ,
+    $$ 则当方阵 $$
+        \left(\dfrac{\partial^2L}{\partial x_k \partial x_i}(x_0, {\lambda}_1, {\lambda}_2, \cdots, {\lambda}_{m})\right)_{n \times n}
+    $$ 为正定（负定）矩阵时，$x_0$ 为满足约束条件的条件极小（大）值点，因此 $f(x_0)$ 为满足约束条件的条件极小（大）值.
+\end{theorem}
+
+\section{重积分}
+
+\subsection{有界闭区域上的重积分}
+
+\begin{theorem}[]
+    有界点集 $D$ 是可求面积的充分必要条件是它的边界 $\partial D$ 的面积为 $0$.
+\end{theorem}
+
+\begin{theorem}[]
+    若 $f(x, y)$ 在零边界闭区域 $D$ 上连续，那么它在 $D$ 上可积.
+\end{theorem}
+
+\begin{proposition*}
+    设 $D$ 为 $\mathbb{R}^2$ 上的零边界闭区域，函数 $z = f(x, y)$ 在 $D$ 上有界. 将 $D$ 用曲线网分成 $n$ 个小区域 ${\Delta D}_1, {\Delta D}_2, \cdots, {\Delta D}_{n}$，并记所有小区域 $\Delta D_i$ 的最大直径为 $\lambda$，即 $$
+        \lambda = \max\{\mathrm{diam}\Delta D_i\}\ .
+    $$ 在每个 $\Delta D_i$ 上任取一点 $(\xi_i, \eta_i)$，记 $\Delta \sigma_i$ 为 $\Delta D_i$ 的面积.
+
+    设 $M_i$ 和 $m_i$ 分别为 $f(x, y)$ 在 $\Delta D_i$ 上的上确界和下确界，定义 Darboux 大和为 $$
+        S = \sum\limits_{i = 1}^{n}M_i\Delta \sigma_i\ ;
+    $$ Darboux 小和为 $$
+        s = \sum\limits_{i = 1}^{n}m_i\Delta\sigma_i\ .
+    $$ 则有以下性质：
+    \begin{enumerate}[nosep]
+        \item 若在已有的划分上添加有线条曲线作进一步划分，则 Darboux 大和不增，Darboux 小和不减.
+        \item 任何一个 Darboux 小和都不大于任何一个 Darboux 大和. 因此，若记 $I^* = \mathrm{inf}\{S\}, I_* = \mathrm{sup}\{s\}$（这里上、下确界是对所有划分来取的），则有 $$
+                  s \leqslant I_* \leqslant I^* \leqslant S\ .
+              $$
+        \item $f(x, y)$ 在 $D$ 上可积的充分必要条件是： $$
+                  \lim\limits_{\lambda \to 0} (S - s) = 0\ ,
+              $$ 即 $$
+                  \lim\limits_{\lambda \to 0} \sum\limits_{i = 1}^{n}\omega_i\Delta\sigma_i = 0\ .
+              $$ 这里 $\omega_i = M_i - m_i$ 是 $f(x, y)$ 在 $\Delta D_i$ 上的振幅. 此时成立 $$
+                  \lim\limits_{\lambda \to 0} s = \lim\limits_{\lambda \to 0} S = \ayiint_Df(x, y)\mathrm{d}\sigma\ .
+              $$
+    \end{enumerate}
+
+\end{proposition*}
+
+\subsection{重积分的性质与计算}
+\begin{proposition*}[线性性]
+    设 $f$ 和 $g$ 都在区域 $\Omega$ 上可积，$\alpha, \beta$ 为常数，则 $\alpha f + \beta g$ 在 $\Omega$ 上也可积，并且 $$
+        \int_{\Omega}^{}(\alpha f + \beta g)\mathrm{d}V = \alpha \int_{\Omega}^{}f\mathrm{d}V + \beta\int_{\Omega}^{}g\mathrm{d}V\ .
+    $$
+\end{proposition*}
+
+\begin{proposition*}[区域可加性]
+    设区域 $\Omega$ 被分成两个内点不相交的区域 $\Omega_1$ 和 $\Omega_2$，如果 $f$ 在 $\Omega$ 上可积，则 $f$ 在 $\Omega_1$ 和 $\Omega_2$ 上都可积；反之，如果 $f$ 在 $\Omega_1$ 和 $\Omega_2$ 上可积，则 $f$ 也在 $\Omega$ 上可积. 此时成立 $$
+        \int_{\Omega}^{}f\mathrm{d}V = \int_{\Omega_1}^{}f\mathrm{d}V + \int_{\Omega_2}^{}f\mathrm{d}V\ .
+    $$
+\end{proposition*}
+
+\section{曲线积分、曲面积分与场论}
+
+\subsection{第一类曲线积分与第一类曲面积分}
+
+\begin{definition}[第一类曲线积分]
+    设 $L$ 是空间 $\mathbb{R}^3$ 上一条可求长的连续曲线，其端点为 $A$ 和 $B$，函数 $f(x, y, z)$ 在 $L$ 上有界. 令 $A = P_0, B = P_n$. 在 $L$ 上从 $A$ 到 $B$ 顺序地插入分点 ${P}_1, {P}_2, \cdots, {P}_{n-1}$，再分别在每个小弧段 $P_{i-1}P_i$ 上任取一点 $(\xi_i, \eta_i, \zeta_i)$，并记第 $i$ 个小弧段 $P_{i-1}P_i$ 的长度为 $\Delta s_i(i = 1, 2, \cdots, n)$，作和式 $$
+        \sum\limits_{i = 1}^{n}f(\xi_i, \eta_i, \zeta_i)\Delta s_i\ .
+    $$ 如果当所有小弧段的最大长度 $\lambda$ 趋于零时，这个和式的极限存在，且与分点 $\{P_i\}$ 的取法及 $P_{i-1}P_i$ 上的点 $(\xi_i, \eta_i, \zeta_i)$ 的取法无关，则称这个极限值为 $f(x, y, z)$ 在曲线 $L$ 上的第一类曲线积分，记为 $$
+        \int\limits_{L}^{}f(x, y, z)\mathrm{d}s \quad \text{或} \quad \int\limits_{L}^{}f(P)\mathrm{d}S\ .
+    $$ 即 $$
+        \int\limits_{L}^{}f(x, y, z)\mathrm{d}s = \lim\limits_{\lambda \to 0} \sum\limits_{i = 1}^{n}f(\xi_i, \eta_i, \zeta_i)\Delta s_i\ ,
+    $$ 其中 $f(x, y, z)$ 称为被积函数，$L$ 称为积分路径.
+\end{definition}
+
+\begin{definition}[第一类曲面积分]
+    设曲面 $\varSigma$ 为有界光滑（或分片光滑）曲面，函数 $f(x, y, z)$ 在 $\varSigma$ 上有界. 将曲面 $\varSigma$ 用一个光滑曲线网分成 $n$ 片小区面 ${\Delta\varSigma}_1, {\Delta\varSigma}_2, \cdots, {\Delta\varSigma}_{n}$，并记 $\Delta\varSigma_i$ 的面积为 $\Delta S_i$. 在每片 $\Delta\varSigma_i$ 上任取一点 $(\xi_i, \eta_i, \zeta_i)$，作和式 $$
+        \sum\limits_{i = 1}^{n}f(\xi_i, \eta_i, \zeta_i)\Delta S_i\ .
+    $$ 如果当所有小曲面 $\Delta\varSigma_i$ 的最大直径 $\lambda$ 趋于 $0$ 时，这个和式的极限存在，且极限值与小曲面的分发和点 $(\xi_i, \eta_i, \zeta_i)$ 的取法无关，则称此极限值为 $f(x, y, z)$ 在曲面 $\varSigma$ 上的第一类曲面积分，记为 $\displaystyle\ayiint_{\varSigma}^{}f(x, y, z)\mathrm{d}S$，即 $$
+        \ayiint_{\varSigma}^{}f(x, y, z)\mathrm{d}S = \lim\limits_{\lambda \to 0} \sum\limits_{i = 1}^{n}f(\xi_i, \eta_i, \zeta_i)\Delta S_i\ ,
+    $$ 其中 $f(x, y, z)$ 称为被积函数，$\varSigma$ 称为积分曲面.
+\end{definition}
+
+\begin{theorem}[]
+    设 $L$ 为光滑曲线，函数 $f(x, y, z)$ 在 $L$ 上连续，则 $f(x, y, z)$ 在 $L$ 上的第一类曲线积分存在，且 $$
+        \int\limits_{L}^{}f(x, y, z)\mathrm{d}s = \int_{\alpha}^{\beta}f(x(t), y(t), z(t))\,\sqrt[]{x'^2(t) + y'^2(t) + z'^2(t)}\mathrm{d}t\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    对于有界光滑曲面 $\varSigma$，可以计算其面积为 $$
+        S = \ayiint_{D}^{}\,\sqrt[]{EG - F^2}\mathrm{d}u \mathrm{d}v\ ,
+    $$ 其中 $$
+        \begin{aligned}
+            E & = \mathbf{r}_u \cdot \mathbf{r}_u = x_u^2  + y_u^2 + z_u^2\ ,    \\
+            F & = \mathbf{r}_u \cdot \mathbf{r}_v = x_ux_v  + y_uy_v + z_uz_v\ , \\
+            G & = \mathbf{r}_v \cdot \mathbf{r}_v = x_v^2  + y_v^2 + z_v^2\ ,    \\
+        \end{aligned}
+    $$ 它称为曲面的 Gauss 系数.
+\end{theorem}
+
+\begin{proposition*}[第一类曲线积分的线性性]
+    如果函数 $f, g$ 在 $L$ 上的第一类曲线积分存在，则对于任何常数 $\alpha, \beta, \alpha f + \beta g$ 在 $L$ 上的第一类曲线积分存在，且成立 $$
+        \int\limits_{L}^{}(\alpha f + \beta g)\mathrm{d}s = \alpha \int\limits_{L}^{}f\mathrm{d}s + \beta \int\limits_{L}^{}g\mathrm{d}s\ .
+    $$
+\end{proposition*}
+
+\begin{proposition*}[第一类曲线积分的路径可加性]
+    设曲线 $L$ 分成了两段 $L_1, L_2$. 如果函数 $f$ 在 $L$ 上的第一类曲线积分存在，则它在 $L_1$ 和 $L_2$ 上的第一类曲线积分也存在. 反之，如果函数 $f$ 在 $L_1$ 和 $L_2$ 上的第一类曲线积分存在，则它在 $L$ 上的第一类曲线积分也存在. 并成立 $$
+        \int\limits_{L}^{}f\mathrm{d}s = \int\limits_{L_1}^{}f\mathrm{d}s + \int\limits_{L_2}^{}f\mathrm{d}s\ .
+    $$
+\end{proposition*}
+
+\begin{appendices}
+    \section{实数系基本定理之间的等价证明}
+
+    \subsection{九个实数系基本定理的叙述}
+
+    \begin{theoremsec}[确界存在定理]
+        非空有上界的数集必有上确界，非空有下界的数集必有下确界.
+    \end{theoremsec}
+
+    \begin{theoremsec}[单调有界定理]
+        单调有界数列必定收敛.
+    \end{theoremsec}
+
+    \begin{theoremsec}[闭区间套定理]
+        如果 $\{[a_n, b_n]\}$ 形成一个闭区间套，则存在唯一的实数 $\xi$ 属于所有的闭区间 $[a_n, b_n]$，且 $\xi = \lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} b_n$.
+    \end{theoremsec}
+
+    \begin{theoremsec}[Heine--Borel 有限覆盖定理]
+        设 $\Delta$ 是闭区间 $[a, b]$ 的一个无限开覆盖，则从 $\Delta$ 中可以选出有限个开覆盖 $[a, b]$.
+    \end{theoremsec}
+
+    \begin{theoremsec}[Bolzano--Weierstrass 定理]
+        有界数列必有收敛子列.
+    \end{theoremsec}
+
+    \begin{theoremsec}[Cauchy 收敛原理]
+        数列 $\{x_n\}$ 收敛的充分必要条件是：$\{x_n\}$ 是基本数列.
+    \end{theoremsec}
+
+    \begin{theoremsec}[Dedekind 分割定理]
+        设 $\tilde{A}/\tilde{B}$ 是实数集 $\mathbb{R}$ 的一个切割，则或者 $\tilde{A}$ 有最大数，或者 $\tilde{B}$ 有最小数.
+    \end{theoremsec}
+
+    \begin{theoremsec}[Weierstrass 聚点原理]
+        设 $E$ 是有界无限的实数点集，则 $E$ 至少有一个聚点.
+    \end{theoremsec}
+
+    \begin{theoremsec}[介值定理]
+        若函数 $f(x)$ 在闭区间 $[a, b]$ 上连续，则它一定能取到最大值 $M = \max\{f(x)\,|\,x \in [a, b]\}$ 和最小值 $m = \min \{f(x)\,|\,x \in [a, b]\}$ 之间的任何一个值.
+    \end{theoremsec}
+
+    \subsection{用确界存在定理证明其它定理}
+
+    \subsubsection{单调有界定理}
+
+    \begin{proof}
+        不妨设 $\{x_n\}$ 单调增加且有上界. 根据确界存在定理，由 $\{x_n\}$ 构成的数集必有上确界 $\beta$，满足：
+        \begin{enumerate}
+            \item $\forall n \in \mathbb{N}^+, x_n \leqslant \beta$；
+            \item $\forall \varepsilon > 0, \exists\, x_{n_0}, x_{n_0} > \beta - \varepsilon$.
+        \end{enumerate}
+
+        取 $N = n_0$，对 $\forall n > N$ 有 $$
+            \beta - \varepsilon < x_{n_0} \leqslant x_n \leqslant \beta\ ,
+        $$ 因而 $|x_n - \beta| < \varepsilon$，于是得到 $$
+            \lim\limits_{n \to \infty} x_n = \beta\ .
+        $$
+    \end{proof}
+
+    \subsection{用单调有界定理证明其它定理}
+
+    \subsubsection{闭区间套定理}
+
+    \begin{proof}
+        设 $\{[a_n, b_n]\}$ 构成闭区间套. 则有 $$
+            \left\{
+            \begin{aligned}\relax
+                [a_{n+1}, b_{n+1}]                     & \subset [a_n, b_n],\ n = 1, 2, 3, \cdots \\
+                \lim\limits_{n \to \infty} (b_n - a_n) & = 0\ .
+            \end{aligned}
+            \right.
+        $$
+
+        于是有 $$
+            a_1 \leqslant a_2 \leqslant \cdots \leqslant a_n \leqslant b_n \leqslant \cdots \leqslant b_2 \leqslant b_1\ ,\ n = 1, 2, 3, \cdots
+        $$ 于是 $\{a_n\}$ 单调增加且有上界，$\{b_n\}$ 单调下降且有下界. 由单调有界定理，数列 $\{a_n\}, \{b_n\}$ 极限存在.
+
+        设 $\lim\limits_{n \to \infty} a_n = \xi,\ \lim\limits_{n \to \infty} b_n = \xi'$. 于是有 $$
+            \xi' = \lim\limits_{n \to \infty} b_n = \lim\limits_{n \to \infty} (b_n - a_n) + \lim\limits_{n \to \infty} a_n = 0 + \xi = \xi\ .
+        $$ 于是 $\xi = \xi'$. 考虑到 $a_n \leqslant \xi \leqslant b_n$ ，于是有 $\xi$ 属于闭区间套中所有的闭区间.
+
+        再证 $\xi$ 唯一. 若 $\xi$ 不唯一，设存在 $\xi'' \neq \xi$ 属于所有的闭区间. 有 $a_n \leqslant \xi'' \leqslant b_n$，且 $\lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} b_n = \xi$，由夹逼定理知道 $\xi'' = \xi$，出现矛盾. 于是有 $\xi$ 唯一.
+    \end{proof}
+
+    \subsection{用闭区间套定理证明其它定理}
+
+    \subsubsection{单调有界定理}
+
+    \begin{proof}
+        设数列 $\{a_n\}$ 单调增有上界，其一个上界为 $M$.
+
+        下构造一个闭区间套 $\{[l_n, r_n]\}$. 令 $l_1 = a_1, r_1 = M$. 设 $m_1 = \dfrac{l_1 + r_1}{2}$，考虑 $[l_1, m_1]$，$[m_1, r_1]$ 两个闭区间. 若 $[m_1, r_1]$ 中含有 $\{a_n\}$ 中的项，则令 $[l_2, r_2] = [m_1, r_1]$，否则令 $[l_2, r_2] = [l_1, m_1]$. 于是有 $[l_2, r_2]$ 中一定有 $\{a_n\}$ 中的项，且 $r_2$ 一定是 $\{a_n\}$ 的上界. 类似地，令 $m_2 = \dfrac{l_2 + r_2}{2}$，若 $[m_2, r_2]$ 中含有数列 $\{a_n\}$ 中的项，则令 $[l_3, r_3] = [m_2, r_2]$，否则令 $[l_3, r_3] = [l_2, m_2]$. 依此类推可以构造出一列闭区间. 显然有 $\lim\limits_{n \to \infty} (r_n - l_n) = 0$，并且 $[l_{n+1}, r_{n+1}] \subset [l_n, r_n], n = 1, 2, 3, \cdots$，故有 $\{[l_n, r_n]\}$ 形成闭区间套，且每一个闭区间中都有 $\{a_n\}$ 中的项存在，每一个 $r_n$ 都是 $\{a_n\}$ 的上界.
+
+        由闭区间套定理知道存在唯一的 $\xi$ 属于闭区间套中所有的闭区间. 下证明数列 $\{a_n\}$ 收敛于 $\xi$. 对 $\forall \varepsilon > 0$，一定可以取到一个闭区间 $[l_p, r_p]$，使得 $r_p - l_p < \dfrac{\varepsilon}{2}$. 由闭区间套构造过程知道 $\{a_n\}$ 中存在项落在区间 $[l_p, r_p]$ 中. 设其为 $a_q$. 则取 $N = q$，对 $\forall n > N$，有 $l_p \leqslant a_N \leqslant a_n \leqslant r_p$，又知道 $\xi \in [l_p, r_p]$，于是有 $|a_n - \xi| \leqslant |a_n - l_p| + |\xi - l_p| < \varepsilon$. 从而数列 $\{a_n\}$ 收敛.
+    \end{proof}
+
+    \subsubsection{Bolzano--Weierstrass 定理}
+
+    \begin{proof}
+        设数列 $\{a_n\}$ 有界，即有 $M > 0$，满足 $M > a_n,\ n = 1, 2, 3, \cdots$. 下构建一个闭区间套 $\{[l_n, r_n]\}$.
+
+        \begin{enumerate}
+            \item 令 $a_1 = -M, b_1 = M$.
+            \item 数列 $\{a_n\}$ 一定有无穷项在 $[l_1, r_1]$ 内. 将其一分为二，设 $m_1 = \dfrac{l_1+r_1}{2}$，考虑两个闭区间 $[l_1, m_1], [m_1, r_1]$，至少有一个区间内包含无穷项数列项. 可以令其为 $[l_2, r_2]$.
+            \item 依此类推，对 $\forall n \in \mathbb{N}^+$ ，可以构造出闭区间 $[l_n, r_n]$.
+        \end{enumerate}
+
+        有 $\lim\limits_{n \to \infty} (r_n - l_n) = \lim\limits_{n \to \infty} \dfrac{2M}{2^{n-1}} = 0$，且显然有 $[l_{n+1}, rb_{n+1}] \subset [l_n, r_n]$，于是有 $\{[l_n, r_n]\}$ 构成一个闭区间套. 由闭区间套定理，存在唯一的 $\xi$ 属于闭区间套中所有的闭区间.
+
+        下构造一个收敛至 $\xi$ 的子列 $\{a_{n_k}\}$. 由于数列 $\{a_n\}$ 中有无穷项在 $[l_n, r_n]$ 中，故可以取 $a_{n_1} \in [l_1, r_1]$. 然后可以取 $n_2 > n_1$，使得 $a_{n_2} \in [l_2, r_2]$. 依此类推，可以构造出子列 $\{a_{n_k}\}$. 因为 $l_p \leqslant a_{n_p} \leqslant r_p$，且 $\lim\limits_{n \to \infty} l_p = \lim\limits_{n \to \infty} r_p = \xi$，由夹逼定理知道 $\lim\limits_{n \to \infty} a_{n_p} = \xi$，这个子列收敛.
+    \end{proof}
+
+
+    \subsection{用 Heine--Borel 有限覆盖定理证明其它定理}
+
+    \subsubsection{Weierstrass 聚点原理}
+    \begin{proof}
+        用反证法. 设 $E$ 没有聚点.
+
+        由于 $E$ 有界，存在 $[a, b]$，使得 $E \subset [a, b]$. $\forall \varepsilon \in [a, b]$，有 $\varepsilon$ 不是 $E$ 的聚点，则存在 $\xi$ 的邻域 $U(\xi, \delta_\varepsilon)$，使得 $\overset{\circ}{U}(\xi, \delta_\varepsilon) \cap E = \emptyset$. 即除了 $\xi$ 之外，$\xi$ 的邻域 $U(\xi, \delta_\varepsilon)$ 中没有 $E$ 的点.
+
+        记 $\Delta = \{U(\xi, \delta_\varepsilon)\,|\,\xi \in [a, b]\}$，则 $\Delta$ 是 $[a, b]$ 的开覆盖. 根据 Heine-Borel 有限覆盖定理知道存在 $\Delta$ 中有限的开区间 $\{U(\xi_i)\,|\, \xi_i \in [a, b], i = 1, 2, \cdots, n\}$ 覆盖 $[a, b]$，即 $[a, b] \subset \bigcup\limits_{i=1}^nU(\xi_i)$，自然有 $E \subset [a,b] \subset \bigcup\limits_{i_1}^nU(\xi_i)$. 根据假设 $\bigcup\limits_{i_1}^n\overset{\circ}{U}(\xi_i) \cap E = \emptyset$，从而 $E$ 是有限集，且 $E \subset \{\xi_1, \xi_2, \xi_3, \cdots\}$. 这与 $E$ 是无限集矛盾.
+    \end{proof}
+
+
+    \subsection{用 Bolzano--Weierstrass 定理证明其它定理}
+
+    \subsubsection{Cauchy 收敛原理}
+
+    \begin{proof}
+        $\Rightarrow$) 设数列 $\{a_n\}$ 收敛，$\lim\limits_{n \to \infty} a_n = A$. 则对 $\forall \varepsilon > 0$，存在 $N > \mathbb{N}^+$，使得 $\forall n > N$，有 $|a_n - A| \leqslant \dfrac{\varepsilon}{2}$. 取 $N' = N$，则有对 $\forall n, m > N$，有 $$
+            |a_n - a_m| \leqslant |a_n - A| + |a_m - A| < \varepsilon\ .
+        $$ 于是 $\{a_n\}$ 是基本数列.
+
+        $\Leftarrow$) 设数列 $\{a_n\}$ 是基本数列.
+
+        先证数列 $\{a_n\}$ 有界. 取 $\varepsilon = 1$，则存在 $N$，对 $\forall n > N$，有 $|a_n - a_N| \leqslant \varepsilon = 1$. 令 $M = \max \{|a_1|, |a_2|, \cdots, |a_N|, |a_N| + 1\}$，则有 $M \geqslant |a_n|,\ n = 1, 2, 3, \cdots$. 于是有数列 $\{a_n\}$ 有界.
+
+        再证数列 $\{a_n\}$ 收敛. 由于数列 $\{a_n\}$ 是基本数列，故存在 $M \in \mathbb{N}^+$，使得 $\forall p, q > M$，有 $$
+            |x_p - x_q| < \dfrac{\varepsilon}{2}\ .
+        $$ 又由 Bolzano--Weierstrass 定理，数列 $\{a_n\}$ 存在子列 $\{a_{n_k}\}$ 收敛. 设 $\lim\limits_{n \to \infty} a_{n_k} = \xi$. 则对 $\forall \varepsilon > 0$，一定能取到 $N > M$，使得 $\forall k > N$，使得 $$
+            |a_{n_k} - \xi| \leqslant \dfrac{\varepsilon}{2}\ .
+        $$ 于是对 $\forall n > n_N$，有 $$
+            |a_n - \xi| \leqslant |a_n - a_{n_k}| + |a_{n_k} - \xi| \leqslant \varepsilon\ .
+        $$ 于是数列 $\{a_n\}$ 收敛向 $\xi$.
+    \end{proof}
+
+    \subsection{用 Cauchy 收敛原理证明其它定理}
+
+
+    \subsection{用 Dedekind 分割定理证明其它定理}
+
+    \subsection{用 Weierstrass 聚点原理证明其它定理}
+
+    \subsubsection{Bolzano--Weierstrass 定理}
+
+    \begin{proof}
+        设 $\{a_n\}$ 为有界数列，$B = \{a_n\,|\,n = 1, 2, 3, \cdots\}$. 下对 $B$ 分类讨论.
+
+        \textbf{当 $B$ 为有限集时}，设 $B = \{b_1, b_2, \cdots, b_m\}$. 则一定存在 $b_p$ ，有 $b_p$ 在数列 $\{a_n\}$ 中出现无限次（若不然，则有 $B$ 中所有项在数列 $\{a_n\}$ 中出现有限次，而 $B$ 又是有限集，从而 $\{a_n\}$ 是有限数列，矛盾）. 则将 $\{a_n\}$ 中所有等于 $b_p$ 的项提取出来成为一个子列 $\{a_{n_k}\}$，则有这个子列为常数列，显然收敛.
+
+        \textbf{当 $B$ 为无限集时}，由于数列 $\{a_n\}$ 有界，故 $B$ 也有界. 由 Weierstrass 聚点原理知道 $B$ 中一定存在聚点 $\xi$. 下试构造一个 $\{a_n\}$ 收敛至 $\xi$ 的子列 $\{a_{n_k}\}$. 设 $a_{n_1} = a_p$，其中 $a_p$ 为数列 $\{a_n\}$ 中第一个不等于 $\xi$ 的项. 由聚点定义知道 $\overset{\circ}{U}(\xi, \dfrac{1}{n})$ 中有无限个 $\{a_n\}$ 中的项，于是可以取到 $n_2 > n_1$，使得 $a_{n_2} \in \overset{\circ}{U}(\xi, \dfrac{1}{2})$. 同理可以取到 $n_3 > n_2$，使得 $a_{n_3} \in \overset{\circ}{U}(\xi, \dfrac{1}{3})$. 依此类推可以得到数列 $\{a_{n_k}\}$，其中 $a_{n_k} \in \overset{\circ}{U}(\xi, \dfrac{1}{n})$，从而有此数列收敛.
+    \end{proof}
+
+    \subsection{用连续函数介值定理证明其它定理}
+
+    \section{常用结论}
+
+    \subsection{常用等价无穷小}
+
+    \begin{itemize}
+        \item $\sin \sim x(x \to 0)$
+        \item $\arcsin x \sim x(x \to 0)$
+        \item $1 - \cos x \sim \dfrac{1}{2}x^2(x \to 0)$
+        \item $\tan x \sim x(x \to 0)$
+        \item $\arctan x \sim x(x \to 0)$
+        \item $(1+x)^\alpha - 1 \sim \alpha x(x \to 0)$
+        \item $e^x - 1 \sim x(x \to 0)$
+        \item $\ln (1+x) \sim x(x \to 0)$
+        \item $\tan x - \sin x \sim \dfrac{1}{2}x^3$
+    \end{itemize}
+
+    \section{导数表}
+
+    $$
+        \begin{aligned}
+            (C)'           & = 0                                  & \mathrm{d}(C)           & = 0 \cdot \mathrm{d}x = 0                                \\
+            (x^\alpha)'    & = \alpha x^{\alpha - 1}              & \mathrm{d}(x^\alpha)    & = \alpha x^{\alpha - 1}\mathrm{d}x                       \\
+            (\sin x)'      & = \cos x                             & \mathrm{d}(\sin x)      & = \cos x          \mathrm{d}x                            \\
+            (\cos x)'      & = -\sin x                            & \mathrm{d}(\cos x)      & = -\sin x               \mathrm{d}x                      \\
+            (\tan x)'      & = \sec^2 x                           & \mathrm{d}(\tan x)      & = \sec^2 x                  \mathrm{d}x                  \\
+            (\cot x)'      & = -\csc^2 x                          & \mathrm{d}(\cot x)      & = -\csc^2 x                  \mathrm{d}x                 \\
+            (\sec x)'      & = \tan x\sec x                       & \mathrm{d}(\sec x)      & = \tan x\sec x                   \mathrm{d}x             \\
+            (\csc x)'      & = -\cot x\csc x                      & \mathrm{d}(\csc x)      & = -\cot x\csc x         \mathrm{d}x                      \\
+            (\arcsin x)'   & = \dfrac{1}{\,\sqrt[]{1-x^2}}        & \mathrm{d}(\arcsin x)   & = \dfrac{1}{\,\sqrt[]{1-x^2}}     \mathrm{d}x            \\
+            (\arccos x)'   & = -\dfrac{1}{\,\sqrt[]{a-x^2}}       & \mathrm{d}(\arccos x)   & = -\dfrac{1}{\,\sqrt[]{a-x^2}}      \mathrm{d}x          \\
+            (\arctan x)'   & = \dfrac{1}{1+x^2}                   & \mathrm{d}(\arctan x)   & = \dfrac{1}{1+x^2}                  \mathrm{d}x          \\
+            (\arccot x)'   & = -\dfrac{1}{1+x^2}                  & \mathrm{d}(\arccot x)   & = -\dfrac{1}{1+x^2}                 \mathrm{d}x          \\
+            (a^x)'         & = \ln a \cdot a^x                    & \mathrm{d}(a^x)         & = \ln a \cdot a^x                \mathrm{d}x             \\
+            (\log_a x)'    & = \dfrac{1}{x\ln a}                  & \mathrm{d}(\log_a x)    & = \dfrac{1}{x\ln a}                 \mathrm{d}x          \\
+            (\sinh x)'     & = \cosh x                            & \mathrm{d}(\sinh x)     & = \cosh x                           \mathrm{d}x          \\
+            (\cosh x)'     & = \sinh x                            & \mathrm{d}(\cosh x)     & = \sinh x                           \mathrm{d}x          \\
+            (\tanh x)'     & = \sech^2 x                          & \mathrm{d}(\tanh x)     & = \sech^2 x                        \mathrm{d}x           \\
+            (\coth x)'     & = -\csch^2 x                         & \mathrm{d}(\coth x)     & = -\csch^2 x                       \mathrm{d}x           \\
+            (\sinh^{-1}x)' & = \dfrac{1}{1+x^2}                   & \mathrm{d}(\sinh^{-1}x) & = \dfrac{1}{1+x^2}                   \mathrm{d}x         \\
+            (\cosh^{-1}x)' & = \dfrac{1}{x^2-1}                   & \mathrm{d}(\cosh^{-1}x) & = \dfrac{1}{x^2-1}                   \mathrm{d}x         \\
+            (\tanh^{-1}x)' & = (\coth^{-1} x)' = \dfrac{1}{1-x^2} & \mathrm{d}(\tanh^{-1}x) & = \mathrm{d}(\coth^{-1} x) = \dfrac{1}{1-x^2}\mathrm{d}x
+        \end{aligned}
+    $$
+
+    \section{基本积分表}
+    $$
+        \begin{aligned}
+            \int x^\alpha \mathrm{d}x                      & = \left\{
+            \begin{aligned}
+                 & \dfrac{1}{\alpha + 1}x^{\alpha + 1} + C\ , & \alpha \neq -1 \\
+                 & \ln |x| + C\ ,                             & \alpha = -1
+            \end{aligned}
+            \right.                                        & \int \ln x \mathrm{d}x                                                                       & = x(\ln x - 1) + C                                                                        \\
+            \int a^x \mathrm{d}x                           & = \dfrac{a^x}{\ln a} + C\ ,\text{特别地} \int e^x \mathrm{d}x = e^x + C                      &                                                  &                                        \\
+            \int \sin x \mathrm{d}x                        & = -\cos x + C                                                                                & \int \cos x \mathrm{d}x                          & = \sin x + C                           \\
+            \int \tan x \mathrm{d}x                        & = -\ln|\cos x| + C                                                                           & \int \cot x \mathrm{d}x                          & = \ln |\sin x| + C                     \\
+            \int \sec x \mathrm{d}x                        & = \ln |\sec x + \tan x| + C                                                                  & \int \csc x                                      & = \ln |\csc x - \cot x| + C            \\
+            \int \sinh x \mathrm{d}x                       & = \cosh x + C                                                                                & \int \cosh x \mathrm{d}x                         & = \sinh x + C                          \\
+            \int \dfrac{\mathrm{d}x}{\,\sqrt[]{a^2 - x^2}} & = \arcsin \dfrac{x}{a} + C                                                                   & \int \dfrac{\mathrm{d}x}{\,\sqrt[]{x^2 \pm a^2}} & = \ln |x + \,\sqrt[]{x^2 \pm a^2}| + C \\
+            \int \dfrac{\mathrm{d}x}{x^2 - a^2}            & = \dfrac{1}{2a}\ln \left|\dfrac{x+a}{x-a}\right| + C                                         & \int \dfrac{\mathrm{d}x}{x^2 + a^2}              & = \dfrac{1}{a}\arctan \dfrac{x}{a} + C \\
+            \int \,\sqrt[]{a^2 - x^2}\mathrm{d}x           & = \dfrac{1}{2}x \,\sqrt[]{a^2 - x^2} + \dfrac{a^2}{2}\arcsin \dfrac{x}{a} + C                                                                                                            \\
+            \int \,\sqrt[]{x^2 \pm a^2}\mathrm{d}x         & = \dfrac{1}{2}\left(x \,\sqrt[]{x^2 \pm a^2} \pm a^2 \ln |x + \,\sqrt[]{x^2 \pm a^2}|\right) & + C\ .  \hspace{1.3cm}
+        \end{aligned}
+    $$
+
+\end{appendices}
+
+\end{document}

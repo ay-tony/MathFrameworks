@@ -1,0 +1,2665 @@
+\documentclass[zihao=-4,UTF8,linespread=1.8,nothm]{aytony_base}
+
+\geometry{a4paper,left=1.5cm,right=1.5cm,top=3cm,bottom=3cm}
+\pagestyle{plain}
+
+% 中文定理环境
+% \indent 为了段前空两格
+\newtheorem*{theorem*}{\indent 定理}
+\newtheorem{theorem}{\indent 定理}[subsection]
+\newtheorem{lemma}{\indent 引理}[subsection]
+\newtheorem{proposition}{\indent 命题}[subsection]
+\newtheorem*{proposition*}{\indent 命题}
+\newtheorem*{corollary}{\indent 推论}
+\newtheorem{definition}{\indent 定义}[subsection]
+\newtheorem{example}{\indent 例}[subsection]
+\newtheorem*{remark}{\indent 注}
+\newenvironment{solution}{\begin{proof}[\indent\textbf{解}]}{\end{proof}}
+\renewcommand{\proofname}{\indent\textbf{证明}}
+
+\title{高等代数定理手册}
+\author{aytony}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{线性方程组的消元解法}
+
+\subsection{笛卡尔直角坐标系，几何向量及运算}
+
+\begin{theorem}[]
+    向量 $\vec{a}$ 与非零向量 $\vec{b}$ 平行的充要条件是存在唯一实数 $\lambda$ 使得 $\vec{a} = \lambda \vec{b}$.
+\end{theorem}
+
+\begin{theorem}[]
+    三维实空间 $\mathbb{R}^3$ 中两个非零向量 $\vec{a} = (x_1, y_1, z_1)$ 与 $\vec{b} = (x_2, y_2, z_2)$ 垂直的充分必要条件是它们的数量积为零，即 $\vec{a} \cdot \vec{b} = x_1x_2 + y_1y_2 + z_1z_2 = 0$.
+\end{theorem}
+
+\subsection{三维实空间的直线和平面方程，几何向量的向量积与混合积}
+
+\begin{theorem}[平面方程]
+    $\mathbb{R}^3$ 中的平面方程都可写成三元一次方程形式如下：$$
+        Ax+By+Cz+D=0\ ,
+    $$ 称其为平面的一般方程. 反之，任意一个形如上式的三元一次方程表示空间的一个平面，且其法向量的坐标分量就是方程中 $x, y, z$ 的系数 $A, B, C$.
+\end{theorem}
+
+\begin{theorem}[]
+    含 $m$ 个方程的实系数三元一次方程组 $$
+        \left\{
+        \begin{aligned}
+            a_{11}x_1+a_{12}x_2 + a_{13}x_3 & = b_1\ , \\
+            a_{21}x_1+a_{22}x_2 + a_{23}x_3 & = b_2\ , \\
+            \vdots                                     \\
+            a_{m1}x_1+a_{m2}x_2 + a_{m3}x_3 & = b_m
+        \end{aligned}
+        \right.
+    $$ 的解集合是 $m$ 个实三维空间平面的公共交点所成集合，可能的情形为：空集、单点集、一条空间直线、一个空间平面.
+\end{theorem}
+
+\begin{theorem}[]
+    三维实空间中两个非零向量 $a$ 与 $b$ 平行的充要条件是 $$
+        \vec{a} \times \vec{b} = 0\ .
+    $$
+\end{theorem}
+
+\begin{theorem}
+    三维实空间中三个向量 $\vec{a},\vec{b},\vec{c}$ 共面的充要条件是它们的混合积 $$
+        (\vec{a}, \vec{b}, \vec{c}) = (\vec{a} \times \vec{b}) \cdot \vec{c} = 0\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    三维实空间中三个向量 $\vec{a} = (a_x, a_y, a_z), \vec{b} = (b_x, b_y, b_z), \vec{c} = (c_x, c_y, c_z)$ 共面的充要条件是行列式 $$
+        \left|
+        \begin{matrix}
+            a_x & a_y & a_z \\
+            b_x & b_y & b_z \\
+            c_x & c_y & c_z
+        \end{matrix}
+        \right| = 0\ .
+    $$
+\end{corollary}
+
+\setcounter{example}{3}
+
+\begin{example}
+    以不在同一个平面上的空间四点 $A(x_1, y_1, z_1),\ B(x_2, y_2, z_2),\ C(x_3, y_3, z_3),$\\ $D(x_4, y_4, z_4)$ 为顶点的四面体的体积为 $$
+        V = \dfrac{1}{6} \left\|
+        \begin{matrix}
+            x_2-x_1 & y_2-y_1 & z_2-z_1 \\
+            x_3-x_1 & y_3-y_1 & z_3-z_1 \\
+            x_4-x_1 & y_4-y_1 & z_4-z_1
+        \end{matrix}
+        \right\|\ .
+    $$
+\end{example}
+
+\subsection{线性方程组及高斯消元法}
+
+\begin{theorem}[]
+    线性方程组的初等变换是同解变形.
+\end{theorem}
+
+\subsection{数域、向量与矩阵}
+
+\subsection{解线性方程组的矩阵消元法}
+
+\subsection{线性方程组的通解及向量表示}
+
+\begin{theorem}
+    设线性方程组 $$
+        \left\{
+        \begin{aligned}
+            a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n & = b_1\ , \\
+            a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n & = b_2\ , \\
+            \vdots                                                \\
+            a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n & = b_m
+        \end{aligned}
+        \right.
+    $$ 经过矩阵消元算法化为阶梯形，将阶梯形对应的方程组中的恒等式 $0=0$ 删去，不影响方程组的解. 设剩下的方程个数为 $\tilde{r}$.
+
+    \begin{enumerate}[nosep]
+        \item 如果 $r < \tilde{r}$，则方程组无解，此时有矛盾方程.
+        \item 如果 $r = \tilde{r}$，则方程组有解，此时 $r$ 就是具有最简形式的方程组中除去恒等式 $0=0$ 之后的方程个数. 其中，当 $r=n$ 时方程组有唯一解；当 $r<n$ 时方程组有无穷多解，并且通解中有 $n-r$ 个独立取值的自由参数.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    齐次线性方程组 $$
+        \left\{
+        \begin{aligned}
+            a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n & = 0\ , \\
+            a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n & = 0\ , \\
+            \vdots                                              \\
+            a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n & = 0
+        \end{aligned}
+        \right.
+    $$ 化为阶梯形后，去掉形如 $0=0$ 的恒等式，设剩下的方程个数为 $r$，则方程组有非零解的充要条件是 $r<n$.
+\end{theorem}
+
+\begin{theorem}[]
+    如果齐次线性方程组的未知数个数大于方程个数，则齐次线性方程组有非零解，从而有无穷多组解.
+\end{theorem}
+
+\subsection{计算机解线性方程组}
+
+\section{从数组向量空间到一般线性空间}
+
+\subsection{空间向量的共线、共面，张成子空间}
+
+\begin{definition}[张成子空间]
+    设 $\vec{a}, \vec{b}$ 是三维实空间中两个非零向量，则 $$
+        V = \{k_1 \vec{a} + k_2 \vec{b}\,|\, k_1, k_2 \in \mathbb{R}\}
+    $$ 称为由向量 $\vec{a}, \vec{b}$ 张成的子空间.
+\end{definition}
+
+\begin{theorem}[]
+    三维实空间中两个非零向量 $\vec{a} = (a_x, a_y, a_z)$ 与 $\vec{b}= (b_x, b_y, b_z)$ 共线的充要条件是 $$
+        \dfrac{a_x}{b_x} = \dfrac{a_y}{b_y} = \dfrac{a_z}{b_z}\ .
+    $$
+\end{theorem}
+
+\begin{remark}
+    如果上式中分母出现 $0$，则（对应分子只能取 $0$）应理解为是式子 $a_x = \lambda b_x,a_y = \lambda b_y, a_z = \lambda b_z$. 与上一章中正交概念类似，用乘法比用除法定义相关概念往往易于推广，这种方法将在大学数学中被用到多次.
+\end{remark}
+
+\begin{corollary}
+    三维实空间中两个非零向量 $\vec{a}$ 与 $\vec{b}$ 共线的充要条件是存在不全为零的实数 $k_1, k_2$，使得 $k_1\vec{a} + k_2 \vec{b} = 0$.
+\end{corollary}
+
+\begin{theorem}[]
+    三维实空间中三个非零向量 $\vec{a},\vec{b},\!\vec{c}$ 共面的充要条件是存在不全为零的实数 $k_1\!,\!k_2,\!k_3,$ 使得 $$
+        k_1 \vec{a} + k_2 \vec{b} + k_3 \vec{c} = 0\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    三维实空间中两个非零向量 $\vec{a}, \vec{b}$ 张成的子空间 $V$ 必是一条过原点的直线（当 $\vec{a}, \vec{b}$ 共线）或一个过原点的平面（当 $\vec{a}, \vec{b}$ 不共线），即由原点 $O$ 及向量 $\vec{a}, \vec{b}$ 的终点决定的平面.
+\end{theorem}
+
+\subsection{（数组）向量组的线性相关性及判定算法}
+
+\begin{definition}[线性组合，线性表出，线性表示]
+    设 $\alpha_1, \alpha_2, \cdots, \alpha_m, \beta$ 都是数域 $F$ 上的 $n$ 维数组向量，如果存在 $F$ 数上的数 $k_1, k_2, \cdots, k_m$，使得 $\beta = k_1\alpha_1 + k_2\alpha_2 + \cdots + k_m\alpha_m$，则称 $\beta$ 是向量 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 的线性组合，或称 $\beta$ 可由向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m $ 线性表出或线性表示.
+\end{definition}
+
+\begin{definition}[线性相关，线性无关]
+    设 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 是数域 $F$ 上的 $m$ 个 $n$ 维数组向量，如果存在数域 $F$ 上的 $m$ 个不全为零的数 $k_1, k_2, \cdots, k_m$ 使得 $k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_m \alpha_m = 0$，则称向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 是线性相关的. 否则，称向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 是线性无关的.
+\end{definition}
+
+\begin{theorem}[]
+    向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m\ (m \geqslant 2)$ 线性相关的充要条件是其中至少有一个向量可由其余 $m-1$ 个向量线性表出.
+\end{theorem}
+
+\begin{corollary}
+    向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m\ (m \geqslant 2)$ 线性无关的充要条件是其中任何向量都不能由其余向量线性表出.
+\end{corollary}
+
+\begin{theorem}[]
+    若向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 线性无关，而向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m, \beta$ 线性相关，则向量 $\beta$ 可由 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 线性表出，并且表示法唯一.
+\end{theorem}
+
+\begin{theorem}[]
+    同维数的列向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 线性相关的充要条件是用初等行变换化 $$
+        A = [\alpha_1, \alpha_2, \cdots, \alpha_m]
+    $$ 为阶梯形 $B$ 后，$B$ 的非零行数 $r < m$.
+\end{theorem}
+
+\begin{corollary}
+    如果一个向量组中向量的个数 $m$ 大于向量的维数 $n$，则该向量组线性相关；特别地，多于 $n$ 个向量组成的 $n$ 维向量组必定是线性相关的.
+\end{corollary}
+
+\begin{corollary}
+    设矩阵 $A = [\alpha_1, \alpha_2, \cdots, \alpha_m]$ 经过初等行变换后化为了 $B = [\beta_1, \beta_2, \cdots, \beta_m]\ (s \leqslant m - 1)$，则 $$
+        \alpha_j = k_{i_1}\alpha_{i_1}  + k_{i_2}\alpha_{i_2} + \cdots + k_{i_s}\alpha_{i_s}, \ i_1, i_2, \cdots, i_s \neq j\ \text{当且仅当}\ \beta_j = k_{i_1}\beta_{i_1} + k_{i_2}\beta_{i_2} + \cdots + k_{i_s}\beta_{i_s}\ .
+    $$
+\end{corollary}
+
+\begin{theorem}[]
+    如果向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 包含一个子组线性相关，那么 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 线性相关. 如果向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 线性无关，那么它的每个子组都线性无关.
+\end{theorem}
+
+\begin{theorem}[]
+    若 $F^n$ 中向量组 $\alpha_i = (a_{i1}, a_{i2}, \cdots, a_{in}),\ i = 1, 2, \cdots, m$ 线性相关，则去掉后 $r$ 个分量 $(1 \leqslant r < n)$ 后，得到的向量组 $\beta_i = (a_{i1}, a_{i2}, \cdots, a_{i\ n-r}),\ i = 1, 2, \cdots, m$ 也线性相关.
+\end{theorem}
+
+\begin{corollary}
+    若 $F^n$ 中向量组 $\alpha_i = (a_{i1}, a_{i2}, \cdots, a_{in}),\ i = 1, 2, \cdots, m$ 线性无关，则在每个向量上任意增加 $r$ 个分量后所得到的向量组 $\beta_i = (a_{i1}, a_{i2}, \cdots, a_{i\ n+r}),\ i = 1, 2, \cdots, m$ 也线性无关.
+\end{corollary}
+
+\begin{theorem}[]
+    $n$ 维向量空间 $F^n$ 中必存在 $n$ 个线性无关的向量，且 $F^n$ 中最多存在 $n$ 个线性无关的向量.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $\alpha_1, \alpha_2, \cdots, \alpha_n$ 是 $n$ 维向量空间 $F^n$ 中任意 $n$ 个线性无关的向量，则 $F^n$ 中任何一个向量 $\beta$ 都能够写成 $\alpha_1, \alpha_2, \cdots, \alpha_n$ 的线性组合的形式 $$
+        \beta = x_1\alpha_1 + x_2\alpha_2 + \cdots + x_n\alpha_n\ ,
+    $$ 并且其中的系数 $x_1, x_2, \cdots, x_n$ 由 $\alpha_1, \alpha_2, \cdots, \alpha_n, \beta$ 唯一确定.
+\end{theorem}
+
+\begin{proposition}
+    含有零向量的向量组必线性相关.
+\end{proposition}
+
+\setcounter{example}{4}
+\begin{example}
+    单个向量 $\beta$ 组成的向量组线性相关当且仅当 $\beta = 0$. 两个（数组）向量 $\alpha, \beta$ 组成的向量组线性相关当且仅当对应分量成比例.
+\end{example}
+
+\subsection{向量组的等价与秩}
+
+\begin{definition}[极大线性无关组]
+    设 $V$ 是数域 $F$ 上的数组向量空间，$S$ 是 $V$ 中的向量组成的向量组. 如果 $S$ 的子集 $M = \{\alpha_1, \alpha_2, \cdots, \alpha_r\}$ 线性无关，且将 $S$ 的任意向量 $\alpha$ 添加到 $M$ 中得到的向量组 $[\alpha_1, \alpha_2, \cdots, \alpha_r, \alpha] $ 线性相关，就称 $M$ 是 $S$ 的一个极大线性无关组.
+\end{definition}
+
+\begin{definition}[线性组合，线性等价]
+    设 $S_1$ 与 $S_2$ 是同一个向量空间 $V$ 中的两个向量组. 如果 $S_2$ 中的每个向量都是 $S_1$ 中的向量的线性组合，就称 $S_2$ 是 $S_1$ 的线性组合. 如果 $S_1$ 与 $S_2$ 互为线性组合，就称 $S_1$ 与 $S_2$ 等价，简称为 $S_1$ 与 $S_2$ 等价.
+\end{definition}
+
+\begin{theorem}[]
+    向量组 $S$ 与它的任一极大线性无关组 $S_1$ 等价. $S$ 中任意两个极大线性无关组 $S_1$ 与 $S_2$ 等价.
+\end{theorem}
+
+\begin{theorem}[]
+    如果向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 中的每一个向量均可由向量组 $\beta_1,\beta_2, \cdots, \beta_n$ 线性表出，并且 $m > n$，那么向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 线性相关.
+\end{theorem}
+
+\begin{corollary}
+    如果向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 的每个向量均可由 $\beta_1, \beta_2, \cdots, \beta_n$ 线性表出，且 $\alpha_1, \alpha_2,\!\cdots,\!\alpha_m$ 线性无关，那么 $m \leqslant n$. 特别地，如果向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 与 $\beta_1, \beta_2, \cdots, \beta_n$ 等价，且均线性无关，那么 $m = n$.
+\end{corollary}
+
+\begin{theorem}[]
+    如果一个向量组 $S$ 中存在一个向量个数为 $n$ 的极大线性无关组 $W$，则 $S$ 的任意一个极大线性无关组所含向量的个数都为 $n$.
+\end{theorem}
+
+\begin{theorem}[]
+    如果向量组 $S_2$ 是 $S_1$ 的线性组合，则 $\mathrm{rank}\ S_2 \leqslant \mathrm{rank}\ S_1$. 如果向量组 $S_1$ 与 $S_2$ 等价，那么 $\mathrm{rank}\ S_2 = \mathrm{rank}\ S_1$.
+\end{theorem}
+
+\begin{theorem}[]
+    初等行变换不改变矩阵的列秩.
+\end{theorem}
+
+\begin{theorem}[]
+    初等行变换不改变矩阵的行秩.
+\end{theorem}
+
+\begin{theorem}[]
+    初等行变换不改变矩阵的秩.
+\end{theorem}
+
+\begin{proposition}
+    向量组 $S$ 的部分组 $\alpha_{i_1}, \alpha_{i_2}, \cdots, \alpha_{i_r}$ 是 $S$ 的极大线性无关组，当且仅当
+    \begin{enumerate}[nosep]
+        \item $\alpha_{i_1}, \alpha_{i_2}, \cdots, \alpha_{i_r}$ 线性无关；
+        \item $S$ 中的任意向量均可由 $\alpha_{i_1}, \alpha_{i_2}, \cdots, \alpha_{i_r}$ 线性表出.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    设 $S$ 是 $F$ 上 $n$ 维向量空间 $F^n$ 的子集，则 $S$ 的任意线性无关子集 $S_0$ 都能扩充为 $S$ 的一个极大线性无关组.
+\end{proposition}
+
+\begin{proposition}
+    如果数域 $F$ 上的向量组 $S_2$ 是 $S_1$ 的线性组合，$S_3$ 又是 $S_2$ 的线性组合，那么 $S_3$ 是 $S_1$ 的线性组合.
+\end{proposition}
+
+\begin{corollary}
+    如果向量组 $S_2$ 与 $S_1$ 等价，$S_3$ 与 $S_2$ 等价，那么 $S_3$ 与 $S_1$ 等价.
+\end{corollary}
+
+\setcounter{example}{2}
+\begin{example}
+    设向量组 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 的秩为 $r$，那么 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 中任意 $r$ 个线性无关的向量均为该向量组的一个极大线性无关组.
+\end{example}
+
+\begin{example}
+    由 $n$ 个向量组成的 $n$ 维向量组 $\alpha_1, \alpha_2, \cdots, \alpha_n$ 线性无关的充要条件是 $n$ 维基向量组 $e_1, e_2, \cdots, e_n$ 可由 $\alpha_1, \alpha_2, \cdots, \alpha_n$ 线性表出.
+\end{example}
+
+\subsection{（数组）向量空间的子空间}
+
+\begin{definition}[子空间]
+    数组向量空间 $F^n$ 的非空子集 $W$ 如果满足以下两个条件：
+    \begin{enumerate}[nosep]
+        \item $\forall u, v\in W$，有 $u+v \in W$；
+        \item $\forall u \in W,\lambda \in F$，有 $\lambda u \in F$,
+    \end{enumerate}
+    则称 $W$ 是 $F^n$ 的子空间，简记为 $W \leqslant F^n$. 如果 $F^n$ 的子空间 $W_1$ 是子空间 $W_2$ 的子集，则称 $W_1$ 是 $W_2$ 的子空间.
+\end{definition}
+
+\begin{definition}[基]
+    设 $W$ 是 $F^n$ 的子空间. 如果 $W$ 中存在 $r$ 个线性无关的向量 $\alpha_1, \alpha_2, \cdots,$ $\alpha_r$，使得 $W$ 中任意向量可由它们线性表出，就称 $\alpha_1, \alpha_2, \cdots, \alpha_r$ 为 $W$ 的一组基.
+\end{definition}
+
+\begin{definition}[维数，零空间]
+    设 $W$ 是 $F^n$ 的子空间. $W$ 的任意一组基中向量的个数 $r$ 是惟一确定的，称为 $W$ 的维数，记为 $\dim W$. 子空间 $W$ 的一个特殊情形是 $W = \{0\}$，它仅由零向量组成，称为零空间. 我们规定空集合 $\emptyset$ 是零空间的基. 零空间仅有的一个向量 $0$ 线性相关，最多只有 $0$ 个向量线性无关，维数为 $0$.
+\end{definition}
+
+\begin{theorem}[]
+    设 $W$ 是 $F_n$ 的子空间. $M = [\alpha_1, \alpha_2, \cdots, \alpha_r]$ 是 $W$ 的一组基，则
+    \begin{enumerate}[nosep]
+        \item 对 $W$ 中任意一个向量 $\beta$，$\beta = x_1\alpha_1+ x_2\alpha_2 + \cdots + x_r\alpha_r$ 的系数 $x_1, x_2, \cdots, x_r$ 由 $\beta$ 唯一决定，数组向量 $(x_1, x_2, \cdots, x_r)$ 称为 $\beta$ 在基 $\alpha_1, \alpha_2, \cdots, \alpha_r$ 的坐标.
+        \item $W$ 中任意 $r$ 个线性无关的向量都是一组基.
+        \item $W$ 的任意两组基中所含向量个数相等.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    设 $F^n$ 的子空间 $W$ 的维数为 $r$，则 $W$ 中任意一个线性无关向量组 $S$ 都能扩充为 $W$ 的一组基，$S$ 所含向量个数都不超过 $r$. 如果 $W_0$ 是 $W$ 的子空间，则 $W_0$ 的任何一组基都能扩充为 $W$ 的基，且 $\dim W_0 \leqslant \dim W$，$W_0 = W$ 当且仅当 $\dim W_0 = \dim W$.
+\end{theorem}
+
+\begin{corollary}
+    设 $F^n$ 的子空间 $W$ 的维数为 $r$，则 $W$ 中的 $r$ 个向量 $M = [\alpha_1, \alpha_2, \cdots, \alpha_r]$ 是 $W$ 的一组基的充分必要条件是 $M$ 线性无关.
+\end{corollary}
+
+\begin{theorem}[]
+    设数域 $F$ 上 $n$ 元齐次线性方程组的系数矩阵为 $A$，则它的解空间的维数 $$
+        \dim V_A = n - \mathrm{rank}\ A\ .
+    $$
+\end{theorem}
+
+\begin{proposition}
+    数域 $F$ 上 $n$ 元齐次线性方程组的解集 $W$ 具有性质：
+    \begin{enumerate}[nosep]
+        \item $W$ 至少含有一个零向量 $0 = (0, 0, \cdots, 0)$，即齐次线性方程组必有零解；
+        \item 对任意 $u, v \in W$，有 $u+v\in W$，即齐次线性方程组任意两个解向量的的和也是这个齐次线性方程组的解向量；
+        \item 对任意 $u\in W, \lambda \in F$，有 $\lambda u \in W$，即齐次线性方程组任意一个解向量与数域 $F$ 中一个数的数乘之积也是这个齐次线性方程组的解向量.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    设 $W$ 是 $F^n$ 的子空间，则 $W$ 中任意有限个向量 $u_1, u_2, \cdots, u_k$ 的任意线性组合 $\lambda_1 u_1, \lambda_2 u_2, \cdots, \lambda_k u_k \in W$，其中 $\lambda_1, \lambda_2, \cdots, \lambda_k \in F$.
+\end{proposition}
+
+\begin{proposition}
+    设 $u_1, u_2, \cdots, u_k$ 是 $F^n$ 中任意 $k$ 个向量，由其生成的子空间 $W = L(u_1, u_2,\!\cdots,\!u_k)$ 则 $\dim W = \mathrm{rank}\ [u_1, u_2, \cdots, u_k]$ 且 $u_1, u_2, \cdots, u_k$ 的任意一个极大线性无关组都是 $W$ 的一组基.
+\end{proposition}
+
+\begin{example}
+    $F^n$ 是 $F^n$ 的最大子空间，$\{0\}$ 是 $F^n$ 的最小子空间.
+\end{example}
+
+\begin{example}
+    设 $u_1, u_2, \cdots, u_k$ 是 $F_n$ 中任意 $k$ 个向量，令 $$
+        W = \{\lambda_1u_1 + \lambda_2u_2 + \cdots + \lambda_ku_k\,|\,\lambda_1, \lambda_2, \cdots, \lambda_k \in F\}\ ,
+    $$ 即 $W$ 是由 $u_1, u_2, \cdots, u_k$ 所有属于 $F$ 的系数的线性组合构成的 $F$ 的子集，那么 $W$ 是 $F_n$ 的子空间.
+\end{example}
+
+\subsection{非齐次线性方程组解集的结构}
+
+\begin{definition}[导出（齐次线性方程）组]
+    对于非齐次线性方程组 $$
+        \left\{
+        \begin{aligned}
+            a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n & = b_1\ , \\
+            a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n & = b_2\ , \\
+            \vdots                                                \\
+            a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n & = b_m\ ,
+        \end{aligned}
+        \right.
+    $$ 其中 $b_1, b_2, \cdots, b_m$ 不全为零，作齐次线性方程组 $$
+        \left\{
+        \begin{aligned}
+            a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n & = 0\ , \\
+            a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n & = 0\ , \\
+            \vdots                                              \\
+            a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n & = 0\ ,
+        \end{aligned}
+        \right.
+    $$ 它的系数矩阵与非齐次线性方程组相同，只是将常数项全部换成 $0$. 这个新方程组称为原方程组的导出（齐次线性方程）组.
+\end{definition}
+
+\begin{theorem}[]
+    非齐次线性方程组有解的充分必要条件是其系数矩阵 $A$ 的秩与增广矩阵 $\bar{A}$ 的秩相等，即 $\mathrm{rank}\ A = \mathrm{rank}\ \bar{A}$.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $\gamma_0$ 是数域 $F$ 上的非齐次线性方程组的一个特解，$X_1, X_2, \cdots, X_{n-r}$ 是其导出组的一个基础解系. 则非齐次线性方程组的通解为 $$
+        X = \gamma_0 + t_1X_1 + t_2X_2 + \cdots + t_{n-r}X_{n-r}\ ,
+    $$ 其中 $t_1, t_2, \cdots, t_{n-r}$ 是 $F$ 中的任意常数.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $V$ 是数域 $F$ 上的线性空间，$S$ 是 $V$ 的任一非空子集，则 $S$ 线性相关当且仅当 $S$ 中某个向量是其余向量的线性组合. 有限向量组 $[\alpha_1 \neq 0, \alpha_2, \cdots, \alpha_k]$ 线性相关当且仅当其中某个 $\alpha_i$ 是它前面的向量 $\alpha_j(j<i)$ 的线性组合.
+\end{theorem}
+
+\begin{proposition}
+    讨论非齐次线性方程组与其导出组的解的关系.
+    \begin{enumerate}[nosep]
+        \item 非齐次线性方程组的任意两个解 $\gamma_1, \gamma_2$ 的差 $\eta = \gamma_1 - \gamma_2$ 是其导出组的解.
+        \item 非齐次线性方程组的任意一个解 $\gamma$ 与其导出组的一个解 $\eta$ 的和 $\gamma + \eta$ 仍是非齐次方程组的解.
+        \item 若 $\gamma_0$ 是非齐次线性方程组的一个固定特解，则非齐次线性方程组的任意一个解 $\gamma$ 必可写成 $\gamma_0$ 与导出组的一个解 $\eta$ 的和 $\gamma = \gamma_0 + \eta$.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{线性空间（或向量空间）}
+
+\begin{definition}[向量空间]
+    设 $V$ 是一个非空集合，$F$ 是数域. 在 $V$ 中定义了元素之间的加法和数乘运算，且满足以下八条运算律，就称 $V$ 为数域 $F$ 上的一个向量空间或线性空间.
+    \begin{enumerate}[nosep]
+        \item （结合律）$\alpha + \beta + \gamma = \alpha + (\beta + \gamma), \forall \alpha, \beta, \gamma \in V$；
+        \item （零元的存在性）$V$ 中存在元素 $0$，使对任意 $\alpha\in V$ 有 $\alpha + 0 = \alpha$；
+        \item （负元的存在性）对于 $V$ 中任意 $\alpha$，存在 $V$ 中元素 $\beta$ 使得 $\alpha + \beta = 0$；
+        \item （交换律）$\alpha + \beta = \beta + \alpha, \forall \alpha, \beta \in V$；
+        \item （标量乘法与向量数乘的“结合律”）$k(l \alpha) = (kl)\alpha, \forall k, l \in F, \forall \alpha \in V $；
+        \item （标量加法对数乘的分配律）$(k+l)\alpha = k \alpha + l \alpha, \forall k, l \in F, \forall \alpha \in V$；
+        \item （向量加法对数乘的分配律）$k (\alpha + \beta) = k \alpha + k \beta, \forall k \in F, \forall \alpha, \beta \in V$；
+        \item （标量单位元与向量的数乘单位律）$1\alpha = \alpha, \forall \alpha \in V$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[线性组合，线性表出]
+    设 $V$ 使数域 $F$ 上的线性空间，$S$ 是 $V$ 的任意子集，则 $S$ 的任一有限子集 $S_1 = \{\alpha_1, \alpha_2, \cdots, \alpha_k\}$ 的任意线性组合 $$
+        \lambda_1 \alpha_1 + \lambda_2 \alpha_2 + \cdots + \lambda_k \alpha_k,\ \lambda_1, \lambda_2, \cdots, \lambda_k \in F\ ,
+    $$ 称为 $S$ 的一个线性组合. 如果 $V$ 中的向量 $\beta$ 可以写成 $V$ 的子集 $S$ 的一个线性组合，则称 $\beta$ 可以由 $S$ 线性表出. $S$ 的全体线性组合构成的集合记作 $L(S)$，或者 $V(S)$，或者 $\mathrm{span}(S)$.
+\end{definition}
+
+\begin{definition}[子空间]
+    设 $V$ 是数域 $F$ 上的线性空间. $W$ 是 $V$ 的非空子集. 如果 $W$ 对 $V$ 中的加法和数乘运算封闭：
+    \begin{enumerate}[nosep]
+        \item 对任意 $\alpha, \beta \in W$，必有 $\alpha + \beta \in W$；
+        \item 对任意 $\alpha\in W,\lambda \in F$，必有 $\lambda \alpha \in W$,
+    \end{enumerate}
+    则称 $W $ 是 $V$ 的子空间，记作 $W \leqslant V$.
+\end{definition}
+
+\begin{definition}[线性等价]
+    设 $V$ 是数域 $F$ 上的线性空间，$S$ 与 $T$ 都是 $V$ 的子集. 如果 $T$ 中每个元素都是 $S$ 的线性组合，就称 $T$ 是 $S$ 的线性组合，如果 $S$ 与 $T$ 互为线性组合，就称 $S$ 与 $T$ 线性等价等价，不引起混淆时可简称为等价.
+\end{definition}
+
+\begin{definition}[线性相关，线性无关]
+    设 $V$ 是数域 $F$ 上的线性空间. $S$ 是 $V$ 的任意子集，如果对 $S$ 的某个有限子集 $S_1 = \{\alpha_1, \alpha_2, \cdots, \alpha_k\}$，存在不全为 $0$ 的数 $\lambda_1, \lambda_2, \cdots, \lambda_k \in F$ 使得 $\lambda_1 \alpha_1 + \lambda_2 \alpha_2 + \cdots + \lambda_k \alpha_k = 0$，就称 $S$ 线性相关. 否则就称 $S$ 线性无关. 规定：空向量组集合线性无关.
+\end{definition}
+
+\begin{definition}[极大线性无关组]
+    设 $V$ 是数域 $F$ 上的线性空间，$S$ 是 $V$ 的子集. 如果 $S$ 的子集 $M$ 线性无关，并且将 $S$ 中的任意向量 $\alpha$ 添加在 $M$ 上所得的向量组集合 $[M, \alpha]$ 线性相关，就称 $M$ 是 $S$ 的一个极大线性无关子集，或称为一个极大线性无关部分组，简称为极大线性无关组.
+\end{definition}
+
+\begin{definition}[秩]
+    如果向量组 $S$ 有一个极大线性无关组中所含向量个数为 $r$，则 $r$ 称为向量组 $S$ 的秩，记作 $\mathrm{rank}\ S$ 或 $r(s)$.
+\end{definition}
+
+\begin{definition}[有限维线性空间，维数，坐标]
+    设 $V$ 是数域 $F$ 上的线性空间.
+    \begin{enumerate}[nosep]
+        \item 如果 $V$ 可以由某个有限子集 $S = \{\alpha_1, \alpha_2, \cdots, \alpha_n\}$ 生成，即 $V = L(S)$，就称 $V$ 是有限维线性空间. 此时 $V$ 中线性无关的向量个数不超过 $n,\mathrm{rank}\ V \leqslant n$.
+        \item 如果 $V$ 中存在 $n$ 个线性无关向量，并且任意 $n+1$ 个向量线性相关，就称 $V$ 的维数为 $n$，记为 $\dim V = n$.
+        \item 如果 $V$ 中存在一组向量 $B = \{\alpha_1, \alpha_2, \cdots, \alpha_n\}$，使 $V$ 中每个向量 $\alpha$ 都能写成 $\alpha_1, \alpha_2, \cdots, \alpha_n$ 在 $F$ 上的线性组合 $$
+                  \alpha = x_1 \alpha_1 + x_1 \alpha_2 + \cdots + x_n \alpha_n\ ,
+              $$ 并且其中的系数 $x_1, x_2, \cdots, x_n$ 由 $\alpha$ 唯一决定，则 $B$ 称为 $V$ 的一组基，$\alpha$ 的线性组合表达式中的系数组成的有序数组 $(x_1, x_2, \cdots, x_n)$ 称为 $\alpha$ 在基 $B$ 下的坐标.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[]
+    设 $V$ 是数域 $F$ 上的线性空间，则有
+    \begin{enumerate}[nosep]
+        \item $V$ 中的零向量 $\mathbf{0}$ 是唯一的；
+        \item $\forall \alpha \in V$，其负向量是唯一的；
+        \item $0\alpha=0, k0=0, (-1)\alpha = -\alpha$；
+        \item 若 $k\alpha = 0$，则 $k=0$ 或 $\alpha = 0$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    设 $V$ 是数域 $F$ 上的线性空间. $S$ 是 $V$ 的任一非空子集，则 $S$ 线性相关当且仅当 $S$ 中某个向量是其余向量的线性组合. 有限向量组 $[\alpha_1 \neq 0, \alpha_2, \cdots, \alpha_k]$ 线性相关当且仅当其中某个 $\alpha_i$ 是它前面的向量 $\alpha_j(j < i)$ 的线性组合.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $V$ 是数域 $F$ 上的线性空间，$V$ 的有限子集 $S_2 = \{v_1, v_2, \cdots, v_s\}$ 是 $V$ 的另一子集 $S_1 = \{u_1, u_2, \cdots, u_t\}$ 的线性组合. 如果 $s > t$，则 $S_2$ 线性相关. 如果 $S_2$ 线性无关，则 $s \leqslant t$.
+
+    如果线性无关向量组 $S_1 = \{u_1, u_2, \cdots, u_t\}$ 与 $S_2 = \{v_1, v_2, \cdots, v_s\}$ 等价，那么它们所含向量个数 $s$ 与 $t$ 相等.
+
+    如果 $V$ 中的向量组 $S$ 有一个有限的极大线性无关组 $M = \{\alpha_1, \alpha_2, \cdots, \alpha_n\}$，其中所含向量个数为 $r$，那么 $S$ 的任意线性无关子集 $S_1$ 所含向量个数 $s_1 \leqslant r$；$S$ 的任意线性无关子集可以扩充为一个极大线性无关组；$S$ 的所有的极大线性无关组所含向量都等于 $r$.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $V$ 是 $F$ 上的有限维线性空间，且 $V$ 由某个有限子集 $S$ 生成，则
+    \begin{enumerate}[nosep]
+        \item $S$ 的极大线性无关组 $M = \{\alpha_1, \alpha_2, \cdots, \alpha_n\}$ 是 $V$ 的一组基. $M$ 也是 $V$ 的极大线性无关组，$\dim V = \mathrm{rank}\ V = \mathrm{rank}\ S = |M| = n$.
+        \item $V$ 的子集合 $M$ 是 $V$ 的基当且仅当 $M$ 是 $V$ 的极大线性无关组.
+        \item $V$ 的所有的基所含向量个数都相等，等于 $\dim V$.
+        \item $V$ 的任何一组线性无关向量组 $S = \{\beta_1, \beta_2, \cdots, \beta_m\}$ 所含向量个数 $m \leqslant \dim V$，$S$ 可以扩充为 $V$ 的一组基.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+    设 $V$ 是数域 $F$ 上的线性空间. $W \leqslant V$，则
+    \begin{enumerate}[nosep]
+        \item $W$ 对于 $V$ 的加法和数乘运算构成 $F$ 上的线性空间.
+        \item 对 $V$ 的任意子集 $S$，$L(S)$ 构成 $V$ 的子空间.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    以下列出线性组合和线性等价的一些性质.
+    \begin{enumerate}[nosep]
+        \item 若 $T$ 是 $S$ 的线性组合，则 $L(T) \subset L(S)$.
+        \item $S$ 与 $T$ 先行等价当且仅当 $L(T) = L(S)$.
+        \item 如果 $S_2$ 是 $S_1$ 的线性组合，且 $S_3$ 是 $S_2$ 的线性组合，则 $S_3$ 是 $S_1$ 的线性组合.
+        \item 如果 $S_1$ 与 $S_2$ 线性等价，且 $S_2$ 与 $S_3$ 线性等价，你那么 $S_1$ 与 $S_3$ 线性等价.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    设 $M$ 是 $S$ 的线性无关子集，则 $M$ 是 $S$ 的极大线性无关组当且仅当 $S$ 中所有的向量都是 $M$ 的线性组合. 此时 $M$ 与 $S$ 等价.
+\end{proposition}
+
+\begin{proposition}
+    $V$ 的任意子集 $S$ 的任意两个极大线性无关组等价.
+\end{proposition}
+
+\begin{proposition}
+    如果向量组 $S_2 \subset L(S_1)$ 则 $\mathrm{rank}\ S_2 \leqslant \mathrm{rank}\ S_1$. 等价的向量组秩相等.
+\end{proposition}
+
+\setcounter{example}{2}
+\begin{example}
+    数域 $F$ 上全体一元多项式 $$
+        F[x] = \{a_0 + a_1x + a_2x^2 + \cdots + a_nx^n\,|\, n \in \mathbb{N}, a_i \in F, i = 0, 1, 2, \cdots, n\}\ ,
+    $$ 按通常多项式的加法和数乘，构成数域 $F$ 上的一个线性空间.
+
+    对于任意取定的自然数 $n$，在上述相同的线性运算下，次数低于 $n$ 的全体多项式 $$
+        F[x]_n = \{a_0 + a_1x + a_2x^2 + \cdots + a_{n-1}x^{n-1}\,|\, a_i \in F, i = 0, 1, 2, \cdots, n-1\}\ ,
+    $$ 也构成数域 $F$ 上的一个线性空间.
+\end{example}
+
+\setcounter{example}{5}
+\begin{example}
+    设 $V$ 是有限维线性空间，$W \leqslant V$. 求证：$\dim W \leqslant \dim V$，且 $\dim W = \dim V$ 当且仅当 $W = V$.
+\end{example}
+
+\subsection{线性空间的同构与同态}
+
+\begin{definition}[同构映射，$F$--自同构]
+    设 $V_1, V_2$ 是数域 $F$ 上的两个线性空间，如果存在 $V_1$ 到 $V_2 $ 的保持线性运算的一一映射 $\sigma$：
+    \begin{enumerate}[nosep]
+        \item $\sigma(\alpha + \beta) = \sigma(\alpha) + \sigma(\beta), \forall \alpha, \beta \in V_1$；
+        \item $\sigma (\lambda \alpha) = \lambda \sigma(\alpha), \forall \alpha \in V_1, \lambda \in F$.
+    \end{enumerate}
+    就称 $V_1$ 与 $V_2$ 同构（记作 $V_1\cong V_2$），称 $\sigma$ 是 $V_1$ 到 $V_2$ 的同构映射，或线性同构，或 $F$--同构. 如果 $V_1 = V_2$，则称 $\sigma$ 为 $V_1$ 的 $F$--自同构.
+\end{definition}
+
+\begin{definition}[同态映射，$F$--自同态]
+    设 $V_1, V_2$ 都是数域 $F$ 上的线性空间. 如果存在映射 $\phi:V_1 \to V_2$，满足条件
+    \begin{enumerate}[nosep]
+        \item $\phi(\alpha + \beta) = \phi(\alpha) + \phi(\beta), \forall \alpha, \beta \in V_1$；
+        \item $\phi(\lambda \alpha) = \lambda \phi(\alpha), \forall \alpha \in V_1, \lambda \in F$.
+    \end{enumerate}
+    就称 $\phi$ 是 $V_1$ 到 $V_2$ 的同态映射，或线性映射，或线性算子，或 $F$--同态映射. 若 $V_1 = V_2$，就称 $\phi$ 是 $V_1$ 的自同态映射，或线性变换，或 $F$--自同态.
+\end{definition}
+
+\begin{theorem}[]
+    同一数域 $F$ 上同一维数 $n$ 的任何两个线性空间相互同构.
+\end{theorem}
+
+\begin{proposition}
+    设 $\sigma:V_1 \to V_2$ 是 $F$ 上线性空间之间的同构映射，则
+    \begin{enumerate}[nosep]
+        \item $\sigma$ 将 $V_1$ 的零向量 $0_1$ 映射到 $V_2$ 的零向量 $0_2$；
+        \item $\sigma$ 将每个 $\alpha$ 的负向量映到 $\sigma(\alpha)$ 的负向量：$\forall \alpha \in V_1, \sigma(-\alpha) = -\sigma(\alpha)$；
+        \item $V_1$ 的子集合 $S$ 线性相关（无关）当且仅当 $\sigma(S)$ 线性相关（无关）；
+        \item $M$ 是 $V_1$ 的基当且仅当 $\sigma(M)$ 是 $V_2$ 的基；
+        \item 同构的线性空间维数相等. 如果 $V_1$ 是有限维线性空间，则 $\dim V_1 = \dim V_2$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    设 $\phi:V_1 \to V_2$ 是 $F$ 上线性空间之间的同态映射，则
+    \begin{enumerate}[nosep]
+        \item $\phi$ 将 $V_1$ 的零向量 $0_1$ 映到 $V_2$ 的零向量 $0_2$；
+        \item $\phi $ 将每个 $\alpha$ 的负向量映到 $\phi(\alpha)$ 的负向量：$\phi(-\alpha) - -\phi(\alpha)$；
+        \item $V_1$ 的子集合 $S$ 线性相关，则 $\phi(S)$ 相关.
+    \end{enumerate}
+\end{proposition}
+
+\begin{example}
+    数域 $F$ 上任何一个 $n$ 维线性空间 $V$ 必与 $F^n$ 同构.
+\end{example}
+
+\setcounter{example}{3}
+
+\begin{example}
+    设 $\phi:V_1 \to V_2, \alpha \to 0, \forall \alpha \in V_1$，则 $\phi$ 是同态，它把 $V_1$ 中的每一个向量映到 $V_2$ 中的零向量，称为零同态. $V_1$ 的任何非空子集 $S$ 均被映射到线性相关的子集 $\{0\}$.
+\end{example}
+
+\begin{example}
+    令 $\pi:\mathbb{R}^3 \to \mathbb{R}^3, (x_1, x_2, x_3) \to (x_1, x_2, 0)$，则 $\pi$ 是一个线性空间同态，称为投影. 在几何上表示三维实空间向 $xy$ 平面的投影.
+\end{example}
+
+\subsection{子空间的交与和}
+
+\begin{definition}[子空间的和]
+    设 $V$ 是 $F$ 上线性空间，$W_1, W_2, \cdots, W_t$ 是 $V$ 的有限多个子空间，定义 $$
+        W_1 + W_2 + \cdots + W_t = \{\beta_1 + \beta_2 + \cdots + \beta_t\,|\,\beta_i \in W_i, \forall  1 \leqslant i \leqslant t\}
+    $$ 成为子空间 $W_1, W_2, \cdots, W_t$ 的和.
+\end{definition}
+
+\begin{definition}[子空间的直和]
+    设 $W_1, W_2, \cdots, W_t$ 是线性空间 $V$ 的子空间，$W = W_1 + W_2 + \cdots + W_t$. 如果 $W$ 中每个向量的分解式 $$
+        w = w_1 + w_2 + \cdots + w_t \in W, w_i \in W_i, 1 \leqslant i \leqslant t
+    $$ 唯一，就称 $W$ 为 $W_1, W_2, \cdots, W_t$ 的直和，记为 $W = W_1 \oplus W_2 \oplus \cdots \oplus W_t$，或 $W = \oplus_{i=1}^tW_i$.
+\end{definition}
+
+\begin{theorem}[]
+    设 $W_i(i \in I, \text{$I$ 是指标集})$ 是数域 $F$ 上线性空间 $V$ 的任意一组子空间，令 $$
+        U = \bigcap_{i \in I}W_i = \{\alpha\,|\, \alpha \in W_i, \forall i \in I\}
+    $$ 是这些子空间的交，则 $W$ 是 $V$ 的子空间.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $W_1, W_2$ 是 $V$ 的子空间，则 $$
+        \dim(W_1 + W_2) = \dim W_1 + \dim W_2 - \dim(W_1 \cap W_2)\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    设 $W_1, W_2$ 是 $V$ 的子空间，则 $$
+        \dim(W_1 \cap W_2) \geqslant \dim W_1 + \dim W_2 - \dim V\ .
+    $$
+\end{corollary}
+
+\begin{corollary}
+    $\dim (W_1 + W_2) = \dim W_1 + \dim W_2$ 当且仅当 $W_1 \cap W_2 = \{0\}$.
+\end{corollary}
+
+\begin{corollary}
+    $\dim(W_1 + W_2 + \cdots + W_t) = \dim W_1 + \dim W_2 + \cdots + \dim W_t$ 当且仅当 $(W_1 + W_2 + \cdots + W_i)\cap W_{i+1} = \{0\}$ 对 $1 \leqslant i \leqslant t-1$ 成立.
+\end{corollary}
+
+\begin{theorem}[]
+    子空间的和 $W_1 + W_2 + \cdots + W_t$ 是直和当且仅当零向量的分解式唯一.
+\end{theorem}
+
+\begin{theorem}[]
+    $W_1 + W_2 = W_1 \oplus W_2$ 当且仅当 $W_1 \cap W_2 = \{0\}$.
+\end{theorem}
+
+\begin{corollary}
+    $W_1 + W_2 = W_1 \oplus W_2$，当且仅当 $\dim(W_1 + W_2) = \dim W_1 + \dim W_2$.
+\end{corollary}
+
+\begin{theorem}[]
+    设 $W_1, W_2, \cdots, W_t$ 是数域 $F$ 上有限维向量空间 $V$ 的子空间，则 $W_1 + W_2 + \cdots + W_t = W_1 \oplus W_2 \oplus \cdots \oplus W_t$ 当且仅当 $\dim(W_1 + W_2 + \cdots + W_t) = \dim W_1 +\dim W_2 + \cdots + \dim W_t$，且所有 $W_i(1 \leqslant i \leqslant t)$ 的基向量的并列向量组组成 $W_1 + W_2 + \cdots + W_t$ 的一组基.
+\end{theorem}
+
+\begin{corollary}
+    $W_1 + W_2 + \cdots + W_t$ 是直和当且仅当 $(W_1 + W_2 + \cdots + W_i) \cap W_{i+1} = 0$ 对 $1 \leqslant i \leqslant t-1$ 成立.
+\end{corollary}
+
+\begin{proposition}
+    设 $V$ 是数域 $F$ 上线性空间，$W_1, W_2, \cdots, W_t$ 是 $V$ 的子空间，则
+    \begin{enumerate}[nosep]
+        \item $W_1+W_2+\cdots+W_t$ 是 $V$ 的子空间；
+        \item $W_1+W_2+\cdots+W_t$ 是包含 $W_1\cup W_2 \cup \cdots \cup W_t$ 的最小子空间；
+        \item 取每个 $W_i(1 \leqslant i \leqslant t)$ 的一组基，则他们声称的子空间等于 $W_1 + W_2 + \cdots + W_t$；
+        \item $\dim(W_1 + W_2 + \cdots + W_t)\leqslant \dim W_1 + \dim W_2 + \cdots + \dim W_t$.
+    \end{enumerate}
+\end{proposition}
+
+\section{行列式}
+
+\subsection{\texorpdfstring{$n$}{} 阶行列式的定义}
+
+\begin{definition}[$n$ 阶排列]
+    由自然数 $1, 2, \cdots, n$ 组成的一个有序数组称为一个 $n$ 阶排列. 记为 $$
+        (j_1j_2\cdots j_n).
+    $$
+\end{definition}
+
+\begin{definition}[逆序，偶排列，奇排列]
+    在一个排列中，若一个较大的数排在一个较小的数前面，则称这两个数构成一个逆序. 一个排列中所有逆序的总数称为这个排列的逆序数. 用 $\tau (j_1j_2\cdots j_n)$ 表示排列 $(j_1j_2\cdots j_n)$ 的逆序数. 逆序数时偶数的排列称为偶排列，否则成为奇排列.
+\end{definition}
+
+\begin{definition}[对换]
+    把一个排列中某两个数 $i, j$ 的位置互换，而其余的数不动，就得到一个新的排列，称为排列的一次对换，记作 $\tau(i, j)$.
+\end{definition}
+
+\begin{definition}[$n$ 阶行列式]
+    由数域 $F$ 或任意一个具有加减法和乘法的代数结构 $R$（如整数环 $\mathbb{Z}$，或多项式环 $F[x]$ 等）中的 $n^2$ 个元素排成 $n$ 行 $n$ 列，以符号 $$
+        D = \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} \\
+        \end{matrix}
+        \right|
+    $$ 记之，称为 $n$ 阶行列式，它是按照下式计算得到的 $F$ 中的一个数值，或 $R$ 中的一个元素 $$
+        D = \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} \\
+        \end{matrix}
+        \right| = \sum_{j_1j_2\cdots j_n}
+        (-1)^{\tau(j_1j_2\cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n}\ ,
+    $$ 其中 $\sum\limits_{j_1j_2\cdots j_n}^{}$ 表示对 $1, 2, \cdots, n$ 这 $n$ 个数组成的所有排列 $(j_1j_2\cdots j_n)$ 求和.
+\end{definition}
+
+\begin{theorem}[]
+    任一排列经过一次对换，改变排列的奇偶性.
+\end{theorem}
+
+\begin{corollary}
+    任何一个 $n$ 阶排列都可以通过对换化成标准排列，并且所作对换的次数的奇偶性与该排列的奇偶性相同.
+\end{corollary}
+
+\begin{theorem}[]
+    $n$ 阶行列式 $$
+        D = \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} \\
+        \end{matrix}
+        \right| = \sum_{i_1i_2\cdots i_n}
+        (-1)^{\tau(i_1i_2\cdots i_n)}a_{i_11}a_{i_22}\cdots a_{i_nn}\ ,
+    $$ 其中 $\sum\limits_{i_1i_2\cdots i_n}^{}$ 表示对 $1, 2, \cdots, n$ 这 $n$ 个数组成的所有排列 $(i_1i_2\cdots i_n)$ 求和.
+\end{theorem}
+
+\setcounter{example}{1}
+\begin{example}
+    $n$ 阶三角形行列式的值为主对角线乘积.
+\end{example}
+
+\setcounter{example}{3}
+\begin{example}
+    $n$ 阶准上三角形行列式可以如下计算 $$
+        D = \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} & c_{11} & c_{12} & \cdots & c_{1m} \\
+            a_{21} & a_{22} & \cdots & a_{2n} & c_{21} & c_{22} & \cdots & c_{2m} \\
+            \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} & c_{n1} & c_{n2} & \cdots & c_{nm} \\
+            0      & 0      & \cdots & 0      & b_{11} & b_{12} & \cdots & b_{1m} \\
+            0      & 0      & \cdots & 0      & b_{21} & b_{22} & \cdots & b_{2m} \\
+            \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & 0      & b_{m1} & b_{m2} & \cdots & b_{mm} \\
+        \end{matrix}
+        \right| = \left|
+        \begin{matrix}
+            A & C \\
+            0 & B
+        \end{matrix}
+        \right| = |A||B|\ .
+    $$ 准下三角形类似.
+\end{example}
+
+\begin{corollary}
+    准对角形有性质 $$
+        D = \left|
+        \begin{matrix}
+            A_1 &                    \\
+                & A_2                \\
+                &     & \ddots       \\
+                &     &        & A_s
+        \end{matrix}
+        \right| = |A_1||A_2|\cdots|A_s|\ .
+    $$
+\end{corollary}
+
+
+\subsection{行列式的性质}
+
+\begin{definition}[转置行列式]
+    设 $A$ 是一个 $n$ 阶方阵，按照 $A$ 中元素的位置组成的行列式记为 $\det A$，或 $|A|$，称为方阵 $A$ 的行列式. $A ^{\mathrm{T}}$ 的行列式 $\det A ^{\mathrm{T}}$ 称为 $\det A ^{\mathrm{T}}$ 的转置行列式. 若以 $D$ 来表示行列式，则 $D ^{\mathrm{T}}$ 表示 $D$ 的转置行列式.
+\end{definition}
+
+\begin{proposition*}
+    行列式 $D$ 与它的转置行列式 $D ^{\mathrm{T}}$ 的值相等，即 $D = D ^{\mathrm{T}}$.
+\end{proposition*}
+
+\begin{proposition*}
+    如果行列式某一行（列）元素有公因数 $k$，则 $k$ 可以提到行列式符号外边. 以行为例，有 $$
+        \left|
+        \begin{matrix}
+            a_{11}  & a_{12}  & \cdots & a_{1n}  \\
+            a_{21}  & a_{22}  & \cdots & a_{2n}  \\
+            \vdots  & \vdots  & \vdots & \vdots  \\
+            ka_{i1} & ka_{i2} & \cdots & ka_{in} \\
+            \vdots  & \vdots  & \vdots & \vdots  \\
+            a_{n1}  & a_{n2}  & \cdots & a_{nn}  \\
+        \end{matrix}
+        \right| = k\left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{i1} & a_{i2} & \cdots & a_{in} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} \\
+        \end{matrix}
+        \right|\ .
+    $$
+\end{proposition*}
+
+\begin{corollary}
+    如果行列式中某一行（列）元素全为零，那么行列式等于零.
+\end{corollary}
+
+\begin{proposition*}
+    如果行列式中两行（列）互换，那么行列式值改变一个符号. 以行为例，有 $$
+        \det(a_{sj}) = \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{i1} & a_{i2} & \cdots & a_{in} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{j1} & a_{j2} & \cdots & a_{jn} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} \\
+        \end{matrix}
+        \right| = - \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{j1} & a_{j2} & \cdots & a_{jn} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{i1} & a_{i2} & \cdots & a_{in} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} \\
+        \end{matrix}
+        \right| = -\det(b_{sj})\ .
+    $$
+\end{proposition*}
+
+\begin{corollary}
+    若行列式中有两行（列）相同，则行列式为零.
+\end{corollary}
+
+\begin{corollary}
+    如果行列式中两行（列）对应元素成比例，那么行列式的值为零.
+\end{corollary}
+
+\begin{proposition*}
+    如果行列式某行（列）的个元素都可以写成两数之和，以行为例，设 $$
+        a_{ij} = b_{ij}  + c_{ij}\quad (j = 1, 2, \cdots, n)\ ,
+    $$ 则此行列式等于两个行列式的和，即 $$
+        \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{i1} & a_{i2} & \cdots & a_{in} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} \\
+        \end{matrix}
+        \right| = \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            b_{i1} & b_{i2} & \cdots & b_{in} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} \\
+        \end{matrix}
+        \right| + \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            c_{i1} & c_{i2} & \cdots & c_{in} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} \\
+        \end{matrix}
+        \right|\ .
+    $$
+\end{proposition*}
+
+\begin{proposition*}
+    如果将行列式中某行（列）的个元素同乘一数 $k$ 后，加到另一行（列）的个对应元素上，则行列式的值不变. 以行为例，有 $$
+        \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{i1} & a_{i2} & \cdots & a_{in} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{j1} & a_{j2} & \cdots & a_{jn} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} \\
+        \end{matrix}
+        \right| =  \left|
+        \begin{matrix}
+            a_{11}           & a_{12}           & \cdots & a_{1n}           \\
+            a_{21}           & a_{22}           & \cdots & a_{2n}           \\
+            \vdots           & \vdots           & \vdots & \vdots           \\
+            a_{i1} + ka_{j1} & a_{i2} + ka_{j2} & \cdots & a_{in} + ka_{jn} \\
+            \vdots           & \vdots           & \vdots & \vdots           \\
+            a_{j1}           & a_{j2}           & \cdots & a_{jn}           \\
+            \vdots           & \vdots           & \vdots & \vdots           \\
+            a_{n1}           & a_{n2}           & \cdots & a_{nn}           \\
+        \end{matrix}
+        \right|\ .
+    $$
+\end{proposition*}
+
+\begin{corollary}
+    利用矩阵的三种初等变换计算 $n$ 阶行列式 $D$ 时，不改变 $D$ 的值是否为零的特征. 特别地，如果 $D \neq 0 $，则 $D$ 对应的方阵的秩为 $n$，即 $D$ 的行向量组线性无关，$D$ 的列向量组也线性无关.
+\end{corollary}
+
+\subsection{行列式按行按列展开定理}
+
+\begin{definition}[余子式，代数余子式]
+    在 $n(\geqslant 2)$ 阶行列式 $D = |a_{ij}|_n$ 中，去掉元素 $A_{ij} $ 所在的第 $i$ 行和第 $j$ 列，留下的元素按照原来的顺序组成的 $n-1$ 阶行列式称为元素 $a_{ij}$ 的余子式，记为 $M_{ij}$. 称 $A_{ij} = (-1)^{i+j}M_{ij}$ 为元素 $a_{ij}$ 的代数余子式.
+\end{definition}
+
+\begin{theorem}[]
+    $n$ 阶行列式 $D = |a_{ij}|_n$ 等于它的任意一行（列）的个元素与其对应的代数余子式乘积之和，即 $$
+        D = a_{i1}A_{i1} + a_{i2}A_{i2} + \cdots + a_{in}A_{in}\quad(i = 1, 2, \cdots, n)
+    $$ 或 $$
+        D = a_{1j}A_{1j} + a_{2j}A_{2j} + \cdots + a_{nj}A_{nj}\quad( j= 1, 2, \cdots, n)
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    $D = |a_{ij}|_n$ 中某一行（列）的各个元素与另一行（对应地，列）的对应元素的代数余子式乘积之和为零，即 $$
+        \begin{aligned}
+            a_{k1}A_{i1} + a_{k2}A_{i2} + \cdots + a_{kn}A_{in} & = 0\quad(i \neq k)\ , \\
+            a_{1k}A_{1j} + a_{2k}A_{2j} + \cdots + a_{nk}A_{nj} & = 0\quad(j \neq k)\ .
+        \end{aligned}
+    $$
+\end{theorem}
+
+\subsection{克拉默（Cramer）法则}
+
+\begin{theorem}[克拉默法则]
+    如果线性方程组 $$
+        \left\{
+        \begin{aligned}
+            a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n & = b_1\ , \\
+            a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n & = b_2\ , \\
+            \vdots                                                \\
+            a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n & = b_m
+        \end{aligned}
+        \right.
+    $$ 的系数行列式 $D \neq 0$，则方程组有唯一解，并且解可以用行列式表示为 $$
+        x_1 = \dfrac{D_1}{D}, x_2 = \dfrac{D_2}{D}, \cdots, x_n = \dfrac{D_n}{D}\ .
+    $$ 其中 $D_{j}(j = 1, 2, \cdots, n)$ 是把系数行列式 $D$ 中第 $j$ 列元素用方程组右端的常数项 $b_1, b_2, \cdots, b_n$ 代替后得到的 $n$ 阶行列式，即 $$
+        D_j = \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & b_{1}  & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & b_{2}  & \cdots & a_{2n} \\
+            \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & b_{n}  & \cdots & a_{nn} \\
+        \end{matrix}
+        \right|\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    若齐次线性方程组 $$
+        \sum\limits_{j=1}^{n}a_{ij}x_j = 0\quad i = 1, 2, \cdots, n
+    $$ 的系数行列式 $D \neq 0$，则它只有唯一的零解.
+\end{theorem}
+
+\begin{corollary}
+    若齐次线性方程组有非零解，则系数行列式 $D = 0$.
+\end{corollary}
+
+\begin{theorem}[]
+    若 $\alpha_1, \alpha_2, \cdots, \alpha_n$ 是数域 $F$ 上的向量空间 $F^n$ 中的 $n$ 个向量，则 $[\alpha_1, \alpha_2, \cdots, \alpha_n]$ 是 $F^n$ 的一组基当且仅当以 $\alpha_1, \alpha_2, \cdots, \alpha_n$ 为列组成的方阵的行列式 $D = |\alpha_1, \alpha_2, \cdots, \alpha_n| \neq 0$.
+\end{theorem}
+
+\begin{corollary}
+    设 $A$ 是 $n$ 阶方阵，则下列论断等价：
+    \begin{enumerate}[nosep]
+        \item $D = \det A \neq 0$；
+        \item $A$ 的列向量组线性无关；
+        \item $A$ 的行向量组线性无关；
+        \item $\mathrm{rank}\,A = n$.
+    \end{enumerate}
+\end{corollary}
+
+\section{矩阵的代数运算}
+\subsection{矩阵的基本代数运算}
+
+\begin{definition}[零矩阵]
+    所有元素都为零的 $m \times n$ 矩阵 $(0)_{m \times n}$ 称为零矩阵，记为 $O_{m \times n}$ 或 $O$. 设 $A = (a_{ij})_{m \times n}$，$B = (b_{ij})_{s \times t}$，则 $A = B$ 当且仅当 $A$ 与 $B$ 的行数和列数都相等且每个元素对应相等，即 $m = s$， $n = t$，$a_{ij} = b_{ij}, \forall i \in \{1, 2, \cdots, m\}, j \in \{1, 2, \cdots, n\}$.
+\end{definition}
+
+\begin{definition}[和，数乘，负矩阵]
+    设 $A = (a_{ij})_{m \times n}, B = (b_{ij})_{m \times n} \in F^{m \times n}, k \in F$. 则 $A $ 与 $B$ 的相加得到的和矩阵为 $$
+        A + B = (a_{ij} + b_{ij})_{m \times n}\ ;
+    $$ $k $ 与 $A$ 的数乘为 $$
+        kA = (ka_{ij})_{m \times n}\ ;
+    $$ $A$ 的负矩阵为 $$
+        -A = (-a_{ij})_{m \times n}\ .
+    $$
+\end{definition}
+
+\begin{definition}[乘积]
+    设矩阵 $A = (a_{ij})_{m \times k},B = (b_{ij})_{k \times n}$，令 $C = AB = (c_{ij})_{m \times n}$，其中 $c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{ik}b_{kj} = \sum\limits_{t=1}^{k}a_{it}b_{tj}$ $(i = 1, 2, \cdots, m;\ j = 1, 2, \cdots, n)$. $C$ 称为 $A$ 与 $B$ 的乘积.
+\end{definition}
+
+\begin{lemma}
+    矩阵乘法满足如下运算规律（假设乘法均有意义）：
+    \begin{enumerate}[nosep]
+        \item 结合律 $(AB)C = A(BC)$；
+        \item 分配律 $A(B+C) = AB + AC, (B+C)A = BA + CA$；
+        \item $k(AB) = (kA)B = A(kB)$，$k$ 为任意常数.
+    \end{enumerate}
+\end{lemma}
+
+\begin{theorem}[]
+    设 $A, B$ 均为 $n$ 阶方阵，$k$ 为常数，则 $|kA| = k^n|A|$，且 $|AB| = |A||B|$.
+\end{theorem}
+
+\begin{proposition}
+    $M_{m \times n}(F)$ 作为数域 $F$ 的线性空间有一组（自然）基 $$
+        B = \{E_{ij}\,|\, i = 1, 2, \cdots, m;\ j = 1, 2, \cdots, n\}\ .
+    $$ 因此，$$
+        \dim_FF^{m \times n} = \dim_FM_{m\times n}(F) = m \times n\ .
+    $$
+\end{proposition}
+
+\begin{proposition}
+    设 $f(x),g(x)$ 是数域 $F$ 上两个多项式，$A, B$ 是两个 $n$ 阶方阵。如果 $A$ 与 $B$ 可交换，即 $AB = BA$，则 $f(A)g(B) = g(B)f(A)$. 即同阶方阵 $A$ 与 $B$ 可交换时，它们的任意两个多项式也可交换. 特别地，方阵 $A$ 的多项式可交换，即 $f(A)g(A) = g(A)f(A)$.
+\end{proposition}
+
+\subsection{矩阵的分块运算}
+
+\begin{lemma}
+    设 $n$ 阶准对角形矩阵 $A = \left(
+        \begin{matrix}
+            A_1 &     &        &     \\
+                & A_2 &        &     \\
+                &     & \ddots &     \\
+                &     &        & A_s
+        \end{matrix}
+        \right), B = \left(
+        \begin{matrix}
+            B_1 &     &        &     \\
+                & B_2 &        &     \\
+                &     & \ddots &     \\
+                &     &        & B_s
+        \end{matrix}
+        \right)$，其中子矩阵 $A_i$ 和 $B_i(i = 1, 2, \cdots, s)$ 为同阶方阵，则有如下性质：
+    \begin{enumerate}[nosep]
+        \item $A+B = \left(
+                  \begin{matrix}
+                      A_1 + B_1 &           &        &           \\
+                                & A_2 + B_2 &        &           \\
+                                &           & \ddots &           \\
+                                &           &        & A_s + B_s
+                  \end{matrix}
+                  \right)$；
+        \item $AB = \left(
+                  \begin{matrix}
+                      A_1B_1 &        &        &        \\
+                             & A_2B_2 &        &        \\
+                             &        & \ddots &        \\
+                             &        &        & A_sB_s
+                  \end{matrix}
+                  \right)$；
+        \item $|A| = |A_1||A_2|\cdots|A_s|$.
+    \end{enumerate}
+\end{lemma}
+
+\subsection{可逆矩阵与求逆矩阵的算法}
+
+\begin{definition}[可逆矩阵]
+    设 $A$ 是 $n$ 阶方阵，若有同阶方阵 $B$，使得 $AB=BA=I$，则 $B$ 称为 $A$ 的逆矩阵，$A$ 称为可逆矩阵，或非奇异矩阵.
+\end{definition}
+
+\begin{definition}[伴随矩阵]
+    设 $A = (a_{ij})_{n \times n}$，$A_{ij}$ 为 $A$ 的行列式 $|A|$ 中元素 $a_{ij}$ 的代数余子式，称 $$
+        A^* = \left(
+        \begin{matrix}
+                A_{11} & A_{21} & \cdots & A_{n1} \\
+                A_{12} & A_{22} & \cdots & A_{n2} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                A_{1n} & A_{2n} & \cdots & A_{nn} \\\
+            \end{matrix}
+        \right)
+    $$ 为矩阵 $A$ 的伴随矩阵.
+\end{definition}
+
+\begin{theorem}[]
+    $n$ 阶方阵可逆的充分必要条件是 $|A| \neq 0$，且 $A$ 可逆时，有 $$
+        A^{-1} = \dfrac{1}{|A|}A^*\ .
+    $$ 其中 $A^*$ 为 $A$ 的伴随矩阵.
+\end{theorem}
+
+\begin{corollary}
+    设 $A$ 与 $B$ 都是 $n$ 阶方阵，若 $AB = I$，则 $A, B$ 都可逆，且 $A^{-1} = B$，$B^{-1} = A$.
+\end{corollary}
+
+\begin{corollary}
+    设 $A$ 为 $n$ 阶方阵，则下列论断等价：
+    \begin{enumerate}[nosep]
+        \item $A$ 为可逆矩阵；
+        \item $A$ 的列向量组线性无关；
+        \item $A$ 的行向量组线性无关；
+        \item $A$ 的秩 $\mathrm{rank}\,A = n$.
+    \end{enumerate}
+\end{corollary}
+
+\begin{proposition}
+    若 $A$ 是一个 $n$ 阶可逆矩阵，则它的逆矩阵是唯一的.
+\end{proposition}
+
+\begin{proposition*}
+    若方阵 $A$ 可逆，则 $A^{-1}$ 可逆，且 $(A^{-1})^{-1} = A$.
+\end{proposition*}
+
+\begin{proposition*}
+    若方阵 $A$ 可逆，则 $A^{-1}$ 可逆，且 $(A^{-1})^{-1} = A$.
+\end{proposition*}
+
+\begin{proposition*}
+    若 $n$ 阶方阵 $A, B$ 都可逆，则 $AB$ 可逆，且 $(AB)^{-1} = B^{-1}A^{-1}$.
+\end{proposition*}
+
+\begin{proposition*}
+    若方阵 $A$ 可逆，则 $\left|A^{-1}\right| = |A|^{-1}$.
+\end{proposition*}
+
+\begin{proposition*}
+    若方阵 $A$ 可逆，则 $(A ^{\mathrm{T}})^{-1} = (A^{-1})^{\mathrm{T}}$.
+\end{proposition*}
+
+\begin{proposition*}
+    若方阵 $A$ 可逆，且数 $k \neq 0$，则 $(kA)^{-1} = \dfrac{1}{k}A^{-1}$.
+\end{proposition*}
+
+\begin{proposition*}
+    若方阵 $A$ 可逆，且 $AB = O$，则 $B = O$.
+\end{proposition*}
+
+\begin{proposition*}
+    若方阵 $A$ 可逆，且 $AB = AC$，则 $B = C$.
+\end{proposition*}
+
+\begin{proposition*}
+    方阵 $A = \left(
+        \begin{matrix}
+                A_1 &     &        &     \\
+                    & A_2 &        &     \\
+                    &     & \ddots &     \\
+                    &     &        & A_s
+            \end{matrix}
+        \right)$ 为准对角矩阵，设 $A_i, i = 1, 2, \cdots, s$ 均可逆，则 $A$ 可逆，且 $$
+        A^{-1} = \left(
+        \begin{matrix}
+            A_1 &     &        &     \\
+                & A_2 &        &     \\
+                &     & \ddots &     \\
+                &     &        & A_s
+        \end{matrix}
+        \right)^{-1} =
+        \left(
+        \begin{matrix}
+                A_1^{-1} &          &        &          \\
+                         & A_2^{-1} &        &          \\
+                         &          & \ddots &          \\
+                         &          &        & A_s^{-1}
+            \end{matrix}
+        \right)\ .
+    $$
+\end{proposition*}
+
+\subsection{初等矩阵与初等变换}
+
+\begin{definition}[初等矩阵]
+    由单位矩阵 $I$ 经过一次初等变换得到的矩阵称为初等矩阵.
+
+    由于矩阵的初等变化有三类，所以对应的初等矩阵也有三类：
+
+    \begin{enumerate}[nosep]
+        \item 交换初等矩阵，即互换 $I$ 的第 $i$ 行（列）和第 $j$ 行（列），记为 $
+                  P(i,j)$.
+        \item 倍乘初等矩阵，即用数 $k \neq 0$ 乘 $I$ 的第 $i$ 行（列），记为 $D_i(k)$.
+        \item 倍加初等矩阵，即用数 $k$ 乘 $I$ 的第 $j$ 行（$i$ 列）加到第 $i$ 行（$j$ 列）上，记为 $T_{ij}(k)$.
+    \end{enumerate}
+    我们把 $P(i, j), D_i(k), T_{ij}(k)$ 分别称为第一、第二、第三类（种）初等矩阵.
+\end{definition}
+
+\begin{definition}[相抵]
+    设矩阵 $A, B \in M_{m \times n}(F)$，如果矩阵 $A$ 经过有限次初等变换化为矩阵 $B$，则成 $A$ 与 $B$ 等价（或相抵），记为 $A \cong B$.
+\end{definition}
+
+\begin{theorem}[]
+    设 $A$ 是一个 $m \times n$ 矩阵，对 $A$ 作一次初等行变换，等于 $A$ 左乘一个相应的 $m$ 阶初等矩阵；对 $A$ 作一次初等列变换，等于 $A$ 右乘一个相应的 $n$ 阶初等矩阵.
+\end{theorem}
+
+\begin{theorem}[]
+    任意一个 $m \times n$ 矩阵 $A$ 必可经有限次初等变换（包括行变换与列变换）化为 $$
+        \left(
+        \begin{matrix}
+                I_r & O \\
+                O   & O
+            \end{matrix}
+        \right)\ ,
+    $$ 其中 $r = \mathrm{rank}\,A$，$I_r$ 是单位矩阵. 上式称为 $A$ 的等价（相抵）标准形.
+\end{theorem}
+
+\begin{corollary}
+    对任意 $m \times n$ 矩阵 $A$，必有 $m$ 阶初等矩阵 $P_1, P_2, \cdots, P_s$，$n$ 阶初等矩阵 $Q_1, Q_2, \cdots, Q_t$ 使得 $$
+        P_sP_{s-1}\cdots P_2P_1AQ_1Q_2\cdots Q_{t-1}Q_t = \left(
+        \begin{matrix}
+                I_r & O \\
+                O   & O
+            \end{matrix}
+        \right)
+    $$ 为 $A$ 的等价标准形.
+\end{corollary}
+
+\begin{corollary}
+    对 $m \times n$ 矩阵 $A$，必存在 $m$ 阶可逆矩阵 $P$ 与 $n$ 阶可逆矩阵 $Q$，使得 $$
+        PAQ = \left(
+        \begin{matrix}
+            I_r & O \\
+            O   & O
+        \end{matrix}
+        \right)
+    $$ 为 $A$ 的等价标准形.
+\end{corollary}
+
+\begin{corollary}
+    若 $A$ 为 $n$ 阶可逆矩阵，则 $A \cong I$.
+\end{corollary}
+
+\begin{corollary}
+    可逆矩阵必是一些初等矩阵的乘积.
+\end{corollary}
+
+\begin{theorem}[]
+    设矩阵 $A, B \in M_{m \times n}(F)$，则 $A \cong B$ 当且仅当存在 $m$ 阶可逆矩阵 $P$ 与 $n$ 阶可逆矩阵 $Q$，使得 $$
+        PAQ = B\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    设矩阵 $A, B \in M_{m \times n}(F)$，则 $A \cong B$ 的充要条件是 $A, B$ 有同一个标准形.
+\end{corollary}
+
+\begin{proposition}
+    \begin{enumerate}[nosep]
+        \item 初等矩阵的转置矩阵仍为同类型的初等矩阵；
+        \item 初等矩阵都是可逆矩阵，且它们的逆矩阵仍为初等矩阵，且 $$
+                  (P(i, j))^{-1} = P({i, j}), (D_i(k))^{-1} = D_i(k^{-1}), (T_{ij}(k))^{-1} = T_{ij}(-k)\ .
+              $$
+    \end{enumerate}
+\end{proposition}
+
+\setcounter{example}{3}
+\begin{example}
+    设 $A, B, C, D$ 均为 $n$ 阶方阵，且 $AC = CA$，则 $$
+        \left|
+        \begin{matrix}
+            A & B \\
+            C & D
+        \end{matrix}
+        \right| = |AD - CB|\ .
+    $$
+\end{example}
+
+\subsection{矩阵的秩的第二种定义}
+
+\begin{definition}[$k$ 阶子式]
+    设 $A$ 为一个 $m \times n$ 矩阵. 在 $A$ 中人去（第 $i_1, i_2, \cdots, i_k$ 行共计）$k$ 行，任取（第 $j_1, j_2, \cdots, j_k$ 列共计）$k$ 列，且 $1 \leqslant k \leqslant \min \{m, n\}$，由这些行列交叉处的 $k^2$ 个元素按原来的顺序构成的 $k$ 阶行列式，称为 $A$ 的一个 $k$ 阶子式，记作 $$
+        A \left(
+        \begin{matrix}
+                i_1 & i_2 & \cdots & i_k \\
+                j_1 & j_2 & \cdots & j_k
+            \end{matrix}
+        \right)\ .
+    $$
+\end{definition}
+
+\begin{definition}[秩]
+    若在 $m \times n$ 矩阵 $A$ 中，有一个 $r$ 阶子式不为零，而所有的 $r+1$ 阶子式（若存在的话）都为零，或不存在 $r+1$ 阶子式，则称 $r$ 为矩阵 $A$ 的秩，记为 $\mathrm{rank}\,A = r$. 若不存在非零子式，则该矩阵为零矩阵，且秩为 $0$.
+\end{definition}
+
+\begin{theorem}[]
+    $n$ 阶方阵 $A$ 的秩为 $n$ 的充要条件是 $n$ 为可逆矩阵.
+\end{theorem}
+
+\begin{theorem}[]
+    初等变换不改变矩阵的秩.
+\end{theorem}
+
+\begin{corollary}
+    矩阵 $A$ 的秩 $\mathrm{rank}\,A$ 等于 $A$ 的行秩和列秩.
+\end{corollary}
+
+\begin{theorem}[]
+    两个 $m \times n$ 矩阵 $A$ 与 $B$ 等价的充要条件是 $\mathrm{rank}\,A = \mathrm{rank}\,B$.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $A$ 为 $m \times n$ 矩阵，$P$ 和 $Q$ 分别是 $m$ 阶和 $n$ 阶可逆矩阵，则 $$
+        \mathrm{rank}\,A = \mathrm{rank}\,PA = \mathrm{rank}\,AQ = \mathrm{rank}\,PAQ\ .
+    $$
+\end{theorem}
+
+\begin{proposition}
+    设 $G = \left(
+        \begin{matrix}
+                A & O \\
+                O & B
+            \end{matrix}
+        \right)$，其中 $A$ 为 $m \times n$ 矩阵，$B$ 为 $p \times q$ 矩阵，则 $$
+        \mathrm{rank}\,G = \mathrm{rank}\,A + \mathrm{rank}\,B\ .
+    $$
+\end{proposition}
+
+\begin{proposition}
+    设 $A, B$ 均为 $m \times n$ 矩阵，则 $\mathrm{rank}\,(A + B) \leqslant \mathrm{rank}\,A + \mathrm{rank}\,B$.
+\end{proposition}
+
+\begin{proposition}
+    设 $A, B$ 分别为 $m \times n$ 和 $n \times s$ 矩阵，则 $$
+        \mathrm{rank}\,(AB) \leqslant \min \{\mathrm{rank}\,A, \mathrm{rank}\,B\}\ .
+    $$
+\end{proposition}
+
+\setcounter{example}{1}
+\begin{example}
+    设 $A, B$ 分别为 $m \times n$ 和 $n \times s$ 矩阵，则 $$
+        \mathrm{rank}\,A + \mathrm{rank}\,B \leqslant n + \mathrm{rank}\,(AB)\ .
+    $$
+\end{example}
+
+\setcounter{subsection}{6}
+\subsection{矩阵的广义逆矩阵}
+
+\begin{definition}[广义逆矩阵]
+    设 $A$ 为数域 $F$ 上的 $m \times n$ 矩阵，如果矩阵 $X \in F^{n \times m}$ 满足下列矩阵方程组 $$
+        \left\{
+        \begin{aligned}
+             & AXA = A              & (P_1) \\
+             & XAX = X              & (P_2) \\
+             & (AX)^\mathrm{H} = AX & (P_3) \\
+             & (XA)^\mathrm{H} = XA & (P_4)
+        \end{aligned}
+        \right.
+    $$ 则称 $X$ 为 $A$ 的广义逆矩阵（$A$ 的摩尔--彭罗斯（Moore--Penrose）逆矩阵），并记为 $A^\dagger$，称以上方程组为广义逆矩阵方程组.
+\end{definition}
+
+\begin{definition}[弱广义逆矩阵]
+    设 $A$ 为数域 $F$ 上的 $m \times n$ 矩阵，如果矩阵 $X \in F^{n \times m}$ 满足广义逆矩阵方程组中的 $k$ 个方程 $(k = 1, 2, 3, 4)$，则称 $X$ 为 $A$ 的弱广义逆矩阵.
+\end{definition}
+
+\begin{theorem}[]
+    设 $A$ 是数域 $F$ 上的 $m \times n$ 矩阵，$A$ 的广义逆矩阵 $A^\dagger$ 存在且唯一，即广义逆矩阵方程组有唯一解.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $A$ 为数域 $F$ 上的 $m \times n$ 矩阵，则 $A$ 的广义逆矩阵 $A^\dagger$ 具有下列性质：
+    \begin{enumerate}[nosep]
+        \item $(A^\dagger)^\dagger = A$；
+        \item $(A ^{\mathrm{T}})^\dagger = (A^\dagger) ^{\mathrm{T}}$，$(A^{\mathrm{H}})^\dagger = (A^\dagger)^\mathrm{H}$；
+        \item $(A^\mathrm{H}A)^{\dagger} = A^\dagger (A^{\mathrm{H}})^\dagger$，$(AA^\mathrm{H})^\dagger = (A^\mathrm{H})^\dagger A^\dagger$；
+        \item $(\lambda A)^\dagger = \lambda^\dagger A^\dagger$，其中 $\lambda^\dagger = \lambda^{-1}(\lambda \neq 0)$，$\lambda^\dagger = 0(\lambda = 0)$；
+        \item $A^\dagger = (A^\mathrm{H}A)^\dagger A^\mathrm{H} = A^\mathrm{H}(AA^\mathrm{H})^\dagger$；
+        \item $AA^\dagger = (AA^\mathrm{H})^\dagger AA^\mathrm{H}$，$A^\dagger A = (A^\mathrm{H}A)^\dagger A^\mathrm{H}A$；
+        \item 若 $A$ 有满秩分解 $A = BC$，则 $A^\dagger = C^\dagger B^\dagger$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    设 $A$ 为数域 $F$ 上的 $m \times n$ 矩阵，$A^-$ 是一个 $A_{|1|}$ 类中的弱广义逆矩阵，则对于任意使得线性方程组 $AX = b$ 有解的 $b$，$X = A^-b$ 必是一个解. 反之，若对于任意使得线性方程组 $AX = b$ 有解的 $b$，$X = Gb$ 是一个解，则 $G$ 必是 $A_{|1|}$ 类的一个弱广义逆矩阵.
+\end{theorem}
+
+\begin{corollary}
+    $A_{|1|}$ 类中弱广义逆矩阵 $A^-$ 一般不唯一.
+\end{corollary}
+
+\begin{theorem}[]
+    设 $A$ 为数域 $F$ 上的 $m \times n$ 矩阵，$A = P_{m \times m} \left(
+        \begin{matrix}
+            I_r & O \\
+            O   & O
+        \end{matrix}
+        \right)_{n \times m}Q_{n \times n}$，其中 $P_{m \times m}, Q_{n \times n}$ 分别是 $m$ 阶，$n$ 阶可逆方阵，则任意一个 $A^-$ 必形如 $G = (Q_{n \times n})^{-1} \left(
+        \begin{matrix}
+            I_r    & G_{12} \\
+            G_{21} & G_{22}
+        \end{matrix}
+        \right)_{n \times m}(P_{m \times m}^{-1})$，换言之，$$
+        \begin{aligned}
+            A_{|1|} & = \left\{Q_{n \times n}\left(
+            \begin{matrix}
+                I_r    & G_{12} \\
+                G_{21} & G_{22}
+            \end{matrix}
+            \right)_{n \times m}P_{m \times m}^{-1} \left.\right|_{}G_{12} \in M_{r \times (m-r)}(F), \right. \\        &
+            \left.G_{21} \in M_{(n-r)\times m}(F), G_{22} \in M_{(n-r)\times(m-r)}(F)\right\}\ .
+        \end{aligned}
+    $$
+\end{theorem}
+
+\begin{corollary}
+    设 $A$ 为数域 $F$ 上的 $m \times n$ 矩阵，$A_{|1|}$ 类中弱广义逆矩阵 $A^-$ 唯一存在 $\Leftrightarrow $ $A$ 的秩 $r = n = m$ $\Leftrightarrow $ $A$ 为可逆 $n$ 阶方阵.
+\end{corollary}
+
+\begin{theorem}[]
+    设 $A$ 为数域 $F$ 上的 $m\times n$ 矩阵，$A = P_{m \times m} \left(
+        \begin{matrix}
+            I_r & O \\
+            O   & O
+        \end{matrix}
+        \right)_{m \times n}Q_{n \times n}$，其中 $P_{m \times m}, Q_{n \times n}$ 分别为 $m$ 阶，$n$ 阶可逆方阵，$A^- = (Q_{n \times n})^{-1} \left(
+        \begin{matrix}
+            I_r & O \\
+            O   & O
+        \end{matrix}
+        \right)_{n \times m}(P_{m \times m})^{-1} \in A_{|1|}$，$Y$ 是任意 $n \times m$ 矩阵，则 $A_{|1|}$ 中任意矩阵具有形式 $G = A^{-} + Y - A^-AYAA^-$.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $A$ 为数域 $F$ 上的 $m \times n$ 矩阵，$A^-$ 是 $A_{|1|}$ 类中任意取定的一个弱广义逆矩阵，则 $A_{|1|}$ 中任意矩阵 $G$ 具有形式 $$
+        G = A^{-} + Y - A^-AYAA^-\ .
+    $$
+\end{theorem}
+
+\begin{proposition}
+    设 $A = \left(
+        \begin{matrix}
+                I_r & O \\
+                O   & O \\
+            \end{matrix}
+        \right)$，则 $$
+        A_{|1|} = \left\{\left(
+        \begin{matrix}
+                I_r    & G_{12} \\
+                G_{21} & G_{22}
+            \end{matrix}
+        \right) \left.\right|_{}G_{12} \in M_{r \times (m-r)}(F), G_{21} \in M_{(n-r)\times m}(F), G_{22} \in M_{(n-r)\times(m-r)}(F)\right\}\ ,
+    $$ 即任意一个 $A^-$ 具有形状 $\left(\begin{matrix}
+                I_r    & G_{12} \\
+                G_{21} & G_{22}
+            \end{matrix}\right)$.
+\end{proposition}
+
+\section{数域上的一元多项式}
+
+\subsection{多项式的定义和运算}
+
+\begin{definition}[多项式]
+    设 $F$ 是任一数域，$x$ 是一个字母（称为不定元或未知元），$n$ 是任意非负整数，$a_0, a_1, \cdots, a_n \in F$，称形如 $$
+        a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
+    $$ 的表达式为域 $F$ 上的一个（一元）多项式. 其中 $a_kx^k$ 称为这个多项式的 $k$ 次项，$a_k$ 称为 $k$ 次项的系数. 如果 $a_n$ 不为零，则称最高此项 $a_nx^n$ 为这个多项式 $f(x)$ 的首项，称 $a_n$ 为首项系数，称 $n$ 为 $f(x)$ 的次数，记为 $\deg f(x)$ 或 $\partial f(x)$. 如果首项系数为 $1$，就称这个多项式为首一多项式. 上式中没有写出次数 $k > n$ 的项，这些项的系数都等于 $0$. 我们把所有系数都为 $0$ 的多项式称为零多项式，记为 $0$. 零多项式的次数规定为 $-\infty$.
+
+    数域 $F$ 上的所有多项式所成集合记为 $$
+        F[x] = \{a_0 + a_1x + a_2x^2 + \cdots + a_nx^n\  |\  n \in \mathbb{N}, a_i \in F, i = 0, 1, 2, \cdots, n\}\ .
+    $$
+
+    复数域、实数域、有理数域上的全体多项式分别记为 $$
+        \mathbb{C}[x], \mathbb{R}[x], \mathbb{Q}[x]\ ,
+    $$ 其中的多项式分别被称为复系数多项式、实系数多项式、有理系数多项式.
+\end{definition}
+
+\begin{lemma}
+    $F[x]$ 中的任何一个多项式 $f(x) = a_0 + a_1x + \cdots + a_nx^n$ 的线性表出式具有唯一性，即如果 $f(x) = b_0 + b_1x + \cdots + b_mx^m$ 是其另一种表出式，则 $a_k = b_k$ 对所有非负整数 $k$ 成立.
+\end{lemma}
+
+\begin{lemma}
+    $\forall f(x), g(x) \in F[x], -f(x) = (-1)f(x), f(x) - g(x) = f(x) + (-g(x))$.
+\end{lemma}
+
+\begin{lemma}
+    $f_1(x)f_2(x) = 0 \Leftrightarrow f_1(x) = 0\, \text{或}\, f_2(x) = 0$.
+\end{lemma}
+
+\begin{lemma}
+    在 $F[x]$ 中，如果 $$
+        f(x)g(x) = f(x)h(x), f(x) \neq 0,
+    $$ 则 $$
+        g(x) = h(x)\ .
+    $$
+\end{lemma}
+
+\begin{lemma}
+    $\forall f(x), g(x) \in F[x]$，$$
+        \begin{aligned}
+            \deg(f(x) + g(x)) & \leqslant \max\{\deg f(x), \deg g(x)\} \\
+            \deg(f(x)g(x))    & = \deg f(x) + \deg g(x)\ .
+        \end{aligned}$$
+\end{lemma}
+
+\begin{theorem}[带余除法]
+    如果 $f(x), g(x) \in F[x], f(x) \neq 0$，则存在唯一的一对 $q(x), r(x)$ 满足 $$
+        f(x) = q(x)g(x) + r(x), \deg r(x) < \deg g(x)\ .
+    $$
+\end{theorem}
+
+\begin{proposition}
+    在数域 $F$ 上的一元多项式环 $F[x]$ 中，下列性质成立
+    \begin{enumerate}[nosep]
+        \item 如果 $f(x) | g(x)$ 且 $g(x) | f(x)$，则 $f(x) = cg(x)$ 对 $F$ 中某个非零常数 $c$ 成立.
+        \item 如果 $f(x) | g(x)$ 且 $g(x) | h(x)$，则 $f(x) | h(x)$.
+        \item 如果 $f(x)$ 同时整除 $g_1(x), g_2(x), \cdots, g_k(x)$，则 $f(x)$ 整除任意的 $$
+                  u_1(x)g_1(x) + u_2(x)g_2(x)+ \cdots + u_k(x)g_k(x)
+              $$ 其中 $u_1(x), u_2(x), \cdots, u_k(x) \in F[x]$.
+    \end{enumerate}
+\end{proposition}
+
+\section{线性空间的线性变换}
+
+\subsection{空间的旋转与反射变换}
+
+\begin{theorem}[]
+    设直线 $L$ 与 $x$ 轴正向的夹角为 $\theta (x \leqslant \theta \leqslant \pi)$，$\mathbb{R}^2$ 上的点（向量）对 $L$ 的反射变换 $\omega$ 等于先做一次相对于 $x$ 轴的反射变换，再做一次逆时针旋转 $2\theta$ 角的变换的合成.
+\end{theorem}
+
+\begin{theorem}[]
+    若空间 $\mathbb{R}^3$ 中变换 $\sigma, \tau$ 分别有矩阵表达式 $$
+        \sigma \left(
+        \begin{matrix}
+                x \\y\\z
+            \end{matrix}
+        \right) = A \left(
+        \begin{matrix}
+                x \\y\\z
+            \end{matrix}
+        \right), \tau \left(
+        \begin{matrix}
+                x \\y\\z
+            \end{matrix}
+        \right) = B \left(
+        \begin{matrix}
+                x \\y\\z
+            \end{matrix}
+        \right)\ ,
+    $$ 其中 $A, B$ 为三阶方阵，则先作 $\sigma$ 再作 $\tau$ 的合成变换 $\tau \cdot \sigma$ 有矩阵表达式 $$
+        (\tau \cdot \sigma)\left(
+        \begin{matrix}
+                x \\y\\z
+            \end{matrix}
+        \right) = BA \left(
+        \begin{matrix}
+                x \\y\\z
+            \end{matrix}
+        \right)\ ,
+    $$ 换言之，$\tau \cdot \sigma$ 的矩阵等于 $\tau$ 的矩阵 $B$ 左乘 $\sigma$ 的矩阵 $A$ 的乘积矩阵 $BA$.
+\end{theorem}
+
+\subsection{线性映射与线性变换}
+
+\begin{definition}[线性映射，线性变换]
+    设 $U, V$ 是数域 $F$ 上的线性空间，$\sigma$ 是 $U$ 到 $V$ 的一个保持线性运算的映射，即对 $\forall \alpha \in U$，存在唯一的元素 $\sigma(\alpha) \in V$ 与之对应，且满足 $\forall \alpha, \beta \in U, k \in \mathbb{F}$ 有：
+
+    \begin{enumerate}[nosep]
+        \item $\sigma(\alpha + \beta) = \sigma(\alpha) + \sigma(\beta)$；
+        \item $\sigma(k\alpha) = k\sigma(\alpha)$.
+    \end{enumerate}
+
+    则称 $\sigma$ 为 $V$ 的一个线性映射或线性算子或 F -- 同态. 如果 $U = V$，此时 $\sigma$ 是 $U$ 到 $V$ 自身的线性映射，我们称 $\sigma$ 为 $U$ 上的一个线性变换或 F -- 自同态. 通常用希腊字母 $\sigma, \tau, \rho, \cdots$ 表示线性映射（线性变换）.
+\end{definition}
+
+\begin{remark}
+    如果 $U $ 和 $V$ 不同，两个等式 $$
+        \sigma(\alpha + \beta) = \sigma(\alpha) + \sigma(\beta),\quad \sigma(k\alpha) = k\sigma(\alpha)\ ,
+    $$ 两边的加法和数乘分别是 $U, V$ 中的加法和数乘.
+\end{remark}
+
+\begin{remark}
+    线性变换与数域有关.
+\end{remark}
+
+\begin{definition}[数乘]
+    设 $\sigma, \tau$ 是线性空间 $U$ 到 $V$ 的两个线性映射，即 $\sigma, \tau \in L(U, V) = \mathrm{Hom}(U, V)$，令 $$
+        (\sigma + \tau)(\alpha) = \sigma(\alpha) + \tau(\alpha), (k\sigma)(\alpha) = k\sigma(\alpha)\quad (\forall \alpha \in U, k \in \mathbb{F})\ .
+    $$ 并分别称为 $\sigma$ 与 $\tau$ 的和，数 $k$ 与 $\sigma$ 的数乘.
+\end{definition}
+
+\begin{definition}[乘积]
+    设 $\sigma, \tau$ 是线性空间 $U$ 上的两个线性变换，即 $\sigma, \tau \in L(U) = \mathrm{End}(U)$，令 $$
+        (\sigma\tau)(\alpha) = \sigma [\tau(\alpha)],\quad \forall \alpha \in U
+    $$ 称为线性变换 $\sigma$ 和 $\tau$ 的乘积或复合.
+\end{definition}
+
+\begin{definition}[逆变换]
+    设 $\sigma$ 是线性空间 $U$ 上的线性变换，若存在 $U$ 上的线性变换 $\tau$ 使得 $$
+        \sigma \tau = \tau\sigma = Id\ ,
+    $$ 则称 $\sigma$ 为可逆线性变换，$\tau$ 称为 $\sigma$ 的逆变换，记为 $\sigma^{-1}$.
+\end{definition}
+
+\begin{definition}[线性映射在基下的矩阵]
+    在取定 $n$ 维线性空间 $U$ 的一组基 $\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 及 $m$ 维线性空间 $V$ 的一组基 $\eta_1, \eta_2, \cdots, \eta_m$ 后，线性映射 $\sigma: U \to V$ 把 $\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 映射到 $V$ 中的一组向量 $\sigma(\varepsilon_1), \sigma(\varepsilon_2), \cdots, \sigma(\varepsilon_n)$，在式 $$
+        (\sigma(\varepsilon_1), \sigma(\varepsilon_2), \cdots, \sigma(\varepsilon_n)) = (\eta_1, \eta_2, \cdots, \eta_m) \left(
+        \begin{matrix}
+                a_{11} & a_{21} & \cdots & a_{n1} \\
+                a_{12} & a_{22} & \cdots & a_{n2} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{1m} & a_{2m} & \cdots & a_{nm}
+            \end{matrix}
+        \right) = (\eta_1, \eta_2, \cdots, \eta_m)A_{m \times n}
+    $$ 中 $\sigma(\varepsilon_1), \sigma(\varepsilon_2), \cdots, \sigma(\varepsilon_n)$ 由 $\eta_1, \eta_2, \cdots, \eta_m$ 表示的表出矩阵 $A = (a_{ij})_{m \times n}$ 称为 $\sigma$ 在基 $\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 和 $\eta_1, \eta_2, \cdots, \eta_n$ 下的矩阵.
+\end{definition}
+
+\begin{definition}[线性变换在基下的矩阵]
+    在取定 $n$ 维线性空间 $U$ 的一组基 $\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 后，$U$ 上的线性变换 $\sigma$ 把 $\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 变为 $\sigma(\varepsilon_1), \sigma(\varepsilon_2), \cdots, \sigma(\varepsilon_n)$，由式 $$
+        (\sigma(\varepsilon_1), \sigma(\varepsilon_2), \cdots, \sigma(\varepsilon_n)) = (\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n) \left(
+        \begin{matrix}
+                a_{11} & a_{21} & \cdots & a_{n1} \\
+                a_{12} & a_{22} & \cdots & a_{n2} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{1n} & a_{2n} & \cdots & a_{nn}
+            \end{matrix}\right) = (\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n)A_{n \times n}
+    $$ 给出的 $n$ 阶方阵 $A_{n \times n}$ 称为线性变换 $\sigma$ 在基 $\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 下的矩阵.
+\end{definition}
+
+\begin{theorem}[]
+    设 $\sigma, \tau \in L(U, V) = \mathrm{Hom}(U, V)$，则 $\sigma + \tau, k\sigma \in L(U, V) = \mathrm{Hom}(U, V)$.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $\sigma, \tau \in L(U) = \mathrm{End}(U)$，则 $\sigma$ 与 $\tau$ 的乘积 $\sigma\tau \in L(U) = \mathrm{End}(U)$.
+\end{theorem}
+
+\begin{remark}
+    线性变换的乘法不满足交换律. 即一般地，$\sigma\tau \neq \tau\sigma$.
+\end{remark}
+
+\begin{theorem}[]
+    设 $U$ 和 $V$ 分别是数域 $\mathbb{F}$ 上的 $n$ 维和 $m$ 维线性空间，$\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 是 $U$ 的一组基，则有
+
+    \begin{enumerate}[nosep]
+        \item 如果两个线性映射 $\sigma: U \to V$ 和 $\tau: U \to V$ 在这组基上的作用相同，即 $$
+                  \sigma(\varepsilon_i) = \tau(\varepsilon_i), \quad i = 1, 2, \cdots, n\ ,
+              $$ 那么 $\sigma = \tau$.
+        \item 对 $V$ 中任意 $n$ 个元素 $\alpha_1, \alpha_2, \cdots, \alpha_n$，必有线性映射 $\sigma: U \to V$ 使 $$
+                  \sigma(\varepsilon_i) = \alpha_i, \quad i = 1, 2, \cdots, n\ .
+              $$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    取定 $n$ 维线性空间 $U$ 下的一组基 $\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 及 $m$ 维线性空间 $V$ 下的一组基 $\eta_1, \eta_2, \cdots, \eta_m$ 后，每个 $U \to V$ 线性映射 $\sigma \in L(U, V) = \mathrm{Hom}(U, V)$ 按式 $$
+        (\sigma(\varepsilon_1), \sigma(\varepsilon_2), \cdots, \sigma(\varepsilon_n)) = ({\eta}_1, {\eta}_2, \cdots, {\eta}_{m})A_{m \times n}
+    $$ 唯一地对应到它的矩阵，反之每个 $m \times n$ 矩阵 $A$ 也按着同一个式子给出 $U \to V$ 的唯一线性映射 $\sigma$. 即那个式子建立了 $L(U, V) = \mathrm{Hom}(U, V)$ 与 $M_{m \times n}(\mathbb{F})$ 之间的一一对应，这个对应具有以下性质（其中（$1$）（$2$）表明线性空间 $\mathrm{Hom}(U, V)$ 同构与 $M_{m \times n}(\mathbb{F})$，即 $\mathrm{Hom}(U, V) \cong M_{m \times n}(\mathbb{F}))$：
+
+    \begin{enumerate}[nosep]
+        \item 线性映射的和对应矩阵的和，即若 $\sigma, \tau$ 的矩阵分别是 $A, B$，则 $\sigma + \tau$ 的矩阵是 $A + B$；
+        \item 线性映射的数乘对应矩阵的数乘，即若 $\sigma$ 的矩阵是 $A$，则对任意数 $k \in \mathbb{F}$，$k\sigma$ 的矩阵是 $kA$.
+        \item $\forall \alpha \in U$，若 $\alpha$ 在 $\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 下的坐标为 $X$，那么有 $\sigma(\alpha)$ 在 $\eta_1, \eta_2, \cdots, \eta_m$ 下的坐标为 $Y = AX$. 反过来，如果 $\forall \alpha \in U, \alpha = (\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n)X, \sigma(\alpha) = (\eta_1, \eta_2, \cdots, \eta_m)AX$，那么则有 $(\sigma(\varepsilon_1), \sigma(\varepsilon_2), \cdots, \sigma(\varepsilon_n)) = (\eta_1, \eta_2, \cdots, \eta_m)A$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    设 $\varepsilon_1, \varepsilon_2, \cdots, \varepsilon_n$ 是 $n$ 维线性空间 $U$ 的一组基，在这组基下，每个线性变换按其定义式给出 $U$ 上的唯一线性变换 $\sigma$. 其式子建立了 $L(U) = \mathrm{End}(U)$ 与 $M_n(\mathbb{F})$ 之间的一一对应，且具有以下性质（性质（$1$）和（$2$）表明线性空间
+    $\mathrm{End}(U)\ncong M_n(\mathbb{F})$，性质（$1$）---（$3$）表明代数 $\mathrm{End}(U) \ncong M_{n}(\mathbb{F})$，性质（$4$）表明 $\mathrm{Aut}(U)\cong \mathrm{GL}_n(\mathbb{F})$.）
+    \begin{enumerate}[nosep]
+        \item 线性变换的和对应矩阵的和；
+        \item 线性变换的乘积（即复合）对应矩阵的乘积；
+        \item 线性变换的数乘对应矩阵的数乘；
+        \item 可逆线性变换对应可逆矩阵，且逆变换对应逆矩阵.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+    设 $\sigma$ 是线性空间 $U \to V$ 的线性映射，则 $\forall \alpha, \alpha_i \in U, k \in F, i = 1, 2, \cdots, m$，有
+
+    \begin{enumerate}[nosep]
+        \item $\sigma(\mathbf{0}) = \mathbf{0}$；
+        \item $\sigma(-\alpha) = -\sigma(\alpha)$；
+        \item $\sigma(k_1\alpha_1 + k_2\alpha_2 + \cdots k_m\alpha_m) = k_1\sigma(\alpha_1) + k_2\sigma(\alpha_2) + \cdots + k_m\sigma(\alpha_m)$；
+        \item 若 $\alpha_1, \alpha_2, \cdots, \alpha_m$ 线性相关，则 $\sigma(\alpha_1), \sigma(\alpha_2), \cdots, \sigma(\alpha_m)$ 线性相关.
+    \end{enumerate}
+\end{proposition}
+
+\begin{remark}
+    线性变换都是线性映射，故对于线性空间 $U$ 上的线性变换，以上命题依然成立.
+\end{remark}
+
+\begin{remark}
+    平移变换（即取定 $\alpha \in U, \forall \beta \in U, \beta \mapsto \beta + \alpha$）不是线性变换.
+\end{remark}
+
+\begin{proposition}
+    设 $\sigma$ 是线性空间 $U$ 上的可逆线性变换，则 $\sigma$ 的逆变换 $\tau$ 是唯一的.
+\end{proposition}
+
+\subsection{线性映射与线性变换在不同基下的矩阵}
+
+\begin{definition}[过渡矩阵]
+    $$
+        (\beta_1, \beta_2, \cdots, \beta_n) = (\alpha_1, \alpha_2, \cdots, \alpha_n)\left(
+        \begin{matrix}
+                P_{11} & P_{12} & \cdots & P_{1n} \\
+                P_{21} & P_{22} & \cdots & P_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                P_{n1} & P_{n2} & \cdots & P_{nn} \\
+            \end{matrix}
+        \right) = (\alpha_1, \alpha_2, \cdots, \alpha_n)P
+    $$ 式中给出的方阵 $P$ 称为从基 $\alpha_1, \alpha_2, \cdots, \alpha_n$ 到基 $\beta_1, \beta_2, \cdots, \beta_n$ 的过渡矩阵.
+\end{definition}
+
+\begin{definition}[相似]
+    设 $A, B$ 为数域 $\mathbb{F}$ 上的两个 $n$ 阶矩阵，若存在数域 $\mathbb{F}$ 上的 $n$ 阶可逆矩阵 $P$ 使 $$
+        P^{-1}AP = b\ ,
+    $$ 则称矩阵 $A$ 与 $B$ 相似，记为 $A \backsim B$.
+\end{definition}
+
+\begin{theorem}[]
+    有限维线性空间的两组基之间的过渡矩阵是可逆方阵.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $\alpha_1, \alpha_2, \cdots, \alpha_n$ 与 $\beta_1, \beta_2, \cdots, \beta_{n}$ 是线性空间 $U$ 的两组基. 再假设 $P$ 是从一组基 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{n}$ 到另一组基 ${\beta}_1, {\beta}_2, \cdots, {\beta}_{n}$ 的过渡矩阵，设 $\alpha \in U$ 在两组基下的坐标分别是 $$
+        X = \left(
+        \begin{matrix}
+                x_1 \\x_2\\\vdots\\x_n
+            \end{matrix}
+        \right),
+        Y = \left(
+        \begin{matrix}
+                y_1 \\y_2\\\vdots\\y_n
+            \end{matrix}
+        \right)\ ,
+    $$ 则 $X = PY$，即 $$
+        \left(
+        \begin{matrix}
+                x_1 \\x_2\\\vdots\\x_n
+            \end{matrix}
+        \right) = \left(
+        \begin{matrix}
+                p_{11} & p_{12} & \cdots & p_{1n} \\
+                p_{21} & p_{22} & \cdots & p_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                p_{n1} & p_{n2} & \cdots & p_{nn} \\
+            \end{matrix}
+        \right)\left(
+        \begin{matrix}
+                y_1 \\y_2\\\vdots\\y_n
+            \end{matrix}
+        \right)\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    两个 $m \times n$ 矩阵 $A, B$ 等价（相抵）的充要条件为 $A, B$ 是同一线性映射 $\sigma:U \to V$ 在两对不同的基 $(\mathrm{I}), (\mathrm{II})$ 及 $\mathrm{(I)', (II)'}$ 下的矩阵. 如果 $\mathrm{(I)}$ 到 $\mathrm{(I)}'$ 的过渡矩阵是 $P$，$(\mathrm{II})$ 到 $\mathrm{(II)'}$ 的过渡矩阵是 $Q$，则有 $B = Q^{-1}AP$.
+\end{theorem}
+
+\begin{corollary}
+    任取线性映射 $\sigma: U \to V$，存在 $U$ 的基 $\mathrm{(I)}: {\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{n}$ 和 $V$ 的基 $\mathrm{(II)}: {\beta}_1, {\beta}_2, \cdots, {\beta}_{m}$，使得 $\sigma$ 在基 $\mathrm{(I), (II)}$ 下的矩阵为 $$
+        S = \left(
+        \begin{matrix}
+                I_r & O \\
+                O   & O
+            \end{matrix}
+        \right)\ ,
+    $$ 即 $$
+        \sigma(\alpha_i) = \beta_i,\ 1 \leqslant j \leqslant r \leqslant \min\{m, n\};\ \sigma(\alpha_j) = \mathbf{0},\ r+1 \leqslant j \leqslant n\ .
+    $$
+\end{corollary}
+
+\begin{theorem}[]
+    设有限维线性空间 $U$ 上的线性变换 $\sigma$ 在两组基 ${\varepsilon}_1, {\varepsilon}_2, \cdots, {\varepsilon}_{n}$ 和 ${\eta}_1, {\eta}_2, \cdots, {\eta}_{n}$ 下的矩阵分别为 $A$ 和 $B$，从基 ${\varepsilon}_1, {\varepsilon}_2, \cdots, {\varepsilon}_{n}$ 到 ${\eta}_1, {\eta}_2, \cdots, {\eta}_{n}$ 的过渡矩阵为 $P$，则 $B = P^{-1}AP$.
+\end{theorem}
+
+\begin{theorem}[]
+    \begin{enumerate}[nosep]
+        \item 若 $P^{-1}A_1P = B_1, P^{-1}A_2P = B_2$，则 $P^{-1}(A_1 + A_2)P = B_1 + B_2$；
+        \item 若 $A \backsim B$，则 $kA \backsim kB$，对任意 $K \in \mathbb{F} $ 成立；
+        \item 若 $P^{-1}A_1P = B_1, P^{-1}A_2P = B_2$，则 $P^{-1}(A_1A_2)P = P^{-1}A_1PP^{-1}A_2P = B_1B_2$. 特别地，若 $A \backsim B$，则 $A^r \backsim B^r$，其中 $r$ 为任意正整数；
+        \item 若 $A \backsim B$，$f(\lambda)$ 使数域 $\mathbb{F}$ 上的一个多项式，则 $f(A) \backsim f(B)$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    设 $A \backsim B$，则有
+    \begin{enumerate}[nosep]
+        \item $\mathrm{rank}\,A = \mathrm{rank}\,B$；
+        \item $|A| = |B|$；
+        \item $A$ 与 $B$ 的可逆性相同. 当它们都可逆时还有 $A^{-1} \backsim B^{-1}$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+    方阵之间的相似关系满足下列三个性质：
+    \begin{enumerate}[nosep]
+        \item 反身性：对任意 $n$ 阶方阵 $A$，有 $A \backsim A$；
+        \item 对称性：若 $A \backsim B$，则 $B \backsim A$；
+        \item 传递性：若 $A \backsim B$，且 $B \backsim C$，则 $A \backsim C$.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{线性映射及线性变换的像与核}
+
+\begin{definition}[像、核]
+    设 $\sigma:U \to V$ 是 $\mathbb{F}$ 上线性空间之间的线性映射. 集合 $$
+        \sigma(U) = \{\sigma(\alpha)|\alpha\in U\}
+    $$ 称为 $\sigma$ 的像，也称为 $\sigma$ 的值域，记作 $\mathrm{Im}\,\sigma$. 集合 $$
+        \sigma^{-1}(\mathbf{0}) = \{\alpha \in U|\sigma(\alpha) = \mathbf{0}\}
+    $$ 称为映射 $\sigma$ 的核，记作 $\mathrm{Ker}\,\sigma$. 即有 $\mathrm{Ker}\,\sigma \hookrightarrow U \twoheadrightarrow \mathrm{Im}\,\sigma \hookrightarrow V$，其中前后两个映射箭头都表示嵌入映射，即任意元素映射到自己；中间的映射是 $\sigma$ 从 $U$ 到 $\mathrm{Im}\,\sigma$ 的满射.
+\end{definition}
+
+\begin{definition}[映射的秩]
+    线性映射 $\sigma:U \to V$ 的像 $\mathrm{Im}\,\sigma$ 的维数称为 $\sigma$ 的秩，记作 $\mathrm{rank}\,\sigma$.
+\end{definition}
+
+\begin{theorem}[]
+    设 $\sigma:U \to V$ 是数域 $\mathbb{F}$ 上的有限维线性空间的线性映射，$\mathrm{rank}\,\sigma = r, n = \dim U, m = \dim V$，则 $$
+        \dim U = \mathrm{rank}\,\sigma + \dim \mathrm{Ker}\,\sigma\ ,
+    $$ 且存在 $U$ 的基 $M_{1} = \{{\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{n}\}$ 和 $V$ 的基 $M_2 = \{{\beta}_1, {\beta}_2, \cdots, {\beta}_{m}\}$，使 $\sigma$ 在基 $M_1, M_2$ 下的矩阵为 $$
+        \left(
+        \begin{matrix}
+                I_r &   \\
+                    & O
+            \end{matrix}
+        \right) \in \mathbb{F}^{m \times n}\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    设 $\sigma$ 是 $n$ 维线性空间 $U$ 上的线性变换，则有 $$
+        \dim \sigma(U) + \dim \sigma^{-1}(\mathbf{0}) = \dim \mathrm{Im}\,\sigma + \dim \mathrm{Ker}\,\sigma = \mathrm{rank}\,\sigma + \dim \mathrm{Ker}\,\sigma = n = \dim U\ .
+    $$
+\end{corollary}
+
+\begin{proposition}
+    任意线性映射 $\sigma: U \to V$ 的像 $\mathrm{Im}\,\sigma$ 和核 $\mathrm{Ker}\,\sigma$ 分别是 $V$ 和 $U$ 的子空间.
+\end{proposition}
+
+\begin{proposition}
+    设 $\sigma: U \to V$ 在 $U$ 的基 $M_1$ 和 $V$ 的基 $M_2$ 下的矩阵，将每个 $\alpha \in U$ 在基 $M_1$ 下的坐标记为 $\sigma_1(\alpha)$，每个 $\beta \in V$ 在基 $M_2$ 下的坐标记为 $\sigma_2(\beta)$，则 $\sigma_1:U \to \mathbb{F}^{n \times 1}$ 和 $\sigma_2:V \to \mathbb{F}^{m \times 1}$ 都是线性空间之间的同构映射. 记 $A$ 的各列以此为 ${A}_1, {A}_2, \cdots, {A}_{n}$，则 $$
+        \sigma_2(\mathrm{Im}\,\sigma) = \{AX|X \in \mathbb{F}^{m \times 1}\} = L({A}_1, {A}_2, \cdots, {A}_{n})
+    $$ 就是 $A$ 的列向量生成的子空间（即 $A$ 的列向量的所有线性组合集），维数等于 $A$ 的列秩 $\mathrm{rank}\,A$. 由于 $\sigma_2$ 是同构映射，$$
+        \mathrm{rank}\,\sigma = \dim \mathrm{Im}\,\sigma = \dim \sigma_2(\mathrm{Im}\,\sigma) = \mathrm{rank}\,A\ ,
+    $$ 又由于 $\sigma_2(\mathrm{Ker}\,\sigma) = \{X|X \in \mathbb{F}^{n \times 1}, AX = O\} = V_{A}$，因此 $$
+        \dim \mathrm{Ker}\,\sigma = \dim \sigma_1(\mathrm{Ker}\,\sigma) = \dim V_A\ .
+    $$
+\end{proposition}
+
+\begin{proposition}
+    线性映射 $\sigma: U \to V$ 是单射的充要条件是 $\mathrm{Ker}\,\sigma = \{\mathbf{0}\}$.
+\end{proposition}
+
+\begin{corollary}
+    线性映射 $\sigma:U \to V$ 是可逆映射当且仅当 $\mathrm{Ker}\,\sigma = \{\mathbf{0}\}$ 且 $\mathrm{Im}\,\sigma = V$.
+\end{corollary}
+
+\begin{proposition}
+    设 $\sigma: U \to V$ 是有限维空间之间的线性映射，则 $\sigma$ 是双射的充要条件是以下三个条件中的任意两个条件同时成立：
+    \begin{enumerate}[nosep]
+        \item $\dim U = \dim V = n$；
+        \item $\mathrm{Ker}\,\sigma = \{\mathbf{0}\}$；
+        \item $\mathrm{Im}\,\sigma = V$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+    设 $\sigma$ 是 $n$ 维空间 $U$ 上的线性变换，则以下三个论断等价：
+    \begin{enumerate}[nosep]
+        \item $\sigma$ 是可逆变换；
+        \item $\sigma$ 是单射；
+        \item $\sigma$ 是满射.
+    \end{enumerate}
+\end{corollary}
+
+\subsection{商空间}
+
+略.
+
+\subsection{特征值与特征向量}
+
+\begin{definition}[可对角化]
+    设 $\sigma$ 是数域 $\mathbb{F}$ 上 $n$ 维线性空间 $U$ 上的一个线性变换，如果存在 $U$ 的一组基 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{n}$ 使得 $\sigma$ 在这组基下的矩阵为对角形，则称 $\sigma$ 是在 $\mathbb{F}$ 上可对角化的线性变换，简称为 $\sigma$ 可对角化.
+
+    设 $A$ 是数域 $\mathbb{F}$ 上的 $n$ 阶方阵. 如果存在 $\mathbb{F}$ 上可逆矩阵 $P$ 使得 $$
+        P^{-1}AP = \left(
+        \begin{matrix}
+                \lambda_1 &           &        &           \\
+                          & \lambda_2 &        &           \\
+                          &           & \ddots &           \\
+                          &           &        & \lambda_n
+            \end{matrix}
+        \right),\ \lambda_i \in \mathbb{F},\ i = 1, 2, \cdots, n\ ,
+    $$ 则称 $A$ 是在 $\mathbb{F}$ 上可相似对角化的方阵，简称为 $A$ 可对角化.
+\end{definition}
+
+\begin{definition}[特征值、特征向量]
+    设 $\sigma$ 是数域 $\mathbb{F}$ 上线性空间 $U$ 上的一个线性变换，如果对于数域 $\mathbb{F}$ 中某个数 $\lambda_{0}$，存在一个 $U$ 中的非零向量 $\alpha$，使得 $$
+        \sigma(\alpha) = \lambda_0 \alpha\ ,
+    $$ 则称 $\lambda_0$ 为 $\sigma$ 的一个特征值，称 $\alpha$ 为 $\sigma$ 的属于特征值 $\lambda_0$ 的一个特征向量.
+
+    设 $A$ 是属于 $\mathbb{F}$ 上的 $n$ 阶方阵，如果存在属于 $\mathbb{F}$ 中的某个数 $\lambda_0$，以及 $O \neq X \in \mathbb{F}^{n \times 1}$，使得 $$
+        AX = \lambda_0 X\ ,
+    $$ 则称 $\lambda_0$ 为 $A$ 在 $\mathbb{F}$ 上的一个特征值，称 $X$ 为 $A$ 的属于特征值 $\lambda_0$ 的一个特征向量.
+\end{definition}
+
+\begin{theorem}[]
+    设 $\sigma$ 是属于 $\mathbb{F}$ 上 $n$ 维线性空间 $U$ 的一个线性变换，则 $\sigma$ 可对角化的充要条件是 $\sigma$ 有 $n$ 个线性无关的特征向量组成 $U$ 的一组基. 数域 $\mathbb{F}$ 上 $n$ 阶矩阵 $A$ 可对角化的充要条件是 $A$ 有 $n$ 个线性无关的特征向量 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{n}$，使得 $\alpha_i$ 是属于 $\lambda_i$ 的特征向量，$i = 1, 2, \cdots, n$. 此时取 $P = ({\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{n})$，即有 $P^{-1}AP = \mathrm{diag}\,({\lambda}_1, {\lambda}_2, \cdots, {\lambda}_{n})$.
+\end{theorem}
+
+\begin{theorem}[]
+    若 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{s}$ 是 $A$ 的属于 $\lambda$ 的特征向量，则 $\lambda{\alpha}_1, \lambda{\alpha}_2, \cdots, \lambda{\alpha}_{s}$ 的任何非零线性组合 $k_1\lambda\alpha_1 + k_2\lambda\alpha_2 + \cdots + k_s\lambda\alpha_s = \lambda(k_1\alpha_1 + k_2\alpha_2 + \cdots + k_s\alpha_s) = \lambda\beta$ 也是 $A$ 的属于 $\lambda$ 的特征向量.
+\end{theorem}
+
+\subsection{特征多项式、特征子空间与相似对角化、不变子空间}
+
+\begin{definition}[特征子空间、几何重数、代数重数]
+    设 $\lambda_i \in \mathbb{F}$ 是矩阵 $A \in \mathbb{F}^{n \times n}$ 的特征值，则 $$
+        V_{\lambda_i} = \{X \in \mathbb{F}^{n \times 1}|(A - \lambda_i I)X = O\} = \{X \in \mathbb{F}^{n \times 1} | AX = \lambda_iX\} = V_{A - \lambda_iI}
+    $$ 是 $U$ 的子空间，称为 $A$ 的属于特征值 $\lambda_i$ 的特征子空间.
+
+    设 $\lambda_i \in \mathbb{F}$ 是线性变换 $\sigma:U \to U$ 的特征值，则 $$
+        V_{\lambda_i} = \{alpha \in U|\sigma(\alpha) = \lambda_i\alpha\} = \mathrm{Ker}\,(\sigma - \lambda_iId)
+    $$ 是 $U$ 的子空间，称为 $\sigma$ 的属于特征值 $\lambda_i$ 的特征子空间.
+
+    设 $A$ 是线性变换 $\sigma:U \to U$ 在某一组基下的矩阵，$\lambda_i$ 是 $\sigma$ 的特征值，则 $\sigma$ 的属于 $\lambda_i$ 的特征子空间的所有向量的坐标组成的集合就是矩阵 $A$ 的属于 $\lambda_i$ 的特征子空间. 特征值 $\lambda_i$ 的特征子空间的维数 $\dim V_{\lambda_i} = m_i$ 称为 $\lambda_i$ 的几何重数.
+
+    在复数域上，设 $$
+        \begin{aligned}
+            f_A(\lambda) & = |\lambda I_n - A| = \lambda^n - \mathrm{tr}\,(A) \lambda^{n-1} + \cdots + (-1)^n|A|        \\
+                         & = (\lambda - \lambda_1)(\lambda - \lambda_2)\cdots(\lambda - \lambda_n)                      \\
+                         & = (\lambda - \lambda_1)^{n_1}(\lambda - \lambda_2)^{n_2}\cdots(\lambda - \lambda_t)^{n_t}\ ,
+        \end{aligned}$$ 其中最后一个等式是 $A$ 的特征多项式的标准分解式，$\lambda_i, i = 1, 2, \cdots, t$ 是其全部不同的特征值，$(\lambda - \lambda_i)^n$ 的指数 $n_i$ 称为 $\lambda_i$ 的代数重数.
+\end{definition}
+
+\begin{definition}[不变子空间]
+    设 $\sigma \in \mathrm{End}_F(V)$，$W \leqslant V$. 若 $\sigma(W) \subset W$，则称 $W$ 是 $\sigma$ 的不变子空间，简称为 $\sigma$ -- 子空间.
+\end{definition}
+
+\begin{definition}[线性变换在不变子空间上的限制]
+    设 $\sigma \in \mathrm{End}_F(V)$，$W$ 是 $\sigma$ -- 子空间，把 $\sigma$ 看作 $W$ 上的一个线性变换，称作 $\sigma$ 在不变子空间 $W$ 上引起的线性变换，或称作 $\sigma$ 在不变子空间 $W$ 上的限制，记作 $\sigma |_W$. 换句话说，$\forall \xi \in W, \sigma|_{W}(\xi) = \sigma(\xi)$，而 $\forall \xi \notin W$，$\sigma|_W(\xi)$ 无定义.
+\end{definition}
+
+\begin{theorem}[]
+    若 $n$ 阶方阵 $A$ 在数域 $\mathbb{F}$ 上有 $n$ 个特征值（重根按重数计），则 $A$ 的全体特征值之和等于 $A$ 的迹 $\mathrm{tr}\,A$. $A$ 的全体特征值之积等于 $A$ 的行列式 $|A|$.
+\end{theorem}
+
+\begin{corollary}
+    $n$ 阶复方阵 $A$ 的全体特征值之和是 $\mathrm{tr}\,A$，$A$ 的全体特征值之积为 $|A|$.
+\end{corollary}
+
+\begin{corollary}
+    $n$ 阶复方阵 $A$ 可逆的充要条件是 $A$ 的特征值全不为零.
+\end{corollary}
+
+\begin{theorem}[]
+    若 $n$ 阶可逆矩阵 $A$ 有 $n$ 个两两不等的特征值 ${\lambda}_1, {\lambda}_2, \cdots, {\lambda}_{n}$，则 $A^{-1}$ 的特征值为 $1/{\lambda}_1, 1/{\lambda}_2, \cdots, 1/{\lambda}_{n}$.
+\end{theorem}
+
+\begin{theorem}[]
+    若 $n$ 阶矩阵 $A$ 与 $B$ 相似，则 $A$ 与 $B$ 的特征多项式相等，即 $$
+        f_A(\lambda) = |\lambda I - A| = f_B(\lambda) = |\lambda I - B|\ ,
+    $$ 从而 $A$ 与 $B$ 有相同的特征值、相同的迹和行列式.
+\end{theorem}
+
+\begin{theorem}[]
+    线性变换 $\sigma: U \to U$ 的属于不同特征值 $\lambda_i(1 \leqslant i \leqslant t)$ 的特征子空间 $V_{\lambda_i}$ 的和是直和.
+\end{theorem}
+
+\begin{corollary}
+    $\forall 1 \leqslant i \leqslant t$，设 $\dim V_{\lambda_i} = m_i$，$({\alpha}_{i1}, {\alpha}_{i2}, \cdots, {\alpha}_{i{m_i}})$ 是 $V_{\lambda_i}$ 的一组基，则各特征子空间 $V_{\lambda_i}$ 的基 $M_i$ 所含向量共同组成的集合 $S = \{a_{ij}|1 \leqslant i \leqslant t, 1 \leqslant j \leqslant m_i \}$ 包含 $m_1 + m_2 + \cdots + m_t$ 个线性无关的特征向量，是 $\sigma$ 的特征向量集合的一个极大线性无关向量组. $U$ 的线性变换 $\sigma$ 可对角化当且仅当 $\sigma$ 的各特征子空间 $V_{\lambda_i}$ 的维数之和等于 $\dim U$.
+\end{corollary}
+
+\begin{corollary}
+    如果 $\sigma$ 的所有特征值都是单根并且在 $\mathbb{F}$ 中，则 $\sigma$ 在 $\mathbb{F}$ 上可对角化.
+\end{corollary}
+
+\begin{proposition}
+    $\sigma(W = L({\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{s})) \subset W \Leftrightarrow \sigma(\alpha_i) \subset W,\ i = 1, 2, \cdots, s$.
+\end{proposition}
+
+\begin{proposition}
+    \begin{enumerate}[nosep]
+        \item 任何子空间 $W \leqslant V$ 都是数乘变换 $\Lambda$（即 $\Lambda:V \to V, \alpha \mapsto \lambda\alpha \neq (\forall \alpha \in V)$）的不变子空间.
+        \item 由 $\sigma$ 的特征向量生成的子空间是 $\sigma$ -- 子空间. 特别地，由 $\sigma$ 的一个特征向量生成的子空间是一维 $\sigma$ -- 子空间. 同理可证 $\sigma^{-1}(\mathbf{0})$ 是 $\sigma$ -- 子空间.
+    \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+    设 $\sigma \in \mathrm{End}_F(V), f(x) \in \mathbb{F}[x]$，则 $\sigma f(\sigma) = f(\sigma) \sigma$，且 $(f(\sigma))(V), (f(\sigma))^{-1}(\mathbf{0})$ 都是 $\sigma$ -- 子空间.
+\end{corollary}
+
+\begin{proposition}
+    设 $\sigma \in \mathrm{End}_F(V)$，则 $\sigma$ 在某组基下的矩阵为准对角矩阵当且仅当 $V$ 可分解为一些 $\sigma$ -- 子空间的直和.
+\end{proposition}
+
+\subsection{最小多项式}
+
+\begin{definition}[零化多项式、最小多项式]
+    设 $A \in \mathbb{F}^{n \times n}$. 如果非零 $\lambda \in \mathbb{F}[\lambda]$ 满足 $f(A) = O$，就称 $f(\lambda)$ 是 $A$ 的零化多项式. $A$ 的所有零化多项式中次数最低的首一多项式称为 $A$ 的最小多项式，记作 $d_A(\lambda)$.
+
+    设 $\sigma \in \mathrm{End}_F(V)$，如果非零 $f(\lambda) \in \mathbb{F}[\lambda]$ 满足 $f(\sigma) = 0$，就称 $f(\lambda)$ 是 $\sigma$ 的零化多项式. $\sigma$ 的所有零化多项式中次数最低的首一多项式称为 $\sigma$ 的最小多项式，记作 $d_{\sigma}(\lambda)$.
+\end{definition}
+
+\begin{definition}[幂零]
+    如果存在正整数 $k$ 使 $A^k = O$ 对方阵 $A$ 成立，就称 $A$ 是幂零的.
+\end{definition}
+
+\begin{corollary}
+    若 $A$ 是幂零的，则 $A$ 只有唯一的特征值 $0$.
+\end{corollary}
+
+\begin{corollary}
+    设 $\sigma \in \mathrm{End}(V), \dim V < +\infty$，则 $f_{\sigma}(\sigma) = 0$.
+\end{corollary}
+
+\begin{theorem}[]
+    设 $f(\lambda)$ 是方阵 $A$ 的零化多项式，$d_A(\lambda)$ 是 $A$ 的最小多项式，则 $f(\lambda)$ 是 $d_A(\lambda)$ 的倍式，$d_A(\lambda)$ 由 $A$ 唯一决定.
+\end{theorem}
+
+\begin{theorem}[]
+    复方阵 $A$ 可对角化的充要条件是 $A$ 的最小多项式没有重根.
+\end{theorem}
+
+\begin{theorem}[]
+    $\mathbb{C}$ 上的 $n$ 阶方阵 $A$ 必相似于一个上三角形矩阵 $B = \left(
+        \begin{matrix}
+                b_{11} & b_{12} & \cdots & b_{1n} \\
+                0      & b_{22} & \cdots & b_{2n} \\
+                0      & 0      & \ddots & \vdots \\
+                0      & 0      & \cdots & b_{nn}
+            \end{matrix}
+        \right)$，其中 $B$ 的主对角线元就是 $A$ 的全体特征值，并且这些特征值可以按照预先指定的顺序排列.
+\end{theorem}
+
+\begin{corollary}
+    设 $\sigma$ 是 $n$ 阶复线性空间 $V$ 中的线性变换，则存在 $V$ 的基使 $\sigma$ 在这组基下的矩阵为上三角形矩阵，其主对角线元是 $\sigma$ 的全体特征根，并且可以按预先指定的任意顺序排列.
+\end{corollary}
+
+\begin{theorem}[凯莱---哈密顿定理]
+    $A \in \mathbb{F}^{n \times n}$ 的特征多项式 $$
+        \phi_A(\lambda) = |\lambda I - A| = \lambda^n - c_1\lambda^{n-1} + \cdots + (-1)^nc_n
+    $$ 是 $A$ 的零化多项式，即 $$
+        \phi_t(A) = A^n - c_1A^{n-1} + \cdots + (-1)^nc_nI = O\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    $A$ 的最小多项式 $d_A(\lambda)$ 是特征多项式 $\varphi_A(\lambda)$ 的因式. 如果 $$
+        \varphi_A(\lambda) = (\lambda - \lambda_1)^{n_1}(\lambda - \lambda_2)^{n_2}\cdots(\lambda - \lambda_t)^{n_t}\ ,
+    $$ 其中 ${\lambda}_1, {\lambda}_2, \cdots, {\lambda}_{t}$ 是 $A$ 的全部不同的特征值，则 $A$ 的最小多项式 $d_A(\lambda)$ 为 $$
+        d_A(\lambda) = (\lambda - \lambda_1)^{k_1}(\lambda - \lambda_2)^{k_2} \cdots (\lambda - \lambda_t)^{k_t},\ 1 \leqslant k_i \leqslant n_i, \forall 1 \leqslant i \leqslant t\ .
+    $$
+\end{corollary}
+
+\subsection{若尔当形矩阵简介}
+
+\begin{definition}[若尔当块、若尔当形]
+    设 $a$ 是任意复数，$m$ 是任意正整数，形如 $$
+        \left(
+        \begin{matrix}
+            a & 1 & 0      & \cdots & 0      \\
+              & a & 1      & \cdots & 0      \\
+              &   & \ddots & \ddots & \vdots \\
+              &   &        & a      & 1      \\
+              &   &        &        & a
+        \end{matrix}
+        \right)_{m \times m}
+    $$ 的 $m$ 阶方阵称为若尔当块，记作 $J_m(a)$，其中 $m$ 表示它的阶数，$a$ 是它的对角线元，也就是它的特征值. 如果一个方阵 $J$ 是准对角矩阵，并且所有的对较块都是若尔当块，就称这个准对角矩阵为若尔当形矩阵.
+\end{definition}
+
+\begin{remark}
+    每个复数 $a$ 都可以看作一阶的若尔当块 $J_1(a)$. 每个对角矩阵 $\left(
+        \begin{matrix}
+            \lambda_1 &           &        &           \\
+                      & \lambda_2 &        &           \\
+                      &           & \ddots &           \\
+                      &           &        & \lambda_n
+        \end{matrix}
+        \right)$ 都可以看作由一阶若尔当块 $J_1(\lambda_1), J_1(\lambda_2), \cdots, J_1(\lambda_n)$ 组成的准对角矩阵，因此都是若尔当形矩阵.
+\end{remark}
+
+\begin{definition}[若尔当标准形]
+    设 $A$ 为 $n$ 阶复方阵，则于 $A$ 相似的若尔当形矩阵 $J$ 称为 $A$ 的若尔当标准形. $J$ 不计主对角线小块的顺序由 $A$ 唯一决定.
+\end{definition}
+
+\begin{theorem}[]
+    设复方阵 $A$ 相似于若尔当形矩阵 $J(\exists P, P^{-1}AP = J)$，则对于 $A$ 的每个特征值 $\lambda_i(1 \leqslant i \leqslant t)$，可以通过等式 $\mathrm{rank}\,(J - \lambda_iI)^k(\forall \text{正整数 $k$})$ 确定 $J$ 中属于特征值 $\lambda_i$ 的各若尔当块 $J_{m_{i1}}(\lambda_i), J_{m_{i2}}(\lambda_i), \cdots, J_{m_{ik_i}}(\lambda_i)$ 的阶 $m_{i1}, m_{i2}, \cdots, m_{ik_i}$，从而确定 $J$. 步骤如下：
+
+    \begin{enumerate}[nosep]
+        \item 令 $r_k = \mathrm{rank}\,(A - \lambda_iI)^k = \mathrm{rank}\,(P^{-1}(A - \lambda_iI)P)^k = \mathrm{rank}\,(J - \lambda_iI)^k$，并约定 $r_0 = n$.
+        \item 计算 $d_k = r_{k - 1} - r_k, \forall k \geqslant 1$，则 $d_k \geqslant d_{k+1}$.
+        \item 计算 $\delta_k = d_k - d_{k + 1}, \forall k \geqslant 1$.
+        \item $J$ 中的阶为 $k$ 的若尔当块 $J_k(\lambda_i)$ 共有 $\delta_k$ 个.
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    如果复方阵 $A$ 相似于若尔当形矩阵 $J$，则除了各若尔当块的排列顺序可以任意改变，$J$ 由 $A$ 唯一确定.
+\end{corollary}
+
+\begin{theorem}[]
+    设 $A$ 为 $m$ 阶复方阵，则 $A$ 必相似于一个若尔当形矩阵 $J$.
+\end{theorem}
+
+\section{线性变换在二次型化简中的应用}
+
+\subsection{空间二次曲面及分类}
+
+\begin{definition}[二次曲面]
+    令 $F(x, y, z) = a_{11}x^2 + a_{22}y^2 + a_{33}z^2 + 2a_{12}xy + 2a_{13}xz + 2a_{23}yz + 2a_{14}x + 2a_{24}y + 2a_{34}z + a_{44}$，这里系数是任意给定的实数，且二次项的系数不全为零. 在直角坐标系下，方程 $\varSigma:F(x, y, z) = 0$ 所代表的曲面称为二次曲面.
+\end{definition}
+
+\subsection{n 元二次型及其矩阵表示}
+
+\begin{definition}[二次型]
+    设 $\mathbb{F}$ 是数域，系数在 $\mathbb{F}$ 中的关于 $n$ 个变元 ${x}_1, {x}_2, \cdots, {x}_{n}$ 的二次齐次多项式 $$
+        f({x}_1, {x}_2, \cdots, {x}_{n}) = a_{11}x_1^2 + 2a_{12}x_1x_2 + \cdots + 2a_{1n}x_1x_n + a_{22}x_2^2 + 2a_{23}x_2x_3 + \cdots + 2a_na_2a_n + \cdots + a_{nn}x_n^2
+    $$ 称为数域 $\mathbb{F}$ 上的一个 $n$ 元二次型，在不会引起混淆时简称为二次型，并简记作 $f$. 当 $\mathbb{F}$ 是实数域 $\mathbb{R}$ 或复数域 $\mathbb{C}$ 时，分别称之为实二次型或复二次型.
+\end{definition}
+
+\begin{definition}[二次型的矩阵、二次型的秩]
+    设二次型 $f({x}_1, {x}_2, \cdots, {x}_{n})$，令 $A$ 是由二次型的系数 $a_{ij}$ 组成的矩阵，则 $A = (a_{ij})_{n \times n}$ 是对称的，称为二次型 $f(x_1, x_2, \cdots, x_n)$ 的矩阵，$A$ 的秩称为二次型 $f({x}_1, {x}_2, \cdots, {x}_{n})$ 的秩.
+\end{definition}
+
+\begin{definition}[二次型的线性变换]
+    设 ${x}_1, {x}_2, \cdots, {x}_{n}$ 和 ${y}_1, {y}_2, \cdots, {y}_{n}$ 是两组变元，系数在数域 $\mathbb{F}$ 上的一组关系式 $$
+        \left\{
+        \begin{aligned}
+            x_1 & = c_{11}y_1 + x_{12}y_2 + \cdots + c_{1n}y_n\ , \\
+            x_2 & = c_{21}y_1 + x_{22}y_2 + \cdots + c_{2n}y_n\ , \\
+                & \ \vdots                                        \\
+            x_n & = c_{n1}y_1 + x_{n2}y_2 + \cdots + c_{nn}y_n\ , \\
+        \end{aligned}
+        \right.
+    $$ 称为由 ${x}_1, {x}_2, \cdots, {x}_{n}$ 到 ${y}_1, {y}_2, \cdots, {y}_{n}$ 的一个线性替换（线性变换）. 它可写成矩阵式 $$
+        X = CY\ ,
+    $$ 其中 $$
+        X = \left(
+        \begin{matrix}
+                x_1 \\x_2\\\vdots\\x_n
+            \end{matrix}
+        \right),\ C = \left(
+        \begin{matrix}
+                c_{11} & c_{12} & \cdots & c_{1n} \\
+                c_{21} & c_{22} & \cdots & c_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                c_{n1} & c_{n2} & \cdots & c_{nn} \\
+            \end{matrix}
+        \right),\ Y = \left(
+        \begin{matrix}
+                y_1 \\y_2\\\vdots\\y_n
+            \end{matrix}
+        \right)\ .
+    $$ 若系数矩阵 $C$ 是可逆矩阵，即 $|C| \neq 0$，则称此线性变换为可逆（或非退化）线性变换.
+\end{definition}
+
+\begin{definition}[矩阵的相合]
+    设 $A, B$ 是数域 $\mathbb{F}$ 上的两个 $n$ 阶方阵，若存在 $\mathbb{F}$ 上的可逆方阵 $C$ 使 $$
+        B = C ^{\mathrm{T}} AC\ ,
+    $$ 称 $A$ 与 $B$ 是相合的矩阵，记为 $A \cong B$.
+\end{definition}
+
+\begin{definition}[标准二次型]
+    只含平方项的二次型 $f({x}_1, {x}_2, \cdots, {x}_{n}) = \sum\limits_{i = 1}^{n}d_ix_i^2$ 称为标准二次型. 如果可逆线性变换 $X = CY$ 把二次型 $f = X ^{\mathrm{T}}AX$ 化成了标准的二次型 $g = \sum\limits_{i = 1}^{n}d_iy_i^2$，则称 $g$ 为 $f$ 的一个标准形.
+\end{definition}
+
+\begin{proposition}
+    数域 $\mathbb{F}$ 上的二次型 $f$ 可以经过可逆线性替换化为二次型 $g$，当且仅当 $f$ 的矩阵 $A$ 与 $g$ 的矩阵 $B$ 相合.
+\end{proposition}
+
+\subsection{化二次型为标准形}
+
+\begin{theorem}[]
+    数域 $\mathbb{F}$ 上的任意一个二次型 $f$ 可以经过可逆线性替换化为标准形 $$
+        d_1y_1^2 + d_2y_2^2 + \cdots + d_ny_n^2\ .
+    $$
+\end{theorem}
+
+\begin{corollary}
+    数域 $\mathbb{F}$ 上的任意一个对称矩阵必相合于 $\mathbb{F}$ 上一个对角矩阵，即对数域 $\mathbb{F}$ 上的任意对称矩阵 $A$，必存在数域 $\mathbb{F}$ 上的可逆矩阵 $C$，使得 $C ^{\mathrm{T}} AC$ 成为数域 $\mathbb{F}$ 上的对角矩阵.
+\end{corollary}
+
+\begin{theorem}[]
+    数域 $\mathbb{F}$ 上的任意对称矩阵 $A$ 都可以经由一系列初等变换化为标准形，只要在每次初等行变换后进行一次同样的初等列变换.
+\end{theorem}
+
+\subsection{正定二次型与正定矩阵}
+
+\begin{definition}[正定二次型、正定矩阵]
+    设 $f({x}_1, {x}_2, \cdots, {x}_{n})=f(X ^{\mathrm{T}}) = X ^{\mathrm{T}}AX$ 为 $n$ 元实二次型. 若 $\forall X ^{\mathrm{T}} = ({c}_1, {c}_2, \cdots, {c}_{n}) \in \mathbb{R}^n\backslash\{0\}$，二次型的值 $$
+        f({c}_1, {c}_2, \cdots, {c}_{n}) > 0
+    $$ 总成立，则称实二次型 $f({x}_1, {x}_2, \cdots, {x}_{n})$ 为正定二次型，相对应的实对称矩阵 $A$ 称为正定矩阵.
+\end{definition}
+
+\begin{remark}
+    正定矩阵只对实对称矩阵定义.
+\end{remark}
+
+\begin{definition}[顺序主子式]
+    设 $n$ 阶矩阵 $A = \left(
+        \begin{matrix}
+                a_{11} & a_{12} & \cdots & a_{1n} \\
+                a_{21} & a_{22} & \cdots & a_{2n} \\
+                \vdots &
+                \vdots &
+                \ddots &
+                \vdots                            \\
+                a_{n1} & a_{n2} & \cdots & a_{nn}
+            \end{matrix}
+        \right)$，则 $A$ 的左上角 $k \times k$ 子矩阵的行列式 $$
+        J_k = \left|
+        \begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1k} \\
+            a_{21} & a_{22} & \cdots & a_{2k} \\
+            \vdots &
+            \vdots &
+            \ddots &
+            \vdots                            \\
+            a_{k1} & a_{k2} & \cdots & a_{kk}
+        \end{matrix}
+        \right|,\quad k = 1, 2, \cdots, n
+    $$ 称为 $A$ 的 $k$ 阶顺序主子式.
+\end{definition}
+
+\begin{definition}[（半）正（负）定矩阵（二次型）、不定矩阵（二次型）]
+    设 $f(x_1, x_2, \cdots, x_n) = X ^{\mathrm{T}}AX$ 为 $n$ 元实二次型.
+    \begin{enumerate}[nosep]
+        \item 如果 $\forall ({c}_1, {c}_2, \cdots, {c}_{n}) \in \mathbb{R}\backslash \{0\}$，都有 $f({c}_1, {c}_2, \cdots, {c}_{n}) \geqslant 0$，则称 $f$ 为半正定二次型，对应的实对称矩阵 $A$ 称为半正定矩阵；
+        \item 如果 $\forall ({c}_1, {c}_2, \cdots, {c}_{n}) \in \mathbb{R}\backslash \{0\}$，都有 $f({c}_1, {c}_2, \cdots, {c}_{n}) < 0$，则称 $f$ 为负定二次型，对应的实对称矩阵 $A$ 称为负定矩阵；
+        \item 如果 $\forall ({c}_1, {c}_2, \cdots, {c}_{n}) \in \mathbb{R}\backslash \{0\}$，都有 $f({c}_1, {c}_2, \cdots, {c}_{n}) \leqslant 0$，则称 $f$ 为半负定二次型，对应的实对称矩阵 $A$ 称为半负定矩阵；
+        \item 若 $f$ 非半正定，也非半负定，则称 $f$ 为不定二次型，相应的矩阵 $A$ 称为不定矩阵.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[]
+    二次型的正定性经过可逆线性替换后保持不变.
+\end{theorem}
+
+\begin{corollary}
+    设 $n$ 阶实对称矩阵 $A$ 与 $B$ 相合，即有 $n$ 阶可逆方阵 $C$ 使得 $B = C ^{\mathrm{T}}AC$，则 $A$ 为正定矩阵当且仅当 $B$ 为正定矩阵. 换言之，相合的实对称矩阵具有相同的正定性.
+\end{corollary}
+
+\begin{corollary}
+    $n$ 阶实对称矩阵 $A$ 为正定矩阵的充要条件是它相合于单位矩阵 $I$.
+\end{corollary}
+
+\begin{corollary}
+    实对称矩阵 $A$ 为正定矩阵的充要条件是存在可逆矩阵 $C$ 使得 $A = C ^{\mathrm{T}} C$.
+\end{corollary}
+
+\begin{corollary}
+    正定矩阵的行列式大于 $0$.
+\end{corollary}
+
+\begin{remark}
+    行列式大于零的实对称矩阵并不一定是正定的. 如矩阵 $$
+        A = \left(
+        \begin{matrix}
+            -1 & 1  \\
+            1  & -2
+        \end{matrix}
+        \right),\quad B = \left(
+        \begin{matrix}
+            -1 &    &   \\
+               & -1 &   \\
+               &    & 1
+        \end{matrix}
+        \right)
+    $$ 的行列式都是大于零的，但是 $A$ 与 $B$ 都不是正定的.
+\end{remark}
+
+\begin{theorem}[]
+    实对称矩阵 $A$ 正定的充要条件是 $A$ 的所有顺序主子式全大于零.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $f({x}_1, {x}_2, \cdots, {x}_{n}) = X ^{\mathrm{T}}AX$ 是 $n$ 元实二次型，$A$ 是相对应的实对称矩阵，则下列断言等价：
+    \begin{enumerate}[nosep]
+        \item $A$ 是半正定矩阵（即 $f({x}_1, {x}_2, \cdots, {x}_{n}) = X ^{\mathrm{T}}AX$ 是半正定二次型）；
+        \item 有实可逆矩阵 $P$，使 $P ^{\mathrm{T}}AP = \left(
+                  \begin{matrix}
+                          d_1 &     &        &     \\
+                              & d_2 &        &     \\
+                              &     & \ddots &     \\
+                              &     &        & d_n
+                      \end{matrix}
+                  \right) = B$ 为对角形，且 $d_i \geqslant 0, i = 1, 2, \cdots, n$；
+        \item 有实矩阵 $C$（不一定可逆），使 $A = C ^{\mathrm{T}}C$.
+    \end{enumerate}
+\end{theorem}
+
+\subsection{相合不变量}
+
+\begin{definition}[正（负）惯性指数、符号差]
+    实二次型 $f$ 的规范形中正平方项的个数 $p$ 称为 $f$ 的正惯性指数，负平方项的个数 $r - p$ 称为 $f$ 的负惯性指数，二者之差 $p - (r - p) = 2p - r$ 称为 $f$ 的符号差.
+\end{definition}
+
+\begin{theorem}[]
+    任意一个 $n$ 元复二次型 $f({x}_1, {x}_2, \cdots, {x}_{n})$ 必可由可逆线性替换化为规范形 $$
+        z^2_1, z^2_2, \cdots, z^2_{r}\ ,
+    $$ 且规范形由 $f$ 的秩 $r$ 惟一确定.
+\end{theorem}
+
+\begin{corollary}
+    $\mathbb{C}$ 上任一个对称矩阵 $A$ 必相合于一个形如 $\left(
+        \begin{matrix}
+                I_r & O \\
+                O   & O
+            \end{matrix}
+        \right)$ 的对角矩阵，且 $r = \mathrm{rank}\,A$. 所以，两个复对称矩阵相合的充要条件是它们的秩相等.
+\end{corollary}
+
+\begin{theorem}[惯性定理]
+    任意一个实二次型 $f$ 经过可逆线性替换可化为规范形，且规范形唯一.
+\end{theorem}
+
+\begin{theorem}[]
+    任一实对称矩阵 $A$ 必相合于一个下述形状的对角矩阵 $B = \left(
+        \begin{matrix}
+                I_p &          &   \\
+                    & -I_{r-p} &   \\
+                    &          & O
+            \end{matrix}
+        \right)$ 其中 $B$ 的主对角线上 $1$ 的个数 $p$ 及 $-1$ 的个数 $r-p$（$r$ 是 $A$ 的秩）都是唯一确定的.
+\end{theorem}
+
+\begin{corollary}
+    两个 $n$ 元实对称矩阵相合的充分必要条件为它们有相同的秩和相同的正惯性指数（或相同的负惯性指数，或相同的符号差）.
+\end{corollary}
+
+\begin{corollary}
+    实数域 $\mathbb{R}$ 上所有 $n$ 阶对称矩阵按是否相合分为 $\dfrac{1}{2}(n+1)(n+2)$ 类，属于同一类的彼此合同，属于不同类的互不合同.
+\end{corollary}
+
+\section{欧几里得空间}
+
+\subsection{空间向量的内积与长度和夹角}
+
+\begin{definition}[直线夹角]
+    两直线的方向向量直接按的夹角称为两直线的夹角，且规定它为锐角或直角.
+\end{definition}
+
+\begin{definition}[平面夹角]
+    两平面法向量的夹角称为两平面的夹角，通常也规定取锐角或直角.
+\end{definition}
+
+\begin{definition}[直线和平面夹角]
+    直线 $L$ 与它在平面 $\Pi$ 上的投影直线 $L_1$ 的夹角 $\varphi$ 称为 $L$ 与 $\Pi$ 的夹角. 规定 $\phi$ 为锐角或直角.
+\end{definition}
+
+\begin{theorem}[]
+    直线 $L_1$ 与 $L_2$ 的夹角 $$
+        \angle (s_1, s_2) = \arccos \dfrac{|s_1 \cdot s_2|}{||s_1||\ ||s_2||} = \arccos \dfrac{|m_1m_2 + n_1n_2 + p_1p_2|}{\,\sqrt[]{m_1^2 + n_1^2 + p_1^2}\,\sqrt[]{m_2^2 + n_2^2 + p_2^2}}\ .
+    $$
+\end{theorem}
+
+\begin{theorem}[]
+    两平面夹角 $$
+        \theta = \arccos \dfrac{|n_1 \cdot n_2|}{||n_1||\ ||n_2||} = \arccos \dfrac{|A_1A_2+B_1B_2+C_1C_2|}{\,\sqrt[]{A_1^2+B_1^2+C_1^2}\,\sqrt[]{A_2^2+B_2^2+C_2^2}}\ .
+    $$ 其中 $n_1 = (A_1,B_1,C_1), n_2 = (A_2,B_2,C_2)$ 分别为两平面的任意一个法向量.
+\end{theorem}
+
+\begin{theorem}[]
+    直线 $L$ 与平面 $\Pi$ 的夹角 $$
+        \varphi = \arcsin \dfrac{|n \cdot s|}{||n||\ ||s||} = \arcsin \dfrac{|Am+Bn+Cp|}{\,\sqrt[]{A^2+B^2+C^2} \,\sqrt[]{m^2+ n^2 + p^2}}\ .
+    $$
+\end{theorem}
+
+\subsection{内积与欧几里得空间}
+
+\begin{definition}[内积、欧几里得空间]
+
+    设 $V$ 是 $\mathbb{R}$ 上的一个线性空间，若 $V$ 上有一个二元实函数 $\left<\_,\_\right>$，即对任意 $\alpha,\beta \in V$，惟一确定地对应着一个实数 $\left<\alpha, \beta\right>$，并且对任意 $\alpha, \beta, \gamma \in V, k \in \mathbb{R}$，满足以下条件：
+
+    \begin{enumerate}[nosep]
+        \item $\left<\alpha, \beta\right> = \left<\beta, \alpha\right>$；
+        \item $\left<k \alpha, \beta\right> = k\left<\alpha, \beta\right>$；
+        \item $\left<\alpha+ \beta, \gamma\right> = \left<\alpha, \gamma\right> + \left<\beta, \gamma\right>$；
+        \item $\left<\alpha, \alpha\right> \geqslant 0$，当且仅当 $\alpha = 0$ 时 $\left<\alpha, \alpha\right> = 0$.
+    \end{enumerate}
+
+    则称 $\left<\_,\_\right>$ 为 $V$ 上的一个内积，并称具有一个内积的实线性空间 $V, \left<\_,\_\right>$ 为欧几里得（Euclid）空间，国内常常简称欧几里得空间.
+\end{definition}
+
+\begin{definition}[长度]
+    设 $\alpha$ 是欧几里得空间 $(V, \left<\_, \_\right>)$ 中的向量，则 $\alpha$ 的长度 $|\alpha|$ 定义为 $$
+        |\alpha| = \,\sqrt[]{\left<\alpha, \alpha\right>}\ .
+    $$
+
+    故非零向量的长度必是正数，只有零向量的长度为 $0$. 此外，$\forall k \in \mathbb{R}$，$$
+        |k \alpha| = \,\sqrt[]{\left<k \alpha, k \alpha\right>} = \,\sqrt[]{k^2 \left<\alpha, \alpha\right>} = |k|\,\sqrt[]{\left<\alpha, \alpha\right>} = |k||\alpha|\ .
+    $$ 这里 $|k|$ 表示实数 $k$ 的绝对值，后一个 $\alpha$ 表示向量 $\alpha$ 的长度. 长度为 $1$ 的向量称为单位向量. 对任意向量 $\alpha \neq 0$，作 $\alpha^0 = \dfrac{1}{|\alpha|} \alpha$，则有 $$
+        |\alpha^0| = \dfrac{1}{|\alpha|}|\alpha| = 1\ .
+    $$
+\end{definition}
+
+\begin{definition}[向量夹角]
+    设 $\alpha, \beta$ 是欧几里得空间中两个非零向量，则 $\alpha$ 与 $\beta$ 的夹角 $\theta$ 规定为 $$
+        \theta = \arccos \dfrac{\left<\alpha, \beta\right>}{|\alpha||\beta|},\quad 0 \leqslant \theta \leqslant \pi\ .
+    $$ 在此定义下，欧几里得空间中任意两个非零向量有唯一的夹角 $\theta(0 \leqslant \theta \leqslant \pi)$.
+\end{definition}
+
+\begin{definition}[正交、垂直]
+    如果欧几里得空间中两个向量 $\alpha, \beta$ 的内积为零，即 $$
+        \left<\alpha, \beta\right> = 0,
+    $$ 则称 $\alpha, \beta$ 为互相正交的或互相垂直的，记为 $\alpha \bot \beta$.
+\end{definition}
+
+\begin{theorem}[]
+    设 $(V, \left<\_,\_\right>)$ 是一个欧几里得空间，则有
+
+    \begin{enumerate}[nosep]
+        \item $\forall \beta \in V$，有 $\left<0,\beta \right> = \left<\beta, 0\right> = 0$；反之，若 $\forall \beta \in V$ 有 $\left<\alpha, \beta\right> = 0$，则 $\alpha = 0$；
+        \item $\forall \alpha,\beta, \gamma \in V, k \in \mathbb{R}$，有 $\left<\alpha, \beta + \gamma\right> = \left<\alpha, \beta\right> + \left<\alpha, \gamma\right>, \left<\alpha, k \beta\right> = k \left<\alpha, \beta\right>$；
+        \item $\forall \alpha_i, \beta_j \in V, k_i, l_j \in \mathbb{R}, i = 1, 2, \cdots, r; j = 1, 2, \cdots, s$，$\left<\sum\limits_{i=1}^{r}k_i \alpha_i, \sum\limits_{j = 1}^{s}l_j\beta_j\right> = \sum\limits_{i = 1}^{r}\sum\limits_{j = 1}^{s}k_il_j \left<\alpha_i, \beta_j\right>$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    设 $(V, \left<\_, \_\right>)$ 是欧几里得空间，则对于任意向量 $\alpha, \beta \in V$，有 $$
+        |\left<\alpha, \beta\right>| \leqslant |\alpha||\beta|\ ,
+    $$ 当且仅当 $\alpha, \beta$ 线性相关时，等号成立. 其中前一个 $|\_|$ 是绝对值，后两个 $|\_|$ 是长度.
+\end{theorem}
+
+\begin{proposition}[三角不等式]
+    设 $\alpha, \beta$ 是欧几里得空间中任意两个向量，则 $|\alpha + \beta| \leqslant |\alpha| + |\beta|$.
+\end{proposition}
+
+\begin{proposition}[勾股定理]
+    设 $\alpha, \beta$ 是欧几里得空间中的向量，且 $\alpha \bot \beta$，则 $|\alpha + \beta|^2 = |\alpha|^2 + |\beta|^2$.
+\end{proposition}
+
+\subsection{度量矩阵与标准正交基}
+
+\begin{definition}[正交向量组，标准正交基]
+    欧几里得空间 $V$ 中一组两两正交的非零向量称为正交向量组. 由两两正交且长度为 $1$ 的向量组构成的基称为一组标准正交基.
+\end{definition}
+
+\begin{theorem}[]
+    在去定了 $n$ 维实线性空间 $V$ 的一组基 ${\varepsilon}_1, {\varepsilon}_2, \cdots, {\varepsilon}_{n}$ 后，$V$ 上的所有内积 $\left<\_, \_\right>$ 和所有 $n$ 阶正定矩阵 $A$ 之间存在一一对应关系. 即 $V$ 上任一个内积 $\left<\_, \_\right>$ 唯一确定一个 $n$ 阶正定矩阵 $A$；反之，任一个 $n$ 阶正定矩阵 $A$ 唯一确定 $V$ 上的一个内积 $\left<\_, \_\right>$.
+\end{theorem}
+
+\begin{theorem}[]
+    同一有限维欧几里得空间中两组基的度量矩阵是相合的.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $V$ 为欧几里得空间，$\alpha, \beta_1, \beta_2, \cdots, \beta_m \in V$，则
+    \begin{enumerate}[nosep]
+        \item 若 $\alpha \bot \beta_i, i = 1, 2, \cdots, m$，则有 $\alpha \bot ({k}_1\beta_1+ {k}_2\beta_2+ \cdots+ {k}_{m}\beta_m),k_i \in \mathbb{R},i=1, 2, \cdots, m$；
+        \item 若 ${\beta}_1, {\beta}_2, \cdots, {\beta}_{m}$ 为正交向量组，则 ${\beta}_1, {\beta}_2, \cdots, {\beta}_{m}$ 线性无关.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[施密特标准正交化]
+    设 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{m}(m \leqslant n)$ 是 $n$ 维欧几里得空间 $V$ 中的线性无关组，则存在标准正交组 ${\beta}_1, {\beta}_2, \cdots, {\beta}_{m}$ 使得 $\beta_i$ 是 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{i}(i = 1, 2, \cdots, m)$ 的线性组合.
+\end{theorem}
+
+\begin{remark}
+    在选定一组标准正交基下的条件，任意 $n$ 维欧几里得空间的两个向量的内积恰好是这两个向量对应坐标向量在 $\mathbb{R}^n$ 中的标准内积.
+\end{remark}
+
+\subsection{正交矩阵与正交变换}
+
+\begin{definition}[正交矩阵]
+    设 $A$ 为实方阵，如果它满足 $AA ^{\mathrm{T}} = A ^{\mathrm{T}}A = I$，则称 $A$ 为正交矩阵.
+\end{definition}
+
+\begin{definition}[正交变换]
+    欧几里得空间 $V$ 上的线性变换 $\sigma$ 如果满足：对所有的 $\alpha, \beta \in V$ 成立 $$
+        \left<\sigma(\alpha), \sigma(\beta)\right> = \left<\alpha, \beta\right>\ ,
+    $$ 就称 $\sigma$ 是一个正交变换.
+\end{definition}
+
+\begin{definition}[正交相似]
+    设 $A,B$ 是实方阵. 如果存在正交方阵 $P$ 使 $B = P^{-1}AP$，则称 $A$ 与 $B$ 正交相似.
+\end{definition}
+
+\begin{definition}[正交补]
+    设 $W$ 是欧几里得空间 $V$ 的一个子空间，令 $$
+        W^{\bot} = \{\beta \in V | \forall \alpha \in W, \left<\beta, \alpha\right> = 0\}\,
+    $$ 称 $W ^{\bot}$ 为 $W$ 在 $V$ 中的一个正交补.
+\end{definition}
+
+\begin{remark}
+    $W$ 在 $V$ 中的正交补 $w ^{\bot}$ 是 $V$ 的子空间，并且满足 $W \bot W ^{\bot}, W \oplus W ^{\bot} = V$.
+\end{remark}
+
+\begin{theorem}[]
+    $\mathbb{R}$ 上的方阵 $A$ 为正交矩阵的充要条件是 $A^{-1} = A ^{\mathrm{T}}$.
+\end{theorem}
+
+\begin{theorem}[]
+    $n$ 维欧几里得空间中由标准正交基 ${\varepsilon}_1, {\varepsilon}_2, \cdots, {\varepsilon}_{n}$ 到另标准正交基 ${\eta}_1, {\eta}_2, \cdots, {\eta}_{n}$ 的过渡矩阵是正交矩阵. 反之，若 ${\varepsilon}_1, {\varepsilon}_2, \cdots, {\varepsilon}_{n}$ 是一组标准正交基，而 ${\varepsilon}_1, {\varepsilon}_2, \cdots, {\varepsilon}_{n}$ 到 ${\eta}_1, {\eta}_2, \cdots, {\eta}_{n}$ 的过渡矩阵是正交矩阵，那么 ${\eta}_1, {\eta}_2, \cdots, {\eta}_{n}$ 也是一组标准正交基.
+\end{theorem}
+
+\begin{theorem}[]
+    实方阵 $Q$ 是正交矩阵当且仅当 $Q$ 的列向量是在 $\mathbb{R}^n$ 的标准内积下的 $n$ 个相互正交的单位向量，当且仅当 $Q$ 的行向量是在 $\mathbb{R}^n$ 的标准内积下的 $n$ 个相互正交的单位向量.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $\sigma$ 是欧几里得空间 $V$ 上的线性变换，则 $\sigma$ 是正交变换的充要条件为 $\forall \alpha \in V, |\sigma(\alpha)| = |\alpha|$（即 $\sigma$ 保持所有向量的长度不变）.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $\sigma$ 是有限维欧几里得空间 $V$ 上的线性变换，则下列论断等价：
+    \begin{enumerate}[nosep]
+        \item $\sigma$ 是正交变换；
+        \item $\sigma$ 将标准正交基变换为标准正交基；
+        \item $\sigma$ 在任意一组标准正交基下的矩阵是正交方阵.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[]
+    设 $n$ 阶正交方阵 $A$ 的全部特征值为 $\cos \alpha_k + i \sin \alpha_k(1 \leqslant k\leqslant s)$，$1$（$t$ 重），$-1$（$n - 2s - t$ 重），则 $A$ 正交相似于如下形式的标准形 $B$：$$
+        \left(
+        \begin{matrix}
+                A_1                                                   \\
+                 & A_2                                                \\
+                 &     & A_3                                          \\
+                 &     &     & \ddots                                 \\
+                 &     &     &        & A_s                           \\
+                 &     &     &        &     & I_{(t)}                 \\
+                 &     &     &        &     &         & -I_{(n-2s-t)} \\
+            \end{matrix}
+        \right),
+    $$ 其中 $A_k = \left(
+        \begin{matrix}
+                \cos \alpha_k & -\sin \alpha_k \\
+                \sin \alpha_k & \cos \alpha_k
+            \end{matrix}
+        \right), \sin \alpha_k \neq 0, 1 \leqslant k \leqslant s$.
+\end{theorem}
+
+\begin{proposition}
+    正交矩阵具有如下性质：
+    \begin{enumerate}[nosep]
+        \item 若 $A$ 为正交矩阵，则 $|A| = 1$ 或 $|A| = -1$；
+        \item 正交矩阵的逆矩阵及转置矩阵仍为正交矩阵；
+        \item 若 $A, B$ 是同阶正交矩阵，则 $AB$ 也是正交矩阵；
+        \item 正交矩阵的每行（列）元素的平方和为 $1$，不同两行（列）的对应分量积之和为 $0$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    同一有限维欧几里得空间 $V$ 上的两个正交变换 $\sigma, \tau$ 的乘积 $\sigma\tau$ 仍是正交变换，任一正交变换 $\sigma$ 均可逆，且 $\sigma$ 的逆 $\sigma^{-1}$ 仍是正交变换.
+\end{proposition}
+
+\begin{proposition}
+    \begin{enumerate}[nosep]
+        \item 正交变换的行列式等于 $1$ 或 $-1$；
+        \item 正交变换和正交方阵的复特征值 $\lambda_i$ 的模 $|\lambda_i| = 1$，实特征值 $\lambda_i = \pm 1$；
+        \item 如果 $1$ 与 $-1$ 都是正交变换 $\sigma$ 的特征值，则特征子空间 $V_1 \bot V_{-1}$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    设 $\sigma$ 是有限维欧几里得空间 $V$ 上的正交变换，$W$ 是 $V$ 的 $\sigma$-子空间，则 $W$ 也是
+    $V$ 的 $\sigma$-子空间.
+\end{proposition}
+
+\begin{corollary}
+    设 $W$ 是 $V$ 的 $\sigma$ 不变子空间，$\sigma$ 是有限维欧几里得空间 $V$ 上的正交变换，$\sigma |_W$ 在 $W$ 的标准正交基 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{r}$ 下的矩阵是 $A_1$，并再将 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{r}$ 扩充为 $V$ 的一组标准正交基 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{r}, {\alpha}_{r+1}, {\alpha}_{r+2}, \cdots, {\alpha}_{n}$，则 $\sigma$ 在 ${\alpha}_1, {\alpha}_2, \cdots, {\alpha}_{n}$ 下的矩阵具有准对角形式 $\left(
+        \begin{matrix}
+                A_1 & O   \\
+                O   & A_2
+            \end{matrix}
+        \right)$，其中 $A_2$ 是 $\sigma | _W$ 在 $W ^{\bot}$ 的基 ${\alpha}_{r+1}, {\alpha}_{r+2}, \cdots, {\alpha}_{n}$ 下的矩阵.
+\end{corollary}
+
+\begin{corollary}
+    准上三角形矩阵 $\left(
+        \begin{matrix}
+            A_1 & B_1 \\
+            O   & A_2
+        \end{matrix}
+        \right)$ 是正交方阵当且仅当 $B_1 = O$ 且 $A_1, A_2$ 是正交方阵.
+\end{corollary}
+
+\subsection{实对称矩阵的正交相似对角化、对称变换}
+
+\begin{definition}[对称变换]
+    设 $V$ 是有限维欧几里得空间，$\sigma \in \mathrm{End}(V)$，并且 $\forall \alpha, \beta \in V$，有 $(\sigma(\alpha), \beta) = (\alpha, \sigma(\beta))$ 成立，就称 $\sigma$ 为对称变换.
+\end{definition}
+
+\begin{theorem}[]
+    设 $A$ 是实对称矩阵，则 $A$ 的特征值全为实数.
+\end{theorem}
+
+\begin{remark}
+    若 $A$ 是一般的实矩阵而非对称的，则其特征值与特征向量完全有可能是复数.
+\end{remark}
+
+\begin{remark}
+    正定矩阵是实对称矩阵，从而实对称矩阵 $A$ 正定的充要条件是存在可逆矩阵 $C$ 使 $A = C ^{\mathrm{T}}C$. 正交矩阵和正定矩阵都是可逆的实矩阵；正定矩阵对称，但正交矩阵不一定对称；正交矩阵的逆是其转置，但正定矩阵的逆不一定是其转置；正定矩阵的特征值和特征向量均为实数和实向量，且正交矩阵的特征值和特征向量则可能会是复数和复向量.
+\end{remark}
+
+\begin{theorem}[]
+    设 $A$ 是实对称矩阵，则 $\mathbb{R}^n$ 中属于 $A$ 的不同特征值的特征向量在标准内积下必正交.
+\end{theorem}
+
+\begin{theorem}[]
+    设 $A$ 是一个 $n$ 阶实对称矩阵，则必存在有 $n$ 阶正交矩阵 $Q$ 使 $Q ^{\mathrm{T}} AQ = Q ^{-1}AQ = \left(
+        \begin{matrix}
+                \lambda_1 &           &        &           \\
+                          & \lambda_2 &        &           \\
+                          &           & \ddots &           \\
+                          &           &        & \lambda_n
+            \end{matrix}
+        \right)$，其中 $Q$ 的列向量是 $A$ 的 $n$ 个相互正交的单位特征向量，${\lambda}_1, {\lambda}_2, \cdots, {\lambda}_{n}$ 是 $A$ 的全部特征值，均为实数.
+\end{theorem}
+
+\begin{theorem}[]
+    有限维欧几里得空间上的变换 $\sigma \in \mathrm{End}(V)$ 是对称变换当且仅当 $\sigma$ 在 $V$ 的任一组标准正交基下的矩阵 $A$ 是对称的.
+\end{theorem}
+
+\begin{theorem}[]
+    有限维欧几里得空间 $V$ 上的对称下的对称线性变换 $\sigma$ 属于不同特征值的特征子空间相互正交.
+\end{theorem}
+
+\begin{theorem}[]
+    有限维欧几里得空间 $V$ 上的对称线性变换 $\sigma$ 在由其特征向量构成的标准正交基下的矩阵是对角矩阵.
+\end{theorem}
+
+\begin{proposition}
+    实二次型 $f(X) = X ^{\mathrm{T}}AX$ 必可经正交变换 $X = PY$（即 $P$ 为正交矩阵）化为标准形 $g(Y) = Y ^{\mathrm{T}}BY$，使得 $B = P ^{\mathrm{T}}AP$ 为对角形，且 $B$ 的主对角线元恰为 $A$ 的全部特征值.
+\end{proposition}
+
+\begin{corollary}
+    设 $A$ 为实对称矩阵，则
+    \begin{enumerate}[nosep]
+        \item $A$ 正定的充要条件为 $A$ 的特征值全大于 $0$；
+        \item $A$ 半正定的充要条件为 $A$ 的特征值全大于或等于 $0$.
+    \end{enumerate}
+\end{corollary}
+
+\end{document}
