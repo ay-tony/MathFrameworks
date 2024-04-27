@@ -33,6 +33,8 @@
   #line(length: 100%)
 ])
 
+#set par(justify: true)
+
 #let bar(x) = $overline(#x)$
 
 #let dint(a, b) = $integral_(#h(-0.7em)\_\_#h(0.2em)#a)^#b$
