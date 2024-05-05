@@ -1062,3 +1062,21 @@
 #task[
   Let $f$ be a function on $[0,1]$ that is continuous on $(0,1]$. Show that it is possible for the sequence ${integral_([1\/n,1])f}$ to converge and yet $f$ is not Lebesgue integrable over $[0,1]$. Can this happen if $f$ is nonnegative? 
 ]
+
+= Differentiation and Integration
+
+== Continuity of Monotone Functions
+
+#tho[
+  Let $f$ be a monotone function on the open interval $(a, b)$. Then $f$ is continuous except possibly at a countable number of points in $(a, b)$.
+]
+
+#prop[
+  Let $C$ be a countable subset of the open integval $(a, b)$. Then there is an increasing function on $(a, b)$ that is continuous only at points in $(a, b) tilde C$.
+]
+
+== Differentiability of Monotone Functions: Lebesgue's Theorem
+
+#de[
+  A collection $cF$ of closed, bounded, nondegenerate intervals is said to cover a set $E$ *in the sense of Vitali* provided for each point $x$ in $E$ and $epsilon > 0$, there is an interval $I$ in $cF$ that contains $x$ and has $cal(l)(I) < epsilon$.
+]
