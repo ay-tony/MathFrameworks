@@ -172,3 +172,144 @@
 
   For subtask 3, we let $t -> oo$, and the statement is trivial.
 ]
+
+#task[
+  Let $alpha: (0, pi) -> RR^2$ be given by $
+  alpha(t) = (sin t, cos t + log tan t/2),
+  $ where $t$ is the angle that the $y$ axis make with the vector $alpha'(t)$. The trace of $alpha$ is called the _tractrix_. Show that
+
+  + $alpha$ is a differentiable parametrized curve, regular except at $t = pi \/ 2$.
+  + The length of the segment of the tangent of the tractrix between the point of tangency and the $y$ axis is constantly equal to $1$.
+]
+
+#prf[
+  For subtask 1, we can simply differentiate the $alpha$. $
+  alpha'(t) = (cos t, -sin t + csc t), quad t in (0, pi).
+  $ Hence $t = pi \/ 2$ is the only point such taht $alpha'(t) = 0$.
+
+  For subtask 2, we consider the geometry intuitive, and can infer that the length of that segment is equal to the $x$ value of $alpha(t)$ times $sec t$, i.e. $cos t dot sec t = 1$.
+]
+
+#task[
+  Let $alpha: (-1, +oo) -> RR$ be given bt $
+  alpha(t) = ((3 a t)/(1+t^3),(3a t^2)/(1+t^3)).
+  $ Prove that:
+
+  + For $t=0$, $alpha$ is tangent to the $x$ axis.
+  + As $t->+oo, alpha(t)->(0,0)$ and $alpha'(t)->(0,0)$.
+  + Take the curve with the opposite orientation. Now, as $t ->-1$, the curve and its tangent approach the line $x+y+a=0$.
+
+  The figure obtained by completing the trace of $alpha$ in such a way that it becomes symmetric relative to the line $y=x$ is called the _folium of Descartes_.
+]
+
+#prf[
+  For subtask 1, we first calculate $
+  alpha'(t) = ((3a(-2t^3+1))/((1+t^3)^2),(3a t(-t^3+2))/((1+t^3)^2))
+  $ and hence $alpha(0) = (0, 0)$, $alpha'(0) = (3a, 0)$.
+
+  For subtask 2, let $t -> +oo$ and the statement is trivial.
+
+  For subtask 3, now $
+  alpha(t) &= (- (3a t)/(1 - t^3), (3 a t^2) / (1 - t^3)), quad t in (-oo, 1),\
+  alpha'(t) &= ((3a(1-2t^3))/((1-t^3)^2), (3a t(t^3 + 2))/((1-t^3)^2)).
+  $ As $t->1$, we have $
+  x + y + a &= -(3a t)/(1+t+t^2)+a ->0,\ 
+  y' / x' &= (t(t^3+2))/(1-2t^3) -> -1.
+  $
+]
+
+#task[
+  Let $alpha(t) = (a e^(b t) cos t, a e^(b t) sin t), t in RR$, $a$ and $b$ constants, $a > 0$, $b < 0$, be a parametrized curve.
+
+  + Show that as $t -> +oo$, $alpha(t)$ approaches the origin $O$, spiraling around it (because of this, the trace of $alpha$ is called the _logarithmic spiral_).
+  + Show that $alpha'(t) -> (0,0)$ as $t -> +oo$ and that $
+  lim_(t->+oo) integral_(t_0)^t|alpha'(t)|dd(t)
+  $ is finite; that is, $alpha$ has finite ar length in $[t_0, +oo)$.
+]
+
+#prf[
+  For subtask 1, as $t -> +oo$, $|alpha(t)| &= a e^(b t) -> 0$.
+
+  For subtask 2, $
+  alpha'(t) = (a e^(b t)(b cos t - sin t), a e^(b t)(b sin t + cos t)).
+  $ As $t -> +oo$, we can see that $alpha'(t) -> (0, 0)$. And we have $
+  |alpha'(t)| = a(b^2+1)e^(b t),\
+  integral_(t_0)^(+oo)|alpha'(t)|dd(t) = a(b^2+1)integral_(t_0)^(+oo)e^(b t)dd(t) = (a(b^2+1)e^(b t_0))/b < +oo.
+  $
+]
+
+== The Vector Product in $bold(RR^3)$
+
+#task[
+  Check whether the following bases are positive:
+
+  + The basis ${(1,3), (4,2)}$ in $RR^2$.
+  + The bases ${(1,3,5), (2,3,7), (4,8,3)}$ in $RR^3$.
+]
+
+#sol[
+  For subtask 1, $
+  matrixdet(1,3;4,2) = -10 < 0.
+  $
+  For subtask 2, $
+  matrixdet(1,3,5;2,3,7;4,8,3) = 39 > 0.
+  $
+]
+
+#task[
+  A plane $P$ contained in $RR^3$ is given by the equation $a x + b y + c z + d = 0$. Show that the vector $v = (a,b,c)$ is perpendicular to the plane and that $|d| \/ sqrt(a^2+b^2+c^2)$ measures the distance from the plane to the origin $(0,0,0)$.
+]
+
+#prf[
+  Consider two points $(x_1, y_1, z_1), (x_2, y_2, z_2)$ on the plane. Then the vector in plane $u = (x_2 - x_1, y_2- y_1, z_2 - z_1)$ holds that $(a, b, c) dot u = v dot u = 0$, i.e. $v$ is perpendicular to any vector $u$ parallel to plane.
+
+  Consider $w = k v$ is on the plane. That is, $k(a^2+b^2+c^2)+d=0$. Then we have $
+  |w| = |k||v| = (|d|)/(a^2+b^2+c^2)dot sqrt(a^2+b^2+c^2) = (|d|) / sqrt(a^2+b^2+c^2).
+  $
+]
+
+#task[
+  Determine the angle of intersection of the two planes $5x + 3y + 2z - 4 = 0$ and $3x+4y-7z=0$.
+]
+
+#sol[
+  $
+  cos theta = (u dot v) / (|u||v|) = 13 / (2 sqrt(19)sqrt(39)).
+  $
+]
+
+#task[
+]
+
+#task[]
+
+#task[]
+
+#task[]
+
+#task[
+  Prove that the distance $rho$ between the nonparrallel lines $
+  x-x_0 &= u_1 t, quad y-y_0 &= u_2 t, quad z - z_0 &= u_3 t,\
+  x-x_1 &= v_1 t, quad y-y_1 &= v_2 t, quad z - z_1 &= v_3 t
+  $ is given by $
+  rho = (|(u times v) dot r|) / (|u times v|),
+  $ where $u = (u_1, u_2, u_3), v = (v_1, v_2, v_3), r = (x_0-x_1, y_0-y_1,z_0-z_1)$.
+]
+
+#prf[
+  $u times v$ is perpendicular to $u$ and $v$. Span the plane that is perpendicular to $u times v$ from $(x_0, y_0, z_0)$ and $(x_1, y_1, z_1)$ respectively. Then what we need to calculate is the distance between two planes, and statement is trivial.
+]
+
+#task[]
+
+#task[]
+
+#task[]
+
+#task[]
+
+#task[]
+
+#task[]
+
+== The Local Theorey of Curves Parametrized by Arc Length
