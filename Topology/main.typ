@@ -2,8 +2,11 @@
 #import "@preview/ctheorems:1.1.2": *
 #show: thmrules
 #import "@preview/physica:0.9.3": *
+#import "@preview/cuti:0.2.1": show-cn-fakebold
+#show: show-cn-fakebold
 
 #set text(lang: "zh")
+#set par(justify: true)
 
 #show: modern-technique-report.with(
     title: [基础拓扑学讲义],
@@ -17,8 +20,8 @@
     date: datetime.today().display("[year] -- [month] -- [day]"),
     background: image("bg.jpg"),
     theme-color: rgb(21, 74, 135),
-    font: "Noto Serif",
-    title-font: "Noto Sans"
+    font: ("Times New Roman", "NSimSun", "Noto Serif CJK SC"),
+    title-font: "Noto Sans CJK SC"
 )
 
 #set page(numbering: "1")
@@ -491,4 +494,54 @@
 
 #de[
     拓扑空间 $X$ 称为*仿紧的*，如果 $X$ 的每个开覆盖都有局部有限的开加细.
+]
+
+= 商空间与闭曲面
+
+== 几个常见曲面
+
+== 商空间与商映射
+
+#de[
+  设 $(X, tau)$ 是拓扑空间，$tilde$ 是集合 $X$ 上的一个等价关系. 规定商集 $X \/ tilde$ 上的子集族 $
+  tilde(tau) := {V subset X \/ tilde | p^(-1)(V) in tau},
+  $ 则 $tilde(tau)$ 是 $X \/ tilde$ 上的一个拓扑，称为 $tau$ 在 $tilde$ 下的*商拓扑*，称 $(X\/tilde, tilde(tau))$ 是 $(X, tau)$ 关于 $tilde$ 的*商空间*.
+]
+
+#tho[
+  设 $X, Y$ 是两个拓扑空间，$tilde$ 是 $X$ 上的一个等价关系，$g: X \/ tilde -> Y$ 是一映射，则 $g$ 连续 $<==> g circle.tiny p$ 连续. 
+]
+
+#de[
+  设 $X$ 和 $Y$ 是拓扑空间，映射 $f: X -> Y$ 称为*商映射*，如果
+
+  + $f$ 连续；
+  + $f$ 是满的；
+  + 设 $B subset Y$，如果 $f^(-1)(B)$ 是 $X$ 的开集，则 $B$ 是 $Y$ 的开集.
+]
+
+#tho(number: "3.1a")[
+  若 $f: X -> X'$ 是商映射，$g: X'->Y$ 是一映射，则 $g$ 连续 $<==>$ $g circle.tiny f$ 连续.
+]
+
+#prop[
+  如果 $f: X -> Y$ 是商映射，则 $X \/ attach(tilde, t:f) tilde.equiv Y$.
+]
+
+#prop[
+  连续的满映射 $f: X -> Y$ 如果还是开映射或闭映射，则它是商映射.
+]
+
+#tho[
+  如果 $X$ 紧致，$Y$ 是 Hausdorff 空间，则连续满映射 $f: X -> Y$ 一定是商映射.
+]
+
+#prop[
+  商映射的复合也是商映射.
+]
+
+#tho[
+  设 $f: X -> Y$ 是商映射，$Z$ 是局部紧致的 Hausdorff 空间，$"id": Z -> Z$ 表示恒同映射，则 $
+  f times "id": X times Z -> Y times Z
+  $ 也是商映射.
 ]
