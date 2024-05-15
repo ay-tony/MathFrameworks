@@ -18,6 +18,7 @@
 )
 
 #set page(numbering: "1")
+#set par(justify: true)
 
 #set page(header: [
   #grid(
@@ -39,6 +40,7 @@
 #let cB = $cal(B)$
 #let cF = $cal(F)$
 #let cO = $cal(O)$
+#let cR = $cal(R)$
 #let cU = $cal(U)$
 
 #let thm = thmbox.with(
@@ -1079,4 +1081,81 @@
 
 #de[
   A collection $cF$ of closed, bounded, nondegenerate intervals is said to cover a set $E$ *in the sense of Vitali* provided for each point $x$ in $E$ and $epsilon > 0$, there is an interval $I$ in $cF$ that contains $x$ and has $cal(l)(I) < epsilon$.
+]
+
+= The $bold(L^p)$ Spaces: Completeness and Approximation
+
+= The $bold(L^p)$ Spaces: Duality and Weak Convergence
+
+== The Riesz Representation for the Dual of $bold(L^p\, 1 <= P <= oo)$
+
+#de[
+  A *linear Functional* on a linear space $X$ is a real-valued function $T$ on $X$ such that for $g$ and $h$ in $X$ and $alpha$ and $beta$ real numbers,$
+  T(alpha dot g + beta dot h) = alpha dot T(g) + beta dot T(h).
+  $
+]
+
+
+#eg[
+  Let $E$ be a measurable set, $1 <= p < oo, q$ the conjugate of $p$, and $g$ belong to $L^q (E)$. Define the functional $T$ on $L^p (E)$ by $
+  T(f) = integral_E g dot f "for all" f in L^p (E).
+  $ Holder's Inequality tells us that for $f in L^p (E)$, the product $g dot f$ is integrable over $E$ so the functional $T$ is properly defined. By the linearity of integration, $T$ is linear. Observe that Holder's Inequality is the statement that $
+  |T(f)| <= ||g||_q dot ||f||_p "for all" f in L^p (E).
+  $
+]
+
+#eg[
+  Let $[a,b]$ be a closed, bounded interval and the function $g$ be of bounded variation on $[a,b]$. Define the functional $T$ on $C [a, b]$ by $
+  T(f) = integral_a^b f(x) dd(g(x)) "for all" f in C[a,b],
+  $ where the integral is in the sense of Riemann-Stieltjes. The functional $T$ is properly defined and linear. Moreover, it follows immediately from the definition of this integral that $
+  |T(f)| <= T V(g) dot ||f||_(max) "for all" f in C[a,b],
+  $ where $T V(g)$ is the total variation of $g$ over $[a,b]$.
+]
+
+#de[
+  For a normed linear space $X$, a linear functional $T$ on $X$ is said to be *bounded* provided there is an $M >= 0$ for which $
+  |T(f)| <= M dot ||f|| "for all" f in X.
+  $ The infimum of all such $M$ is called the *norm* of $T$ and denoted by $||T||_*$.
+]
+
+#prop[
+  Let $X$ be a normed linear space. Then the collection of bounded linear functionals on $X$ is a linear space on which $|| dot ||_*$ is a norm. This normed linear space is called the *dual space* of $X$ and denoted by $X^*$.
+]
+
+#prop[
+  Let $E$ be a measurable set, $1 <= p <= oo$, $q$ the conjugate of $p$, and $g$ belong to $L^q (E)$. Define the functional $T$ on $L^p (E)$ by $
+  T(f) = integral_E g dot f "for all" f in L^p (E).
+  $ Then $T$ is a bounded linear functional on $L^p (E)$ and $||T||_* = ||g||_q$.
+]
+
+#prop[
+  Let $T$ and $S$ be bounded linear functionals on a normed linear space $X$. If $T = S$ on a dense subset $X_0$ of $X$, then $T=S$.
+]
+
+#lem[
+  Let $E$ be a measurable set and $1 <= p < oo$. Suppose the function $g$ is integrable over $E$ and there is an $M >= 0$ for which $
+  abs(integral_E g dot f) <= M ||f||_p "for every simple function" f "in" L^p (E).
+  $ Then $g$ belongs to $L^q (E)$, where $q$ is the conjugate of $p$. Moreover, $||g||_q <= M$.
+]
+
+#tho[
+  Let $[a,b]$ be a closed, bounded interval and $1 <= p < oo$. Suppose $T$ is a bounded linear functional on $L^p [a,b]$. Then there is a function $g$ in $L^q [a, b]$, where $q$ is the conjugate of $p$, for which $
+  T(f) = integral_I g dot f "for all" f "in" L^p [a, b].
+  $
+]
+
+#note([The Riesz Representation Theorem for the Dual of $bold(L^p (E))$])[
+  Let $E$ be a measurable set, $1 <= p < oo$, and $q$ the conjugate of $p$. For each $g in L^q (E)$, define the bounded linear functional $cal(R)_g$ on $L^p (E)$ by $
+  cR_g (f) = integral_E g dot f "for all" f "in" L^p (E).
+  $ Then for each bounded linear functional $T$ on $L^p (E)$, there is a unique function $g in L^q (E)$ for which $
+  cR_g = T, "and" ||T||_* = ||g||_q.
+  $
+]
+
+#rem[
+  In the second example of this section, we exhibited Lebesgue-Stieltjes integration against a function of bounded variation as an example of a bounded linear functional on $C[a,b]$. A theorem of Riesz, which we prove in Chapter 21, tells us that all the bounded linear functionals on $C[a,b]$ are of this form. In Section 5 of Chapter 21, we characterize the bounded linear functionals on $C(K)$, the linear space of continuous real-valued functions on a compact topological space $K$, normed by the maximum norm.
+]
+
+#rem[
+  Let $[a,b]$ be a nondegenerate closed, bounded interval. We infer from the linearityof integration and Holder's Inequality that if $f$ belongs to $L^1 [a,b]$, then the functional $g |-> integral_a^b f dot g$ is a bounded linear functional on $L^oo [a,b]$. It turns out, however, that there are bounded linear functionals on $L^oo [a,b]$ that are not of this form. In section 3 of Chapter 19, we prove a theorem of Kntorovitch which characterizes the dual of $L^oo$.
 ]
