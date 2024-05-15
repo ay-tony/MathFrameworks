@@ -545,3 +545,23 @@
   f times "id": X times Z -> Y times Z
   $ 也是商映射.
 ]
+
+= 同伦与基本群
+
+== 映射的同伦
+
+#de[
+  设 $f, g in C(X, Y)$. 如果有连续映射 $H: X times I -> Y$，使得 $forall x in X, H(x, 0) = f(x), H(x, 1) = g(x)$，则称 $f$ 与 $g$ *同伦*，记作 $f tilde.eq g: X -> Y$，或简记为 $f tilde.eq g$；称 $H$ 是连接 $f$ 与 $g$ 的一个*同伦*（或称*伦移*），记作 $H: f tilde.eq g$（或 $f attach(tilde.eq, t:H) g$）.
+]
+
+#prop[
+  同伦关系是 $C(X,Y)$ 中的一种等价关系.
+]
+
+#prop[
+  若 $f_0 tilde.eq f_1: X -> Y, g_0 tilde.eq g_1: Y -> Z$，则 $g_0 circle.tiny f_0 tilde.eq g_1 circle.tiny f_1: X -> Z$.
+]
+
+#prop[
+  设 $A subset X, f, g in C(X, Y)$. 如果存在 $f$ 到 $g$ 的同伦 $H$，使得当 $a in A$ 时，$H(a, t) = f(a) = g(a), forall t in I$，则称 $f$ 和 $g$ *相对于 $bold(A)$ 同伦*，记作 $f tilde.eq g "rel" A$；称 $H$ 是 $f$ 到 $g$ 的相对于 $bold(A)$ 的同伦，记作 $H: f tilde.eq g "rel" A$（或 $f attach(tilde.eq, t: H) g "rel" A$）.
+]
