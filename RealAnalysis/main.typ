@@ -33,7 +33,7 @@
 
 #let bar(x) = $overline(#x)$
 
-#let dint(a, b) = $integral_(#h(-0.7em)\_\_#h(0.2em)#a)^#b$
+#let dint(a, b) = $integral_(#h(-0.6em)underline(#hide("ai"))#h(0.1em)#a)^#b$
 #let uint(a, b) = $integral^(#h(-0.7em)overline(#hide("ai"))#h(0.2em)#b)_#a$
 
 #let cA = $cal(A)$
@@ -148,7 +148,7 @@
 ]
 
 #note("Principle of Mathematcal Induction")[
-  For each natural number $n$, let $S(n)$ be some mathematical assertion. Suppose $S(1)$ is true. Also suppose that whenever $k$ is a natural number for which $S(k)$ is true, then $S(k+1)$ is also true. Then $S(n)$ is true for every natural nnumber $n$.
+  For each natural number $n$, let $S(n)$ be some mathematical assertion. Suppose $S(1)$ is true. Also suppose that whenever $k$ is a natural number for which $S(k)$ is true, then $S(k+1)$ is also true. Then $S(n)$ is true for every natural number $n$.
 ]
 
 #tho[
@@ -170,7 +170,7 @@
 == Countable and Uncountable Sets
 
 #de[
-  A set $E$ is said to e *finite* provided either it is empty or there is a natural nnumber $n$ for which $E$ is equipotent to ${1, dots.c, n}$. We say that $E$ is *countably infinite* provided $E$ is equipotent to the set $NN$ of natural numbers. A set that is either finite or countably infinite is said to be *countable*. A set that is not countable is called *uncountable*.
+  A set $E$ is said to e *finite* provided either it is empty or there is a natural number $n$ for which $E$ is equipotent to ${1, dots.c, n}$. We say that $E$ is *countably infinite* provided $E$ is equipotent to the set $NN$ of natural numbers. A set that is either finite or countably infinite is said to be *countable*. A set that is not countable is called *uncountable*.
 ]
 
 #tho[
@@ -485,7 +485,7 @@
 ]
 
 #rem[
-  In our forthcoming study of Lebesgue integration it will be apparent that t is the countable additivity of Lebesgue measure that provides the Lebesgue interval with its decisive advantage over the Riemann integral.
+  In our forthcoming study of Lebesgue integration it will be apparent that it is the countable additivity of Lebesgue measure that provides the Lebesgue interval with its decisive advantage over the Riemann integral.
 ]
 
 == Nonmeasurable Sets
@@ -614,7 +614,7 @@
 ]
 
 #note("The Simple Approximation Theorem")[
-  Ax extended real-valued function $f$ on a measurable set $E$ is measurable if and only if there is a sequence ${phi_n}$ of simple functions on $E$ which converges pointwise on $E$ fo $f$ and has the property that
+  As extended real-valued function $f$ on a measurable set $E$ is measurable if and only if there is a sequence ${phi_n}$ of simple functions on $E$ which converges pointwise on $E$ fo $f$ and has the property that
   $
   |phi_n| <= |f| "on" E "for all" n.
   $
@@ -652,7 +652,7 @@
 == The Rimemann Integral
 
 #eg("Dirichlet's Function")[
-  Define $f$ on $[0, 1]$ by setting $f(x) = 1$ if $x$ is rational and $0$ if $x$ is irratinal. Let $P$ be any partition of $[0, 1]$. By the density of the rationals and the irrationals, $
+  Define $f$ on $[0, 1]$ by setting $f(x) = 1$ if $x$ is rational and $0$ if $x$ is irrational. Let $P$ be any partition of $[0, 1]$. By the density of the rationals and the irrationals, $
     L(f, P) = 0 "and" U(f, P) = 1.
   $ Thus $
     (R)dint(0, 1) f = 0 < 1 = (R) uint(0, 1) f,
