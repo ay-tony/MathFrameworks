@@ -819,7 +819,7 @@
 ]
 
 #note("Beppo Levi's Lemma")[
-  Let ${f_n}$ be an increasing sequence of nonnegative measurable functions on $E$. If the sequence of integrals ${integral_e f_n}$ is bounded, then ${f_n}$ converges posintwise on $E$ to a measurable functions $f$ that is finite a.e. on $E$ and $
+  Let ${f_n}$ be an increasing sequence of nonnegative measurable functions on $E$. If the sequence of integrals ${integral_e f_n}$ is bounded, then ${f_n}$ converges pointwise on $E$ to a measurable functions $f$ that is finite a.e. on $E$ and $
     lim_(n -> oo) integral_E f_n = integral_E f < +oo.
   $
 ]
