@@ -499,11 +499,31 @@
 == Convergence in Measure
 
 #task[
-  Let ${f_n} -> f$ in measure on $E$ and $g$ be a measurable function on $E$ that is finite on $E$ if and only if $f=g$ a.e. on $E$.
+  Let ${f_n} -> f$ in measure on $E$ and $g$ be a measurable function on $E$ that is finite a.e. on $E$. Show that ${f_n} -> g$ in measure on $E$ if and only if $f=g$ a.e. on $E$.
+]
+
+#prf[
+  $==>$ 假设 ${f_n} -> g$ 依测度收敛. 那么对 $forall epsilon > 0$ 有 $
+  & m Set(x in E, abs(f(x) - g(x)) > epsilon) \
+  &<= lim_(n->oo) m Set(x in E, abs(f_n (x) - g(x)) + abs(f_n (x) - f(x)) > epsilon) \
+  &= 0.
+  $ 从而有 $
+  m Set(x in E, f(x) != g(x)) &= m( union.big_(k=1)^oo Set(x in E, abs(f(x) - g(x)) > 1/k))\
+  &<= sum_(k=1)^oo m Set(x in E, abs(f(x) - g(x)) > 1/k)\
+  &= 0.
+  $
+
+  $<==$ 显然.
 ]
 
 #task[
-  Let $E$ have finite measure, ${f_n} -> f$ in measure on $E$ nad $g$ be a measurable function on $E$ that is finite a.e. on $E$. Prove that ${f_n dot g} -> f dot g$ in measure, and use htis to show that ${f_n^2} -> f^2$ in measure. Infer from this that if ${g_n} -> g$ in measure, then ${f_n dot g_n} -> f dot g$ in measure.
+  Let $E$ have finite measure, ${f_n} -> f$ in measure on $E$ and $g$ be a measurable function on $E$ that is finite a.e. on $E$. Prove that ${f_n dot g} -> f dot g$ in measure, and use this to show that ${f_n^2} -> f^2$ in measure. Infer from this that if ${g_n} -> g$ in measure, then ${f_n dot g_n} -> f dot g$ in measure.
+]
+
+#prf[
+  $g = 0$ 的时候命题显然成立，下假设 $g$ 在 $E$ 上非零. 任取 $eta > 0$，只要证 $lim_(n -> oo) m(Set(x in E, |g(x) f_n (x) - g(x) f(x)| < eta)) = 0$，那么只要证明 $
+  lim_(n -> oo)m(Set(x in E, abs(f_n (x) - f(x)) < eta / (|g(x)|) < eta / M)) = 0,
+  $ 而这是显然的，其中 $M$ 是 $g$ 的一个界限. （因为 $g$ 在 $E$ 上几乎处处有限，那么存在 $E_0 subset E$ 使得 $g$ 在 $E_0$ 上有界，且 $E tilde E_0$ 可以任意小）. 后两问略.
 ]
 
 #task[
@@ -514,6 +534,10 @@
   Show that Proposition 3 does not necessarily hold for sets $E$ for infinite measure.
 ]
 
+#prf[
+  令 $f_n = chi_([n, n+1]), f = 0, E = RR$ 即可.
+]
+
 #task[
   Show that linear combinations of sequences that converge in measure on a set of finite measure also converge in measure.
 ]
@@ -522,20 +546,45 @@
   Assume $E$ has finite measure. Let ${f_n}$ be a sequence of measurable functions on $E$ and $f$ a measurable function on $E$ for which $f$ and each $f_n$ is finite a.e. on $E$. Prove that ${f_n} -> f$ in measure on $E$ if and only if for every subsequence of ${f_n}$ has in turn a further subsequence that converges to $f$ pointwise a.e. on $E$.
 ]
 
+#todo("这道题值得做")
+
 #task[
-  Show that a sequence ${a_j}$ of real numbers converges to a real number if $abs(a_(j+1) - a_j) < 1 \/ 2^j$ for all $j$ by showing that the seqnece ${a_j}$ must be Cauchy.
+  Show that a sequence ${a_j}$ of real numbers converges to a real number if $abs(a_(j+1) - a_j) < 1 \/ 2^j$ for all $j$ by showing that the sequence ${a_j}$ must be Cauchy.
+]
+
+#prf[
+  显然. 令 $N$ 足够大，使得 $1 \/ (2^(N+1)) < epsilon$ 即可.
 ]
 
 #task[
   A sequence ${f_n}$ of measurable functions on $E$ is said to be *Cauchy in measure* provided given $eta > 0$ and $epsilon > 0$ there is an index $N$ such that for all $m, n >= N$, $
   m Set(x in E, abs(f_n (x) - f_m (x)) >= eta) < epsilon.
-  $ Show that if ${f_n}$ is Cauchy in measure, the there is a measurable function $f$ on $E$ to which the sequence ${f_n}$ converges in measure.
+  $ Show that if ${f_n}$ is Cauchy in measure, then there is a measurable function $f$ on $E$ to which the sequence ${f_n}$ converges in measure.
+]
+
+#prf[
+  只要证明 $m(Set(x in E, f_n (x) "为柯西列"))$ 可以任意接近于 $m(E)$. 而题目条件等价于 $m(Set(x in E, f_n (x) "不为柯西列"))$ 可以任意小，容易看出这两者等价.
 ]
 
 #task[
-  Assume $m(e) < +oo$. For two measurable functions $g$ and $h$ on $E$, define $
+  Assume $m(E) < +oo$. For two measurable functions $g$ and $h$ on $E$, define $
   rho(g, h) = integral_E abs(g-h) / (1 + abs(g-h)).
   $ Shwo that ${f_n} -> f$ in measure on $E$ if and only if $lim_(n -> oo) rho(f_n, f) = 0$.
+]
+
+#prf[
+  不失一般性，令 $f = 0$. 
+
+  $==>$ 当 $n$ 足够大时，有 $m(Set(x in E, |f_n (x)| >= epsilon \/ (2m(E)))) < epsilon \/ 2$. 这时有 $
+  rho(f_n, f) &= integral_E abs(f_n) / (1 + abs(f_n))\
+  &= integral_([f_n > epsilon \/ (2m(E))]) abs(f_n) / (1 + abs(f_n)) + integral_([f_n <= epsilon \/ (2m(E))]) abs(f_n) / (1 + abs(f_n))\
+  &<= 1 dot epsilon / 2 + epsilon / (2 m (E)) dot m(E)\
+  &<= epsilon.
+  $
+
+  $<==$ 反证法. 假设对任意的 $epsilon, eta > 0$，总是存在足够大的 $n$ 使得 $m(Set(x in E, |f_n (x)| >= eta))> epsilon$. 那么令这个集合为 $E'$，则有 $
+  integral_E' rho(f_n, f) >= integral_E' eta / (1 + eta) = (eta epsilon) / (1 + eta) > 0, 
+  $ 与条件矛盾.
 ]
 
 == Chracterizations of Riemann and Lebesgue Integrability
