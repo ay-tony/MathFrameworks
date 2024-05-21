@@ -498,6 +498,46 @@
 
 == Convergence in Measure
 
+#task[
+  Let ${f_n} -> f$ in measure on $E$ and $g$ be a measurable function on $E$ that is finite on $E$ if and only if $f=g$ a.e. on $E$.
+]
+
+#task[
+  Let $E$ have finite measure, ${f_n} -> f$ in measure on $E$ nad $g$ be a measurable function on $E$ that is finite a.e. on $E$. Prove that ${f_n dot g} -> f dot g$ in measure, and use htis to show that ${f_n^2} -> f^2$ in measure. Infer from this that if ${g_n} -> g$ in measure, then ${f_n dot g_n} -> f dot g$ in measure.
+]
+
+#task[
+  Show that Fatou's Lemma, the Monotone Convergence Theorem, the Lebesgue Dominated Convergence Theorem, and the Vitali Convergence Theorem remain valid if "pointwise convergence a.e." is replaced by "convergence in measure".
+]
+
+#task[
+  Show that Proposition 3 does not necessarily hold for sets $E$ for infinite measure.
+]
+
+#task[
+  Show that linear combinations of sequences that converge in measure on a set of finite measure also converge in measure.
+]
+
+#task[
+  Assume $E$ has finite measure. Let ${f_n}$ be a sequence of measurable functions on $E$ and $f$ a measurable function on $E$ for which $f$ and each $f_n$ is finite a.e. on $E$. Prove that ${f_n} -> f$ in measure on $E$ if and only if for every subsequence of ${f_n}$ has in turn a further subsequence that converges to $f$ pointwise a.e. on $E$.
+]
+
+#task[
+  Show that a sequence ${a_j}$ of real numbers converges to a real number if $abs(a_(j+1) - a_j) < 1 \/ 2^j$ for all $j$ by showing that the seqnece ${a_j}$ must be Cauchy.
+]
+
+#task[
+  A sequence ${f_n}$ of measurable functions on $E$ is said to be *Cauchy in measure* provided given $eta > 0$ and $epsilon > 0$ there is an index $N$ such that for all $m, n >= N$, $
+  m Set(x in E, abs(f_n (x) - f_m (x)) >= eta) < epsilon.
+  $ Show that if ${f_n}$ is Cauchy in measure, the there is a measurable function $f$ on $E$ to which the sequence ${f_n}$ converges in measure.
+]
+
+#task[
+  Assume $m(e) < +oo$. For two measurable functions $g$ and $h$ on $E$, define $
+  rho(g, h) = integral_E abs(g-h) / (1 + abs(g-h)).
+  $ Shwo that ${f_n} -> f$ in measure on $E$ if and only if $lim_(n -> oo) rho(f_n, f) = 0$.
+]
+
 == Chracterizations of Riemann and Lebesgue Integrability
 
 #task[
