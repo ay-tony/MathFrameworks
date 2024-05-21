@@ -96,12 +96,6 @@
   namefmt: name => strong([#name]),
 ).with(numbering: none)
 
-#let task = thm(
-  "task",
-  "Task",
-  base_level: 2
-)
-
 #set heading(numbering: none)
 = Preliminaries on Sets, Mappings, and Relations
 
@@ -750,7 +744,7 @@
 
 #de[
   For $f$ a nonnegative measurable function on $E$, we define the integral of $f$ over $E$ by $
-    integral_E f = sup{integral_E h | h "bounded, measurable, of finite support and" 0 <= h <= f "on" E}.
+    integral_E f = sup Set(integral_E h, h "bounded, measurable, of finite support and" 0 <= h <= f "on" E).
   $
 ]
 
@@ -973,30 +967,6 @@
   $
 ]
 
-#task[
-  Prove Corollary 2.
-]
-
-#task[
-  Let ${f_k}_(k=1)^n$ be a finite family of functions, each of which is integrable over $E$. Show that ${f_(k)}_(k=1)^n$ is uniformly integrable and tight over $E$.
-]
-
-#task[
-  Let the sequences of functions ${h_n}$ and ${g_n}$ be uniformly integrable and tight over $E$. Show that for any $alpha$ and $beta$, ${alpha f_n + beta g_n}$ also is uniformly integrable and tight over $E$.
-]
-
-#task[
-  Let ${f_n}$ be a sequence of meaureable functions on $E$. Show that ${f_n}$ is uniformly integrable and tight over $E$ if and only if for each $epsilon > 0$, there is a measurable subset $E_0$ of $E$ that has finite measure and a $delta > 0$ such that for each measurable subset $A$ of $E$ and index $n$, $
-  "if" m(A sect E_0) < delta, "then" integral_A |f_n| < epsilon.
-  $
-]
-
-#task[
-  Let ${f_n}$ be a sequence of integrable functions on $RR$. Show that ${f_n}$ is uniformly integrable and tight over $RR$ if and only if for each $epsilon > 0$, there are positive numbers $r$ and $delta$ such that for each open subset $cO$ of $RR$ and index $n$, $
-  "if" m(cO sect (-r, r)) < delta, "then" integral_cO |f_n| < epsilon.
-  $
-]
-
 == Convergence in Measure
 
 #de[
@@ -1013,7 +983,7 @@
   Consider the sequence of subintervals of $[0,1]$, ${I_n}_(n=1)^oo$, which has initial terms listed as $
   [0,1], [0,1/2], [1/2, 1], [0,1/3], [1/3, 2/3], [2/3, 1],\
   [0,1/4], [1/4, 1/2], [1/2, 3/4], [3/4, 1], ...
-  $ For eahc index $n$, define $f_n$ to be the restriction to $[0,1]$ of the characteristic function of $I_n$. Let $f$ be the function that is identically zero on $[0,1]$. We claim that ${d_n} -> f$ in measure. Indeed, observe that $lim_(n->oo)cal(l)(I_n) = 0$ since for each natural number $m$, $
+  $ For each index $n$, define $f_n$ to be the restriction to $[0,1]$ of the characteristic function of $I_n$. Let $f$ be the function that is identically zero on $[0,1]$. We claim that ${d_n} -> f$ in measure. Indeed, observe that $lim_(n->oo)cal(l)(I_n) = 0$ since for each natural number $m$, $
   "if" n > 1 + ... + m = (m(m+1))/2, "then" cal(l)(I_n) < 1/m.
   $ Thus, for $0 < eta < 1$, since ${x in E | | f_n (x) - f(x)| > eta} subset.eq I_n$, $
   0 <= lim_(n -> oo)m{x in E| abs(f_n (x) = f(x)) > eta} <= lim_(n -> oo) cal(l)(I_n) = 0.
@@ -1051,18 +1021,6 @@
 
 #tho("Lebesgue")[
   Let $f$ be a bounded function on the closed, bounded interval $[a,b]$. Then $f$ is Riemann integrable over $[a,b]$ if and only if the set of points in $[a,b]$ at which $f$ fails to be continuous has measure zero.
-]
-
-#task[
-  Let $f$ and $g$ be bounded functions that are Riemann integrable over $[a,b]$. Show that the product $f g$ also is Riemann integrable over $[a,b]$.
-]
-
-#task[
-  Let $f$ be a bounded function on $[a,b]$ whose set of discontinuities has measure zero. Show that $f$ is measurable. Then show that the same holds without the assumption of boundedness.
-]
-
-#task[
-  Let $f$ be a function on $[0,1]$ that is continuous on $(0,1]$. Show that it is possible for the sequence ${integral_([1\/n,1])f}$ to converge and yet $f$ is not Lebesgue integrable over $[0,1]$. Can this happen if $f$ is nonnegative? 
 ]
 
 = Differentiation and Integration
