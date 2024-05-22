@@ -546,7 +546,11 @@
   Assume $E$ has finite measure. Let ${f_n}$ be a sequence of measurable functions on $E$ and $f$ a measurable function on $E$ for which $f$ and each $f_n$ is finite a.e. on $E$. Prove that ${f_n} -> f$ in measure on $E$ if and only if for every subsequence of ${f_n}$ has in turn a further subsequence that converges to $f$ pointwise a.e. on $E$.
 ]
 
-#todo("这道题值得做")
+#prf[
+  $==>$ 显然.
+
+  $<==$ 用反证法. 假设 ${f_n}$ 不依测度收敛于 $f$，那么存在 $epsilon, eta > 0$ 和 ${f_n}$ 的子列 ${f_n_k}$ 满足 $m(Set(x in E, |f_n - f| < eta)) > epsilon$ 对 $forall k in NN$ 成立. 那么这时 ${f_n_k}$ 的任意子列都不会几乎处处点态收敛于 $f$.
+]
 
 #task[
   Show that a sequence ${a_j}$ of real numbers converges to a real number if $abs(a_(j+1) - a_j) < 1 \/ 2^j$ for all $j$ by showing that the sequence ${a_j}$ must be Cauchy.
