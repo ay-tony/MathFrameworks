@@ -39,6 +39,7 @@
 #let cA = $cal(A)$
 #let cB = $cal(B)$
 #let cF = $cal(F)$
+#let cl = $cal(l)$
 #let cO = $cal(O)$
 #let cR = $cal(R)$
 #let cU = $cal(U)$
@@ -295,7 +296,7 @@
 ]
 
 #prop[
-  Let ${a_n}$ and ${b_n}$ be sequyences of real numbers.
+  Let ${a_n}$ and ${b_n}$ be sequences of real numbers.
   
   + $lim sup{a_n} = cal(l) in RR$ if and only if for each $epsilon > 0$, there are infinitely many indices $n$ for which $a_n > cal(l) - epsilon$ and only finitely many indeices $n$ for which $a_n > cal(l) + epsilon$.
   + $lim sup {a_n} = oo$ if and only if ${a_n}$ is not bounded above.
@@ -1043,6 +1044,66 @@
 
 = The $bold(L^p)$ Spaces: Completeness and Approximation
 
+== Normed Linear Spaces
+
+#de[
+  Let $X$ be a linear space. A real-valued functional $|| dot ||$ on $X$ is called a *norm* provided for each $f$ and $g$ in $X$ and each real number $alpha$, 
+  
+  (_The Triangle Inequality_) $
+  ||f + g|| <= ||f|| + ||g||
+  $
+
+  (_Positive Homogenerity_) $
+  ||alpha f|| = |alpha| ||f||
+  $
+
+  (_Nonnegativity_) $
+  ||f|| >= 0 "and" ||f|| = 0 "if and only if" f = 0
+  $
+
+  By a *normed linear space* we mean a linear space together with a norm. If $X$ is a linear space normed by $|| dot ||$ we say that a function in $X$ is a *unit function* provided $||f||=1$. For any $f in X$, $f != 0$, the function $f \/||f||$ is a unit function: it is a scalar multiple of $f$ which we call the *normalization* of $f$.
+]
+
+#eg([the Normed Linear Space $L^1(E)$])[
+  For a function $f$ in $L^1 (E)$, define $
+  ||f||_1 = integral_E |f|.
+  $ Then $|| dot ||_1$ is a norm on $L^1(E)$. Indeed, for $f, g in L^1 (E)$, since $f$ and $g$ are finite a.e. on $E$, we infer from the triangle inequality for real numbers that $
+  |f + g| <= |f| + |g| quad "a.e. on" E.
+  $ Therefore, by the monotonicity and linearity of integration, $
+  ||f + g||_1 = integral_E |f+g| <= integral_E [ |f| + |g| ] = integral_E |f| + integral_E |g| = ||f||_1 + ||g||_1.
+  $ Clearly, $|| dot ||_1$ is positively homogeneous. Finally, if $f in L^1 (E)$ and $||f||_1 = 0$, then $f = 0$ a.e. on $E$. Therefore $[f]$ is the zero element of the linear space $L^1(E) subset.eq cF \/ tilde.equiv$, that is, $f = 0$.
+]
+
+#eg([the Normed Linear Space $L^oo (E)$])[
+  For a function $f$ in $L^oo (E)$, define $||f||_oo$ to be the infimum of the essential upper bounds for $f$. We call $||f||_oo$ the *essential supremum* of $f$ and claim that $||dot||$ is the norm on $L^oo (E)$. The positivity and positive homogeneity properties follow by the same arguments used in the preceding example. To verify the triangle inequality, we first show that $||f||_oo$ is an essential upper bound for $f$ on $E$, that is, $
+  |f| <= ||f||_oo quad "a.e. on" E.
+  $ Indeed, for each natural number $n$. there is a subset $E_n$ of $E$ for which $
+  |f| <= ||f||_oo + 1 / n "on" E tilde E_n "and" m(E_n) = 0.
+  $ Hence, if we define $E_oo = union.big_(n=1)^oo E_n$, $
+  |f| <= ||f||_oo "on" E tilde E_oo "and" m(E_oo) = 0.
+  $ Thus the seesntial supremum of $f$ is the smallest essential upper bound for $f$, that is, $|f| <= ||f||_oo$ a.e. on $E$ holds. Now for $f, g in L^oo (E)$, $
+  |f(x) + g(x)| <= |f(x)| + |g(x)| <= ||f||_oo + ||g||_oo "for almost all" x in E.
+  $ Therefore, $||f||_oo + ||g||_oo$ is an essential upper bound for $f + g$ and hence $
+  ||f+g||_oo <= ||f||_oo + ||g||_oo.
+  $
+]
+
+#eg([The Normed Linear Spaces $cl_1$ and $cl_oo$])[
+  There is a collection of normed linear spaces of sequences that have simpler structure but many similarities with the $L^p (E)$ spaces. For $1 <= p < oo$, define $cl^p$ to be the collection of real sequences $a = (a_1, a_2, dots)$ for which $
+  sum_(k=1)^oo |a_k|^p < oo.
+  $ Above inequality shows that the sum of two sequences in $cl^p$ also belongs to $cl^p$ and clearly a real multiple of a sequences in $cl^p$ also belongs to $cl^p$. Thus $cl^p$ is a linear space. We define $cl^oo$ to be the linear space of real bounded sequences. For a sequence $a = (a_1, a_2, dots)$ in $cl^1$, define $
+  ||{a_k}||_1 = sum_(k=1)^oo |a_k|.
+  $ This is a norm on $cl^1$. For a sequence ${a_k}$ in $cl^oo$, define $
+  ||{a_k}||_oo = sup_(1 <= k < oo) |a_k|.
+  $ It is also easy to see that $|| dot ||_oo$ is a norm on $cl^oo$.
+]
+
+#eg([The Normed Linear Space $C[a,b]$])[
+  Let $[a,b]$ be a closed, bounded interval. Then the linear space of continuous real-valued functions on $[a,b]$ is denoted by $C[a,b]$. Since each continuous function on $[a,b]$ takes a maximun value, for $f in C[a,b]$, we can define $
+  ||f||_(max) = max_(x in [a,b])|f(x)|.
+  $ We leave it as an exercise to show that this defines a norm that we call the *maximum norm*.
+]
+
 = The $bold(L^p)$ Spaces: Duality and Weak Convergence
 
 == The Riesz Representation for the Dual of $bold(L^p\, 1 <= P <= oo)$
@@ -1052,7 +1113,6 @@
   T(alpha dot g + beta dot h) = alpha dot T(g) + beta dot T(h).
   $
 ]
-
 
 #eg[
   Let $E$ be a measurable set, $1 <= p < oo, q$ the conjugate of $p$, and $g$ belong to $L^q (E)$. Define the functional $T$ on $L^p (E)$ by $
