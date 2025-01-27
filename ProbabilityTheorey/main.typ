@@ -1416,5 +1416,124 @@ $
   $P (Y_k = 0) = P (Y_k = 1) = 1 \/ 2$.
 ]
 #pf[
+  $P(Y_k = 0) = 1\/2$ 容易证明。下证明 $Y_1, Y_2, ...$ 独立。对 $forall A in {1, 2, ...}$，其中 $A$ 为有限集，只要证明 ${Y_a : a in A}$ 独立。记 $A = {a_1, ..., a_m}$，其中 $a_1 < ... < a_m$，那么只要证明 $
+    P(Y_a_1 = 1, Y_a_2 = 1, ..., Y_a_m = 1)
+    = P(Y_a_1 = 1)P(Y_a_2 = 1, ..., Y_a_m = 1),
+  $ 然后归纳即可。而 $
+    P(Y_a_1 = 1, Y_a_2 = 1, ..., Y_a_m = 1)
+    &= 1/2 P(Y_a_1 = 1, Y_a_2 = 1, ..., Y_a_(m-1) = 1)\
+    &= 1/2^2 P(Y_a_1 = 1, Y_a_2 = 1, ..., Y_a_(m-2) = 1)\
+    &= ...\
+    &= 1/2^m,\
+    P(Y_a_2 = 1, Y_a_2 = 1, ..., Y_a_m = 1)
+    &= 1/2^(m-1),
+  $ 那么自然有 $
+    P(Y_a_1 = 1, Y_a_2 = 1, ..., Y_a_m = 1)
+    &= 1/2 P(Y_a_2 = 1, ..., Y_a_m = 1)\
+    &= P(Y_a_1 = 1)P(Y_a_2 = 1, ..., Y_a_m = 1).
+  $
+]
 
+== 弱大数定律
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be uncorrelated with $uE X_i = mu_i$ and
+  $upright("var")(X_i) \/ i arrow.r 0$ as $i arrow.r oo$. Let
+  $S_n = X_1 + dots.h + X_n$ and $nu_n = uE S_n \/ n$ then as
+  $n arrow.r oo$, $
+  S_n / n - nu_n arrow.r 0
+  $ in $L^2$ and in probability.
+]
+#pf[
+  $
+    uE(S_n / n - uE S_n / n)^2
+    &= var S_n / n\
+    &= (var S_n) / n^2 \
+    &= (sum_i var X_i) / n^2 \
+    &<= (sum_i (var X_i) / i) / n.
+  $ 令 $n -> oo$ 并用 Stolz 定理知道 $
+    uE(S_n / n - uE S_n / n)^2 -> 0,
+  $ 从而题目中随机变量 $L^2$ 收敛到 $0$，进而依测度收敛。
+]
+
+#ex[
+  The $L^2$ weak law generalizes immediately to certain dependent
+  sequences. Suppose $uE X_n = 0$ and $uE X_n X_m lt.eq r (n - m)$ for
+  $m lt.eq n$ (no absolute value on the left - hand side!) with
+  $r (k) arrow.r 0$ as $k arrow.r oo$. Show that
+  $
+    (X_1 + dots.h + X_n) / n arrow.r 0
+  $ in probability.
+]
+#pf[
+  $
+    uE((X_1 + ... + X_n)^2/n)
+    &= (sum_(i <= j) uE(X_i X_j)) / n^2\
+    &<= (sum_(i <= j) r(j - i)) / n^2\
+    &<= (n r(0) + (n-1)r(1) + ... + r(n-1)) / n^2\
+    &-> (r(0) + r(1) + ... + r(n)) / (2n + 1)\
+    &-> r(n) / 2 -> 0 quad (n -> oo).
+  $ 其中两次使用了 Stolz 定理。那么它 $L^2$ 收敛，从而依测度收敛。
+]
+
+#ex[
+  Monte Carlo integration.
+  + Let $f$ be a measurable function on $[0 , 1]$ with $
+  integral_0^1 lr(|f (x)|) dd(x) < oo.
+  $ Let $U_1 , U_2 , dots.h$ be independent and uniformly distributed on $[0 , 1]$, and let $ I_n = n^(- 1) (f (U_1) + dots.h + f (U_n)). $ Show that $
+  I_n arrow.r I equiv integral_0^1 f dd(x)
+  $ in probability.
+  + Suppose $
+  integral_0^1 lr(|f (x)|)^2 dd(x) < oo. $ Use Chebyshev’s inequality to estimate $ P (lr(|I_n - I|) > a / n^(1 / 2)). $
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be i.i.d. with
+  $ P (X_i = (- 1)^k k) = C \/ k^2 log k $ for $k gt.eq 2$ where $C$ is
+  chosen to make the sum of the probabilities $= 1$. Show that
+  $uE lr(|X_i|) = oo$, but there is a finite constant $mu$ so that
+  $S_n \/ n arrow.r mu$ in probability.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be i.i.d. with
+  $ P (X_i > x) = e / (x log x) $ for $x gt.eq e$. Show that
+  $uE lr(|X_i|) = oo$, but there is a sequence of constants
+  $mu_n arrow.r oo$ so that $ S_n / n - mu_n arrow.r 0 $ in probability.
+]
+
+#ex[
+  + Show that if $X gt.eq 0$ is integer - valued $ uE X = sum_(n gt.eq 1) P (X gt.eq n). $
+  + Find a similar expression for $uE X^2$.
+]
+
+#ex[
+  Generalize Lemma 2.2.13 to conclude that if
+  $ H (x) = integral_(\( - oo , x \]) h (y) dd(y) $ with $h (y) gt.eq 0$, then
+  $ uE H (X) = integral_(- oo)^oo h (y) P (X gt.eq y) dd(y). $ An important
+  special case is $H (x) = exp (theta x)$ with $theta > 0$.
+]
+
+#ex[
+  An unfair "fair game". Let $ p_k = 1 / 2^k k (k + 1), $
+  $k = 1 , 2 , dots.h$ and $p_0 = 1 - sum_(k gt.eq 1) p_k$.
+  $ sum_(k = 1)^oo 2^k p_k = (1 - 1 / 2) + (1 / 2 - 1 / 3) + dots.h = 1, $
+  so if we let $X_1 , X_2 , dots.h$ be i.i.d. with $P (X_n = - 1) = p_0$
+  and $ P (X_n = 2^k - 1) = p_k quad upright("for ") k gt.eq 1 $ then
+  $uE X_n = 0$. Let $S_n = X_1 + dots.h + X_n$. Use Theorem 2.2.11 with
+  $b_n = 2^(m (n))$ where
+  $m (n) = min { m : 2^(- m) m^(- 3 \/ 2) lt.eq n^(- 1) }$ to conclude
+  that
+  $ S_n / (n \/ log_2 n) arrow.r - 1 quad upright("in probability.") $
+]
+
+#ex[
+  Weak law for positive variables. Suppose $X_1 , X_2 , dots.h$ are
+  i.i.d., $P (0 lt.eq X_i < oo) = 1$ and $P (X_i > x) > 0$ for all $x$.
+  Let $ mu (s) = integral_0^s x dd(F(x)) $ and
+  $ nu (s) = mu(s) / (s (1 - F (s))). $ It is known that there exist
+  constants $a_n$ so that $S_n \/ a_n arrow.r 1$ in probability, if and
+  only if $nu (s) arrow.r oo$ as $s arrow.r oo$. Pick $b_n gt.eq 1$ so
+  that $n mu (b_n) = b_n$ (this works for large $n$), and use Theorem
+  2.2.11 to prove that the condition is sufficient.
 ]
