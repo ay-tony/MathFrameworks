@@ -9,6 +9,10 @@
     *概率论：理论与例子*
   ]]
 
+#align(center)[
+  更新日期：#datetime.today().display("[year] 年 [month] 月 [day] 日")
+]
+
 #outline(indent: 2em)
 #pagebreak(weak: true)
 
@@ -1480,19 +1484,51 @@ $
   Monte Carlo integration.
   + Let $f$ be a measurable function on $[0 , 1]$ with $
   integral_0^1 lr(|f (x)|) dd(x) < oo.
-  $ Let $U_1 , U_2 , dots.h$ be independent and uniformly distributed on $[0 , 1]$, and let $ I_n = n^(- 1) (f (U_1) + dots.h + f (U_n)). $ Show that $
+  $ Let $U_1 , U_2 , dots.h$ be independent and uniformly distributed on $[0 , 1]$, and let $ I_n = (f (U_1) + dots.h + f (U_n)) / n. $ Show that $
   I_n arrow.r I equiv integral_0^1 f dd(x)
   $ in probability.
   + Suppose $
   integral_0^1 lr(|f (x)|)^2 dd(x) < oo. $ Use Chebyshev’s inequality to estimate $ P (lr(|I_n - I|) > a / n^(1 / 2)). $
 ]
+#pf[
+  + 因为 $U_1, U_2, ...$ 是独立同分布序列，所以 $f(U_1), f(U_2), ...$ 独立同分布，又因为 $uE(f(U_n)) < oo$，所以可以直接应用弱大数定律得到结论。
+  + $
+      P(|I_n - I| > a / sqrt(n))
+      &= P((I_n - I)^2 > a^2 / n)\
+      &<= (n var(I_n)) / a^2\
+      &= (n dot (n sigma_(f(U_i))) / n^2) / a^2\
+      &= sigma_f(U_i)^2 / a^2.
+    $
+]
 
 #ex[
   Let $X_1 , X_2 , dots.h$ be i.i.d. with
-  $ P (X_i = (- 1)^k k) = C \/ k^2 log k $ for $k gt.eq 2$ where $C$ is
+  $ P (X_i = (- 1)^k k) = C / (k^2 log k) $ for $k gt.eq 2$ where $C$ is
   chosen to make the sum of the probabilities $= 1$. Show that
   $uE lr(|X_i|) = oo$, but there is a finite constant $mu$ so that
   $S_n \/ n arrow.r mu$ in probability.
+]
+#pf[
+  容易看出 $
+    uE|X_i|
+    &= sum_(k=0)^oo (C k) / (k^2 log k)
+    &= sum_(k=0)^oo c / (k log k) = oo.
+  $ 再证明下一结论，考虑使用弱大数定律。对足够大的 $n$，有 $
+    n P(|X_i| > n)
+    &= n sum_(k=n)^oo 1 / (k^2 log k)\
+    &<= n / (log n) sum_(k=n)^oo 1 / k^2\
+    &<= n / (log n) integral_(n-1)^oo 1 / x^2 dd(x)\
+    &= n / ((n-1)log n) -> 0 quad (n -> oo),
+  $ 从而满足弱大数定律条件，从而有 $
+    abs(S_n / n - mu_n) ->^P 0,
+  $ 其中 $
+    mu_n
+    &= uE X_i 1_({|X_i| <= n})\
+    &= sum_(k=0)^n ((-1)^k k)/(k^2 log k)\
+    &= sum_(k=0)^n ((-1)^k)/(k log k)\
+  $ 为交错级数，从而收敛。设 $mu_n -> mu$，则有 $
+    abs(S_n / n - mu) <= abs(S_n / n - mu_n) + |mu_n - mu| ->^P 0.
+  $
 ]
 
 #ex[
@@ -1501,10 +1537,45 @@ $
   $uE lr(|X_i|) = oo$, but there is a sequence of constants
   $mu_n arrow.r oo$ so that $ S_n / n - mu_n arrow.r 0 $ in probability.
 ]
+#pf[
+  $
+    uE|X_i|
+    &= uE X_i\
+    &= integral_0^oo P(X_i > y) dd(y)\
+    &= integral_0^oo e / (y log y) dd(y)\
+    &= oo.
+  $
+
+  因为 $
+    x P(X_i > x) = e / x -> 0 quad (x -> oo),
+  $ 所以 $X_1, X_2, ...$ 满足弱大数定律条件，那么取 $
+    mu_n
+    &= uE X_1 1_{|X_1| <= n}\
+    &-> uE X_1 = oo quad ("单调收敛定理")
+  $ 即可，由弱大数定律直接得到 $
+    S_n / n - mu_n -> 0.
+  $
+]
 
 #ex[
   + Show that if $X gt.eq 0$ is integer - valued $ uE X = sum_(n gt.eq 1) P (X gt.eq n). $
   + Find a similar expression for $uE X^2$.
+]
+#pf[
+  + $
+      uE X
+      &= integral_0^oo P(X > y) dd(y)\
+      &= sum_(n=0)^oo integral_n^(n+1) P(X >= n + 1) dd(y)\
+      &= sum_(n=0)^oo P(X >= n + 1)\
+      &= sum_(n=1)^oo P(X >= n).
+    $
+  + $
+      uE X^2
+      &= integral_0^oo y P(X > y) dd(y)\
+      &= sum_(n=0)^oo P(X >= n + 1)integral_n^(n+1) y dd(y)\
+      &= sum_(n=0)^oo (n + 1 / 2)P(X >= n + 1)\
+      &= sum_(n=1)^oo (n - 1 / 2)P(X >= n).
+    $
 ]
 
 #ex[
@@ -1513,9 +1584,18 @@ $
   $ uE H (X) = integral_(- oo)^oo h (y) P (X gt.eq y) dd(y). $ An important
   special case is $H (x) = exp (theta x)$ with $theta > 0$.
 ]
+#pf[
+  $
+    uE H(X)
+    &= integral_Omega H(X(omega)) dd(P)\
+    &= integral_Omega integral_(-oo)^oo h(t) 1_{t <= X(omega)} dd(t) dd(P)\
+    &= integral_(-oo)^oo integral_Omega h(t) 1_{t <= X(omega)} dd(P) dd(t) quad ("Fubini 定理")\
+    &= integral_(-oo)^oo h(t) P(X >= t) dd(t).
+  $
+]
 
 #ex[
-  An unfair "fair game". Let $ p_k = 1 / 2^k k (k + 1), $
+  An unfair "fair game". Let $ p_k = 1 / (2^k k (k + 1)), $
   $k = 1 , 2 , dots.h$ and $p_0 = 1 - sum_(k gt.eq 1) p_k$.
   $ sum_(k = 1)^oo 2^k p_k = (1 - 1 / 2) + (1 / 2 - 1 / 3) + dots.h = 1, $
   so if we let $X_1 , X_2 , dots.h$ be i.i.d. with $P (X_n = - 1) = p_0$
@@ -1525,6 +1605,24 @@ $
   $m (n) = min { m : 2^(- m) m^(- 3 \/ 2) lt.eq n^(- 1) }$ to conclude
   that
   $ S_n / (n \/ log_2 n) arrow.r - 1 quad upright("in probability.") $
+]
+#pf[
+  要使用三角随机变量列的弱大数定律，需要先验证 $sum_(k=1)^n P(X_k > b_n) -> 0$。这是因为 $
+    sum_(i=1)^n P(X_k > b_n)
+    &= n P(X_1 > 2^m)\
+    &= n sum_(k=m+1)^oo 1 / (2^k k (k+1))\
+    &<= 2^m m^(3\/2) sum_(k=m+1)^oo 1 / (2^k k^2)\
+    &<= 1 / sqrt(m) sum_(k=m+1)^oo 1 / (2^(k-m))\
+    &= 2 / sqrt(m)\
+    &-> 0 quad (n -> oo).
+  $ 上式最后一步中 $n -> oo$ 时 $m -> oo$。另外还需要验证 $b_n^(-2)sum_(k=1)^n uE overline(X)_k^2 -> 0$，这是因为 $
+    (sum_(k=1)^n uE overline(X)_k^2) / b_n^2
+    &= (n (P(X_1 = -1) + sum_(k=1)^(m) (2^(2k)-1) p_k)) / 2^(2m)\
+    &<= (n (1 + sum_(k=1)^(m) 2^(k) \/ k^2 )) / 2^(2m)\
+    &= C n 2^(m + 1) / (m^2 2^(2m))\
+    &<= 2^m C m^(3\/2) 2^(m + 1) / (m^2 2^(2m))\
+    &= 2 / sqrt(m) -> 0 quad (n -> oo).
+  $ 其中 $C$ 为一常数。
 ]
 
 #ex[
@@ -1536,4 +1634,33 @@ $
   only if $nu (s) arrow.r oo$ as $s arrow.r oo$. Pick $b_n gt.eq 1$ so
   that $n mu (b_n) = b_n$ (this works for large $n$), and use Theorem
   2.2.11 to prove that the condition is sufficient.
+]
+#pf[
+  先解释如何取到的 $n mu(b_n) = b_n$。三角形式的弱大数定律的结论为 $
+    (S_n - uE overline(S)_n) / a_n -> 0,
+  $ 与题目中所要证明的形式对照得到 $
+    a_n = uE overline(S)_n = n uE overline(X)_n = n mu(a_n).
+  $ 所以只要取 $n mu(b_n) = b_n = a_n$ 并使用弱大数定律，即可导出欲求结论。再证明 $n -> oo$ 时 $b_n -> oo$。这是容易的，因为 $
+    nu(b_n) = mu(b_n) / (b_n (1 - F(b_n))) = 1 / (n (1 - F(b_n))) -> oo,
+  $ 那么 $F(b_n) -> 1$，结合 $P(X_i > x) > 0$ 知道 $b_n -> oo$。
+
+  再证明弱大数定律的下一条件。$
+    sum_(k=1)^n P(X_k > b_n) = n P(X_1 > b_n) = n (1 - F(b_n)) = 1 / nu(b_n) -> 0.
+  $
+
+  再证明弱大数定律的另一个条件。$
+    (sum_(k=1)^n uE overline(X)_k^2) / b_n^2
+    &= (n uE overline(X)_1^2)/b_n^2.
+  $ 下考虑对 $b_n^2 \/ n$ 进行放缩（*重要*），有 $
+    integral_0^b_n mu(x) dd(x) <= b_n mu(b_n) = b_n^2 / n,
+  $ 那么有 $
+    (sum_(k=1)^n uE overline(X)_k^2) / b_n^2
+    &= (n uE overline(X)_1^2)/b_n^2\
+    &<= display(integral_0^b_n 2 x (1 - F(x)) dd(x))/display(integral_0^b_n mu(x) dd(x))\
+    &= (2 b_n (1 - F(b_n)))/mu(b_n)\
+    &= 2 n (1 - F(b_n))\
+    &-> 0 quad (n -> oo).
+  $ 上式先后使用了洛必达法则、等式 $n mu(b_n) = b_n$ 和 $nu(b_n) -> oo$。
+
+  综上，弱大数定律成立，从而明所欲证。
 ]
