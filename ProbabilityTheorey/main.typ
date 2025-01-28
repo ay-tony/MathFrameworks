@@ -1664,3 +1664,147 @@ $
 
   综上，弱大数定律成立，从而明所欲证。
 ]
+
+== Borel-Cantelli 引理
+
+#ex[
+  Prove that $
+  P(limsup A_n) >= limsup P(A_n)
+  $ and $
+  P(liminf A_n) <= liminf P(A_n).
+  $
+]
+#pf[
+  有 $liminf 1_A_n = 1_(liminf A_n)$，然后直接用 Fatou 引理即可。另一个结论同理。
+]
+
+#ex[
+  Prove the first result in Theorem 2.3.4 directly from the definition.
+]
+
+#ex[
+  Let $sl_n$ be the length of the head run at time. See Example 8.3.1 for the precise definition. Show that $
+  limsup_(n->oo) sl_n / (log_2 n) = 1, quad liminf_(n->oo) sl_n = 0 "a.s." .
+  $
+]
+
+#ex[
+  Suppose $X_m >= 0$ and $X_n -> X$ in probability. Show that $
+liminf_(n -> oo) uE X_n >= uE X.
+$
+]
+
+#ex[
+  Suppose $X_n -> X$ in probability, and:
+  + $|X_n| <= Y$ with $uE Y < oo$, or
+  + There is a continuous function $g$ with $g(x) > 0$ for large $x$ with $
+    (|x|) / g(x) -> 0 quad (x -> oo)
+    $ so that $uE g(x) <= C < oo$ for all $n$. Show that $uE X_n -> uE X$.
+]
+
+#ex[
+  Show:
+  + $
+      d(X, Y) = uE abs(X - Y) / (1 + |X - Y|)
+    $ defines a metric on the set of random variables;
+  + $d(X_n, X) -> 0$ as $n -> oo$ if and only if $X_n ->^P X$.
+]
+
+#ex[
+  Show that random variables are a complete space under the metric
+  defined in the previous exercise, i.e., if $d (X_m , X_n) arrow.r 0$
+  whenever $m , n arrow.r oo$ then there is a r.v. $X_oo$ so that
+  $X_n arrow.r X_oo$ in probability.
+]
+
+#ex[
+  Let $A_n$ be a sequence of independent events with $P (A_n) < 1$
+  for all $n$. Show that $P (union A_n) = 1$ implies $sum_n P (A_n) = oo$
+  and hence $P (A_n upright(" i.o.")) = 1$.
+]
+
+#ex[
+  (i) If $P (A_n) arrow.r 0$ and
+  $sum_(n = 1)^oo P (A_n^c sect A_(n + 1)) < oo$ then
+  $P (A_n upright(" i.o.")) = 0$. (ii) Find an example of a sequence $A_n$
+  to which the result in (i) can be applied but the Borel - Cantelli lemma
+  cannot.
+]
+
+#ex[
+  Kochen - Stone lemma. Suppose $sum P (A_k) = oo$. Use Exercises
+  1.6.6 and 1 to show that if
+  $ limsup_(n arrow.r oo) (sum_(k = 1)^n P (A_k))^2 \/ (sum_(1 lt.eq j , k lt.eq n) P (A_j sect A_k)) = alpha > 0 $
+  then $P (A_n upright(" i.o.")) gt.eq alpha$. The case $alpha = 1$
+  contains Theorem 2.3.7.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be independent with $P (X_n = 1) = p_n$
+  and $P (X_n = 0) = 1 - p_n$. Show that (i) $X_n arrow.r 0$ in
+  probability if and only if $p_n arrow.r 0$, and (ii) $X_n arrow.r 0$
+  a.s. if and only if $sum p_n < oo$.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be a sequence of r.v.’s on
+  $(Omega , cal(F) , P)$ where $Omega$ is a countable set and $cal(F)$
+  consists of all subsets of $Omega$. Show that $X_n arrow.r X$ in
+  probability implies $X_n arrow.r X$ a.s.
+]
+
+#ex[
+  If $X_n$ is any sequence of random variables, there are
+  constants $c_n arrow.r oo$ so that $X_n \/ c_n arrow.r 0$ a.s.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be independent. Show that
+  $sup X_n < oo$ a.s. if and only if $sum_n P (X_n > A) < oo$ for some
+  $A$.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be i.i.d. with $P (X_i > x) = e^(- x)$,
+  let $M_n = max_(1 lt.eq m lt.eq n) X_m$. Show that (i)
+  $limsup_(n arrow.r oo) X_n \/ log n = 1$ a.s. and (ii)
+  $M_n \/ log n arrow.r 1$ a.s.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be i.i.d. with distribution $F$, let
+  $lambda_n arrow.t oo$, and let
+  $A_n = { max_(1 lt.eq m lt.eq n) X_m > lambda_n }$. Show that
+  $P (A_n upright(" i.o.")) = 0$ or $1$ according as
+  $sum_(n gt.eq 1) (1 - F (lambda_n)) < oo$ or $= oo$.
+]
+
+#ex[
+  Let $Y_1 , Y_2 , dots.h$ be i.i.d. Find necessary and sufficient
+  conditions for (i) $Y_n \/ n arrow.r 0$ almost surely, (ii)
+  $(max_(m lt.eq n) Y_m) \/ n arrow.r 0$ almost surely, (iii)
+  $(max_(m lt.eq n) Y_m) \/ n arrow.r 0$ in probability, and (iv)
+  $Y_n \/ n arrow.r 0$ in probability.
+]
+
+#ex[
+  Let $0 lt.eq X_1 lt.eq X_2 dots.h$ be random variables with
+  $E X_n tilde.op a n^alpha$ with $a , alpha > 0$, and
+  $upright("var") (X_n) lt.eq B n^beta$ with $beta < 2 alpha$. Show that
+  $X_n \/ n^alpha arrow.r a$ a.s.
+]
+
+#ex[
+  Let $X_n$ be independent Poisson r.v.’s with $E X_n = lambda_n$,
+  and let $S_n = X_1 + dots.h.c + X_n$. Show that if $sum lambda_n = oo$
+  then $S_n \/ E S_n arrow.r 1$ a.s.
+]
+
+#ex[
+  Show that if $X_n$ is the outcome of the $n$th play of the St.
+  Petersburg game (Example 2.2.16) then
+  $limsup_(n arrow.r oo) X_n \/ (n log_2 n) = oo$ a.s. and hence the same
+  result holds for $S_n$. This shows that the convergence
+  $S_n \/ (n log_2 n) arrow.r 1$ in probability proved in Section 2.2 does
+  not occur a.s.
+]
