@@ -1681,6 +1681,22 @@ $
 #ex[
   Prove the first result in Theorem 2.3.4 directly from the definition.
 ]
+#pf[
+  对 $forall epsilon > 0$，有 $
+    P(|f(X_n) - f(X)| > epsilon)\
+    = P(|f(X_n) - f(X)| > epsilon, |X_n| <= M) + P(|f(X_n) - f(X)| > epsilon, |X_n| > M)
+  $ 对 $forall M > 0$ 成立。考虑分别使两部分趋于 $0$。对于第一部分有 $f$ 在 ${X(omega): |X_n (omega)| <= M}$ 上有界，从而一致连续。那么存在 $delta > 0$ 使得 $forall omega, |X_n (omega) - X(omega)| < delta$ 有 $|f(X_n (omega)) - f(X(omega))| < epsilon$. 那么 $
+    P(|f(X_n) - f(X)| > epsilon, |X_n| <= M)
+    &= P(|X_n - X| > delta, |X_n| <= M)\
+    &= P(|X_n - X| > delta)\
+    &-> 0 quad (n -> oo).
+  $
+
+  再考虑第二部分，$forall epsilon' > 0$，因为 $P(Omega) = 1$，可以取 $M$ 足够大使 $P(|X_n| > M) < epsilon'$，从而有 $
+    P(|f(X_n - f(X)| > epsilon, |X_n| > M)
+    &<= P(|X_n| > M) < epsilon'.
+  $ 令 $epsilon' -> 0$ 再令 $n -> oo$ 即得到结果。
+]
 
 #ex[
   Let $sl_n$ be the length of the head run at time. See Example 8.3.1 for the precise definition. Show that $
@@ -1693,6 +1709,9 @@ $
 liminf_(n -> oo) uE X_n >= uE X.
 $
 ]
+#pf[
+  反设 $liminf uE X_n < uE X$，那么一定存在 $X_n$ 的子列 $X_n_k$ 使得 $uE X_n_k$ 收敛，且 $lim uE X_n_k < uE X$。那么 $X_n_k$ 一定存在一个子列 $X_n_k_l ->^"a.s." X$，从而由 Fatou 引理知道 $lim uE X_n_k_l >= uE X$，产生矛盾。
+]
 
 #ex[
   Suppose $X_n -> X$ in probability, and:
@@ -1700,6 +1719,19 @@ $
   + There is a continuous function $g$ with $g(x) > 0$ for large $x$ with $
     (|x|) / g(x) -> 0 quad (x -> oo)
     $ so that $uE g(x) <= C < oo$ for all $n$. Show that $uE X_n -> uE X$.
+]
+#pf[
+  + 对 $X_n$ 的任意子列 $X_n_k$ 它存在子列 $X_n_k_l ->^"a.s." X$，从而由 Lebesgue 控制收敛定理知道 $uE X_n_k_l -> uE X$，那么由定理 2.3.3 直接得到 $uE X_n -> uE X$。
+  + 考虑题目中的极限条件，对足够大的 $M$ 有 $g(X) > |X|$ 在 ${|X| > M}$ 上恒成立。这时有 $
+    uE X_n
+    &= uE(X_n\; |X_n| <= M) + uE(X_n\; |X_n| > M).
+  $ 还是分别讨论两个部分。对第一部分，直接由 $|X_n| <= M$ 用有界收敛定理得到 $
+    uE(X_n\; |X_n| <= M) -> uE(X\; |X_n| <= M).
+  $ 对第二部分，有 $|X_n| <= g(X_n)$ 且 $
+  uE(g(X_n)\; |X_n| > M) <= uE(g(X_n)) <= C < oo,
+  $ 然后用 (1) 中的控制收敛定理直接得到 $
+    uE(X_n\; |X_n| > M) -> uE(X\; |X_n| > M).
+  $
 ]
 
 #ex[
@@ -1709,6 +1741,25 @@ $
     $ defines a metric on the set of random variables;
   + $d(X_n, X) -> 0$ as $n -> oo$ if and only if $X_n ->^P X$.
 ]
+#pf[
+  + 分别证明度量的三个性质。
+    + 正定性。$X = Y$ a.s. 时显然 $d(X, Y) = 0$。当 $d(X, Y) = 0$ 时有 $
+        abs(X - Y) / (1 + abs(X - Y)) = 0 "a.s. " ,
+    $ 从而有 $X = Y$ a.s. .
+    + 对称性显然。
+    + 三角不等式。对 $forall "r.v." X, Y, Z$，只要证明 $
+        uE(abs(X - Y)/(1 + abs(X - Y)) + abs(Y - Z)/(1 + abs(Y - Z)))>= uE(abs(X - Z)/(1 + abs(X - Z))),
+    $ 那么只要证明 $
+        abs(X - Y)/(1 + abs(X - Y)) + abs(Y - Z)/(1 + abs(Y - Z))>= abs(X - Z)/(1 + abs(X - Z)).
+    $ 上式代数等价于 $
+      |X - Z| <= |X - Y| + |Y - Z| + 2 |X - Y| |Y - Z| + |X - Y| |Y - Z| |X - Z|,
+    $ 而由 $|X - Z| <= |X - Y| + |Y - Z|$，上式显然成立。
+  + 先证必要性。设 $d(X_n, X) -> 0$。令 $
+    phi(x) = x / (1 + x)
+  $ 为在 $[0, oo)$ 上的严格单调增函数。$forall epsilon > 0$，那么 $
+    P(|X_n - X| > epsilon) = P(phi(|X_n - X|) > phi(epsilon)).
+  $ 只要证 $phi(|X_n - X|) ->^P 0$ 即可。这是显然的，因为 $d(X_n, X) -> 0$ 直接说明 $uE phi(|X_n - X|) -> 0$，从 $L_1$ 收敛直接推导出依概率收敛。\ 再证明充分性。由于 $phi(|X_n - X|) <= 1$，直接用依概率收敛的控制（有界）收敛定理得到 $uE phi(|X_n - X|) -> uE phi(|X - X|) = 0$。
+]
 
 #ex[
   Show that random variables are a complete space under the metric
@@ -1716,11 +1767,33 @@ $
   whenever $m , n arrow.r oo$ then there is a r.v. $X_oo$ so that
   $X_n arrow.r X_oo$ in probability.
 ]
+#pf[
+  也即证明所有的随机变量构成的集合对依测度收敛封闭。设随机变量列 $X_n$ 满足 $abs(X_n - X_m) ->^P 0 quad (n, m -> oo)$（由上一题知道这和题目条件等价），那么可以构造子列 $X_n_k$，使得对 $forall k in NN^*$ 有 $
+    P(|X_n_(k+1) - X_n_k| > 1 / k^2) < 1 / k^2.
+  $ 由于 $sum 1 \/ k^2 < oo$，所以由第一 Borel-Cantelli 定理知道 $
+    P(limsup {|X_n_(k+1) - X_n_k| > 1 / k^2}) = 0.
+  $ 令上式中集合为 $A$，那么 $
+    A^c
+    &= liminf{|X_n_(k+1) - X_n_k| <= 1 / k^2}\
+    &= {X_n_k (omega) "为" RR "上基本列"}\
+    &= {X_n_k (omega) "极限存在"}.
+  $ 即 $X_n_k$ 几乎处处极限存在，在 $A^c$ 上点态定义 r.v. $X$ 为 $X_n_k$ 的极限，则有 $X_n_k ->^"a.s." X$。容易证明把上面的变量列 $X_n$ 换成 $X_n$ 的任意子列 $X_n_k$ 结论仍然成立，所以由定理 2.3.2 知道 $X_n ->^P X$。
+]
 
 #ex[
   Let $A_n$ be a sequence of independent events with $P (A_n) < 1$
-  for all $n$. Show that $P (union A_n) = 1$ implies $sum_n P (A_n) = oo$
+  for all $n$. Show that $P (union.big A_n) = 1$ implies $sum_n P (A_n) = oo$
   and hence $P (A_n upright("i.o.")) = 1$.
+]
+#pf[
+  $
+    0
+    &= P(sect.big A_n^c)
+    &= product P(A_n^c)
+    &= product(1 - P(A_n)),
+  $ 从而有 $
+  sum P(A_n) = oo.
+  $
 ]
 
 #ex[
@@ -1728,6 +1801,9 @@ $
     sum_(n = 1)^oo P (A_n^c sect A_(n + 1)) < oo
   $ then $P (A_n upright("i.o.")) = 0$.
   + Find an example of a sequence $A_n$ to which the result in (1) can be applied but the Borel - Cantelli lemma cannot.
+]
+#pf[
+
 ]
 
 #ex[
