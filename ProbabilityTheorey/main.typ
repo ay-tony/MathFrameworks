@@ -1775,9 +1775,9 @@ $
   $ 令上式中集合为 $A$，那么 $
     A^c
     &= liminf{|X_n_(k+1) - X_n_k| <= 1 / k^2}\
-    &= {X_n_k (omega) "为" RR "上基本列"}\
+    &subset {X_n_k (omega) "为" RR "上基本列"}\
     &= {X_n_k (omega) "极限存在"}.
-  $ 即 $X_n_k$ 几乎处处极限存在，在 $A^c$ 上点态定义 r.v. $X$ 为 $X_n_k$ 的极限，则有 $X_n_k ->^"a.s." X$。容易证明把上面的变量列 $X_n$ 换成 $X_n$ 的任意子列 $X_n_k$ 结论仍然成立，所以由定理 2.3.2 知道 $X_n ->^P X$。
+  $ 又知道 $P(A^c) = 1$，那么 $X_n_k$ 几乎处处极限存在，在 $A^c$ 上点态定义 r.v. $X$ 为 $X_n_k$ 的极限，则有 $X_n_k ->^"a.s." X$。容易证明把上面的变量列 $X_n$ 换成 $X_n$ 的任意子列 $X_n_k$ 结论仍然成立，所以由定理 2.3.2 知道 $X_n ->^P X$。
 ]
 
 #ex[
@@ -1803,7 +1803,14 @@ $
   + Find an example of a sequence $A_n$ to which the result in (1) can be applied but the Borel - Cantelli lemma cannot.
 ]
 #pf[
-
+  + $
+      P(union.big_k A_k) <= P(A_n) + sum_(k=n)^oo P(A_n^c sect A_(n+1)) -> 0.
+    $
+  + 令概率空间为 $([0, 1], sR_([0, 1]), lambda)$，$A_n = [0, 1 \/ n]$。那么 $
+    sum P(A_n) = oo
+  $ 从而不能应用 Borel-Cantelli 引理，但是 $
+    sum_(n=1)^oo P(A_n^c sect A_(n+1)) = 0.
+  $
 ]
 
 #ex[
@@ -1815,12 +1822,33 @@ $
   then $P (A_n upright("i.o.")) gt.eq alpha$. The case $alpha = 1$
   contains Theorem 2.3.7.
 ]
+#pf[
+  定义随机变量 $
+  X_n = sum_(k=1)^n 1_A_k.
+  $ 那么有 $
+    uE X_n &= sum_(k=1)^n uE 1_A_k = sum_(k=1)^n P(A_k),\
+    uE X^2_n &= sum_(1 <= j, k <= n) P(A_j sect A_k) < oo.
+  $ 由练习 1.6.6 知道 $
+    P(X_n > 0) >= display((sum_(k=1)^n P(A_k)))^2 / display(sum_(1 <= j, k <= n) P(A_j sect A_k)),
+  $ 那么结合练习 2.3.1 有 $
+    P(limsup A_n)
+    &= P(limsup union.big_(k=1)^n A_n)\
+    &= P(limsup {X_n > 0})\
+    &>= limsup P(X_n > 0) = alpha,
+  $
+]
 
 #ex[
   Let $X_1 , X_2 , dots.h$ be independent with $P (X_n = 1) = p_n$
   and $P (X_n = 0) = 1 - p_n$. Show that:
   + $X_n arrow.r 0$ in probability if and only if $p_n arrow.r 0$, and
   + $X_n arrow.r 0$ a.s. if and only if $sum p_n < oo$.
+]
+#pf[
+  + 先证必要性，设 $X_n ->^P 0$，由依测度收敛的有界收敛定理知道 $p_n = uE X_n -> 0$。再证充分性。设 $p_n -> 0$，那么 $uE X_n = p_n -> 0$，从而 $X_n ->^(L_1) 0$，那么 $X_n ->^P 0$。
+  + 先证必要性。对足够大的 $n$，有 $|X_n| < 1 \/ 2$ a.e.，那么有 $X_n = 0$ a.e.，即 $p_n = 1$。那么只有有限个 $p_n$ 不为 $0$，从而 $sum p_n < oo$。再证充分性。由 $
+  sum p_n = sum P({X_n = 1}) < oo,
+  $ 且 $X_n$ 相互独立，直接应用 Borel-Cantelli 引理得到 $P(limsup {X_n = 1}) = 0$，即 $P(liminf {X_n = 0}) = 1$。对 $forall omega in liminf{X_n = 0}$ 知道至多有限个 $X_n$ 中随机变量满足 $X_n (omega) = 1$，从而一定有 $X_n (omega) -> 0$。那么 $X_n ->^"a.s." 0$。
 ]
 
 #ex[
@@ -1829,18 +1857,49 @@ $
   consists of all subsets of $Omega$. Show that $X_n arrow.r X$ in
   probability implies $X_n arrow.r X$ a.s.
 ]
+#pf[
+  记 $Omega = {omega_n}$，反设 $P(X_n "不收敛于" X) > 1$，记 ${X_n "不收敛于" X} = {omega_n_k}$，那么其中一定存在一个 $omega' = omega_n_k$ 使得 $P(omega') > 0$，且这时有 $X_n (omega')$ 不收敛于 $X (omega')$。这个不收敛性等价于 $
+    limsup abs(X_n (omega') - X(omega')) = a > 0.
+  $ 直接取 $X_n$ 的子列 $X_n_p$ 使得 $
+    lim abs(X_n_p (omega') - X(omega')) = a.
+  $ 那么 $p$ 足够大时有 $
+    omega' in {|X_n_p - X| > a/2},
+  $ 从而 $
+    P(|X_n_p - X| > a/2) >= P(omega') > 0，
+  $ 又由于 $X_n ->^P X$，一定有 $X_n_p ->^P X$，那么对足够大的 $p$ 有 $
+    P(|X_n_p - X| > a/2) < P(omega'),
+  $ 从而产生矛盾。
+]
 
 #ex[
   If $X_n$ is any sequence of random variables, there are
   constants $c_n arrow.r oo$ so that $X_n \/ c_n arrow.r 0$ a.s.
 ]
+#pf[
+  对 $forall n in NN^*$，可以取 $c_n > 0$ 使 $
+    P(abs(X_n) / c_n > 1 / n) < 1 / 2^n.
+  $ 这时有 $
+    sum_(n=1)^oo P(abs(X_n) / c_n > 1 / n) < oo,
+  $ 从而由 Borel-Cantelli 引理知道 $
+    P(limsup {abs(X_n)/c_n > 1/n}) = 0,
+  $ 取补集即有 $
+    P(X_n / c_n -> 0) >= P(liminf {abs(X_n)/c_n <= 1/n}) = 1.
+  $
+]
 
 #ex[
   Let $X_1 , X_2 , dots.h$ be independent. Show that
-  $sup X_n < oo$ a.s. if and only if $
+  $sup_n X_n < oo$ a.s. if and only if $
     sum_n P (X_n > A) < oo
   $ for some
   $A$.
+]
+#pf[
+  先证必要性。设 $sup_n X_n < oo$，反设 $sum P(X_n > A) = oo$，那么对 $forall A > 0$，由 Borel-Cantelli 定理知道 $P(limsup {X_n > A}) = 1$，从而 $sup_n X_n > A$ a.s. 对 $forall A > 0$ 成立，矛盾。
+
+  再证充分性。直接使用 Borel-Cantelli 定理知道 $P(limsup {X_n > A}) = 0$，即 $P(liminf {X_n <= A}) = 1$，对这个集合其中的任意元素 $omega$, 只有有限个随机变量 $X_n_1, ..., X_n_k$ 在 $omega$ 处的取值大于 $A$，那么有 $
+  sup_n X_n = max{X_n_1 (omega), ..., X_n_k (omega)} < oo.
+  $
 ]
 
 #ex[
@@ -1854,6 +1913,9 @@ $
   + $
       M_n / (log n) arrow.r 1 "a.s. ".
     $
+]
+#pf[
+
 ]
 
 #ex[
