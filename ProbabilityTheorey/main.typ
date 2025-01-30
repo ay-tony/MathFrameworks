@@ -1898,7 +1898,7 @@ $
   先证必要性。设 $sup_n X_n < oo$，反设 $sum P(X_n > A) = oo$，那么对 $forall A > 0$，由 Borel-Cantelli 定理知道 $P(limsup {X_n > A}) = 1$，从而 $sup_n X_n > A$ a.s. 对 $forall A > 0$ 成立，矛盾。
 
   再证充分性。直接使用 Borel-Cantelli 定理知道 $P(limsup {X_n > A}) = 0$，即 $P(liminf {X_n <= A}) = 1$，对这个集合其中的任意元素 $omega$, 只有有限个随机变量 $X_n_1, ..., X_n_k$ 在 $omega$ 处的取值大于 $A$，那么有 $
-  sup_n X_n = max{X_n_1 (omega), ..., X_n_k (omega)} < oo.
+  sup_n X_n (omega) = max{X_n_1 (omega), ..., X_n_k (omega)} < oo.
   $
 ]
 
@@ -1915,7 +1915,55 @@ $
     $
 ]
 #pf[
-
+  + 以下证明需要用到 $
+    {limsup X_n <= K} &= liminf {X_n <= K},\
+    {limsup X_n >= K} &= limsup {X_n >= K},\
+    {liminf X_n <= K} &= liminf {X_n <= K},\
+    {liminf X_n >= K} &= limsup {X_n >= K}.
+  $ 对 $forall epsilon > 0$，只要证明 $
+    P(abs((limsup X_n) / (log n) - 1) >= epsilon "i.o.") = 0.
+  $ 即 $
+    P(limsup X_n >= (1 + epsilon) log n "i.o.") = 0 quad (1)\
+    "且"\
+    P(limsup X_n <= (1 - epsilon) log n "i.o.") = 0. quad (2)
+  $ 对 $(1)$ 有 $
+    P(limsup X_n >= (1 + epsilon) log n "i.o.")
+    &= P(limsup {limsup X_n >= (1 + epsilon) log n})\
+    &= P(limsup limsup {X_n >= (1 + epsilon) log n})\
+    &= P(limsup {X_n >= (1 + epsilon) log n}),
+  $ 由 Borel-Cantelli 引理，只要证明 $
+    sum P(X_n >= (1 + epsilon) log n) < oo.
+  $ 这是容易的，因为 $
+    sum P(X_n >= (1 + epsilon) log n)
+    &= sum 1/n^(1+epsilon)
+    &< oo.
+  $ 对 $(2)$ 有 $
+    P(limsup X_n <= (1 - epsilon) log n "i.o.")
+    &= P(limsup {limsup X_n <= (1 - epsilon) log n })\
+    &= P(limsup liminf {X_n <= (1 - epsilon) log n })\
+    &= P(liminf {X_n <= (1 - epsilon) log n })\
+    &= 1 - P(limsup {X_n > (1 - epsilon) log n }),
+  $ 由 Borel-Cantelli 引理，只要证明 $
+    sum P({X_n > (1 - epsilon) log n }) = oo.
+  $ 这也是容易的，因为 $
+    sum P({X_n > (1 - epsilon) log n })
+    &= sum 1/n^(1-epsilon)
+    &= oo.
+  $
+  + $forall epsilon > 0$。由 (1) 知道存在 $N in NN^*$，对 $forall n > N$ 有 $X_n <= (1 + epsilon) log n$ a.e. 。令 $X_m = max{X_1, ..., X_N}$，那么令 $N' = ceil(exp(X_m))$，那么对 $forall n > N'$ 有 $
+  M_n
+  &= max{X_m, X_(N+1), ..., X_n}\
+  &<= max{log N', (1 + epsilon) log n}\
+  &<= (1 + epsilon) log n.
+  $ 由 $epsilon$ 的任意性知道 $lim M_n \/ log n <= 1$ a.s.。再证明 $
+    P(M_n <= (1 - epsilon) log n "i.o." ) = 0.
+  $ 这是因为 $
+    sum P(M_n <= (1 - epsilon) log n)
+    &= sum P^n (X_1 <= (1 - epsilon) log n)\
+    &= sum (1 - 1 / n^(1 - epsilon))^n\
+    &<= sum exp(n^(-epsilon))\
+    &< oo,
+  $ 从而由 Borel-Cantelli 引理得到结论。
 ]
 
 #ex[
@@ -1926,6 +1974,19 @@ $
   $ Show that
   $P (A_n upright("i.o.")) = 0$ or $1$ according as
   $sum_(n gt.eq 1) (1 - F (lambda_n)) < oo$ or $= oo$.
+]
+#pf[
+  直接应用 Borel-Cantelli 引理知道 $
+    P(X_n > lambda_n "i.o.") < oo "或 " = oo
+  $ 取决于 $
+    sum P(X_n > lambda_n) = sum (1 - F(lambda_n)) < oo "或 "= oo.
+  $ 那么只要证明 ${X_n > lambda_n "i.o."} = A_n$。$forall omega in {X_n > lambda_n "i.o."}$，那么有 $
+    max_(1 <= m <= n) X_m >= X_n > lambda_n
+  $ 对 $forall n in NN^*$ 成立，从而 $omega in A_n$。对 $forall omega in A_n$，反设只有有限个 $n$ 满足 $X_n (omega) > lambda_n$，设可以取到的最大的 $n$ 为 $p$，那么有 $X_p (omega) > lambda_p$。令 $q$ 足够大使得 $
+    lambda_q > max{X_1 (omega), ..., X_p (omega)},
+  $ 且 $M_q (omega) > lambda_q (omega)$（由 $omega in A_n$ 知可以这样取），那么存在 $r in {p+1, ..., q}$ 使得 $
+    X_r = max{X_(p+1), ..., X_q} > lambda_q > lambda_r,
+  $ 从而 $X_r (omega) > lambda_r$ 且 $r > p$，矛盾。
 ]
 
 #ex[
@@ -1941,6 +2002,32 @@ $
   + $
       Y_n / n arrow.r 0
     $ in probability.
+]
+#pf[
+  四个结论分别为：$uE|Y_i| < oo$, $uE Y_i^+ < oo$, $n P(Y_i > n) -> 0$, $P(Y_i < oo) = 1$。以下分别证明。
+  + 无妨设 $Y_n >= 0$。先证必要性。由 $Y_n \/ n ->^"a.s." 0$ 知道 $
+    P(Y_n > n "i.o.") = 0.
+  $ 那么又知道 $Y_1, Y_2, ...$ 互相独立，使用 Borel-Cantelli 引理可以反过来得到 $
+    sum_(n=1)^oo P(Y_n > n) < oo.
+  $ 那么 $
+    uE Y_n
+    &= integral_0^oo P(Y_n > x) dd(x)\
+    &<= P(Y_n > 0) + sum_(n=1)^oo P(Y_n > n)\
+    &< oo.
+  $ 再证充分性。$forall epsilon > 0$，有 $
+    sum_(n=1)^oo P(Y_n  > epsilon n)
+    &<= integral_0^oo P(Y_n  > epsilon x) dd(x)\
+    &= uE Y_n / epsilon < oo.
+  $ 那么 $P(Y_n > epsilon n "i.o.") = 0$，从而 $Y_n \/ n ->^"a.s." 0$。
+  + 先证必要性。由一致收敛性知道对 $forall epsilon > 0$，有 $
+    P(abs(max_(m=1)^n Y_m) > epsilon n "i.o.") = 0.
+  $ 上式蕴含 $
+    P(max_(m=1)^n Y_m^+ > epsilon n "i.o.") = 0.
+  $ 由上一题可以得出 $
+    P(Y_m^+ > epsilon n "i.o.") = 0.
+  $ 再由上一问同理得到 $
+    uE Y_n^+ < oo.
+  $ 再证充分性。
 ]
 
 #ex[
