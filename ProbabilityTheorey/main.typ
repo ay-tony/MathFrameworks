@@ -2020,14 +2020,14 @@ $
     &= uE Y_n / epsilon < oo.
   $ 那么 $P(Y_n > epsilon n "i.o.") = 0$，从而 $Y_n \/ n ->^"a.s." 0$。
   + 先证必要性。由一致收敛性知道对 $forall epsilon > 0$，有 $
-    P(abs(max_(m=1)^n Y_m) > epsilon n "i.o.") = 0.
-  $ 上式蕴含 $
-    P(max_(m=1)^n Y_m^+ > epsilon n "i.o.") = 0.
-  $ 由上一题可以得出 $
-    P(Y_m^+ > epsilon n "i.o.") = 0.
+    P(Y_m^+ > epsilon n "i.o.") = P(max_(m=1)^n Y_m^+ > epsilon n "i.o.") <= P(abs(max_(m=1)^n Y_m) > epsilon n "i.o.") = 0.
   $ 再由上一问同理得到 $
     uE Y_n^+ < oo.
-  $ 再证充分性。
+  $ 再证充分性。由 $uE Y_n^+ < oo $ 知道 $
+    sum_(n=1)^oo P(Y_n^+ > epsilon n) < oo,
+  $ 从而 $P(Y_n^+ > epsilon n "i.o.") = 0$，那么 $
+    limsup Y_n / n <= 0 "a.s. ",
+  $ 从而得到结论。
 ]
 
 #ex[
@@ -2058,4 +2058,41 @@ $
     S_n / (n log_2 n) arrow.r 1
   $ in probability proved in Section 2.2 does
   not occur a.s. .
+]
+
+== 强大数定律
+
+#ex[
+  Lazy janitor. Suppose the $i$th light - bulb burns for an amount
+  of time $X_i$ and then remains burned out for time $Y_i$ before being
+  replaced. Suppose the $X_i , Y_i$ are positive and independent with the
+  $X$’s having distribution $F$ and the $Y$’s having distribution $G$,
+  both of which have finite mean. Let $R_t$ be the amount of time in
+  $[0 , t]$ that we have a working light - bulb. Show that
+  $
+    R_t / t arrow.r (uE X_i) / (uE X_i + E Y_i)
+  $ almost surely.
+]
+
+#ex[
+  Let $X_0 = (1 , 0)$ and define $X_n in bb(R)^2$ inductively by
+  declaring that $X_(n + 1)$ is chosen at random from the ball of radius
+  $lr(|X_n|)$ centered at the origin, i.e., $X_(n + 1) \/ lr(|X_n|)$ is
+  uniformly distributed on the ball of radius 1 and independent of
+  $X_1 , dots.h , X_n$. Prove that $n^(- 1) log lr(|X_n|) arrow.r c$ a.s.
+  and compute $c$.
+]
+
+#ex[
+  Investment problem. We assume that at the beginning of each year
+  you can buy bonds for $\$ 1$ that are worth $\$ a$ at the end of the
+  year or stocks that are worth a random amount $V gt.eq 0$. If you always
+  invest a fixed proportion $p$ of your wealth in bonds, then your wealth
+  at the end of year $n + 1$ is $W_(n + 1) = (a p + (1 - p) V_n) W_n$.
+  Suppose $V_1 , V_2 , dots.h$ are i.i.d. with $E V^2 < oo$ and
+  $E (V_n^(- 2)) < oo$.
+  + Show that $n^(- 1) log W_n arrow.r c (p)$ a.s. .
+  + Show that $c (p)$ is concave. (Use Theorem A.5.1 in the Appendix to justify differentiating under the expected value.)
+  + By investigating $c^prime (0)$ and $c^prime (1)$, give conditions on $V$ that guarantee that the optimal choice of $p$ is in $(0 , 1)$.
+  + Suppose $P (V = 1) = P (V = 4) = 1 \/ 2$. Find the optimal $p$ as a function of $a$.
 ]
