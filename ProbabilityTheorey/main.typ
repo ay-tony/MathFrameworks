@@ -2073,6 +2073,21 @@ $
     R_t / t arrow.r (uE X_i) / (uE X_i + E Y_i)
   $ almost surely.
 ]
+#pf[
+  设 $uE X_i = mu < oo, uE Y_i = nu < oo$，再设 $T_n = sum_(k=1)^n (X_k + Y_k)$。那么对 $forall t in RR^+$，一定存在 $T_n <= t < T_(n+1)$。考虑分类讨论：
+  + 当 $0 <= t - T_n < X_(n+1)$ 时，这时 $t$ 时刻灯是亮的，有 $
+    R_t / t = (R_T_n + t - T_n) / (T_n + t - T_n) in [R_T_n / T_n, (R_T_n + X_(n+1)) / (T_n + X_(n+1))];
+  $
+  + 当 $X_(n+1) <= t - T_n < X_(n+1) + Y_(n+1)$ 时，这时 $t$ 时刻灯是灭的，有 $
+    R_t / t = (R_T_n + X_(n+1)) / (T_n + t - T_n) in [R_T_(n+1) / T_(n+1), (R_T_n + X_(n+1)) / (T_n + X_(n+1))].
+  $
+
+  设 $H_n = sum_(k=1)^n X_k$ 为 $[0, T_n]$ 时间内亮灯的时间，那么由强大数定律知道 $
+    T_n / n ->^"a.s." mu + nu, quad H_n / n ->^"a.s." mu,
+  $ 那么 $
+    R_T_n / T_n = H_n / T_n ->^"a.s." mu / (mu + nu), quad (R_T_n + X_(n+1)) / (T_n + X_(n+1)) = (H_n + X_(n+1)) / (T_n + X_(n+1)) ->^"a.s." mu / (mu + nu),
+  $ 利用夹逼定理得到结论。
+]
 
 #ex[
   Let $X_0 = (1 , 0)$ and define $X_n in bb(R)^2$ inductively by
@@ -2082,6 +2097,13 @@ $
   $X_1 , dots.h , X_n$. Prove that $n^(- 1) log lr(|X_n|) arrow.r c$ a.s.
   and compute $c$.
 ]
+#pf[
+  设 $Y_n = X_(n+1) \/ (|X_n|)$，那么 $Y_n$ 服从在单位圆上的均匀分布，且 $Y_1, Y_2, ...$ 为独立同分布随机变量列，且有 $
+    uE log |Y_n| = 1 / pi integral_0^1 2 pi r log r dd(r) = -1 / 2 > -oo,
+  $ 从而由强大数定律知道 $
+    (log |X_n|) / n = (sum_(k=1)^n log |Y_n|) / n ->^"a.e." uE log |Y_n| = -1 / 2.
+  $
+]
 
 #ex[
   Investment problem. We assume that at the beginning of each year
@@ -2089,10 +2111,66 @@ $
   year or stocks that are worth a random amount $V gt.eq 0$. If you always
   invest a fixed proportion $p$ of your wealth in bonds, then your wealth
   at the end of year $n + 1$ is $W_(n + 1) = (a p + (1 - p) V_n) W_n$.
-  Suppose $V_1 , V_2 , dots.h$ are i.i.d. with $E V^2 < oo$ and
+  Suppose $V_1 , V_2 , dots.h$ are i.i.d. with $E V_n^2 < oo$ and
   $E (V_n^(- 2)) < oo$.
   + Show that $n^(- 1) log W_n arrow.r c (p)$ a.s. .
   + Show that $c (p)$ is concave. (Use Theorem A.5.1 in the Appendix to justify differentiating under the expected value.)
   + By investigating $c^prime (0)$ and $c^prime (1)$, give conditions on $V$ that guarantee that the optimal choice of $p$ is in $(0 , 1)$.
   + Suppose $P (V = 1) = P (V = 4) = 1 \/ 2$. Find the optimal $p$ as a function of $a$.
+]
+#pf[
+  + 令 $U_n = a p + (1 - p) V_n$。因为 $uE V_n^2 < oo$ 所以 $uE V_n < oo$，同理 $uE V_n^(-1) < oo$。$
+    uE abs(log U_n) = uE(log U_n\; U_n >= 1) - uE(log U_n\; 0 <= U_n < 1),
+    $ 其中 $
+    uE(log U_n\; U_n >= 1)
+    &= uE log(a p + (1 - p) V_n\; U_n >= 1)\
+    &<= uE(a p + (1 - p) V_n\; U_n >= 1)\
+    &<= uE(a p + (1 - p) V_n)\
+    &= a p + (1 - p) uE V_n\
+    &< oo,\
+    - uE(log U_n\; 0 <= U_n < 1) &= uE(log(1 / (a p + (1 - p) V_n))\; 0 <= U_n < 1)\
+    &<= uE(log (1 / (a p))\;0<=U_n<1)\
+    &<= - log a p\
+    &< oo,
+  $ 从而可以应用强大数定律，$
+      (log W_n) / n = (sum_(k=1)^n log U_n) / n ->^"a.e." uE log U_n = uE log(a p + (1 - p) V_n) := c(p).
+    $
+  + 对 $c(p)$ 应用定理 A.5.1。分别验证四个条件。
+    + $uE|log U_n| < oo$ 上一问已证；
+    + $
+        pdv(, p) log(a p + (1 - p) V_n)
+        &= (a - V_n) / (a p + (1 - p)V_n)
+      $ 对 $p$ 连续；
+    + 令 $
+        v(p) = integral_Omega (a - V_n) / (a p + (1 - p) V_n) dd(P),
+      $ 对 $forall delta p$ 足够小，有 $
+        & quad v(p + delta p) - v(p) \
+        &= integral_Omega (a - V_n) (1 / (a (p + delta p) + (1 - p - delta p) V_n) - 1 / (a p + (1 - p) V_n)) dd(P)\
+        &= integral_Omega (a - V_n) ((delta p (V_n - a)) / ((a (p + delta p) + (1 - p - delta p) V_n) (a p + (1 - p) V_n))) dd(P)\
+        &= delta p integral_Omega (( - (V_n - a)^2) / ((a (p + delta p) + (1 - p - delta p) V_n) (a p + (1 - p) V_n))) dd(P)\
+        &<= (delta p) / min{a^2, V_n^2} integral_Omega - (V_n - a)^2 dd(P)\
+        &-> 0 quad (delta p -> 0),
+      $ 从而 $v(p)$ 连续，其中最后一步用到了 $uE V_n^2 < oo$。
+    + $
+        & quad integral_Omega integral_(-delta)^delta abs((a - V_n)/(a (p + theta) + (1 - p - theta)V_n)) dd(theta) dd(P)\
+        &<= integral_Omega integral_(-delta)^delta abs((a - V_n)/min{a, V_n}) dd(theta) dd(P)\
+        &<= uE abs((2 delta (a - V_n))/min{a, V_n})\
+        &< oo.
+      $ 其中最后一步用到了 $uE V_n, uE V_n^(-1) < oo$。
+    那么 $c'(p) = v(p)$。可以类似对 $v(p)$ 应用定理得到 $
+        c''(p) = v'(p) = - uE ((V_n - a)^2 / (a p + (1 - p)V_n)^2) <= 0,
+    $ 从而 $c(p)$ 是凹函数。
+  + 容易看出需要 $c'(0) >= 0, c'(1) <= 0$。这就是 $
+    c'(0) = uE((a - V_n)/V_n) >= 0 "即 "uE(1 / V_n) >= 1 / a\
+    "和"\
+    quad c'(1) = uE((a - V_n) / a) <= 0 "即 " uE(V_n) >= a.
+  $
+  + 只要令 $
+    c'(p)
+    &= uE((a - V_n) / (a p +(1 - p) V_n))\
+    &= 1 / 2 (a - 1)/(a p + (1 - p)) + 1 / 2 (a - 4) / (a p + 4 - 4 p)\
+    &= 0
+  $ 即可。解方程得到 $
+    p = (8 - 5 a) / (2 (a - 1)(a - 4)).
+  $
 ]
