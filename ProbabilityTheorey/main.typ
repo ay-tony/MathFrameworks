@@ -770,7 +770,7 @@ $ for some $B_(m , n) in scr(R)$ and set $f_n (x) = m 2^(- n)$ for $x in B_(m , 
     $Y$ for which equality holds.
 ]
 #pf[
-  + 直接将 $A = {Y >= a}, phi(Y) = (Y + b)^2$ 代入 Chebychev 不等式得到 $
+  + 直接将 $A = {Y >= a}, phi(Y) = (Y + b)^2$ 代入 Chebyshev 不等式得到 $
     uE((Y + b)^2\; Y >= a) <= uE(Y + b)^2.
   $ 其中又有 $
     uE(Y + b)^2
@@ -782,7 +782,7 @@ $ for some $B_(m , n) in scr(R)$ and set $f_n (x) = m 2^(- n)$ for $x in B_(m , 
     &= p(a+b)^2,
   $ 而 $
     uE((Y + b)^2\; Y >= a) >= (a + b)^2 P(Y >= a).
-  $ 从而直接代入 Chebychev 不等式就得到结论。容易验证 $Y = X$ 的时候取等。
+  $ 从而直接代入 Chebyshev 不等式就得到结论。容易验证 $Y = X$ 的时候取等。
   + 代入 $p = sigma^2 \/ (a^2 + sigma^2), b = sigma^2 \/ a$ 直接得出结论。
 ]
 
@@ -2172,5 +2172,139 @@ $
     &= 0
   $ 即可。解方程得到 $
     p = (8 - 5 a) / (2 (a - 1)(a - 4)).
+  $
+]
+
+== 随机级数的收敛性
+
+#ex[
+  Suppose $X_1 , X_2 , dots.h$ are i.i.d. with $E X_i = 0$,
+  $upright("var")(X_i) = C < oo$. Use Theorem 2.5.5 with $n = m^alpha$
+  where $alpha (2 p - 1) > 1$ to conclude that if
+  $S_n = X_1 + dots.h.c + X_n$ and $p > 1 \/ 2$ then
+  $S_n \/ n^p arrow.r 0$ almost surely.
+]
+#pf[
+  只要证明对 $1\/2 < q < p$ 的 $q$ 满足 $limsup |S_n| \/ n^q <= 1$ a.s. 即可，由 Borel-Cantelli 引理，只要证明 $
+    sum_(m=1)^oo  P(max_(k = 1)^n |S_k| >= n^p)
+    = sum_(m=1)^oo  P(max_(1 <= k <= m^alpha) |S_k| >= m^(alpha p)) < oo.
+  $ 而 $
+    P(max_(1 <= k <= m^alpha)|S_k| >= m^(alpha p))
+    &<= (var S_(m^alpha))/(m^(2 alpha p))\
+    &<= (C)/(m^(alpha(2p - 1)))\
+  $ 从而级数收敛。
+]
+
+#ex[
+  The converse of Theorem 2.5.12 is much easier. Let $p > 0$. If
+  $S_n \/ n^(1 \/ p) arrow.r 0$ a.s. then $E lr(|X_1|)^p < oo$.
+]
+#pf[
+
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be i.i.d. standard normals. Show that
+  for any $t$
+  $ sum_(n = 1)^oo X_n dot.op frac(sin (n t), n) upright(" converges a.s.") $
+  We will see this series again at the end of Section 8.1.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be independent with $E X_n = 0$,
+  $upright("var") (X_n) = sigma_n^2$.
+  + Show that if $
+  sum_n sigma_n^2 / n^2 < oo
+  $ then $
+  sum_n X_n / n
+  $ converges a.s. and hence $
+  n^(- 1) sum_(m = 1)^n X_m arrow.r 0
+  $ a.s. ;
+  + Suppose $
+  sum_n sigma_n^2 / n^2 = oo
+  $ and without loss of generality that $sigma_n^2 lt.eq n^2$ for all $n$. Show that there are independent random variables $X_n$ with $E X_n = 0$ and $
+  upright("var") (X_n) lt.eq sigma_n^2
+  $ so that $X_n \/ n$ and hence $
+   (sum_(m lt.eq n) X_m) / n
+  $ does not converge to 0 a.s. .
+]
+
+#ex[
+  Let $X_n gt.eq 0$ be independent for $n gt.eq 1$. The following
+  are equivalent:
+  + $
+      sum_(n = 1)^oo X_n < oo "a.s. ;"
+    $
+  + $
+      sum_(n = 1)^oo [P (X_n > 1) + E (X_n 1_({ X_n lt.eq 1 }))] < oo;
+    $
+  + $
+      sum_(n = 1)^oo E (X_n \/ (1 + X_n)) < oo.
+    $
+]
+
+#ex[
+  Let $psi (x) = x^2$ when $lr(|x|) lt.eq 1$ and $= lr(|x|)$ when
+  $lr(|x|) gt.eq 1$. Show that if $X_1 , X_2 , dots.h$ are independent
+  with $E X_n = 0$ and $
+  sum_(n = 1)^oo E psi (X_n) < oo
+  $ then $
+  sum_(n = 1)^oo X_n
+  $ converges a.s. .
+]
+
+#ex[
+  Let $X_n$ be independent. Suppose $
+  sum_(n = 1)^oo E lr(|X_n|)^(p (n)) < oo
+  $ where $0 < p (n) lt.eq 2$ for
+  all $n$ and $E X_n = 0$ when $p (n) > 1$. Show that $
+  sum_(n = 1)^oo X_n
+  $ converges a.s. .
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be i.i.d. and not $equiv 0$. Then the
+  radius of convergence of the power series $
+  sum_(n gt.eq 1) X_n (omega) z^n
+  $ (i.e. $
+  r (omega) = sup { c : sum lr(|X_n (omega)|) c^n < oo }
+  $) is 1 a.s. or 0 a.s. , according as $E log^(+) lr(|X_1|) < oo$ or $= oo$ where
+  $log^(+) x = max (log x , 0)$.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be independent and let
+  $S_(m , n) = X_(m + 1) + dots.h.c + X_n$. Then
+  $
+    (star.op) quad P (max_(m < j lt.eq n) lr(|S_(m , j)|) > 2 a) min_(m < k lt.eq n) P (lr(|S_(k , n)|) lt.eq a) lt.eq P (lr(|S_(m , n)|) > a).
+  $
+]
+
+#ex[
+  Use $(star.op)$ to prove a theorem of P. Lévy: Let
+  $X_1 , X_2 , dots.h$ be independent and let
+  $S_n = X_1 + dots.h.c + X_n$. If $lim_(n arrow.r oo) S_n$ exists in
+  probability then it also exists a.s. .
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be i.i.d. and
+  $S_n = X_1 + dots.h.c + X_n$. Use $(star.op)$ to conclude that if
+  $S_n \/ n arrow.r 0$ in probability then $
+    (max_(1 lt.eq m lt.eq n) S_m) / n arrow.r 0
+  $ in probability.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be i.i.d. and
+  $S_n = X_1 + dots.h.c + X_n$. Suppose $a_n arrow.t oo$ and
+  $
+    (a (2^n)) / (a (2^(n - 1)))
+  $ is bounded.
+  + Use $(star.op)$ to show that if $S_n \/ a (n) arrow.r 0$ in probability and $
+  S_(2^n) / a(2^n) arrow.r 0
+  $ a.s. then $S_n \/ a (n) arrow.r 0$ a.s. ;
+  + Suppose in addition that $E X_1 = 0$ and $E X_1^2 < oo$. Use the previous exercise and Chebyshev’s inequality to conclude that $
+  S_n \/ n^(1 \/ 2) (log_2 n)^(1 \/ 2 + epsilon.alt) arrow.r 0 "a.s. ."
   $
 ]
