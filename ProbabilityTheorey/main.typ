@@ -2200,7 +2200,9 @@ $
   $S_n \/ n^(1 \/ p) arrow.r 0$ a.s. then $E lr(|X_1|)^p < oo$.
 ]
 #pf[
-
+  反设 $uE|X_1|^p = oo$，那么 $
+    oo = integral_0^oo P(|X_n|^p > x) dd(x) <= sum_(n=1) P(|X_n|^p > n) = oo.
+  $ 再由 BC 引理知道 $P(|X_n| > n^(1\/p) "i.o.") = 1$。这与 $S_n \/ n^(1\/p) ->^"a.s." 0$ 矛盾。
 ]
 
 #ex[
@@ -2209,10 +2211,16 @@ $
   $ sum_(n = 1)^oo X_n dot.op frac(sin (n t), n) upright(" converges a.s.") $
   We will see this series again at the end of Section 8.1.
 ]
+#pf[
+  由于 $
+    sum_n var(X_n sin(n t) / n)
+    &= sum_n (sigma^2 sin^2(n t)) / n^2 < oo
+  $ 直接由定理 2.5.6 得证。
+]
 
 #ex[
   Let $X_1 , X_2 , dots.h$ be independent with $E X_n = 0$,
-  $upright("var") (X_n) = sigma_n^2$.
+  $upright("var")(X_n) = sigma_n^2$.
   + Show that if $
   sum_n sigma_n^2 / n^2 < oo
   $ then $
@@ -2223,10 +2231,14 @@ $
   + Suppose $
   sum_n sigma_n^2 / n^2 = oo
   $ and without loss of generality that $sigma_n^2 lt.eq n^2$ for all $n$. Show that there are independent random variables $X_n$ with $E X_n = 0$ and $
-  upright("var") (X_n) lt.eq sigma_n^2
+  upright("var")(X_n) lt.eq sigma_n^2
   $ so that $X_n \/ n$ and hence $
    (sum_(m lt.eq n) X_m) / n
   $ does not converge to 0 a.s. .
+]
+#pf[
+  + 直接由定理 2.5.6 得证。
+  + 直接令 $X_n$ 服从 $sN(0, n^2)$ 的正态分布。
 ]
 
 #ex[
@@ -2239,8 +2251,29 @@ $
       sum_(n = 1)^oo [P (X_n > 1) + E (X_n 1_({ X_n lt.eq 1 }))] < oo;
     $
   + $
-      sum_(n = 1)^oo E (X_n \/ (1 + X_n)) < oo.
+      sum_(n = 1)^oo E (X_n / (1 + X_n)) < oo.
     $
+]
+#pf[
+  - $(1) ==> (2)$：$
+    P(X_n > 1) + uE(X_n 1_{X_n <= 1})
+    &<= uE X_n 1_{X_n > 1} + uE X_n 1_{X_n <= 1}
+    &= uE X_n.
+  $ 由 Kolmogorov 三级数定理直接知道 $sum uE X_n < oo$。
+  - $(2) ==> (3)$：$
+      uE X_n / (1 + X_n)
+      &= uE(X_n / (1 + X_n)\; X_n > 1) + uE(X_n / (1 + X_n)\; X_n <= 1)\
+      &<= P(X_n > 1) + uE X_n 1_{X_n <= 1}.
+    $
+  - $(3) ==> (1)$：反设 $A = {sum X_n < oo}$ 满足 $P(A) > 0$。只要证明 $
+      sum_(n = 1)^oo E (X_n / (1 + X_n))
+      &= sum_(n = 1)^oo E (X_n / (1 + X_n)\; A)  + E (X_n / (1 + X_n)\; A^c)\
+      &>= sum_(n = 1)^oo E (X_n / (1 + X_n)\; A)\
+      &>= uE(sum_(n = 1)^oo X_n / (1 + X_n)\; A)\
+      &= oo quad (star)
+  $ 即可。那么只要证明在 $A$ 上 $sum X_n \/ (1 + X_n) = oo$。$forall omega in A$，若 $X_n (omega) arrow.r.not 0$ 那么显然成立，若 $X_n (omega) -> 0$ 那么有 $n$ 足够大时 $
+  X_n (1+X_n)^(-1) tilde X_n (1-  X_n) tilde X_n,
+  $ 从而 $sum X_n \/ (1 + X_n)$ 的收敛性与 $sum X_n$ 相同。
 ]
 
 #ex[
@@ -2252,6 +2285,27 @@ $
   sum_(n = 1)^oo X_n
   $ converges a.s. .
 ]
+#pf[
+  令 $Y_n = X_n 1_{|X_n<= 1|}$，然后用 Kolmogorov 三级数定理。下分别证明三个条件：
+  + $
+      sum P(|X_n| > 1)
+      &<= sum uE X_n 1_{|X_n| > 1}\
+      &<= sum (uE X_n^2 1_{|X_n| <= 1} + uE X_n 1_{|X_n| > 1})\
+      &= sum uE psi(X_n) < oo;
+    $
+  + $
+      sum var Y_n
+      &<= sum uE Y_n^2
+      &= sum uE X_n^2 1_{|X_n| <= 1}
+      &< oo;
+    $
+  + $
+      sum uE Y_n
+      &= sum (uE X_n - uE X_n 1_{|X_n| > 1})\
+      &= - sum uE X_n 1_{|X_n| > 1}\
+      &> -oo.
+    $
+]
 
 #ex[
   Let $X_n$ be independent. Suppose $
@@ -2260,6 +2314,23 @@ $
   all $n$ and $E X_n = 0$ when $p (n) > 1$. Show that $
   sum_(n = 1)^oo X_n
   $ converges a.s. .
+]
+#pf[
+  令 $Y_n = X_n 1_{|X_n| <= 1}$，然后使用 Kolmogorov 三级数定理证明，下分别说明三个条件。
+  + $
+      sum P(|X_n| > 1)
+      &<= sum uE|X_n|^p(n) < oo;
+    $
+  + $0 < p(n) <= 1$ 时，$
+    uE|Y_n| <= uE|Y_n|^p(n) <= uE|X_n|^p(n).
+  $ $1 < p(n) <= 2$ 时，$
+    uE|Y_n| = uE(|X_n|\;|X_n| >1) <= uE(|X_n|^p(n)).
+  $ 那么 $
+    sum uE|Y_n| <= uE|X_n|^p(n) < oo;
+  $
+  + $
+      sum uE var(Y_n) <= sum uE Y_n^2 <= sum uE Y_n^p(n) <= sum uE|X_n|^p(n) < oo.
+    $
 ]
 
 #ex[
@@ -2271,6 +2342,19 @@ $
   $) is 1 a.s. or 0 a.s. , according as $E log^(+) lr(|X_1|) < oo$ or $= oo$ where
   $log^(+) x = max (log x , 0)$.
 ]
+#pf[
+  当 $uE log^+|X_1| = oo$ 时，这等价于 $
+    sum_n P(log^+|X_1| > K n)
+    &= sum_n P(|X_n| > e^(K n))
+    &= oo,
+  $ 对 $forall K in NN$ 成立，那么 $|X_n| > e^(K n)$ i.o.，从而 $limsup root(n, |X_n|) >= e^K$。那么级数的收敛半径为 $0$。
+
+  当 $uE log^+|X_1| < oo$ 时，这等价于 $
+    sum_n P(log^+|X_1| < epsilon n).
+    &= sum_n P(|X_n| < e^(epsilon n))
+    &< oo
+  $ 对 $forall epsilon > 0$ 成立，那么 $|X_n| < e^(epsilon n)$ i.o.，那么 $liminf root(n, |X_n|) <= e^epsilon$。那么级数的收敛半径 $r >= e^(-epsilon)$ a.s.，从而 $r >= 1$ a.s.。又注意到代入 $|z|=1$ 时级数发散，那么级数的收敛半径 $r = 1$ a.s.。
+]
 
 #ex[
   Let $X_1 , X_2 , dots.h$ be independent and let
@@ -2279,12 +2363,36 @@ $
     (star.op) quad P (max_(m < j lt.eq n) lr(|S_(m , j)|) > 2 a) min_(m < k lt.eq n) P (lr(|S_(k , n)|) lt.eq a) lt.eq P (lr(|S_(m , n)|) > a).
   $
 ]
+#pf[
+  采用与 Kolmogorov 最大值不等式类似的方法证明。令事件 $
+    A_k = {|S_(m, m+1)|, ..., |S_(m, k + 1)| <= 2a, |S_(m, k)| > 2a}, quad m < k <= n,\
+    B_k = {|S_(k, n) <= a|}, quad m < k <= n,
+  $ 那么事件 $A_k, B_k$ 独立，$A_k$ 之间无交，从而有 $
+    P (max_(m < j lt.eq n) lr(|S_(m , j)|) > 2 a) min_(m < k lt.eq n) P (lr(|S_(k , n)|) lt.eq a)
+    &= sum_(m < k <= n) P(A_k) dot min_(m < k <= n) P(B_k)\
+    &<= sum_(m < k <= n) P(A_k)  P(B_k)\
+    &<= sum_(m < k <= n) P(A_k sect B_k)\
+    &= P(union.big_(m < k <= n)A_k sect B_k)\
+    &<= RHS.
+    $
+]
 
 #ex[
   Use $(star.op)$ to prove a theorem of P. Lévy: Let
   $X_1 , X_2 , dots.h$ be independent and let
   $S_n = X_1 + dots.h.c + X_n$. If $lim_(n arrow.r oo) S_n$ exists in
   probability then it also exists a.s. .
+]
+#pf[
+  对 $forall epsilon > 0$，$
+    P (max_(m < j lt.eq n) lr(|S_(m , j)|) > 2 epsilon) min_(m < k lt.eq n) P (lr(|S_(k , n)|) lt.eq epsilon) lt.eq P (lr(|S_(m , n)|) > epsilon) -> 0 quad (m, n -> oo).
+  $ 又知道 $min P (lr(|S_(k , n)|) <= epsilon) -> 1$，仿照上一题设 $A_k (m, n)$，从而 $
+    P (max_(m < j lt.eq n) lr(|S_(m , j)|) > 2 epsilon)
+    &= sum_(m < k <= n) P(A_k (m, n)) -> 0.
+  $ 这里 $A_k (m, n)$ 强调 $A_k$ 由 $m, n$ 决定。由 $A_k$ 关于 $m$ 的单调性知道 $
+    sum_(k=1)^oo P(A_k (1, oo))
+    &<= sum_(k=1)^m P(A_k (1, oo)) + sum_(k = m)^oo P(A_k (m, oo)),
+  $ 那么令 $m -> oo$ 知道不等式右侧有界，从而有限。由 Borel-Cantelli 引理知道 $P(A_k (1, oo) "i.o.") = 0$，从而 $S_n$ 几乎处处为 Cauchy 列，从而收敛。
 ]
 
 #ex[
@@ -2293,6 +2401,15 @@ $
   $S_n \/ n arrow.r 0$ in probability then $
     (max_(1 lt.eq m lt.eq n) S_m) / n arrow.r 0
   $ in probability.
+]
+#pf[
+  对 $forall epsilon > 0$，直接应用 $(star)$ 并令 $m = 0$ 得到 $
+    P(max_(k <= n) |S_k| > 2 epsilon n) min_(k <= n) P(|S_(k, n)| <= epsilon n) <= P(|S_n| > epsilon n).
+  $ 令 $n -> oo$，那么 $RHS -> 0$，对每个 $k$ 有 $P(|S_(k, n)| <= epsilon n) -> 1$ 从而 $
+    min_(k <= n) P(|S_(k, n)| <= epsilon n) -> 1,
+  $ 那么 $
+    P(max_(k <= n) |S_k| > 2 epsilon n) -> 0,
+  $ 从而直接得出结论。
 ]
 
 #ex[
@@ -2305,6 +2422,35 @@ $
   S_(2^n) / a(2^n) arrow.r 0
   $ a.s. then $S_n \/ a (n) arrow.r 0$ a.s. ;
   + Suppose in addition that $E X_1 = 0$ and $E X_1^2 < oo$. Use the previous exercise and Chebyshev’s inequality to conclude that $
-  S_n \/ n^(1 \/ 2) (log_2 n)^(1 \/ 2 + epsilon.alt) arrow.r 0 "a.s. ."
+  S_n / (n^(1 \/ 2) (log_2 n)^(1 \/ 2 + epsilon.alt)) arrow.r 0 "a.s. ."
   $
+]
+#pf[
+  + 使用 $(star)$ 得到 $
+    P(max_(2^(n-1) < k <= 2^n) |S_(2^(n-1), k)| > 2 epsilon a(2^n)) min_(2^(n-1) < k <= 2^n) P(|S_(k, 2^n)| <= epsilon a(2^n))\
+    <= P(|S_(2^(n-1), 2^n)| > epsilon a_(2^n)).
+  $ 对每个 $2^(n-1) < k <= 2^n$，由于 $S_n \/ a(n) -> 0$ 所以 $
+    P(|S_(k, 2^n)| > epsilon a(2^n)) <= P(|S_(k)| > epsilon a(2^n)) + P(|S_(2^n)| > epsilon a(2^n)) -> 0,
+  $ 从而 $
+    P(|S_(k, 2^n)| <= epsilon a(2^n)) -> 1.
+  $ 那么在 $n->oo$ 的情况下有 $
+    P(max_(2^(n-1) < k <= 2^n) |S_(2^(n-1), k)| > 2 epsilon a(2^n)) <= P(|S_(2^(n-1), 2^n)| > epsilon a_(2^n)).
+  $ 由 $S_(2^n) \/ a(2^n) -->^"a.s." 0$ 知道 $P(|S_(2^(n-1), 2^n)| > epsilon a(2^n) "i.o.") = 0$，再应用 Borel-Cantelli 引理知道 $
+    sum_n P(max_(2^(n-1) < k <= 2^n) |S_(2^(n-1), k)| > 2 epsilon a(2^n)) <= sum_n P(|S_(2^(n-1), 2^n)| > epsilon a_(2^n)) < oo.
+  $ 再应用 Borel-Cantelli 引理有 $
+    P(max_(2^(n-1) < k <= 2^n) abs(S_(2^(n-1), k)) / a(2^n) > 2 epsilon "i.o.") = 0.
+  $ 又考虑到 $a(2^n) <= M dot a(2^(n-1)) <= M dot a(k)$，那么有 $
+    P(max_(2^(n-1) < k <= 2^n) abs(S_(2^(n-1), k)) / a(k) > 2 epsilon M "i.o.") <= P(max_(2^(n-1) < k <= 2^n) abs(S_(2^(n-1), k)) / a(2^n) > 2 epsilon "i.o.") = 0.
+  $ 结合题目中 a.s. 收敛的条件直接得到结论。
+  + 对 $2^(n-1) < k < 2^n$，有 $a_k <= a_n <= ceil(log_2 k) M$，那么 $forall delta > 0$，有 $
+    P(S_n / (sqrt(n) (log_2 n)^(1\/2 + epsilon)) > delta)
+    &<= (n uE X_1^2) / (delta^2 n (log_2 n)^(1 + 2epsilon))\
+    &<= (M dot uE X_1^2)/( delta^2 a_n (log_2 n)^(2epsilon)) -> 0 quad (n -> oo),
+  $ 从而 $
+  S_n / (n^(1 \/ 2) (log_2 n)^(1 \/ 2 + epsilon.alt)) arrow.r.long^P 0.
+  $ 要进一步证明 a.s. 收敛，先证明子列 a.s. 收敛。$
+    P(S_(2^n) / (2^(n\/2)n^(1\/2 + epsilon)) > delta)
+    &<= (2^n uE X_1^2) / (delta^2 2^n n^(1 + 2 epsilon))\
+    &= (uE X_1^2) / (delta^2 n^(1 + 2 epsilon))
+  $ 无穷级数收敛，从而由 Borel-Cantelli 引理知道 $2^n$ 这个子列是 a.s. 收敛的。然后套用上一问结论即可得证。
 ]
