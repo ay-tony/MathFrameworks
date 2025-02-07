@@ -2454,3 +2454,79 @@ $
     &= (uE X_1^2) / (delta^2 n^(1 + 2 epsilon))
   $ 无穷级数收敛，从而由 Borel-Cantelli 引理知道 $2^n$ 这个子列是 a.s. 收敛的。然后套用上一问结论即可得证。
 ]
+
+== 更新过程
+
+#ex[
+  Show that
+  $t \/ E (xi_i and t) lt.eq U (t) lt.eq 2 t \/ E (xi_i and t)$.
+]
+
+#ex[
+  Deduce Theorem 2.6.3 from Theorem 2.6.1 by showing
+  $ limsup_(t arrow.r oo) E (N_t / t)^2 < oo . $ Hint: Use a comparison
+  like the one in the proof of Theorem 2.6.3.
+]
+
+#ex[
+  Customers arrive at times of a Poisson process with rate 1. If
+  the server is occupied, they leave. (Think of a public telephone or
+  prostitute.) If not, they enter service and require a service time with
+  a distribution $F$ that has mean $mu$. Show that the times at which
+  customers enter service are a renewal process with mean $mu + 1$, and
+  use Theorem 2.6.1 to conclude that the asymptotic fraction of customers
+  served is $1 \/ (mu + 1)$.
+
+  In the remaining problems we assume that $F$ is non-arithmetic, and in
+  problems where the mean appears we assume it is finite.
+]
+
+#ex[
+  Let $A_t = t - T_(N (t) - 1)$ be the "age" at time $t$, i.e., the
+  amount of time since the last renewal. If we fix $x > 0$ then
+  $H (t) = P (A_t > x)$ satisfies the renewal equation
+  $ H (t) = (1 - F (t)) dot.op 1_((x , oo)) (t) + integral_0^t H (t - s) d F (s) $
+  so $
+  P (A_t > x) arrow.r 1 / mu integral_((x , oo)) (1 - F (t)) dd(t),
+  $ which is the limit distribution for the residual lifetime $B_t = T_(N (t)) - t$.
+]
+
+#ex[
+  Use the renewal equation in the last problem and Theorem 2.6.9 to
+  conclude that if $T$ is a rate $lambda$ Poisson process $A_t$ has the
+  same distribution as $xi_i and t$.
+]
+
+#ex[
+  Let $A_t = t - T_(N (t) - 1)$ and $B_t = T_(N (t)) - t$. Show
+  that
+  $ P (A_t > x , B_t > y) arrow.r 1 / mu integral_(x + y)^oo (1 - F (t)) dd(t). $
+]
+
+#ex[
+  Alternating renewal process. Let $xi_1 , xi_2 , dots.h > 0$ be
+  i.i.d. with distribution $F_1$ and let $eta_1 , eta_2 , dots.h > 0$ be
+  i.i.d. with distribution $F_2$. Let $T_0 = 0$ and for $k gt.eq 1$ let
+  $S_k = T_(k - 1) + xi_k$ and $T_k = S_k + eta_k$. In words, we have a
+  machine that works for an amount of time $xi_k$, breaks down, and then
+  requires $eta_k$ units of time to be repaired. Let $F = F_1 * F_2$ and
+  $H (t)$ be the probability the machine is working at time $t$. Show that
+  if $F$ is non - arithmetic then as $t arrow.r oo$
+  $ H (t) arrow.r mu_1 / (mu_1 + mu_2) $ where $mu_i$ is the mean of
+  $F_i$.
+]
+
+#ex[
+  Write a renewal equation for
+  $H (t) = P$ (number of renewals in $[0 , t]$ is odd) and use the renewal theorem to show that $H (t) arrow.r 1 \/ 2$. Note:
+  This is a special case of the previous exercise.
+]
+
+#ex[
+  Renewal densities. Show that if $F (t)$ has a directly Riemann
+  integrable density function $f (t)$, then the $V = U - 1_(\[ 0 , oo \))$
+  has a density $v$ that satisfies
+  $ v (t) = f (t) + integral_0^t v (t - s) dd(F (s)) $ Use the renewal
+  theorem to conclude that if $f$ is directly Riemann integrable then
+  $v (t) arrow.r 1 \/ mu$ as $t arrow.r oo$.
+]
