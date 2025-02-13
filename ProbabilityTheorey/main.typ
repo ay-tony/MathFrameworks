@@ -21,7 +21,14 @@
 #outline(indent: 2em)
 #pagebreak(weak: true)
 
-#set heading(numbering: "1.")
+#set heading(
+  numbering: (..nums, text-size: auto) => {
+    let size = text-size
+    if size == auto { size = text.size }
+    set text(size: size + .25em) if nums.pos().len() == 1
+    numbering("1.", ..nums)
+  },
+)
 
 = 测度论
 
