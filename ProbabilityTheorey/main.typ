@@ -2545,13 +2545,13 @@ $
 #ex[
   Generalize the proof of Lemma 3.1.1 to conclude that if
   $
-    max_(1 lt.eq j lt.eq n) lr(|c_(j , n)|) arrow.r 0, quad 
+    max_(1 lt.eq j lt.eq n) lr(|c_(j , n)|) arrow.r 0, quad
     sum_(j = 1)^n c_(j , n) arrow.r lambda,
   $ and $
   sup_n sum_(j = 1)^n lr(|c_(j , n)|) < oo
   $ then $
   product_(j = 1)^n (1 + c_(j , n)) arrow.r e^lambda.
-  $ 
+  $
 ]
 #pf[
   由题意容易知道 $sum_j |c_(j, n)| -> 0$，那么 $
@@ -2594,9 +2594,9 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
 ]
 #pf[
   $
-    1/(2n) log P(S_(2n) = 2k)
-    &= 1/(2n)(1/(4n) log(n pi) - (n+k)/(2n) log(1+a) - (n-k)/(2n)(log(1-a)))\
-    &-> - (1+a)/2 log(1+a) - (1-a)/2 log(1-a).
+    1 / (2n) log P(S_(2n) = 2k)
+    &= 1 / (2n)(1 / (4n) log(n pi) - (n+k) / (2n) log(1+a) - (n-k) / (2n)(log(1-a)))\
+    &-> - (1+a) / 2 log(1+a) - (1-a) / 2 log(1-a).
   $ 再考虑 $2k + 2$ 的情况：$
     P(S_(2n) = 2k + 2) = (n - k) / (n + k + 1) P(S_(2n) = 2k) <= (1 - a) / (1 + a) P(S_(2n) = 2k),
   $ 然后对所有偶数 $k' >= 2k$ 求级数和即可。
@@ -2609,8 +2609,8 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
 ]
 #pf[
   $
-    1/n log P(S_n = k)
-    &-> 1/n (k log n - n - 1/2 log(2 pi k) - k log k + k)\
+    1 / n log P(S_n = k)
+    &-> 1 / n (k log n - n - 1 / 2 log(2 pi k) - k log k + k)\
     &= a - a log a - 1.
   $ 对 $k > n$ 的情况，考虑 $k + 1$：$
     P(S_n = k + 1) = n / (k + 1) P(S_n = k) <= n / k P(S_n = k),
@@ -2620,129 +2620,295 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
 == 弱收敛
 
 #ex[
-Give an example of random variables $X_n$ with densities $f_n$ so
-that $X_n arrow.r.double$ a uniform distribution on $(0 , 1)$ but
-$f_n (x)$ does not converge to 1 for any $x in [0 , 1]$.
+  Give an example of random variables $X_n$ with densities $f_n$ so
+  that $X_n arrow.r.double$ a uniform distribution on $(0 , 1)$ but
+  $f_n (x)$ does not converge to 1 for any $x in [0 , 1]$.
+]
+#pf[
+  对 $forall n > 0$，一定能找到 $k, i$ 使得 $n = k(k-1)\/2 + i$，其中 $i <= k + 1$。构造 $X_n$ 的分布函数 $F_n$：$
+    F_n = cases(
+    display(i / (k+2)\, quad i/(k+2) <= x <= (i+1)/(k+2) ),
+    "线性"\, quad "否则"
+    ).
+  $ 这样一定有 $F_n -> F = x$，但是 $f_n (x)$ 不收敛，因为 $f_n (x) = 0$ i.o.。
 ]
 
 #ex[
-Convergence of maxima. Let $X_1 , X_2 , dots.h$ be independent
-with distribution $F$, and let $M_n = max_(m lt.eq n) X_m$. Then
-$P (M_n lt.eq x) = F (x)^n$. Prove the following limit laws for $M_n$:
+  Convergence of maxima. Let $X_1 , X_2 , dots.h$ be independent
+  with distribution $F$, and let $M_n = max_(m lt.eq n) X_m$. Then
+  $P (M_n lt.eq x) = F (x)^n$. Prove the following limit laws for $M_n$:
 
-+ If $F (x) = 1 - x^(- alpha)$ for $x gt.eq 1$ where $alpha > 0$ then for $y > 0$ $ P (M_n \/ n^(1 \/ alpha) lt.eq y) arrow.r exp (- y^(- alpha)). $
-+ If $F (x) = 1 - lr(|x|)^beta$ for $- 1 lt.eq x lt.eq 0$ where $beta > 0$ then for $y < 0$ $ P (n^(1 \/ beta) M_n lt.eq y) arrow.r exp (- lr(|y|)^beta). $
-+ If $F (x) = 1 - e^(- x)$ for $x gt.eq 0$ then for all $y in (- oo , oo)$ $ P (M_n - log n lt.eq y) arrow.r exp (- e^(- y)). $
+  + If $F (x) = 1 - x^(- alpha)$ for $x gt.eq 1$ where $alpha > 0$ then for $y > 0$ $ P (M_n / n^(1 \/ alpha) lt.eq y) arrow.r exp (- y^(- alpha)). $
+  + If $F (x) = 1 - lr(|x|)^beta$ for $- 1 lt.eq x lt.eq 0$ where $beta > 0$ then for $y < 0$ $ P (n^(1 \/ beta) M_n lt.eq y) arrow.r exp (- lr(|y|)^beta). $
+  + If $F (x) = 1 - e^(- x)$ for $x gt.eq 0$ then for all $y in (- oo , oo)$ $ P (M_n - log n lt.eq y) arrow.r exp (- e^(- y)). $
 
-The limits that appear above are called the extreme-value
-distributions. The last one is called the double exponential or Gumbel
-distribution. Necessary and sufficient conditions for
-$(M_n - b_n) \/ a_n$ to converge to these limits were obtained by
-Gnedenko (1943). For a recent treatment, see Resnick (1987).
+  The limits that appear above are called the extreme-value
+  distributions. The last one is called the double exponential or Gumbel
+  distribution. Necessary and sufficient conditions for
+  $(M_n - b_n) \/ a_n$ to converge to these limits were obtained by
+  Gnedenko (1943). For a recent treatment, see Resnick (1987).
+]
+#pf[
+  + $
+      P(M_n <= y n^(1 \/ alpha))
+      &= (1 - (y n^(1 \/ alpha))^(-alpha))^(n)
+      &= (1 - y^(-alpha) / n)^n
+      &-> exp(-y^(-alpha)).
+    $
+  + $
+      P(M_n <= y n^(-1 \/ beta))
+      &= (1 - abs(y n^(-1 \/ beta))^beta)^n
+      &-> exp(-|y|^beta).
+    $
+  + $
+      P(M_n <= y + log n)
+      &= (1 - exp(-y - log n))^n
+      &-> exp(-e^(-y)).
+    $
 ]
 
 #ex[
-Let $X_1 , X_2 , dots.h$ be i.i.d. and have the standard normal
-distribution.
+  Let $X_1 , X_2 , dots.h$ be i.i.d. and have the standard normal
+  distribution.
 
-+ From Theorem 1.2.6, we know $ P (X_i > x) tilde.op 1 / sqrt(2 pi x) e^(- x^2 \/ 2) quad upright("as ") x arrow.r oo. $ Use this to conclude that for any real number $theta$ $ P(X_i > x + (theta \/ x)) / P(X_i > x) arrow.r e^(- theta). $
-+ Show that if we define $b_n$ by $P (X_i > b_n) = 1 \/ n$ $ P (b_n (M_n - b_n) lt.eq x) arrow.r exp (- e^(- x)). $
-+ Show that $b_n tilde.op (2 log n)^(1 \/ 2)$ and conclude $M_n \/ (2 log n)^(1 \/ 2) arrow.r 1$ in probability.
+  + From Theorem 1.2.6, we know $ P (X_i > x) tilde.op 1 / sqrt(2 pi x) e^(- x^2 \/ 2) quad upright("as ") x arrow.r oo. $ Use this to conclude that for any real number $theta$ $ P(X_i > x + (theta \/ x)) / P(X_i > x) arrow.r e^(- theta). $
+  + Show that if we define $b_n$ by $P (X_i > b_n) = 1 \/ n$ $ P (b_n (M_n - b_n) lt.eq x) arrow.r exp (- e^(- x)). $
+  + Show that $b_n tilde.op (2 log n)^(1 \/ 2)$ and conclude $M_n \/ (2 log n)^(1 \/ 2) arrow.r 1$ in probability.
+]
+#pf[
+  + $
+      P(X_i > x + (theta \/ x)) / P(X_i > x)
+      &-> sqrt(x / (x + theta \/ x)) exp((x^2 - (x + theta \/ x)^2)/2)\
+      &-> e^(-theta).
+    $
+  + $
+      P(M_n <= x / b_n + b_n)
+      &= (1 - P(X_n > x / b_n + b_n))^n\
+      &-> (1 - P(X_n > b_n) e^(-x))^n\
+      &-> (1 - e^(-x) / n)^n\
+      &-> exp(-e^(-x)).
+    $
+  + $
+      P(X_i > sqrt(2 log n))
+      = 1 / (sqrt(2 pi sqrt(2 log n))) dot 1 / n < 1 / n,
+    $ 从而 $b_n < sqrt(2 log n)$。而 $
+      P(X_i > sqrt(2 log n - 2 log log n))
+      &= 1 / sqrt(2pi sqrt(2 log n - 2log log n)) dot (log n) / n
+      > 1 / n,
+    $ 从而 $b_n > sqrt(2 log n - 2 log log n)$。对于另外一问，$
+        P(M_n > epsilon sqrt(2 log n))
+        &= 1 - (1 - P(X_1 > epsilon sqrt(2 log n)))^n\
+        &= 1 - (1 - 1 / sqrt(2 pi epsilon sqrt(2 log n)) dot 1 / n^epsilon)^n\
+        &-> 1 - e^0 = 0.
+    $
 ]
 
 #ex[
-Fatou’s lemma. Let $g gt.eq 0$ be continuous. If
-$X_n arrow.r.double X_oo$ then
-$ liminf_(n arrow.r oo) uE g (X_n) gt.eq uE g (X_oo). $
+  Fatou’s lemma. Let $g gt.eq 0$ be continuous. If
+  $X_n arrow.r.double X_oo$ then
+  $ liminf_(n arrow.r oo) uE g (X_n) gt.eq uE g (X_oo). $
+]
+#pf[
+  令 $Y_n, Y$ 分别为和 $X_n, X_oo$ 同分布的随机变量，且满足 $Y_n ->^"a.s." Y$，然后利用 Fatou 引理有 $
+    liminf uE g(X_n) = liminf uE g(Y_n) >= uE g(Y) = uE g(X_oo).
+  $
 ]
 
 #ex[
-Integration to the limit. Suppose $g , h$ are continuous with
-$g (x) > 0$, and $lr(|h (x)|) \/ g (x) arrow.r 0$ as
-$lr(|x|) arrow.r oo$. If $F_n arrow.r.double F$ and
-$ integral g (x) dd( F_n) (x) lt.eq C < oo $ then
-$ integral h (x) dd( F_n (x)) arrow.r integral h (x) dd( F (x)). $
+  Integration to the limit. Suppose $g , h$ are continuous with
+  $g (x) > 0$, and $lr(|h (x)|) \/ g (x) arrow.r 0$ as
+  $lr(|x|) arrow.r oo$. If $F_n arrow.r.double F$ and
+  $ integral g (x) dd( F_n) (x) lt.eq C < oo $ then
+  $ integral h (x) dd( F_n (x)) arrow.r integral h (x) dd( F (x)). $
+]
+#pf[
+  设 $X_n, X$ 分别为服从 $F_n, F$ 的随机变量，满足 $X_n ->^"a.s." X$。那么由控制收敛定理得到 $uE h(X_n) -> uE h(X)$，也即所求。
 ]
 
 #ex[
-The Lévy Metric. Show that
-$ rho (F , G) = inf { epsilon : F (x - epsilon) - epsilon lt.eq G (x) lt.eq F (x + epsilon) + epsilon upright(" for all ") x } $
-defines a metric on the space of distributions and
-$rho (F_n , F) arrow.r 0$ if and only if $F_n arrow.r.double F$.
+  The Lévy Metric. Show that
+  $
+    rho (F , G) = inf { epsilon : F (x - epsilon) - epsilon lt.eq G (x) lt.eq F (x + epsilon) + epsilon upright(" for all ") x }
+  $
+  defines a metric on the space of distributions and
+  $rho (F_n , F) arrow.r 0$ if and only if $F_n arrow.r.double F$.
+]
+#pf[
+  正定性和对称性显然。设 $rho(F, G) = rho_1, rho(G, H) = rho_2$，那么对 $forall x$ 有 $
+    F(x - rho_1 - rho_2) - rho_1 - rho_2 <= G(x - rho_2) - rho_2 <=\
+    H(x)\
+    <= G(x + rho_2) + rho_2 <= F(x + rho_1 + rho_2) + rho_1 + rho_2
+  $ 成立，从而 $rho(H, F) <= rho_1 + rho_2$。
+
+  先证必要性，假设 $rho(F_n, F) -> 0$。取连续点 $x in RR$，那么对 $forall epsilon > 0$，存在足够大的 $n$ 使得 $rho(F_n, F) < epsilon$，那么有 $
+    F_n (x - epsilon) - epsilon lt.eq F (x) lt.eq F_n (x + epsilon) + epsilon.
+  $ $n -> oo$ 时 $epsilon -> 0$，得到 $limsup F_n (x) <= F(x) <= liminf F_n(x)$，从而 $lim F_n (x) = F(x)$，那么 $F_n => F$。
+
+  再证充分性，假设 $F_n => F$,
+
+  *TODO*
 ]
 
 #ex[
-The Ky Fan metric on random variables is defined by
-$ alpha (X , Y) = inf { epsilon gt.eq 0 : P (lr(|X - Y|) > epsilon) lt.eq epsilon }. $
-Show that if $alpha (X , Y) = alpha$ then the corresponding
-distributions have Lévy distance $rho (F , G) lt.eq alpha$.
+  The Ky Fan metric on random variables is defined by
+  $ alpha (X , Y) = inf { epsilon gt.eq 0 : P (lr(|X - Y|) > epsilon) lt.eq epsilon }. $
+  Show that if $alpha (X , Y) = alpha$ then the corresponding
+  distributions have Lévy distance $rho (F , G) lt.eq alpha$.
+]
+#pf[
+  只要证明 $alpha$ 满足 $F(x - alpha) - alpha <= G(x) <= F(x + alpha) + alpha$ 对 $forall x$ 成立即可。对第一个不等式有 $
+    F(x - alpha) - G(x)
+    &= (P(X <= x - alpha, Y <= x) + P(X <= x - alpha, Y > x))\
+    &quad - (P(X <=x - alpha, Y <= x) + P(X > x - alpha, Y <= x))\
+    &<= P(X <= x - alpha, Y > x)\
+    &<= P(|X - Y| > alpha) <= alpha.
+  $ 可以类似证明另一半。
 ]
 
 #ex[
-Let $alpha (X , Y)$ be the metric in the previous exercise and
-let $beta (X , Y) = E (lr(|X - Y|) \/ (1 + lr(|X - Y|)))$ be the metric
-of Exercise 2.3.6. If $alpha (X , Y) = a$ then
-$ a^2 / (1 + a) lt.eq beta (X , Y) lt.eq a + (1 - a)a / (1 + a). $
+  Let $alpha (X , Y)$ be the metric in the previous exercise and
+  let $ beta (X , Y) = E (lr(|X - Y|) / (1 + lr(|X - Y|))) $ be the metric
+  of Exercise 2.3.6. If $alpha (X , Y) = a$ then
+  $ a^2 / (1 + a) lt.eq beta (X , Y) lt.eq a + (1 - a)a / (1 + a). $
+]
+#pf[
+  $
+    beta(X, Y)
+    &= 1 - uE(1 / (1 + |X + Y|))\
+    &<= 1 - uE(1 / (1 + |X + Y|)\; |X - Y| <= a)\
+    &<= 1 - 1 / (1 + a) (1 - a)\
+    &= a + (1 - a) a / (1 + a).
+  $ 对于另一半不等式，有 $
+    beta(X, Y)
+    &>= uE(abs(X - Y)/(1 + |X - Y|)\; |X - Y| > a)\
+    &>= a / (1 + a) dot a = a^2 / (1 + a).
+  $
 ]
 
 #ex[
-If $F_n arrow.r.double F$ and $F$ is continuous then
-$sup_x lr(|F_n (x) - F (x)|) arrow.r 0$.
+  If $F_n arrow.r.double F$ and $F$ is continuous then
+  $sup_x lr(|F_n (x) - F (x)|) arrow.r 0$.
+]
+#pf[
+  对 $forall epsilon > 0$，取正数 $M$ 足够大使得 $|F(M) - 1| < epsilon$ 且 $|F(-M) + 1| < epsilon$。可以取足够大的 $n$ 使得 $
+    sup_(x > M)|F_n (x) - F(x)|
+    &<= sup_(x > M)|F_n (x) - 1| + sup_(x > M)|F(x) - 1|\
+    &<= |F_n (M) - 1| + |F(M) - 1|\
+    &<= 2epsilon
+  $ 且 $
+    sup_(x < -M)|F_n (x) - F(x)|
+    &<= sup_(x < -M)|F_n (x) + 1| + sup_(x < -M)|F(x) + 1|\
+    &<= |F_n (-M) + 1| + |F(-M) + 1|\
+    &<= 2epsilon.
+  $ 再考虑 $[-M, M]$ 上的行为，在这个紧集上容易用有限覆盖定理证明一致收敛性。
 ]
 
 #ex[
-If $F$ is any distribution function there is a sequence of
-distribution functions of the form
-$ sum_(m = 1)^n a_(n , m) 1_((x_(n , m) lt.eq x)) $ with
-$F_n arrow.r.double F$.
+  If $F$ is any distribution function there is a sequence of
+  distribution functions of the form
+  $ sum_(m = 1)^n a_(n , m) 1_((x_(n , m) lt.eq x)) $ with
+  $F_n arrow.r.double F$.
+]
+#pf[
+  直接构造这样的 $F_n$。令 $x_1 = -sqrt(n) \/ 2, x_2, ..., x_n = sqrt(n) \/ 2$ 为一个平均划分，然后令 $
+    F_n (x) = cases(
+        0\, quad x < x_1,
+        F(x_1)\, quad x_1 <= x < x_2,
+        quad dots.v,
+        F(x_n)\, quad x >= x_n
+    )
+  $ 那么只要证明对 $F$ 的连续点 $x$ 有 $F_n (x) -> F(x)$。对 $forall epsilon > 0$，考虑 $x$ 的一个 $F$ 连续邻域 $U(x, delta)$ 满足 $|F(x -delta) - F(x)| < epsilon$，令 $n$ 足够大使得两个相邻划分点的距离小于 $delta$，那么 $F(x) - F_n (x) <= F(x) - F (x - delta) < epsilon$.
 ]
 
 #ex[
-Let $X_n , 1 lt.eq n lt.eq oo$, be integer - valued. Show that
-$X_n arrow.r.double X_oo$ if and only if
-$P (X_n = m) arrow.r P (X_oo = m)$ for all $m$.
+  Let $X_n , 1 lt.eq n lt.eq oo$, be integer-valued. Show that
+  $X_n arrow.r.double X_oo$ if and only if
+  $P (X_n = m) arrow.r P (X_oo = m)$ for all $m$.
+]
+#pf[
+  记 $X_n, X_oo$ 的分布函数为 $F_n, F$。先证必要性，设 $X_n => X_oo$。对 $forall m in ZZ$，$m plus.minus 1 \/ 2$ 是 $F$ 的连续点，从而 $
+  P(X_n = m)
+  &= F_n (m + 1\/2) - F_n (m - 1\/2)\
+  &-> F(m + 1\/2) - F(m - 1\/2)\
+  &= P(X_oo = m).
+  $
+
+  再证充分性，设 $P(X_n = m) -> P(X_oo = m)$，那么对 $forall x in RR \\ ZZ$，取 $m in ZZ$ 使得 $x in [m, m + 1)$。$
+    F_n (x)
+    &= sum_(-oo)^m P(X_n = k)\
+    &-> sum_(-oo)^m P(X = k)\
+    &= F(x),
+  $ 其中运用了有界收敛定理，或者级数理论中的对应定理。
 ]
 
 #ex[
-Show that if $X_n arrow.r X$ in probability then
-$X_n arrow.r.double X$ and that, conversely, if $X_n arrow.r.double c$,
-where $c$ is a constant then $X_n arrow.r c$ in probability.
+  Show that if $X_n arrow.r X$ in probability then
+  $X_n arrow.r.double X$ and that, conversely, if $X_n arrow.r.double c$,
+  where $c$ is a constant then $X_n arrow.r c$ in probability.
+]
+#pf[
+  先证第一条结论，设 $X_n ->^P X$。由前面习题知道 $uE(abs(X_n - X)\/(1 + |X_n - X|)) -> 0$，那么 Ky Fan 度量 $alpha(X_n, X) -> 0$，那么 Levy 度量 $rho(X_n, X) -> 0$，那么 $X_n => X$。
+
+  再证第二条结论。由 $X_n => c$ 知道对 $forall epsilon > 0$ 有 $F_n (c + epsilon) -> 1$，$F_n (c - epsilon) -> 0$，那么 $
+    P(|X_n - c| > epsilon)
+    &= F_n (c - epsilon) + 1 - F_n (c + epsilon)
+    &-> 0.
+  $
 ]
 
 #ex[
-Converging together lemma. If $X_n arrow.r.double X$ and
-$Y_n arrow.r c$, where $c$ is a constant then
-$X_n + Y_n arrow.r.double X + c$. A useful consequence of this result is
-that if $X_n arrow.r.double X$ and $Z_n - X_n arrow.r 0$ then
-$Z_n arrow.r.double X$.
+  Converging together lemma. If $X_n arrow.r.double X$ and
+  $Y_n arrow.r.double c$, where $c$ is a constant then
+  $X_n + Y_n arrow.r.double X + c$. A useful consequence of this result is
+  that if $X_n arrow.r.double X$ and $Z_n - X_n arrow.r.double 0$ then
+  $Z_n arrow.r.double X$.
+]
+#pf[
+  取 $X_n ', X', Y_n '$ 分别与 $X_n, X, Y_n$ 同分布且 $X_n ' ->^"a.s." X', Y_n ' ->^"a.s." c$，那么 $X_n ' + Y_n ' ->^"a.s." X' + c$，从而 $X_n ' + Y_n ' => X' + c$，又考虑到同分布从而得到结论。
 ]
 
 #ex[
-Suppose $X_n arrow.r.double X$, $Y_n gt.eq 0$, and
-$Y_n arrow.r c$, where $c > 0$ is a constant then
-$X_n Y_n arrow.r.double c X$. This result is true without the
-assumptions $Y_n gt.eq 0$ and $c > 0$. We have imposed these only to
-make the proof less tedious.
+  Suppose $X_n arrow.r.double X$, $Y_n gt.eq 0$, and
+  $Y_n arrow.r.double c$, where $c > 0$ is a constant then
+  $X_n Y_n arrow.r.double c X$. This result is true without the
+  assumptions $Y_n gt.eq 0$ and $c > 0$. We have imposed these only to
+  make the proof less tedious.
+]
+#pf[
+  与上一题同理。
 ]
 
 #ex[
-Show that if $X_n = (X_n^1 , dots.h , X_n^n)$ is uniformly
-distributed over the surface of the sphere of radius $sqrt(n)$ in
-$bb(R)^n$ then $X_n^1 arrow.r.double$ a standard normal. Hint: Let
-$Y_1 , Y_2 , dots.h$ be i.i.d. standard normals and let
-$ X_n^i = Y_i (n / (sum_(m = 1)^n Y_m^2))^(1 / 2). $
+  Show that if $X_n = (X_n^1 , dots.h , X_n^n)$ is uniformly
+  distributed over the surface of the sphere of radius $sqrt(n)$ in
+  $bb(R)^n$ then $X_n^1 arrow.r.double$ a standard normal. Hint: Let
+  $Y_1 , Y_2 , dots.h$ be i.i.d. standard normals and let
+  $ X_n^i = Y_i sqrt(n / (sum_(m = 1)^n Y_m^2)). $
+]
+#pf[
+  按照题意构造 $Y_i$ 和 $X_n^i$。先证明这个构造是超球面上的均匀分布。有 $Y_n^i tilde sN(0, 1)$，那么 $Y_n = (Y_n^i)_i tilde sN(bold(0), vI_n)$ 满足 $A Y_n tilde sN(bold(0), vI_n)$，从而 $Y_n$ 分布是球对称的，那么 $Y_n$ 服从均匀分布。那么 $X_n = sqrt(n) Y_n \/ lr(||Y_n||)$ 也服从均匀分布。
+
+  再证明这个均匀分布的分量弱收敛于标准正态分布。由正态分布性质知道 $uE Y_i^2 = 1$，那么由强大数定律知道 $
+    (sum_(m=1)^n Y_m^2) / n ->^"a.s." uE Y_1^2 = 1,
+  $ 那么 $X_n^i ->^"a.s." Y_i tilde sN(0, 1)$，从而弱收敛。
 ]
 
 #ex[
-Suppose $Y_n gt.eq 0$, $E Y_n^alpha arrow.r 1$ and
-$E Y_n^beta arrow.r 1$ for some $0 < alpha < beta$. Show that
-$Y_n arrow.r 1$ in probability.
+  Suppose $Y_n gt.eq 0$, $E Y_n^alpha arrow.r 1$ and
+  $E Y_n^beta arrow.r 1$ for some $0 < alpha < beta$. Show that
+  $Y_n arrow.r 1$ in probability.
+]
+#pf[
+  *TODO*
 ]
 
 #ex[
-For each $K < oo$ and $y < 1$ there is a $c_(y , K) > 0$ so that
-$E X^2 = 1$ and $E X^4 lt.eq K$ implies
-$P (lr(|X|) > y) gt.eq c_(y , K)$.
+  For each $K < oo$ and $y < 1$ there is a $c_(y , K) > 0$ so that
+  $E X^2 = 1$ and $E X^4 lt.eq K$ implies
+  $P (lr(|X|) > y) gt.eq c_(y , K)$.
+]
+#pf[
+
 ]
 
 == 特征函数
@@ -2750,48 +2916,48 @@ $P (lr(|X|) > y) gt.eq c_(y , K)$.
 === 定义，逆转公式
 
 #ex[
-Show that if $phi$ is a ch.f. then $upright("Re") phi$ and
-$lr(|phi|)^2$ are also.
+  Show that if $phi$ is a ch.f. then $upright("Re") phi$ and
+  $lr(|phi|)^2$ are also.
 ]
 
 #ex[
-+ Imitate the proof of Theorem 3.3.11 to show that $ mu ({ a }) = lim_(T arrow.r oo) frac(1, 2 T) integral_(- T)^T e^(- i t a) phi (t) dd(t); $
-+ If $P (X in h bb(Z)) = 1$ where $h > 0$ then its ch.f. has $phi (2 pi \/ h + t) = phi (t)$ so $ P (X = x) = frac(h, 2 pi) integral_(- pi \/ h)^(pi \/ h) e^(- i t x) phi (t) d t quad upright("for ") x in h bb(Z); $
-+ If $X = Y + b$ then $E exp (i t X) = e^(i t b) E exp (i t Y)$. So if $P (X in b + h bb(Z)) = 1$, the inversion formula in (2) is valid for $x in b + h bb(Z)$.
+  + Imitate the proof of Theorem 3.3.11 to show that $ mu ({ a }) = lim_(T arrow.r oo) frac(1, 2 T) integral_(- T)^T e^(- i t a) phi (t) dd(t); $
+  + If $P (X in h bb(Z)) = 1$ where $h > 0$ then its ch.f. has $phi (2 pi \/ h + t) = phi (t)$ so $ P (X = x) = frac(h, 2 pi) integral_(- pi \/ h)^(pi \/ h) e^(- i t x) phi (t) d t quad upright("for ") x in h bb(Z); $
+  + If $X = Y + b$ then $E exp (i t X) = e^(i t b) E exp (i t Y)$. So if $P (X in b + h bb(Z)) = 1$, the inversion formula in (2) is valid for $x in b + h bb(Z)$.
 ]
 
 #ex[
-Suppose $X$ and $Y$ are independent and have ch.f. $phi$ and
-distribution $mu$. Apply Exercise 3.3.2 to $X - Y$ and use Exercise
-2.1.5 to get
-$ lim_(T arrow.r oo) frac(1, 2 T) integral_(- T)^T lr(|phi (t)|)^2 d t = P (X - Y = 0) = sum_x mu ({ x })^2. $
+  Suppose $X$ and $Y$ are independent and have ch.f. $phi$ and
+  distribution $mu$. Apply Exercise 3.3.2 to $X - Y$ and use Exercise
+  2.1.5 to get
+  $ lim_(T arrow.r oo) frac(1, 2 T) integral_(- T)^T lr(|phi (t)|)^2 d t = P (X - Y = 0) = sum_x mu ({ x })^2. $
 
-*Remark.* The last result implies that if $phi (t) arrow.r 0$ as
-$t arrow.r oo$, $mu$ has no point masses. Exercise 3.3.11 gives an
-example to show that the converse is false. The Riemann - Lebesgue Lemma
-(Exercise 1.4.4) shows that if $mu$ has a density, $phi (t) arrow.r 0$
-as $t arrow.r oo$.
+  *Remark.* The last result implies that if $phi (t) arrow.r 0$ as
+  $t arrow.r oo$, $mu$ has no point masses. Exercise 3.3.11 gives an
+  example to show that the converse is false. The Riemann - Lebesgue Lemma
+  (Exercise 1.4.4) shows that if $mu$ has a density, $phi (t) arrow.r 0$
+  as $t arrow.r oo$.
 ]
 
 #ex[
-Give an example of a measure $mu$ with a density but for which
-$integral lr(|phi (t)|) dd(t) = oo$. Hint: Two of the examples above have
-this property.
+  Give an example of a measure $mu$ with a density but for which
+  $integral lr(|phi (t)|) dd(t) = oo$. Hint: Two of the examples above have
+  this property.
 ]
 
 #ex[
-Show that if $X_1 , dots.h , X_n$ are independent and uniformly
-distributed on $(- 1 , 1)$, then for $n gt.eq 2$, $X_1 + dots.h.c + X_n$
-has density
-$ f (x) = 1 / pi integral_0^oo ((sin t) / t)^n cos t x med dd(t). $ Although
-it is not obvious from the formula, $f$ is a polynomial in each interval
-$(k , k + 1) , k in bb(Z)$ and vanishes on $[- n , n]^c$.
+  Show that if $X_1 , dots.h , X_n$ are independent and uniformly
+  distributed on $(- 1 , 1)$, then for $n gt.eq 2$, $X_1 + dots.h.c + X_n$
+  has density
+  $ f (x) = 1 / pi integral_0^oo ((sin t) / t)^n cos t x med dd(t). $ Although
+  it is not obvious from the formula, $f$ is a polynomial in each interval
+  $(k , k + 1) , k in bb(Z)$ and vanishes on $[- n , n]^c$.
 ]
 
 #ex[
-Use the result in Example 3.3.16 to conclude that if
-$X_1 , X_2 , dots.h$ are independent and have the Cauchy distribution,
-then $(X_1 + dots.h.c + X_n) \/ n$ has the same distribution as $X_1$.
+  Use the result in Example 3.3.16 to conclude that if
+  $X_1 , X_2 , dots.h$ are independent and have the Cauchy distribution,
+  then $(X_1 + dots.h.c + X_n) \/ n$ has the same distribution as $X_1$.
 ]
 
 === 弱收敛
