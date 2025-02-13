@@ -2,15 +2,20 @@
 #show: aytony-cn-traits
 
 #let ex = ex.with(base_level: 2)
-
-#text(20pt)[#align(center)[
+#show heading.where(level: 1): it => {
+  pagebreak(weak: true)
+  it
+}
+#align(center + horizon)[
+  #text(20pt)[
     *Probability: Theory and Examples*
 
     *概率论：理论与例子*
-  ]]
+  ]
 
-#align(center)[
   更新日期：#datetime.today().display("[year] 年 [month] 月 [day] 日")
+
+  aytony
 ]
 
 #outline(indent: 2em)
@@ -2422,7 +2427,7 @@ $
   S_(2^n) / a(2^n) arrow.r 0
   $ a.s. then $S_n \/ a (n) arrow.r 0$ a.s. ;
   + Suppose in addition that $E X_1 = 0$ and $E X_1^2 < oo$. Use the previous exercise and Chebyshev’s inequality to conclude that $
-  S_n / (n^(1 \/ 2) (log_2 n)^(1 \/ 2 + epsilon.alt)) arrow.r 0 "a.s. ."
+  S_n / (n^(1 \/ 2) (log_2 n)^(1 \/ 2 + epsilon)) arrow.r 0 "a.s. ."
   $
 ]
 #pf[
@@ -2447,7 +2452,7 @@ $
     &<= (n uE X_1^2) / (delta^2 n (log_2 n)^(1 + 2epsilon))\
     &<= (M dot uE X_1^2)/( delta^2 a_n (log_2 n)^(2epsilon)) -> 0 quad (n -> oo),
   $ 从而 $
-  S_n / (n^(1 \/ 2) (log_2 n)^(1 \/ 2 + epsilon.alt)) arrow.r.long^P 0.
+  S_n / (n^(1 \/ 2) (log_2 n)^(1 \/ 2 + epsilon)) arrow.r.long^P 0.
   $ 要进一步证明 a.s. 收敛，先证明子列 a.s. 收敛。$
     P(S_(2^n) / (2^(n\/2)n^(1\/2 + epsilon)) > delta)
     &<= (2^n uE X_1^2) / (delta^2 2^n n^(1 + 2 epsilon))\
@@ -2530,3 +2535,265 @@ $
   theorem to conclude that if $f$ is directly Riemann integrable then
   $v (t) arrow.r 1 \/ mu$ as $t arrow.r oo$.
 ]
+
+== 大偏差
+
+= 中心极限定理
+
+== De Moivre-Laplace 定理
+
+#ex[
+  Generalize the proof of Lemma 3.1.1 to conclude that if
+  $
+    max_(1 lt.eq j lt.eq n) lr(|c_(j , n)|) arrow.r 0, quad 
+    sum_(j = 1)^n c_(j , n) arrow.r lambda,
+  $ and $
+  sup_n sum_(j = 1)^n lr(|c_(j , n)|) < oo
+  $ then $
+  product_(j = 1)^n (1 + c_(j , n)) arrow.r e^lambda.
+  $ 
+]
+#pf[
+  由题意容易知道 $sum_j |c_(j, n)| -> 0$，那么 $
+    sum_j (c_(j, n) - 1/2 c_(j,n)^2) <= sum_j log(1 + c_(j, n)) <= sum_j c_(j, n),
+  $ 夹逼得到 $sum_j log(1 + c_(j, n)) -> lambda$，从而 $
+  product_(j = 1)^n (1 + c_(j , n)) = exp(sum_j log(1 + c_(j, n))) arrow.r e^lambda.
+  $
+]
+
+The next three exercises illustrate the use of Stirling’s formula. In them, $X_1 , X_2 , dots.h$ are i.i.d. and $S_n = X_1 + dots.h.c + X_n$.
+
+#ex[
+  If the $X_i$ have a Poisson distribution with mean 1, then $S_n$
+  has a Poisson distribution with mean $n$, i.e.,
+  $P (S_n = k) = e^(- n) n^k \/ k !$. Use Stirling’s formula to show that
+  if $(k - n) \/ sqrt(n) arrow.r x$ then
+  $ sqrt(2 pi n) P (S_n = k) arrow.r exp (- x^2 / 2). $ As in the case of
+  coin flips it follows that
+  $ P (a lt.eq (S_n - n) / sqrt(n) lt.eq b) arrow.r integral_a^b (2 pi)^(- 1 \/ 2) e^(- x^2 \/ 2) dd(x) $
+  but proving the last conclusion is not part of the exercise.
+]
+#pf[
+  逆用 Stirling 公式有 $
+    sqrt(2 pi n)P(S_n = n + m)
+    &= sqrt(2 pi n) n^n e^(-n) dot n^m / (n + m)!\
+    &-> (n^m n!)/(n+m)!\
+    &= product_i^m (1 + i / (n + i)).
+  $ 再应用上一问结论知道它趋近于 $exp(x^2 \/ 2)$。
+]
+
+In the next two examples you should begin by considering $P (S_n = k)$
+when $k \/ n arrow.r a$ and then relate $P (S_n = j + 1)$ to
+$P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
+
+#ex[
+  Suppose $P (X_i = 1) = P (X_i = - 1) = 1 \/ 2$. Show that if
+  $a in (0 , 1)$
+  $ frac(1, 2 n) log P (S_(2 n) gt.eq 2 n a) arrow.r - gamma (a), $ where
+  $ gamma (a) = 1 / 2 { (1 + a) log (1 + a) + (1 - a) log (1 - a) }. $
+]
+#pf[
+  $
+    1/(2n) log P(S_(2n) = 2k)
+    &= 1/(2n)(1/(4n) log(n pi) - (n+k)/(2n) log(1+a) - (n-k)/(2n)(log(1-a)))\
+    &-> - (1+a)/2 log(1+a) - (1-a)/2 log(1-a).
+  $ 再考虑 $2k + 2$ 的情况：$
+    P(S_(2n) = 2k + 2) = (n - k) / (n + k + 1) P(S_(2n) = 2k) <= (1 - a) / (1 + a) P(S_(2n) = 2k),
+  $ 然后对所有偶数 $k' >= 2k$ 求级数和即可。
+]
+
+#ex[
+  Suppose $P (X_i = k) = e^(- 1) \/ k !$ for $k = 0 , 1 , dots.h$.
+  Show that if $a > 1$
+  $ 1 / n log P (S_n gt.eq n a) arrow.r a - 1 - a log a. $
+]
+#pf[
+  $
+    1/n log P(S_n = k)
+    &-> 1/n (k log n - n - 1/2 log(2 pi k) - k log k + k)\
+    &= a - a log a - 1.
+  $ 对 $k > n$ 的情况，考虑 $k + 1$：$
+    P(S_n = k + 1) = n / (k + 1) P(S_n = k) <= n / k P(S_n = k),
+  $ 然后对 $k' >= k$ 级数求和即可。
+]
+
+== 弱收敛
+
+#ex[
+Give an example of random variables $X_n$ with densities $f_n$ so
+that $X_n arrow.r.double$ a uniform distribution on $(0 , 1)$ but
+$f_n (x)$ does not converge to 1 for any $x in [0 , 1]$.
+]
+
+#ex[
+Convergence of maxima. Let $X_1 , X_2 , dots.h$ be independent
+with distribution $F$, and let $M_n = max_(m lt.eq n) X_m$. Then
+$P (M_n lt.eq x) = F (x)^n$. Prove the following limit laws for $M_n$:
+
++ If $F (x) = 1 - x^(- alpha)$ for $x gt.eq 1$ where $alpha > 0$ then for $y > 0$ $ P (M_n \/ n^(1 \/ alpha) lt.eq y) arrow.r exp (- y^(- alpha)). $
++ If $F (x) = 1 - lr(|x|)^beta$ for $- 1 lt.eq x lt.eq 0$ where $beta > 0$ then for $y < 0$ $ P (n^(1 \/ beta) M_n lt.eq y) arrow.r exp (- lr(|y|)^beta). $
++ If $F (x) = 1 - e^(- x)$ for $x gt.eq 0$ then for all $y in (- oo , oo)$ $ P (M_n - log n lt.eq y) arrow.r exp (- e^(- y)). $
+
+The limits that appear above are called the extreme-value
+distributions. The last one is called the double exponential or Gumbel
+distribution. Necessary and sufficient conditions for
+$(M_n - b_n) \/ a_n$ to converge to these limits were obtained by
+Gnedenko (1943). For a recent treatment, see Resnick (1987).
+]
+
+#ex[
+Let $X_1 , X_2 , dots.h$ be i.i.d. and have the standard normal
+distribution.
+
++ From Theorem 1.2.6, we know $ P (X_i > x) tilde.op 1 / sqrt(2 pi x) e^(- x^2 \/ 2) quad upright("as ") x arrow.r oo. $ Use this to conclude that for any real number $theta$ $ P(X_i > x + (theta \/ x)) / P(X_i > x) arrow.r e^(- theta). $
++ Show that if we define $b_n$ by $P (X_i > b_n) = 1 \/ n$ $ P (b_n (M_n - b_n) lt.eq x) arrow.r exp (- e^(- x)). $
++ Show that $b_n tilde.op (2 log n)^(1 \/ 2)$ and conclude $M_n \/ (2 log n)^(1 \/ 2) arrow.r 1$ in probability.
+]
+
+#ex[
+Fatou’s lemma. Let $g gt.eq 0$ be continuous. If
+$X_n arrow.r.double X_oo$ then
+$ liminf_(n arrow.r oo) uE g (X_n) gt.eq uE g (X_oo). $
+]
+
+#ex[
+Integration to the limit. Suppose $g , h$ are continuous with
+$g (x) > 0$, and $lr(|h (x)|) \/ g (x) arrow.r 0$ as
+$lr(|x|) arrow.r oo$. If $F_n arrow.r.double F$ and
+$ integral g (x) dd( F_n) (x) lt.eq C < oo $ then
+$ integral h (x) dd( F_n (x)) arrow.r integral h (x) dd( F (x)). $
+]
+
+#ex[
+The Lévy Metric. Show that
+$ rho (F , G) = inf { epsilon : F (x - epsilon) - epsilon lt.eq G (x) lt.eq F (x + epsilon) + epsilon upright(" for all ") x } $
+defines a metric on the space of distributions and
+$rho (F_n , F) arrow.r 0$ if and only if $F_n arrow.r.double F$.
+]
+
+#ex[
+The Ky Fan metric on random variables is defined by
+$ alpha (X , Y) = inf { epsilon gt.eq 0 : P (lr(|X - Y|) > epsilon) lt.eq epsilon }. $
+Show that if $alpha (X , Y) = alpha$ then the corresponding
+distributions have Lévy distance $rho (F , G) lt.eq alpha$.
+]
+
+#ex[
+Let $alpha (X , Y)$ be the metric in the previous exercise and
+let $beta (X , Y) = E (lr(|X - Y|) \/ (1 + lr(|X - Y|)))$ be the metric
+of Exercise 2.3.6. If $alpha (X , Y) = a$ then
+$ a^2 / (1 + a) lt.eq beta (X , Y) lt.eq a + (1 - a)a / (1 + a). $
+]
+
+#ex[
+If $F_n arrow.r.double F$ and $F$ is continuous then
+$sup_x lr(|F_n (x) - F (x)|) arrow.r 0$.
+]
+
+#ex[
+If $F$ is any distribution function there is a sequence of
+distribution functions of the form
+$ sum_(m = 1)^n a_(n , m) 1_((x_(n , m) lt.eq x)) $ with
+$F_n arrow.r.double F$.
+]
+
+#ex[
+Let $X_n , 1 lt.eq n lt.eq oo$, be integer - valued. Show that
+$X_n arrow.r.double X_oo$ if and only if
+$P (X_n = m) arrow.r P (X_oo = m)$ for all $m$.
+]
+
+#ex[
+Show that if $X_n arrow.r X$ in probability then
+$X_n arrow.r.double X$ and that, conversely, if $X_n arrow.r.double c$,
+where $c$ is a constant then $X_n arrow.r c$ in probability.
+]
+
+#ex[
+Converging together lemma. If $X_n arrow.r.double X$ and
+$Y_n arrow.r c$, where $c$ is a constant then
+$X_n + Y_n arrow.r.double X + c$. A useful consequence of this result is
+that if $X_n arrow.r.double X$ and $Z_n - X_n arrow.r 0$ then
+$Z_n arrow.r.double X$.
+]
+
+#ex[
+Suppose $X_n arrow.r.double X$, $Y_n gt.eq 0$, and
+$Y_n arrow.r c$, where $c > 0$ is a constant then
+$X_n Y_n arrow.r.double c X$. This result is true without the
+assumptions $Y_n gt.eq 0$ and $c > 0$. We have imposed these only to
+make the proof less tedious.
+]
+
+#ex[
+Show that if $X_n = (X_n^1 , dots.h , X_n^n)$ is uniformly
+distributed over the surface of the sphere of radius $sqrt(n)$ in
+$bb(R)^n$ then $X_n^1 arrow.r.double$ a standard normal. Hint: Let
+$Y_1 , Y_2 , dots.h$ be i.i.d. standard normals and let
+$ X_n^i = Y_i (n / (sum_(m = 1)^n Y_m^2))^(1 / 2). $
+]
+
+#ex[
+Suppose $Y_n gt.eq 0$, $E Y_n^alpha arrow.r 1$ and
+$E Y_n^beta arrow.r 1$ for some $0 < alpha < beta$. Show that
+$Y_n arrow.r 1$ in probability.
+]
+
+#ex[
+For each $K < oo$ and $y < 1$ there is a $c_(y , K) > 0$ so that
+$E X^2 = 1$ and $E X^4 lt.eq K$ implies
+$P (lr(|X|) > y) gt.eq c_(y , K)$.
+]
+
+== 特征函数
+
+=== 定义，逆转公式
+
+#ex[
+Show that if $phi$ is a ch.f. then $upright("Re") phi$ and
+$lr(|phi|)^2$ are also.
+]
+
+#ex[
++ Imitate the proof of Theorem 3.3.11 to show that $ mu ({ a }) = lim_(T arrow.r oo) frac(1, 2 T) integral_(- T)^T e^(- i t a) phi (t) dd(t); $
++ If $P (X in h bb(Z)) = 1$ where $h > 0$ then its ch.f. has $phi (2 pi \/ h + t) = phi (t)$ so $ P (X = x) = frac(h, 2 pi) integral_(- pi \/ h)^(pi \/ h) e^(- i t x) phi (t) d t quad upright("for ") x in h bb(Z); $
++ If $X = Y + b$ then $E exp (i t X) = e^(i t b) E exp (i t Y)$. So if $P (X in b + h bb(Z)) = 1$, the inversion formula in (2) is valid for $x in b + h bb(Z)$.
+]
+
+#ex[
+Suppose $X$ and $Y$ are independent and have ch.f. $phi$ and
+distribution $mu$. Apply Exercise 3.3.2 to $X - Y$ and use Exercise
+2.1.5 to get
+$ lim_(T arrow.r oo) frac(1, 2 T) integral_(- T)^T lr(|phi (t)|)^2 d t = P (X - Y = 0) = sum_x mu ({ x })^2. $
+
+*Remark.* The last result implies that if $phi (t) arrow.r 0$ as
+$t arrow.r oo$, $mu$ has no point masses. Exercise 3.3.11 gives an
+example to show that the converse is false. The Riemann - Lebesgue Lemma
+(Exercise 1.4.4) shows that if $mu$ has a density, $phi (t) arrow.r 0$
+as $t arrow.r oo$.
+]
+
+#ex[
+Give an example of a measure $mu$ with a density but for which
+$integral lr(|phi (t)|) dd(t) = oo$. Hint: Two of the examples above have
+this property.
+]
+
+#ex[
+Show that if $X_1 , dots.h , X_n$ are independent and uniformly
+distributed on $(- 1 , 1)$, then for $n gt.eq 2$, $X_1 + dots.h.c + X_n$
+has density
+$ f (x) = 1 / pi integral_0^oo ((sin t) / t)^n cos t x med dd(t). $ Although
+it is not obvious from the formula, $f$ is a polynomial in each interval
+$(k , k + 1) , k in bb(Z)$ and vanishes on $[- n , n]^c$.
+]
+
+#ex[
+Use the result in Example 3.3.16 to conclude that if
+$X_1 , X_2 , dots.h$ are independent and have the Cauchy distribution,
+then $(X_1 + dots.h.c + X_n) \/ n$ has the same distribution as $X_1$.
+]
+
+=== 弱收敛
+
+=== 矩和导数
