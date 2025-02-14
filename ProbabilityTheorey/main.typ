@@ -2929,7 +2929,7 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
 
 #ex[
   + Imitate the proof of Theorem 3.3.11 to show that $ mu ({ a }) = lim_(T arrow.r oo) frac(1, 2 T) integral_(- T)^T e^(- i t a) phi (t) dd(t); $
-  + If $P (X in h bb(Z)) = 1$ where $h > 0$ then its ch.f. has $phi (2 pi \/ h + t) = phi (t)$ so $ P (X = x) = frac(h, 2 pi) integral_(- pi \/ h)^(pi \/ h) e^(- i t x) phi (t) d t quad upright("for ") x in h bb(Z); $
+  + If $P (X in h bb(Z)) = 1$ where $h > 0$ then its ch.f. has $phi (2 pi \/ h + t) = phi (t)$ so $ P (X = x) = frac(h, 2 pi) integral_(- pi \/ h)^(pi \/ h) e^(- i t x) phi (t) dd(t) quad upright("for ") x in h bb(Z); $
   + If $X = Y + b$ then $E exp (i t X) = e^(i t b) E exp (i t Y)$. So if $P (X in b + h bb(Z)) = 1$, the inversion formula in (2) is valid for $x in b + h bb(Z)$.
 ]
 
@@ -2937,18 +2937,18 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
   Suppose $X$ and $Y$ are independent and have ch.f. $phi$ and
   distribution $mu$. Apply Exercise 3.3.2 to $X - Y$ and use Exercise
   2.1.5 to get
-  $ lim_(T arrow.r oo) frac(1, 2 T) integral_(- T)^T lr(|phi (t)|)^2 d t = P (X - Y = 0) = sum_x mu ({ x })^2. $
+  $ lim_(T arrow.r oo) frac(1, 2 T) integral_(- T)^T lr(|phi (t)|)^2 dd(t) = P (X - Y = 0) = sum_x mu ({ x })^2. $
 
   *Remark.* The last result implies that if $phi (t) arrow.r 0$ as
   $t arrow.r oo$, $mu$ has no point masses. Exercise 3.3.11 gives an
-  example to show that the converse is false. The Riemann - Lebesgue Lemma
+  example to show that the converse is false. The Riemann-Lebesgue Lemma
   (Exercise 1.4.4) shows that if $mu$ has a density, $phi (t) arrow.r 0$
   as $t arrow.r oo$.
 ]
 
 #ex[
   Give an example of a measure $mu$ with a density but for which
-  $integral lr(|phi (t)|) dd(t) = oo$. Hint: Two of the examples above have
+  $ integral lr(|phi (t)|) dd(t) = oo. $ Hint: Two of the examples above have
   this property.
 ]
 
@@ -2969,4 +2969,144 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
 
 === 弱收敛
 
+#ex[
+  Suppose that $X_n arrow.r.double X$ and $X_n$ has a normal
+  distribution with mean 0 and variance $sigma_n^2$. Prove that
+  $sigma_n^2 arrow.r sigma^2 in \[ 0 , oo \)$.
+]
+
+#ex[
+  Show that if $X_n$ and $Y_n$ are independent for $1 lt.eq n lt.eq oo$,
+  $X_n arrow.r.double X_oo$, and $Y_n arrow.r.double Y_oo$, then
+  $X_n + Y_n arrow.r.double X_oo + Y_oo$.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be independent and let
+  $S_n = X_1 + dots.h.c + X_n$. Let $phi_j$ be the ch.f. of $X_j$ and
+  suppose that $S_n arrow.r S_oo$ a.s. Then $S_oo$ has ch.f.
+  $ product_(j = 1)^oo phi_j (t). $
+]
+
+#ex[
+  Using the identity $sin t = 2 sin (t \/ 2) cos (t \/ 2)$ repeatedly
+  leads to $ frac(sin t, t) = product_(m = 1)^oo cos (t / 2^m). $ Prove
+  the last identity by interpreting each side as a characteristic
+  function.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be independent taking values 0 and 1 with
+  probability $1 \/ 2$ each. $ X = 2 sum_(j gt.eq 1) X_j / 3^j $ has the
+  Cantor distribution. Compute the ch.f. $phi$ of $X$ and notice that
+  $phi$ has the same value at $t = 3^k pi$ for $k = 0 , 1 , 2 , dots.h$.
+]
+
 === 矩和导数
+
+#ex[
+  Use Theorem 3.3.18 and the series expansion for $e^(- t^2 \/ 2)$
+  to show that the standard normal distribution has
+  $ uE X^(2 n) = (2 n) ! \/ 2^n n ! = (2 n - 1) (2 n - 3) dots.h.c 3 dot.op 1 equiv (2 n - 1)!! . $
+]
+
+#ex[
+  + Suppose that the family of measures ${ mu_i , i in I }$ is tight, i.e., $sup_i mu_i ([- M , M]^c) arrow.r 0$ as $M arrow.r oo$. Use (4) in Theorem 3.3.1 and (3.3.3) with $n = 0$ to show that their ch.f.’s $phi_i$ are equicontinuous, i.e., if $epsilon.alt > 0$ we can pick $delta > 0$ so that $lr(|h|) < delta$ then $
+  lr(|phi_i (t + h) - phi_i (t)|) < epsilon.alt. $
+  + Suppose $mu_n arrow.r.double mu_oo$. Use Theorem 3.3.17 and equicontinuity to conclude that the ch.f.’s $phi_n arrow.r phi_oo$ uniformly on compact sets. \[Argue directly. You don’t need to go to AA.\]
+  + Give an example to show that the convergence need not be uniform on the whole real line.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be i.i.d. with characteristic function
+  $phi$.
+
+  + If $phi^prime (0) = i a$ and $S_n = X_1 + dots.h.c + X_n$ then $S_n \/ n arrow.r a$ in probability.
+  + If $S_n \/ n arrow.r a$ in probability then $(phi (t) \/ n)^n arrow.r e^(i a t)$ as $n arrow.r oo$ through the integers.
+  + Use (2) and the uniform continuity established in (4) of Theorem 3.3.1 to show that $(phi (h) - 1) \/ h arrow.r - i a$ as $h arrow.r 0$ through the positive reals. Thus the weak law holds if and only if $phi^prime (0)$ exists. This result is due to E.J.G. Pitman (1956), with a little help from John Walsh who pointed out that we should prove (3).
+]
+
+#ex[
+  $
+    2 integral_0^oo (1 - upright("Re") phi (t)) / (pi t^2) dd(t) = integral lr(|y|) dd(F (y)).
+  $ Hint: Change variables $x = lr(|y|) \/ t$ in the density function of
+  Example 3.3.15, which integrates to 1.
+]
+
+#ex[
+  Show that if $ lim_(t arrow.b 0) (phi (t) - 1) / t^2 = c > - oo $
+  then $uE X = 0$ and $E lr(|X|)^2 = - 2 c < oo$. In particular, if
+  $phi (t) = 1 + o (t^2)$ then $phi (t) equiv 1$.
+]
+
+#ex[
+  If $Y_n$ are r.v.’s with ch.f.’s $phi_n$ then
+  $Y_n arrow.r.double 0$ if and only if there is a $delta > 0$ so that
+  $phi_n (t) arrow.r 1$ for $lr(|t|) lt.eq delta$.
+]
+
+#ex[
+  Let $X_1 , X_2 , dots.h$ be independent. If $
+  S_n = sum_(m lt.eq n) X_m
+  $ converges in distribution then it converges
+  in probability (and hence a.s. by Exercise 2.5.10). Hint: The last
+  exercise implies that if $m , n arrow.r oo$ then $S_m - S_n arrow.r 0$
+  in probability. Now use Exercise 2.5.11.
+]
+
+=== Polya 准则
+
+#ex[
+  Show that $exp (- lr(|t|)^alpha)$ is a characteristic
+  function for $0 < alpha lt.eq 1$.
+]
+
+#ex[
+  If $X_1 , X_2 , dots.h$ are independent and have
+  characteristic function $exp (- lr(|t|)^alpha)$ then
+  $(X_1 + dots.h.c + X_n) \/ n^(1 \/ alpha)$ has the same distribution as
+  $X_1$.
+
+  We will return to this topic in Section 3.8.
+]
+
+#ex[
+  Let $phi_1$ and $phi_2$ be ch.f.’s. Show that
+  $A = { t : phi_1 (t) = phi_2 (t) }$ is closed, contains 0, and is
+  symmetric about 0. Show that if $A$ is a set with these properties and
+  $phi_1 (t) = e^(- lr(|t|))$ there is a $phi_2$ so that
+  ${ t : phi_1 (t) = phi_2 (t) } = A$.
+]
+
+#ex[
+  Find independent r.v.’s $X , Y$, and $Z$ so that $Y$
+  and $Z$ do not have the same distribution but $X + Y$ and $X + Z$ do.
+]
+
+#ex[
+  Show that if $X$ and $Y$ are independent and $X + Y$
+  and $X$ have the same distribution then $Y = 0$ a.s. .
+]
+
+=== 矩问题
+
+#ex[
+  Let $G (x) = P (lr(|X|) < x)$,
+  $lambda = sup { x : G (x) < 1 }$, and $nu_k = uE lr(|X|)^k$. Show that
+  $nu_k^(1 \/ k) arrow.r lambda$, so the assumption of Theorem 3.3.26
+  holds if $lambda < oo$.
+]
+
+#ex[
+  Suppose $lr(|X|)$ has density
+  $C x^alpha exp (- x^lambda)$ on $(0 , oo)$. Changing variables
+  $y = x^lambda$, $dd(x) = (1 \/ lambda) x^(1 \/ lambda - 1) dd(x)$
+  $
+    uE lr(|X|)^n = integral_0^oo C lambda^(- 1) y^((n + alpha) \/ lambda) exp (- y) y^(1 \/ lambda - 1) dd(y) = C lambda^(- 1) Gamma ((n + alpha + 1) / lambda).
+  $
+  Use the identity $Gamma (x + 1) = x Gamma (x)$ for $x gt.eq 0$ to
+  conclude that the assumption of Theorem 3.3.26 is satisfied for
+  $lambda gt.eq 1$ but not for $lambda < 1$. This shows the normal
+  ($lambda = 2$) and gamma ($lambda = 1$) distributions are determined by
+  their moments.
+]
