@@ -72,12 +72,12 @@ mu(union.big_i A_i) = sum_i mu(A_i).
 ]<测度的性质>
 
 #prop([$sigma$-域对交的封闭性])[
-  设 ${sF_i}_(i in I)$ 是 $Omega$ 上的 $sigma$-域，那么 $sect.big_(i in I)sF$ 也是 $Omega$ 上的 $sigma$-域。
+  设 ${sF_i}_(i in I)$ 是 $Omega$ 上的 $sigma$-域，那么 $inter.big_(i in I)sF$ 也是 $Omega$ 上的 $sigma$-域。
 ]<sigma-域对交的封闭性>
 
 #de([生成的 $sigma$-域])[
   设 $Omega$ 是集合，$sA$ 是 $Omega$ 上的集合系，由@sigma-域对交的封闭性 知道 $
-sect.big sF, quad sF "是包含" sA "的 "sigma"-域"
+inter.big sF, quad sF "是包含" sA "的 "sigma"-域"
 $ 也是 $sigma$-域，称为 *$sA$ 生成的 $sigma$-域*，记作 $sigma(sA)$。
 ]<生成的sigma-域>
 
@@ -87,7 +87,7 @@ $ 也是 $sigma$-域，称为 *$sA$ 生成的 $sigma$-域*，记作 $sigma(sA)$�
 
 #de("半环、半代数")[
   设 $Omega$ 是集合，$sS$ 是 $Omega$ 上的集合系，称 *$sS$ 是 $Omega$ 上的半代数或半环*，如果
-  + 对 $forall A, B in sS$ 有 $A sect B in sS$；
+  + 对 $forall A, B in sS$ 有 $A inter B in sS$；
   + 对 $forall A in sS$ 那么 $A^c$ 可以表示成 $sS$ 中有限个元素的无交并。
 ]<半环><半代数>
 
@@ -98,7 +98,7 @@ $ 也是 $sigma$-域，称为 *$sA$ 生成的 $sigma$-域*，记作 $sigma(sA)$�
 ]<代数><域>
 
 #prop("代数对交的封闭性")[
-  设 $sF$ 是 $Omega$ 上的代数，那么 $forall A, B in sF$ 有 $A sect B in sF$。
+  设 $sF$ 是 $Omega$ 上的代数，那么 $forall A, B in sF$ 有 $A inter B in sF$。
 ]
 
 #prop([$sigma$-代数是代数])[
@@ -155,7 +155,7 @@ sum_i mu(S_i) <= mu(S),
     (x_1, y_2] times ... times (x_d, y_d],
   $ 有 $
     (x_1, y_2] times ... times (x_d, y_d]
-    &= sect.big_j ((x_1, y_1 + 1 / j) times ... times (x_d, y_d + 1 / j)) in sR_d,
+    &= inter.big_j ((x_1, y_1 + 1 / j) times ... times (x_d, y_d + 1 / j)) in sR_d,
   $ 从而 $sigma(sR^d) subset sigma(sS_d)$。
 ]
 
@@ -164,22 +164,22 @@ sum_i mu(S_i) <= mu(S),
 ]
 #pf[
   只要证明 $scr(R)^d$ 可以由 ${(a, b] : a, b in QQ}$ 生成，那么只要证明 ${(a, b]: a, b in RR}$ 可以被它生成，而对于 $forall (a, b]$ 为实数区间，一定存在单调下降的有理数列 $b_n arrow.b b$，从而 $
-(a, b] = sect.big_n (a_n, b_n].
+(a, b] = inter.big_n (a_n, b_n].
   $ 那么 $(a, b]$ 可以被生成。
 ]
 
 #ex()[
-  + Show that if $scr(F)_1 subset scr(F)_2 subset dots.h$ are $sigma$-algebras, then $sect.big_i scr(F)_i$ is an algebra.
+  + Show that if $scr(F)_1 subset scr(F)_2 subset dots.h$ are $sigma$-algebras, then $inter.big_i scr(F)_i$ is an algebra.
   + Give an example to show that $union.big_i scr(F)_i$ need not be $sigma$-algebra.
 ]
 #pf[
-  + 设 $sF_i$ 是 $Omega$ 上的 $sigma$-代数，那么一定有 $diameter, Omega in sF_i$ 对每个 $i$ 成立。对 $forall A in sect.big_i sF_i$, 一定有 $A^c in sect.big_i sF_i$。对 $forall {A_n} in sF_i$，一定有 $union.big_n A_n in sF_i$。
+  + 设 $sF_i$ 是 $Omega$ 上的 $sigma$-代数，那么一定有 $diameter, Omega in sF_i$ 对每个 $i$ 成立。对 $forall A in inter.big_i sF_i$, 一定有 $A^c in inter.big_i sF_i$。对 $forall {A_n} in sF_i$，一定有 $union.big_n A_n in sF_i$。
   + 设 $Omega = NN^+, sF_i$ 为由 $2^{1, 2, ..., i}$ 生成的 $sigma$-代数。那么这时有 $union.big_i sF_i = 2^NN$。令 $A_i$ 为 $[1, i]$ 中所有偶数的集合，那么 $A_i in sF_i$ 对所有 $i in NN^+$ 成立，从而 $A_i in union.big_n sF_n$。这时 $union.big_i A_i$ 为 $NN*+$ 中所有偶数的集合，但是其并不包含于 $union.big_i sF_i$，因为它是无限集，而后者的所有元素都是有限集。
 ]
 
 #ex()[
   A set $A subset { 1 , 2 , dots.h }$ is said to have asymptotic density $theta$ if $
-  lim_(n arrow.r oo) lr(|A sect { 1 , 2 , dots.h , n }|) / n = theta.
+  lim_(n arrow.r oo) lr(|A inter { 1 , 2 , dots.h , n }|) / n = theta.
   $ Let $scr(A)$ be the collection of sets for which the asymptotic density exists. Is $scr(A)$ a $sigma$-algebra? an algebra?
 ]
 #pf[
@@ -196,8 +196,8 @@ sum_i mu(S_i) <= mu(S),
 #pf[
   对任意 Borel 集 $B in sR$，$
     Z^(-1)(B)
-    &= (Z^(-1)(B) sect A) union (Z^(-1)(B) sect A^c)\
-    &= (X^(-1)(B) sect A) union (Y^(-1)(B) sect A^c)\
+    &= (Z^(-1)(B) inter A) union (Z^(-1)(B) inter A^c)\
+    &= (X^(-1)(B) inter A) union (Y^(-1)(B) inter A^c)\
     &in sF.
     $ 从而 $Z$ 也是随机变量。
 ]
@@ -640,7 +640,7 @@ $ for some $B_(m , n) in scr(R)$ and set $f_n (x) = m 2^(- n)$ for $x in B_(m , 
     integral_(|g| >= N) |g| dd(mu) = integral |g| dd(mu) - integral |g| and N dd(mu) < epsilon / 2.
   $ 那么令 $delta = epsilon \/ (2 N)$ 直接对 $forall A subset Omega$ 且 $mu(A) < delta$ 有 $
     integral_A |g| dd(mu)
-    &= integral_(A sect {|g| >= N}) |g| dd(mu) + integral_(A sect {|g| < N}) |g| dd(mu)\
+    &= integral_(A inter {|g| >= N}) |g| dd(mu) + integral_(A inter {|g| < N}) |g| dd(mu)\
     &<= integral_({|g| >= N}) |g| dd(mu) + integral_(A) N dd(mu)\
     &<= epsilon / 2 + epsilon / (2 N) dot N\
     &= epsilon.
@@ -908,17 +908,17 @@ $ for some $B_(m , n) in scr(R)$ and set $f_n (x) = m 2^(- n)$ for $x in B_(m , 
   $1_A = 1 - product_(i = 1)^n (1 - 1_(A_i))$. Expand out the right hand
   side, then take expected value to conclude
   $
-    P (union.big_(i = 1)^n A_i) & = sum_(i = 1)^n P (A_i) - sum_(i < j) P (A_i sect A_j)\
-    & + sum_(i < j < k) P (A_i sect A_j sect A_k) - dots.h + (- 1)^(n - 1) P (sect.big_(i = 1)^n A_i).
+    P (union.big_(i = 1)^n A_i) & = sum_(i = 1)^n P (A_i) - sum_(i < j) P (A_i inter A_j)\
+    & + sum_(i < j < k) P (A_i inter A_j inter A_k) - dots.h + (- 1)^(n - 1) P (inter.big_(i = 1)^n A_i).
   $
 ]
 #pf[
   $
     1 - product_(i=1)^n (1 - 1_A_i)
     &= 1 - product_(i=1)^n 1_(A_i^c)\
-    &= 1 - sect.big_(i=1)^n 1_(A_i^c)\
-    &= 1 - 1_(sect.big_(i=1)^n A_i^c)\
-    &= 1_((sect.big_(i=1)^n A_i^c)^c)\
+    &= 1 - inter.big_(i=1)^n 1_(A_i^c)\
+    &= 1 - 1_(inter.big_(i=1)^n A_i^c)\
+    &= 1_((inter.big_(i=1)^n A_i^c)^c)\
     &= 1_(union.big_(i=1)^n A_i)\
     &= 1_A.
   $ 又知道 $
@@ -926,7 +926,7 @@ $ for some $B_(m , n) in scr(R)$ and set $f_n (x) = m 2^(- n)$ for $x in B_(m , 
     &= uE(1_(union.big_(i=1)^n A_i))\
     &= uE(1 - product_(i=1)^n (1 - 1_A_i))\
     &= 1 - product_(i=1)^n (1 - uE 1_A_i)\
-    &= sum_(i=1)^n uE A_i - sum_(i < j) uE A_i uE A_j + ... + (-1)^(n-1) uE(sect.big_(i=1)^n A_i).
+    &= sum_(i=1)^n uE A_i - sum_(i < j) uE A_i uE A_j + ... + (-1)^(n-1) uE(inter.big_(i=1)^n A_i).
   $
 ]
 
@@ -936,8 +936,8 @@ $ for some $B_(m , n) in scr(R)$ and set $f_n (x) = m 2^(- n)$ for $x in B_(m , 
   etc. and then take expected values to conclude
   $
     P (union.big_(i = 1)^n A_i) & lt.eq sum_(i = 1)^n P (A_i)\
-    P (union.big_(i = 1)^n A_i) & gt.eq sum_(i = 1)^n P (A_i) - sum_(i < j) P (A_i sect A_j)\
-    P (union.big_(i = 1)^n A_i) & lt.eq sum_(i = 1)^n P (A_i) - sum_(i < j) P (A_i sect A_j) + sum_(i < j < k) P (A_i sect A_j sect A_k).
+    P (union.big_(i = 1)^n A_i) & gt.eq sum_(i = 1)^n P (A_i) - sum_(i < j) P (A_i inter A_j)\
+    P (union.big_(i = 1)^n A_i) & lt.eq sum_(i = 1)^n P (A_i) - sum_(i < j) P (A_i inter A_j) + sum_(i < j < k) P (A_i inter A_j inter A_k).
   $
   In general, if we stop the inclusion -- exclusion formula after an even
   (odd) number of sums, we get an lower (upper) bound.
@@ -1145,7 +1145,7 @@ $ for some $B_(m , n) in scr(R)$ and set $f_n (x) = m 2^(- n)$ for $x in B_(m , 
 == 独立性
 
 #de("独立")[
-  + 称*事件 $A, B$ 独立*，如果 $P(A sect B) = P(A)P(B)$。
+  + 称*事件 $A, B$ 独立*，如果 $P(A inter B) = P(A)P(B)$。
   + 称*随机变量 $X, Y$ 独立*，如果对 $forall C, D in sR$ 有 $
 P(X in C, Y in D) = P(X in C)P(Y in D).
 $
@@ -1289,22 +1289,22 @@ $
 #pf[
   记 $X, Y, Z, W$ 为满足题意的随机变量，且 $A = {X = 1}, B = {Y=1}, C = {Z=1}, D = {W = 1}, P(A) = a, P(B) = b, P(C) = c, P(D) = d$。以下推导所有符合题意的随机变量。
 
-  设 $P(A sect B sect C sect D) = x$，那么有
+  设 $P(A inter B inter C inter D) = x$，那么有
   + $
-      P(A^c sect B sect C sect D) &= b c d - x;\
+      P(A^c inter B inter C inter D) &= b c d - x;\
     $
   + $
-      P(A sect B^c sect C sect D) &= a c d - x,\
-      P(A^c sect B^c sect C sect D) &= (1-a) c d - b c d + x;\
+      P(A inter B^c inter C inter D) &= a c d - x,\
+      P(A^c inter B^c inter C inter D) &= (1-a) c d - b c d + x;\
     $
   + $
-      P(A sect B sect C^c sect D) &= a b d - x,\
-      P(A sect B^c sect C^c sect D) &= a(1-b)d - a c d + x,\
-      P(A^c sect B sect C sect D) &= (1-a) b d - b c d + x,\
-      P(A^c sect B^c sect C sect D) &= (1-a)(1-b)d - (1-a) c d + b c d - x;\
+      P(A inter B inter C^c inter D) &= a b d - x,\
+      P(A inter B^c inter C^c inter D) &= a(1-b)d - a c d + x,\
+      P(A^c inter B inter C inter D) &= (1-a) b d - b c d + x,\
+      P(A^c inter B^c inter C inter D) &= (1-a)(1-b)d - (1-a) c d + b c d - x;\
     $
   + 类似推导所有带有 $D^c$ 的情况。这样只要令 $x != a b c d$ 的值即可保证 $
-    P(A sect B sect C sect D) = x != a b c d = P(A) P(B) P(C) P(D),
+    P(A inter B inter C inter D) = x != a b c d = P(A) P(B) P(C) P(D),
   $ 但是任意三个集合是相互独立的。
 ]
 
@@ -1316,10 +1316,10 @@ $
 ]
 #pf[
   令 $sA_1 = {{1, 2}, {1, 3}}, sA_2 = {{2, 3}}$，那么 $
-    P({1, 2} sect {2, 3}} = 1 / 2 = P({1, 2}) P({2, 3}),\
-    P({1, 3} sect {2, 3}} = 1 / 2 = P({1, 3}) P({2, 3}),
+    P({1, 2} inter {2, 3}} = 1 / 2 = P({1, 2}) P({2, 3}),\
+    P({1, 3} inter {2, 3}} = 1 / 2 = P({1, 3}) P({2, 3}),
   $ 从而 $sA_1$ 和 $sA_2$ 独立。但是有 ${2, 3} in sigma(sA_1)$，这时 $
-    P({2, 3} sect {2, 3}) = P({2, 3}) = 1 / 2 != P({2, 3})^2,
+    P({2, 3} inter {2, 3}) = P({2, 3}) = 1 / 2 != P({2, 3})^2,
   $ 从而 $sigma(sA_1)$ 和 $sigma(sA_2)$ 不独立。
 ]
 
@@ -1800,7 +1800,7 @@ $
 #pf[
   $
     0
-    &= P(sect.big A_n^c)
+    &= P(inter.big A_n^c)
     &= product P(A_n^c)
     &= product(1 - P(A_n)),
   $ 从而有 $
@@ -1810,18 +1810,18 @@ $
 
 #ex[
   + If $P (A_n) arrow.r 0$ and $
-    sum_(n = 1)^oo P (A_n^c sect A_(n + 1)) < oo
+    sum_(n = 1)^oo P (A_n^c inter A_(n + 1)) < oo
   $ then $P (A_n upright("i.o.")) = 0$.
   + Find an example of a sequence $A_n$ to which the result in (1) can be applied but the Borel - Cantelli lemma cannot.
 ]
 #pf[
   + $
-      P(union.big_k A_k) <= P(A_n) + sum_(k=n)^oo P(A_n^c sect A_(n+1)) -> 0.
+      P(union.big_k A_k) <= P(A_n) + sum_(k=n)^oo P(A_n^c inter A_(n+1)) -> 0.
     $
   + 令概率空间为 $([0, 1], sR_([0, 1]), lambda)$，$A_n = [0, 1 \/ n]$。那么 $
     sum P(A_n) = oo
   $ 从而不能应用 Borel-Cantelli 引理，但是 $
-    sum_(n=1)^oo P(A_n^c sect A_(n+1)) = 0.
+    sum_(n=1)^oo P(A_n^c inter A_(n+1)) = 0.
   $
 ]
 
@@ -1829,7 +1829,7 @@ $
   Kochen - Stone lemma. Suppose $sum P (A_k) = oo$. Use Exercises
   1.6.6 and 2.3.1 to show that if
   $
-    limsup_(n arrow.r oo) display((sum_(k = 1)^n P (A_k)))^2 / display(sum_(1 lt.eq j , k lt.eq n) P (A_j sect A_k)) = alpha > 0
+    limsup_(n arrow.r oo) display((sum_(k = 1)^n P (A_k)))^2 / display(sum_(1 lt.eq j , k lt.eq n) P (A_j inter A_k)) = alpha > 0
   $
   then $P (A_n upright("i.o.")) gt.eq alpha$. The case $alpha = 1$
   contains Theorem 2.3.7.
@@ -1839,9 +1839,9 @@ $
   X_n = sum_(k=1)^n 1_A_k.
   $ 那么有 $
     uE X_n &= sum_(k=1)^n uE 1_A_k = sum_(k=1)^n P(A_k),\
-    uE X^2_n &= sum_(1 <= j, k <= n) P(A_j sect A_k) < oo.
+    uE X^2_n &= sum_(1 <= j, k <= n) P(A_j inter A_k) < oo.
   $ 由练习 1.6.6 知道 $
-    P(X_n > 0) >= display((sum_(k=1)^n P(A_k)))^2 / display(sum_(1 <= j, k <= n) P(A_j sect A_k)),
+    P(X_n > 0) >= display((sum_(k=1)^n P(A_k)))^2 / display(sum_(1 <= j, k <= n) P(A_j inter A_k)),
   $ 那么结合练习 2.3.1 有 $
     P(limsup A_n)
     &= P(limsup union.big_(k=1)^n A_n)\
@@ -2383,8 +2383,8 @@ $
     P (max_(m < j lt.eq n) lr(|S_(m , j)|) > 2 a) min_(m < k lt.eq n) P (lr(|S_(k , n)|) lt.eq a)
     &= sum_(m < k <= n) P(A_k) dot min_(m < k <= n) P(B_k)\
     &<= sum_(m < k <= n) P(A_k)  P(B_k)\
-    &<= sum_(m < k <= n) P(A_k sect B_k)\
-    &= P(union.big_(m < k <= n)A_k sect B_k)\
+    &<= sum_(m < k <= n) P(A_k inter B_k)\
+    &= P(union.big_(m < k <= n)A_k inter B_k)\
     &<= RHS.
     $
 ]
@@ -2915,7 +2915,7 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
   $P (lr(|X|) > y) gt.eq c_(y , K)$.
 ]
 #pf[
-
+  *TODO*
 ]
 
 == 特征函数
@@ -2926,11 +2926,44 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
   Show that if $phi$ is a ch.f. then $upright("Re") phi$ and
   $lr(|phi|)^2$ are also.
 ]
+#pf[
+  $
+    Re phi = 1 / 2 (phi + overline(phi)) = 1 / 2 (phi(t) + phi(-t))
+  $ 对应分布函数为 $1\/2 dot (F(x) + F(-x))$ 的特征函数。
+
+  $
+    |phi|^2 = phi(t) phi(-t)
+  $ 对应随机变量为 $X dot (-Y)$ 的特征函数，其中 $X, Y$ 独立同分布且特征函数均为 $phi$。
+]
 
 #ex[
   + Imitate the proof of Theorem 3.3.11 to show that $ mu ({ a }) = lim_(T arrow.r oo) frac(1, 2 T) integral_(- T)^T e^(- i t a) phi (t) dd(t); $
   + If $P (X in h bb(Z)) = 1$ where $h > 0$ then its ch.f. has $phi (2 pi \/ h + t) = phi (t)$ so $ P (X = x) = frac(h, 2 pi) integral_(- pi \/ h)^(pi \/ h) e^(- i t x) phi (t) dd(t) quad upright("for ") x in h bb(Z); $
-  + If $X = Y + b$ then $E exp (i t X) = e^(i t b) E exp (i t Y)$. So if $P (X in b + h bb(Z)) = 1$, the inversion formula in (2) is valid for $x in b + h bb(Z)$.
+  + If $X = Y + b$ then $uE exp (i t X) = e^(i t b) uE exp (i t Y)$. So if $P (X in b + h bb(Z)) = 1$, the inversion formula in (2) is valid for $x in b + h bb(Z)$.
+]
+#pf[
+  + 令 $
+  I_T &= 1 / (2 T)integral_(-T)^T e^(-i t a) phi(t) dd(t)\
+  &= 1/(2T)integral integral_(-T)^T e^(i t (x - a)) dd(t) mu(dd(x))\
+  &= 1/(2T)integral integral_(-T)^T (cos t(x-a) + i sin t(x-a)) dd(t) mu(dd(x))\
+  &= integral 1/(2T) integral_(-T)^T cos t(x-a) dd(t) mu(dd(x)).
+  $ 注意到积分号里面的部分绝对值小于等于 $1$ 从而有界，那么用有界收敛定理得到 $
+    I_T
+    &= integral 1/(2T) integral_(-T)^T cos t(x-a) dd(t) mu(dd(x))\
+    &-> integral [f(x) = cases(1\, x=a,0\, x!=a)med] med mu(dd(x))\
+    &= mu({a}).
+  $
+  + 因为 $P(X in h ZZ) = 1$ 那么 $
+    phi((2pi) / h + t) - phi(t)
+    &= sum_(k in ZZ) P(X = k h) (e^(2 pi i k) - 1) e^(i t h k)
+    &= 0.
+  $ 再由第一问知道 $
+    P(X = x)
+    &= lim_(T -> oo) 1 / (2 T) integral_(-T)^T e^(-i t x) phi(t) dd(t)\
+    &= lim_(T -> oo\ T in (2pi \/ h) ZZ) 1 / (2 T) integral_(-T)^T e^(-i t x) phi(t) dd(t) quad "（单调性）"\
+    &= lim_(n -> oo) h / (4 n pi) integral_(-2 pi n \/ h)^(2 pi n \/ h) e^(-i t x) phi(t) dd(t) \
+    &= h / (2pi) integral_(- pi \/ h)^(pi \/ h) e^(-i t x) phi(t) dd(t).
+  $
 ]
 
 #ex[
@@ -2945,11 +2978,21 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
   (Exercise 1.4.4) shows that if $mu$ has a density, $phi (t) arrow.r 0$
   as $t arrow.r oo$.
 ]
+#pf[
+  有 $X - Y$ 的特征函数为 $
+    uE e^(i t(X - Y)) = uE e^(i t X) uE e^(- i t Y) = phi overline(phi) = |phi|^2,
+  $ 然后应用上一题结论即可得到左半等式。直接应用练习 2.1.5 得到右半等式。
+]
 
 #ex[
   Give an example of a measure $mu$ with a density but for which
   $ integral lr(|phi (t)|) dd(t) = oo. $ Hint: Two of the examples above have
   this property.
+]
+#pf[
+  指数分布的特征函数 $phi(t) = 1 \/ (1 - i t)$，均匀分布的特征函数 $
+    phi(t) = (e^(i t b) - e^(i t a)) / (i t (b - a)).
+  $
 ]
 
 #ex[
@@ -2960,11 +3003,26 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
   it is not obvious from the formula, $f$ is a polynomial in each interval
   $(k , k + 1) , k in bb(Z)$ and vanishes on $[- n , n]^c$.
 ]
+#pf[
+  $X_1$ 分布的特征函数为 $
+  phi(t) = (e^(i t) - e^(- i t)) / (2 i t) = (sin t) / t,
+  $ 从而 $X_1 + ... + X_n$ 的特征函数为 $phi^n (t)$，看出 $
+    integral |phi(t)| dd(t) < oo,
+  $ 再用逆转公式 $
+    f(x) = 1 / (2 pi) integral ((sin t) / t)^n e^(- i t x) dd(x)
+    = 1 / ( pi) integral_0^oo ((sin t) / t)^n cos(t x) dd(x),
+  $ 最后一步把积分中的奇函数部分去掉。
+]
 
 #ex[
   Use the result in Example 3.3.16 to conclude that if
   $X_1 , X_2 , dots.h$ are independent and have the Cauchy distribution,
   then $(X_1 + dots.h.c + X_n) \/ n$ has the same distribution as $X_1$.
+]
+#pf[
+  Cauchy 分布的特征函数为 $phi = exp(-|t|)$，而 $(X_1 + ... + X_n) \/ n$ 分布的特征函数为 $
+    exp(-abs(t/n))^n = exp(-|t|) = phi.
+  $ 根据反转公式，它们的分布相同。
 ]
 
 === 弱收敛
@@ -2974,11 +3032,17 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
   distribution with mean 0 and variance $sigma_n^2$. Prove that
   $sigma_n^2 arrow.r sigma^2 in \[ 0 , oo \)$.
 ]
+#pf[
+  由于 $X_n => X$ 那么 $X_n$ 的特征函数 $exp(-sigma_n^2 t^2 \/ 2) -> exp(-sigma^2 t^2 \/ 2)$ 对 $forall x in RR$ 成立，那么 $sigma_n^2 -> sigma^2$。
+]
 
 #ex[
   Show that if $X_n$ and $Y_n$ are independent for $1 lt.eq n lt.eq oo$,
   $X_n arrow.r.double X_oo$, and $Y_n arrow.r.double Y_oo$, then
   $X_n + Y_n arrow.r.double X_oo + Y_oo$.
+]
+#pf[
+  分别记 $X_n, Y_n$ 分布函数为 $phi_n, psi_n$。那么由 $X_n => X_oo$ 知道 $phi_n -> phi$，由 $Y_n => Y_oo$ 知道 $psi_n -> psi$，那么 $phi_n psi_n -> phi psi$，从而 $X_n + Y_n => X_oo + Y_oo$。
 ]
 
 #ex[
@@ -2987,6 +3051,11 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
   suppose that $S_n arrow.r S_oo$ a.s. Then $S_oo$ has ch.f.
   $ product_(j = 1)^oo phi_j (t). $
 ]
+#pf[
+  由于 $S_n ->^"a.s." S$ 从而 $S_n => S$，那么 $product phi_j$ 收敛，从而 $S_oo$ 有特征函数 $
+    product_(j=1)^oo phi_j (t).
+  $
+]
 
 #ex[
   Using the identity $sin t = 2 sin (t \/ 2) cos (t \/ 2)$ repeatedly
@@ -2994,12 +3063,22 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
   the last identity by interpreting each side as a characteristic
   function.
 ]
+#pf[
+  令 $X_m$ 满足 $P(X_m = 1\/2^m) = P(X_m = -1\/2^m) = 1\/2$，那么 $X_m$ 的特征函数就是 $cos(t \/ 2^m)$。考虑 $sum X_m$ 的分布，令 $Y_m = (2^m X_m + 1) \/ 2$ 满足 $P(Y_m = 1) = P(Y_m = 0) = 1\/2$ 且相互独立，从而 $
+    sum X_m = sum (2 Y_m - 1) / 2^m = -1 + sum Y_m / 2^(m-1).
+  $ 其中最后一项可以看作是对二进制每一位随机取 $0$ 或 $1$，从而 $sum X_m$ 服从 $[-1, 1]$ 上的均匀分布，其特征函数为 $sin t \/ t$。
+]
 
 #ex[
   Let $X_1 , X_2 , dots.h$ be independent taking values 0 and 1 with
   probability $1 \/ 2$ each. $ X = 2 sum_(j gt.eq 1) X_j / 3^j $ has the
   Cantor distribution. Compute the ch.f. $phi$ of $X$ and notice that
   $phi$ has the same value at $t = 3^k pi$ for $k = 0 , 1 , 2 , dots.h$.
+]
+#pf[
+  直接计算得到 $
+    phi = product_(j=1)^oo (exp(2 i t \/ 3^j) + 1) / 2.
+  $ 容易看出它是收敛的，且在 $3^k pi$ 处取值相同。
 ]
 
 === 矩和导数
@@ -3009,10 +3088,13 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
   to show that the standard normal distribution has
   $ uE X^(2 n) = (2 n) ! \/ 2^n n ! = (2 n - 1) (2 n - 3) dots.h.c 3 dot.op 1 equiv (2 n - 1)!! . $
 ]
+#pf[
+
+]
 
 #ex[
-  + Suppose that the family of measures ${ mu_i , i in I }$ is tight, i.e., $sup_i mu_i ([- M , M]^c) arrow.r 0$ as $M arrow.r oo$. Use (4) in Theorem 3.3.1 and (3.3.3) with $n = 0$ to show that their ch.f.’s $phi_i$ are equicontinuous, i.e., if $epsilon.alt > 0$ we can pick $delta > 0$ so that $lr(|h|) < delta$ then $
-  lr(|phi_i (t + h) - phi_i (t)|) < epsilon.alt. $
+  + Suppose that the family of measures ${ mu_i , i in I }$ is tight, i.e., $sup_i mu_i ([- M , M]^c) arrow.r 0$ as $M arrow.r oo$. Use (4) in Theorem 3.3.1 and (3.3.3) with $n = 0$ to show that their ch.f.’s $phi_i$ are equicontinuous, i.e., if $epsilon > 0$ we can pick $delta > 0$ so that $lr(|h|) < delta$ then $
+  lr(|phi_i (t + h) - phi_i (t)|) < epsilon. $
   + Suppose $mu_n arrow.r.double mu_oo$. Use Theorem 3.3.17 and equicontinuity to conclude that the ch.f.’s $phi_n arrow.r phi_oo$ uniformly on compact sets. \[Argue directly. You don’t need to go to AA.\]
   + Give an example to show that the convergence need not be uniform on the whole real line.
 ]
@@ -3109,4 +3191,73 @@ $P (S_n = j)$ to show $P (S_n gt.eq k) lt.eq C P (S_n = k)$.
   $lambda gt.eq 1$ but not for $lambda < 1$. This shows the normal
   ($lambda = 2$) and gamma ($lambda = 1$) distributions are determined by
   their moments.
+]
+
+= 鞅
+
+== 条件期望
+
+#ex[
+  Let $G in scr(G)$ and show that
+  $ P (G\|A) = frac(integral_G P (A\|scr(G)) thin d P, integral_Omega P (A\|scr(G)) thin d P). $
+  When $scr(G)$ is the $sigma$-field generated by a partition, this
+  reduces to the usual Bayes’ formula
+  $ P (G_i\|A) = frac(P (A\|G_i) P (G_i), sum_j P (A\|G_j) P (G_j)). $
+]
+
+#ex[
+  If $a > 0$ then
+  $ P (lr(|X|) gt.eq a |scr(F)) lt.eq a^(- 2) uE (X^2|scr(F)). $
+]
+
+#ex[
+  $ uE (X Y\|scr(G))^2 lt.eq uE (X^2\|scr(G)) uE (Y^2\|scr(G)). $
+]
+
+#ex[
+  If $p , q in (1 , oo)$ with $1 \/ p + 1 \/ q = 1$, then
+  $ uE (lr(|X Y|) divides scr(G)) lt.eq uE (lr(|X|)^p divides scr(G))^(1 \/ p) uE (lr(|Y|)^q divides scr(G))^(1 \/ q). $
+]
+
+#ex[
+  Provide an example where
+  $ uE \( uE (X lr(|scr(F)_1 \)|) scr(F)_2) eq.not uE \( uE (X lr(|scr(F)_2 \)|) scr(F)_1). $
+]
+
+#ex[
+  If $scr(G) subset scr(F)$ and $E X^2 < oo$, then
+  $ uE ({ X - uE (X\|scr(F)) }^2) + uE ({ uE (X\|scr(F)) - uE (X\|scr(G)) }^2) = uE ({ X - uE (X\|scr(G)) }^2). $
+  Dropping the second term gives an inequality reflecting that larger
+  subspaces yield closer projections (or statistiscrly, more information
+  reduces mean square error).
+]
+
+#ex[
+  Let $scr(G) = { nothing , Omega }$. Define
+  $upright("var") (X\|scr(F)) = uE (X^2\|scr(F)) - uE (X\|scr(F))^2$.
+  Show that
+  $ upright("var") (X) = uE (upright("var") (X\|scr(F))) + upright("var") (uE (X\|scr(F))). $
+]
+
+#ex[
+  Let $Y_1 , Y_2 , dots.h$ be i.i.d. with mean $mu$ and variance
+  $sigma^2$, $N$ an independent positive integer-valued r.v. with
+  $E N^2 < oo$, and $X = Y_1 + dots.h.c + Y_N$. Show that
+  $ upright("var") (X) = sigma^2 uE N + mu^2 thin upright("var") (N). $
+  #emph[Interpretation];: Consider special cases where $N$ or $Y_i$ is
+  constant.
+]
+
+#ex[
+  Show that if $X$ and $Y$ are random variables with $uE (Y\|scr(G)) = X$
+  and $E Y^2 = uE X^2 < oo$, then $X = Y$ almost surely.
+]
+
+#ex[
+  Under the assumption $E lr(|Y|) < oo$, prove that if $uE (Y\|scr(G))$
+  has the same distribution as $Y$, then $uE (Y\|scr(G)) = Y$ a.s. .
+
+  #emph[Hint];: Show
+  $upright("sgn") (X) = upright("sgn") (uE (X\|scr(G)))$ a.s. for
+  $X = Y - c$.
 ]
