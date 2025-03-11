@@ -3370,3 +3370,83 @@ uE((X + lambda Y)^2|sG)
 #pf[
   *TODO*
 ]
+
+== 鞅、几乎必然收敛
+
+#ex[
+  Suppose $X_n$ is a martingale w.r.t. $scr(G)_n$ and let
+  $scr(F)_n = sigma (X_1 , dots.h , X_n)$. Then
+  $scr(G)_n supset scr(F)_n$, and $X_n$ is a martingale w.r.t. $scr(F)_n$.
+]
+
+#ex[
+  Give an example of a submartingale $X_n$ such that $X_n^2$ is a
+  supermartingale. #emph[Hint];: $X_n$ does not have to be random.
+]
+
+#ex[
+  Generalize part $1$ of Theorem 4.2.7 by showing that if $X_n$ and $Y_n$
+  are submartingales w.r.t. $scr(F)_n$, then $X_n or Y_n$ is also a
+  submartingale.
+]
+
+#ex[
+  Let $X_n$, $n gt.eq 0$, be a submartingale with $sup X_n < oo$. Let
+  $xi_n = X_n - X_(n - 1)$ and suppose $uE (sup xi_n^(+)) < oo$. Show that
+  $X_n$ converges almost surely.
+]
+
+#ex[
+  Give an example of a martingale $X_n$ with $X_n arrow.r - oo$ a.s.
+  #emph[Hint];: Let $X_n = xi_1 + dots.h.c + xi_n$, where $xi_i$ are
+  independent (but not identiscrly distributed) with $uE xi_i = 0$.
+]
+
+#ex[
+  Let $Y_1 , Y_2 , dots.h$ be nonnegative i.i.d. random variables with
+  $uE Y_m = 1$ and $P (Y_m = 1) < 1$. By Example 4.2.3,
+  $X_n = product_(m lt.eq n) Y_m$ defines a martingale.
+  + Use Theorem 4.2.12 and an argument by contradiction to show $X_n arrow.r 0$ a.s.
+  + Use the strong law of large numbers to conclude $(1 \/ n) log X_n arrow.r c < 0$.
+]
+
+#ex[
+  Suppose $y_n > - 1$ for all $n$ and $sum lr(|y_n|) < oo$. Show that
+  $product_(m = 1)^oo (1 + y_m)$ converges to a finite limit.
+]
+
+#ex[
+  Let $X_n$ and $Y_n$ be positive integrable processes adapted to
+  $scr(F)_n$. Suppose
+  $ uE (X_(n + 1)|scr(F)_n) lt.eq (1 + Y_n) X_n $ with
+  $sum Y_n < oo$ a.s. Prove that $X_n$ converges a.s. to a finite limit by
+  constructing a related supermartingale and applying Theorem 4.2.12.
+]
+
+#ex[
+  Suppose $X_n^1$ and $X_n^2$ are supermartingales w.r.t. $scr(F)_n$, and
+  $N$ is a stopping time such that $X_N^1 gt.eq X_N^2$. Define
+  $ Y_n = X_n^1 bold(1)_({ N > n }) + X_n^2 bold(1)_({ N lt.eq n }) , $
+  where $bold(1)$ is the indicator function. Show that $Y_n$ is a
+  supermartingale.
+]
+
+#ex[
+  Dubins’ inequality. For every positive supermartingale $X_n$,
+  $n gt.eq 0$, the number of upcrossings $U$ of $[a , b]$ satisfies
+  $ P (U gt.eq k) lt.eq (a / b)^k uE min (X_0 \/ a , 1). $
+
+  To prove this, we let $N_0 = - 1$ and for $j gt.eq 1$ let
+  $
+    N_(2 j - 1) & = inf { m > N_(2 j - 2) : X_m lt.eq a }\
+    N_(2 j) & = inf { m > N_(2 j - 1) : X_m gt.eq b }.
+  $
+
+  Let $Y_n = 1$ for $0 lt.eq n < N_1$ and for $j gt.eq 1$
+  $
+    Y_n = cases(delim: "{", (b \/ a)^(j - 1) (X_n \/ a) & upright("for ") N_(2 j - 1) lt.eq n < N_(2 j), (b \/ a)^j & upright("for ") N_(2 j) lt.eq n < N_(2 j + 1))
+  $
+
+  + Use the switching principle in the previous exercise and induction to show that $Z_n^j = Y_(n and N_j)$ is a supermartingale.
+  + Use $uE Y_(n and N_(2 k)) lt.eq uE Y_0$ and let $n arrow.r oo$ to get Dubins’ inequality.
+]
