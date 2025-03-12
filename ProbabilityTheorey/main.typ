@@ -3378,10 +3378,16 @@ uE((X + lambda Y)^2|sG)
   $scr(F)_n = sigma (X_1 , dots.h , X_n)$. Then
   $scr(G)_n supset scr(F)_n$, and $X_n$ is a martingale w.r.t. $scr(F)_n$.
 ]
+#pf[
+  首先有 $X_n in sG_n$，又对 $forall m < n$ 有 $X_m in sG_m subset sG_(m+1) subset ... subset sG_n$，从而有 $X_m in sG_n forall m = 1, 2, ..., n$，那么 $sF_n = sigma(X_1, ..., X_n) subset sG_n$。
+]
 
 #ex[
   Give an example of a submartingale $X_n$ such that $X_n^2$ is a
   supermartingale. #emph[Hint];: $X_n$ does not have to be random.
+]
+#pf[
+  令 $P(X_n = 0) = 1$，那么 $X_n, X_n^2$ 在 $sF_n = sigma(X_1, ..., X_n)$ 上构成鞅。
 ]
 
 #ex[
@@ -3389,17 +3395,33 @@ uE((X + lambda Y)^2|sG)
   are submartingales w.r.t. $scr(F)_n$, then $X_n or Y_n$ is also a
   submartingale.
 ]
+#pf[
+  $
+    uE(X_(n+1)or Y_(n+1)|sF_n)
+    >= uE(X_(n+1)|sF_n)
+    >= X_n,\
+    uE(X_(n+1)or Y_(n+1)|sF_n)
+    >= uE(Y_(n+1)|sF_n)
+    >= Y_n,\
+  $ 那么 $uE(X_(n+1) or Y_(n+1)|sF_n) >= X_n or Y_n$。剩余的部分是显然的。
+]
 
 #ex[
   Let $X_n$, $n gt.eq 0$, be a submartingale with $sup X_n < oo$. Let
   $xi_n = X_n - X_(n - 1)$ and suppose $uE (sup xi_n^(+)) < oo$. Show that
   $X_n$ converges almost surely.
 ]
+#pf[
+  *TODO*：这里的 $sup X_n$ 是 $sup_(omega in Omega) X_n (omega)$ 还是 $sup_(n in NN) X_n$？同样疑惑 $uE(sup xi_n^+)。$
+]
 
 #ex[
   Give an example of a martingale $X_n$ with $X_n arrow.r - oo$ a.s.
   #emph[Hint];: Let $X_n = xi_1 + dots.h.c + xi_n$, where $xi_i$ are
   independent (but not identiscrly distributed) with $uE xi_i = 0$.
+]
+#pf[
+  令 $P(xi_n = -1) = n^2 \/ (n^2 + 1), P(xi_n = n^2) = 1 \/ (n^2 + 1)$，那么由 BC 引理知道 $P(xi_n = n^2 "i.o.") = 0$，那么 $X_n -> -oo$ a.s. .
 ]
 
 #ex[
@@ -3409,18 +3431,48 @@ uE((X + lambda Y)^2|sG)
   + Use Theorem 4.2.12 and an argument by contradiction to show $X_n arrow.r 0$ a.s.
   + Use the strong law of large numbers to conclude $(1 \/ n) log X_n arrow.r c < 0$.
 ]
+#pf[
+  + 首先存在 $X$ 使得 $X_n -->^"a.s." X$。由于 $P(Y_m = 1) < 1$，可以取 $epsilon > 0$ 使得 $P(|Y_m - 1| > epsilon) > 0$，这时有 $
+    P(X_n > epsilon) P(|Y_(n+1) - 1| > epsilon)
+    &<= P(X_n |Y_(n+1)-1|>epsilon^2)\
+    &= P(|X_(n+1)-X_n|>epsilon^2)\
+    &->0 quad (n -> oo),
+  $ 最后一行是因为 $X_n -->^"a.s." X$ 从而 $X_n$ 是基本列。那么一定有 $P(X_n > epsilon) -> 0$，那么 $X_n -->^P 0$，那么 $X =^"a.s." 0$。
+  + 首先有 $
+    uE log Y_n < log uE Y_n = 0,
+  $ 这里 Jensen 不等式不取等是因为 $P(Y_m = 1) < 1$ 从而达不到取等条件。那么 $uE log Y_n < oo$，可以应用广义强大数定律，有 $
+    (log X_n) / n
+    &= (sum_(k=1)^n log Y_n) / n
+    &-> uE log Y_n
+    &= c < 0,
+  $，其中 $c in [-oo, 0]$。
+]
 
 #ex[
   Suppose $y_n > - 1$ for all $n$ and $sum lr(|y_n|) < oo$. Show that
   $product_(m = 1)^oo (1 + y_m)$ converges to a finite limit.
+]
+#pf[
+  参考陈纪修《数学分析》无穷乘积一节。
 ]
 
 #ex[
   Let $X_n$ and $Y_n$ be positive integrable processes adapted to
   $scr(F)_n$. Suppose
   $ uE (X_(n + 1)|scr(F)_n) lt.eq (1 + Y_n) X_n $ with
-  $sum Y_n < oo$ a.s. Prove that $X_n$ converges a.s. to a finite limit by
+  $sum Y_n < oo$ a.s. . Prove that $X_n$ converges a.s. to a finite limit by
   constructing a related supermartingale and applying Theorem 4.2.12.
+]
+#pf[
+  由 $sum Y_n < oo$ a.s. 知道 $Y = product (1 + Y_n)$ a.s. 有定义。定义 $
+    Z_n = X_n / (product_(k=1)^(n-1) (1 + Y_k)),
+  $ 那么 $
+    uE(Z_(n+1)|sF_n)
+    &= uE(X_(n+1) / (product_(k=1)^(n) (1 + Y_k)) | sF_n)\
+    &= 1 / (product_(k=1)^n (1 + Y_k)) uE(X_(n+1)|sF_n)\
+    &<= 1 / (product_(k=1)^(n-1) (1 + Y_k)) X_n\
+    &= Z_(n).
+  $ 假设 $uE X_1 < oo$，那么 $uE(Z_n) <= uE(Z_(n-1)) <= ... <= uE(Z_1) = uE(X_1) < oo$，从而 $Z_n$ 构成一个上鞅，再应用不等式就知道 $X_n -->^"a.s." X$ 且 $uE X < oo$.
 ]
 
 #ex[
@@ -3430,11 +3482,21 @@ uE((X + lambda Y)^2|sG)
   where $bold(1)$ is the indicator function. Show that $Y_n$ is a
   supermartingale.
 ]
+#pf[
+  $
+    uE(Y_(n+1)|sF_n)
+    &= uE(X_(n+1)^2 (1_{N <= n} + 1_{N=n+1}) + X_(n+1)^1(1_{N>n} - 1_{N=n+1})|sF_n)\
+    &= uE(X_(n+1)^2 1_{N<=n}|sF_n) + uE(X_(n+1)^1 1_{N>n}|sF_n) +\
+    &quad uE((X_(n+1)^2 - X_(n+1)^1) 1_{N=n+1}|sF_n)\
+    &<= X_(n)^2 1_{N<=n} + X_(n)^1 1_{N>n} + uE((X_(n+1)^2 - X_(n+1)^1) 1_{N=n+1}|sF_n)\
+    &<= Y_n + uE((X_(n+1)^2 - X_(n+1)^1) 1_{N=n+1}|sF_n),
+  $ 那么只要证明后面一项非正，而由题目条件 $X_N^1>=X_N^2$ 这是显然的。
+]
 
 #ex[
   Dubins’ inequality. For every positive supermartingale $X_n$,
   $n gt.eq 0$, the number of upcrossings $U$ of $[a , b]$ satisfies
-  $ P (U gt.eq k) lt.eq (a / b)^k uE min (X_0 \/ a , 1). $
+  $ P (U gt.eq k) lt.eq (a / b)^k uE min (X_0 / a , 1). $
 
   To prove this, we let $N_0 = - 1$ and for $j gt.eq 1$ let
   $
@@ -3443,10 +3505,14 @@ uE((X + lambda Y)^2|sG)
   $
 
   Let $Y_n = 1$ for $0 lt.eq n < N_1$ and for $j gt.eq 1$
+
   $
-    Y_n = cases(delim: "{", (b \/ a)^(j - 1) (X_n \/ a) & upright("for ") N_(2 j - 1) lt.eq n < N_(2 j), (b \/ a)^j & upright("for ") N_(2 j) lt.eq n < N_(2 j + 1))
+    Y_n = cases(display((b / a)^(j - 1) (X_n / a) & upright("for ") N_(2 j - 1) lt.eq n < N_(2 j)), display((b / a)^j & upright("for ") N_(2 j) lt.eq n < N_(2 j + 1).))
   $
 
   + Use the switching principle in the previous exercise and induction to show that $Z_n^j = Y_(n and N_j)$ is a supermartingale.
   + Use $uE Y_(n and N_(2 k)) lt.eq uE Y_0$ and let $n arrow.r oo$ to get Dubins’ inequality.
+]
+#pf[
+  *TODO*
 ]
