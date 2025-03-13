@@ -3516,3 +3516,108 @@ uE((X + lambda Y)^2|sG)
 #pf[
   *TODO*
 ]
+
+== 例子
+
+#ex[
+  Give an example of a martingale $X_n$ with $sup_n lr(|X_n|) < oo$
+  and $P (X_n = a upright("i.o.")) = 1$ for $a = - 1 , 0 , 1$. This
+  example shows that it is not enough to have
+  $sup lr(|X_(n + 1) - X_n|) < oo$ in Theorem 4.3.1.
+]
+
+#ex[
+  (Assumes familiarity with finite state Markov chains.) Fine tune
+  the example for the previous problem so that
+  $P (X_n = 0) arrow.r 1 - 2 p$ and
+  $P (X_n = - 1) , P (X_n = 1) arrow.r p$, where $p$ is your favorite
+  number in $(0 , 1 \/ 2)$, i.e., you are asked to do this for one value
+  of $p$ that you may choose. This example shows that a martingale can
+  converge in distribution without converging a.s. (or in probability).
+]
+
+#ex[
+  Let $X_n$ and $Y_n$ be positive integrable and adapted to
+  $scr(F)_n$. Suppose $E (X_(n + 1)|scr(F)_n) lt.eq X_n + Y_n$, with
+  $sum Y_n < oo$ a.s. . Prove that $X_n$ converges a.s. to a finite limit.
+  Hint: Let $N = inf_k sum_(m = 1)^k Y_m > M$, and stop your
+  supermartingale at time $N$.
+]
+
+#ex[
+  Let $p_m in [0 , 1]$. Use the Borel - Cantelli lemmas to show
+  that
+  $ product_(m = 1)^oo (1 - p_m) = 0 quad upright("if and only if") quad sum_(m = 1)^oo p_m = oo . $
+]
+#ex[
+  Show $
+  sum_(n = 2)^oo P (A_n \| inter.big_(m = 1)^(n - 1) A_m^c) = oo
+  $
+  implies $P (inter.big_(m = 1)^oo A_m^c) = 0$.
+]
+
+#ex[
+  Check by direct computation that the $X_n$ in Example 4.3.7 is a
+  martingale. Show that if we drop the condition $mu_n lt.double nu_n$ and
+  set $X_n = 0$ when $nu (I_(k , n)) = 0$, then
+  $E (X_(n + 1) \| scr(F)_n) lt.eq X_n$.
+]
+
+#ex[
+  Apply Theorem 4.3.5 to Example 4.3.7 to get a "probabilistic"
+  proof of the Radon - Nikodym theorem. To be precise, suppose $scr(F)$ is
+  countably generated (i.e., there is a sequence of sets $A_n$ so that
+  $scr(F) = sigma (A_n : n gt.eq 1)$) and show that if $mu$ and $nu$ are
+  $sigma$-finite measures and $mu lt.double nu$, then there is a function
+  $g$ so that $mu (A) = integral_A g d nu$. Before you object to this as
+  circular reasoning (the Radon - Nikodym theorem was used to define
+  conditional expectation!), observe that the conditional expectations
+  that are needed for Example 4.3.7 have elementary definitions.
+
+  Bernoulli product measures. For the next three exercises, suppose
+  $F_n , G_n$ are concentrated on ${ 0 , 1 }$ and have
+  $F_n (0) = 1 - alpha_n$, $G_n (0) = 1 - beta_n$.
+]
+
+#ex[
+  + Use Theorem 4.3.8 to find a necessary and sufficient condition for $mu lt.double nu$.
+  + Suppose that $0 < epsilon.alt lt.eq alpha_n , beta_n lt.eq 1 - epsilon.alt < 1$. Show that in this case the condition is simply $sum (alpha_n - beta_n)^2 < oo$.
+]
+
+#ex[
+  Show that if $sum alpha_n < oo$ and $sum beta_n = oo$ in the
+  previous exercise then $mu tack.t nu$. This shows that the condition
+  $sum (alpha_n - beta_n)^2 < oo$ is not sufficient for $mu lt.double nu$
+  in general.
+]
+
+#ex[
+  Suppose $0 < alpha_n , beta_n < 1$. Show that
+  $sum lr(|alpha_n - beta_n|) < oo$ is sufficient for $mu lt.double nu$ in
+  general.
+]
+
+#ex[
+  Show that if $P (lim Z_n \/ mu^n = 0) < 1$ then it is $= rho$
+  and hence
+  $ { lim Z_n \/ mu^n > 0 } = { Z_n > 0 upright(" for all ") n } quad upright("a.s.") $
+]
+
+#ex[
+  Let $Z_n$ be a branching process with offspring distribution
+  $p_k$, defined in part d of Section 4.3, and let
+  $phi (theta) = sum p_k theta^k$. Suppose $rho < 1$ has
+  $phi (rho) = rho$. Show that $rho^(Z_n)$ is a martingale and use this to
+  conclude
+  $P (Z_n = 0 upright(" for some ") n gt.eq 1 \| Z_0 = x) = rho^x$.
+]
+
+#ex[
+  Galton and Watson who invented the process that bears their
+  names were interested in the survival of family names. Suppose each
+  family has exactly 3 children but coin flips determine their sex. In the
+  1800s, only male children kept the family name so following the male
+  offspring leads to a branching process with $p_0 = 1 \/ 8$,
+  $p_1 = 3 \/ 8$, $p_2 = 3 \/ 8$, $p_3 = 1 \/ 8$. Compute the probability
+  $rho$ that the family name will die out when $Z_0 = 1$.
+]
