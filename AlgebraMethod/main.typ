@@ -85,9 +85,12 @@ $ 为 $cate(C) star.op cate(C) prime$ 中的态射合理地定义合成和单位
   + $eta : upright("id")_(cate(C)_1) arrow.r G F$ 为同构当且仅当 $F$ 是全忠实函子；
   + $epsilon : F G arrow.r upright("id")_(cate(C)_2)$ 为同构当且仅当 $G$ 是全忠实函子。
 
-  / 提示: 基于对偶性 (以 $cate(C)^(upright("op"))$ 代 $cate(C)$)，仅需证 (1)。先证明对所有 $cate(C)_1$ 中的态射 $f : X arrow.r Y$ 都有 $phi (F f) = eta_Y f : X arrow.r G F Y$：这是缘于 $phi$ 的自然性导致图表 $
-    "TEST TODO"
-  $ 交换。米田引理（定理 2.5.1）表明 $eta_Y : Y arrow.r^tilde.op G F Y$ 当且仅当 $f arrow.r.bar eta_Y f$ 给出双射 $upright("Hom")(X, Y) arrow.r^tilde.op upright("Hom")(X , G F Y)$，其中 $X$ 取遍 $cate(C)_1$ 的对象；既然 $phi$ 是同构，这又相当于 $f arrow.r.bar F f$ 是双射，亦即 $F$ 是全忠实的。
+  / 提示: 基于对偶性 (以 $cate(C)^(upright("op"))$ 代 $cate(C)$)，仅需证 (1)。先证明对所有 $cate(C)_1$ 中的态射 $f : X arrow.r Y$ 都有 $phi (F f) = eta_Y f : X arrow.r G F Y$：这是缘于 $phi$ 的自然性导致图表\ #diagram(
+  spacing: (10mm, 6mm),
+  $
+  "id"_(F Y) edge("|->", "d") edge(in, stroke: #0pt, label-side: #center, label-fill: #false)& Hom(F Y, F Y) edge("->", phi) edge("->", "d", (F f)^*) &Hom(Y, G F Y) edge("|->", "d", f^*) edge(in.rev, stroke: #0pt, label-side: #center, label-fill: #false) & eta_Y edge("->", "d")\
+  F f edge(in, stroke: #0pt, label-side: #center, label-fill: #false) & Hom(F X, F Y) edge("->", phi) & Hom(X, G F Y) edge(in.rev, stroke: #0pt, label-side: #center, label-fill: #false) & phi(F f) = eta_Y f
+  $)\ \ 交换。米田引理（定理 2.5.1）表明 $eta_Y : Y arrow.r^tilde.op G F Y$ 当且仅当 $f arrow.r.bar eta_Y f$ 给出双射 $upright("Hom")(X, Y) arrow.r^tilde.op upright("Hom")(X , G F Y)$，其中 $X$ 取遍 $cate(C)_1$ 的对象；既然 $phi$ 是同构，这又相当于 $f arrow.r.bar F f$ 是双射，亦即 $F$ 是全忠实的。
 ]
 
 #ex[
