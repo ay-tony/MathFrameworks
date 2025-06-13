@@ -3538,29 +3538,32 @@ uE((X + lambda Y)^2|sG)
 
 #ex[
   Let $X_n$ and $Y_n$ be positive integrable and adapted to
-  $scr(F)_n$. Suppose $E (X_(n + 1)|scr(F)_n) lt.eq X_n + Y_n$, with
+  $scr(F)_n$. Suppose $uE (X_(n + 1)|scr(F)_n) lt.eq X_n + Y_n$, with
   $sum Y_n < oo$ a.s. . Prove that $X_n$ converges a.s. to a finite limit.
   Hint: Let $N = inf_k sum_(m = 1)^k Y_m > M$, and stop your
   supermartingale at time $N$.
 ]
 
 #ex[
-  Let $p_m in [0 , 1]$. Use the Borel - Cantelli lemmas to show
+  Let $p_m in [0 , 1]$. Use the Borel-Cantelli lemmas to show
   that
   $ product_(m = 1)^oo (1 - p_m) = 0 quad upright("if and only if") quad sum_(m = 1)^oo p_m = oo . $
 ]
+
 #ex[
   Show $
-  sum_(n = 2)^oo P (A_n \| inter.big_(m = 1)^(n - 1) A_m^c) = oo
+  sum_(n = 2)^oo P (A_n | inter.big_(m = 1)^(n - 1) A_m^c) = oo
   $
-  implies $P (inter.big_(m = 1)^oo A_m^c) = 0$.
+  implies $
+  P (inter.big_(m = 1)^oo A_m^c) = 0.
+  $
 ]
 
 #ex[
   Check by direct computation that the $X_n$ in Example 4.3.7 is a
   martingale. Show that if we drop the condition $mu_n lt.double nu_n$ and
   set $X_n = 0$ when $nu (I_(k , n)) = 0$, then
-  $E (X_(n + 1) \| scr(F)_n) lt.eq X_n$.
+  $uE (X_(n + 1) \| scr(F)_n) lt.eq X_n$.
 ]
 
 #ex[
@@ -3574,10 +3577,11 @@ uE((X + lambda Y)^2|sG)
   conditional expectation!), observe that the conditional expectations
   that are needed for Example 4.3.7 have elementary definitions.
 
-  Bernoulli product measures. For the next three exercises, suppose
-  $F_n , G_n$ are concentrated on ${ 0 , 1 }$ and have
-  $F_n (0) = 1 - alpha_n$, $G_n (0) = 1 - beta_n$.
 ]
+
+For the next three exercises, suppose
+$F_n , G_n$ are concentrated on ${ 0 , 1 }$ and have
+$F_n (0) = 1 - alpha_n$, $G_n (0) = 1 - beta_n$.
 
 #ex[
   + Use Theorem 4.3.8 to find a necessary and sufficient condition for $mu lt.double nu$.
@@ -3600,7 +3604,7 @@ uE((X + lambda Y)^2|sG)
 #ex[
   Show that if $P (lim Z_n \/ mu^n = 0) < 1$ then it is $= rho$
   and hence
-  $ { lim Z_n \/ mu^n > 0 } = { Z_n > 0 upright(" for all ") n } quad upright("a.s.") $
+  $ { lim Z_n / mu^n > 0 } = { Z_n > 0 upright("for all") n } quad upright("a.s.") $
 ]
 
 #ex[
@@ -3609,7 +3613,7 @@ uE((X + lambda Y)^2|sG)
   $phi (theta) = sum p_k theta^k$. Suppose $rho < 1$ has
   $phi (rho) = rho$. Show that $rho^(Z_n)$ is a martingale and use this to
   conclude
-  $P (Z_n = 0 upright(" for some ") n gt.eq 1 \| Z_0 = x) = rho^x$.
+  $P (Z_n = 0 upright("for some") n gt.eq 1 \| Z_0 = x) = rho^x$.
 ]
 
 #ex[
